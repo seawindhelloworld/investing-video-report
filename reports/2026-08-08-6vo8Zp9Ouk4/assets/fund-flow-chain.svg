@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">半导体资金结构的两阶段链条</title><desc id="desc">强制卖盘减少降低短期风险，但风险预算缩水和散户杠杆可能增加未来波动。</desc>
+  <defs><style>.t{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#17213b}.h{font-size:25px;font-weight:800}.b{font-size:17px}.s{font-size:14px;fill:#667087}.a{stroke:#7f8ba4;stroke-width:3;fill:none;marker-end:url(#m)}</style><marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#7f8ba4"/></marker></defs>
+  <rect width="1200" height="420" rx="28" fill="#f6f8ff"/><text x="54" y="58" class="t h">视频所述：卖压尾声与接盘结构是两类问题</text>
+  <g><rect x="54" y="104" width="242" height="164" rx="20" fill="#dde5ff"/><text x="78" y="143" class="t h">7月历史级亏损</text><text x="78" y="182" class="t b">TMT −10.24%</text><text x="78" y="213" class="t b">多策略 −2.27%</text><text x="78" y="244" class="t s">净值与资产规模下降</text></g>
+  <path d="M302 186H350" class="a"/>
+  <g><rect x="360" y="104" width="242" height="164" rx="20" fill="#e7ecf7"/><text x="384" y="143" class="t h">风险预算收缩</text><text x="384" y="182" class="t b">集中度限制更严</text><text x="384" y="213" class="t b">融资杠杆更低</text><text x="384" y="244" class="t s">机构建仓能力下降</text></g>
+  <path d="M608 186H656" class="a"/>
+  <g><rect x="666" y="104" width="220" height="164" rx="20" fill="#e0f3ee"/><text x="690" y="143" class="t h">短期</text><text x="690" y="182" class="t b">强制卖盘减少</text><text x="690" y="213" class="t b">上下风险更可控</text><text x="690" y="244" class="t s">不代表上涨动力恢复</text></g>
+  <path d="M892 186H940" class="a"/>
+  <g><rect x="950" y="104" width="196" height="164" rx="20" fill="#fde9dd"/><text x="974" y="143" class="t h">中期</text><text x="974" y="182" class="t b">更依赖散户杠杆</text><text x="974" y="213" class="t b">波动反馈更脆弱</text><text x="974" y="244" class="t s">可能先横盘整理</text></g>
+  <rect x="54" y="308" width="1092" height="70" rx="18" fill="#fff"/><text x="80" y="339" class="t b">关键区分</text><text x="184" y="339" class="t h">“还有多少卖盘” ≠ “下一轮由谁提供资金”</text><text x="80" y="363" class="t s">图表仅压缩原内容中的因果链，不验证摩根大通专有仓位数据。</text>
+</svg>

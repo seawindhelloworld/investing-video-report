@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">十四条外部研判的证据状态分布</title>
+  <desc id="desc">一条总体支持、七条部分支持、四条取决于条件、一条证据混合、一条信息不足，合计十四条。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbfcff"/><stop offset="1" stop-color="#f5f0e8"/></linearGradient>
+    <style>
+      .eyebrow{font:700 18px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#667085}.headline{font:800 34px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#172447}.num{font:800 48px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#172447}.label{font:700 18px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#344054}.note{font:500 17px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#667085}.bartext{font:800 17px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#fff}
+    </style>
+  </defs>
+  <rect width="1200" height="470" rx="26" fill="url(#bg)"/>
+  <text x="58" y="56" class="eyebrow">外部证据研判 · 截至 2026-08-02</text>
+  <text x="58" y="101" class="headline">证据不是“支持 / 反对”二选一，而是条件分布</text>
+  <g>
+    <rect x="58" y="142" width="1084" height="74" rx="16" fill="#e9edf5"/>
+    <rect x="58" y="142" width="77" height="74" rx="16" fill="#237a57"/>
+    <rect x="135" y="142" width="542" height="74" fill="#4f7ac9"/>
+    <rect x="677" y="142" width="310" height="74" fill="#d39a28"/>
+    <rect x="987" y="142" width="77" height="74" fill="#8a63a9"/>
+    <rect x="1064" y="142" width="78" height="74" rx="16" fill="#7f8795"/>
+    <text x="96" y="188" text-anchor="middle" class="bartext">1</text>
+    <text x="406" y="188" text-anchor="middle" class="bartext">7</text>
+    <text x="832" y="188" text-anchor="middle" class="bartext">4</text>
+    <text x="1026" y="188" text-anchor="middle" class="bartext">1</text>
+    <text x="1103" y="188" text-anchor="middle" class="bartext">1</text>
+  </g>
+  <g text-anchor="middle">
+    <text x="164" y="294" class="num">1</text><text x="164" y="325" class="label">总体支持</text><text x="164" y="354" class="note">杠杆机制</text>
+    <text x="382" y="294" class="num">7</text><text x="382" y="325" class="label">部分支持</text><text x="382" y="354" class="note">方向成立，强结论受限</text>
+    <text x="600" y="294" class="num">4</text><text x="600" y="325" class="label">取决于条件</text><text x="600" y="354" class="note">需阈值、期限与前提</text>
+    <text x="818" y="294" class="num">1</text><text x="818" y="325" class="label">证据混合</text><text x="818" y="354" class="note">大周期晚期</text>
+    <text x="1036" y="294" class="num">1</text><text x="1036" y="325" class="label">信息不足</text><text x="1036" y="354" class="note">AI价值链主角</text>
+  </g>
+  <line x1="58" y1="391" x2="1142" y2="391" stroke="#d0d5dd"/>
+  <text x="58" y="428" class="note">阅读结论：证据最强的是“杠杆会把价格风险变成融资风险”；最弱的是从一次被迫出售反推整条 AI 价值链。</text>
+</svg>

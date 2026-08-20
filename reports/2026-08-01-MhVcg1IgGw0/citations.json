@@ -1,0 +1,997 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-01T20:24:07.466850+00:00",
+  "citations": [
+    {
+      "source_id": "crypto-src-001",
+      "title": "Actions - H.R.3633 - 119th Congress",
+      "publisher": "Congress.gov / Library of Congress",
+      "published_at": "2025-09-18",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.congress.gov/bill/119th-congress/house-bill/3633/all-actions?overview=closed",
+      "source_type": "government_bill_tracker",
+      "claims_supported": [
+        "众议院通过后送交参议院",
+        "正式行动尚未显示院会通过"
+      ],
+      "source_ids": [
+        "crypto-src-001"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-001"
+    },
+    {
+      "source_id": "crypto-src-002",
+      "title": "Boozman Leads Ag Committee in Advancing Crypto Market Structure Legislation",
+      "publisher": "U.S. Senate Committee on Agriculture",
+      "published_at": "2026-01-29",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.agriculture.senate.gov/newsroom/rep/press/release/boozman-leads-ag-committee-in-advancing-crypto-market-structure-legislation",
+      "source_type": "government_press_release",
+      "claims_supported": [
+        "农业委员会已推进市场结构立法"
+      ],
+      "source_ids": [
+        "crypto-src-002"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-002"
+    },
+    {
+      "source_id": "crypto-src-003",
+      "title": "Senate Banking Committee Advances CLARITY Act",
+      "publisher": "U.S. Senate Committee on Banking",
+      "published_at": "2026-05-14",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.banking.senate.gov/newsroom/majority/chairman-scott-senate-banking-committee-advance-clarity-act-in-historic-bipartisan-vote",
+      "source_type": "government_press_release",
+      "claims_supported": [
+        "银行委员会以15比9推进法案",
+        "委员会通过不等于最终成法"
+      ],
+      "source_ids": [
+        "crypto-src-003"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-003"
+    },
+    {
+      "source_id": "crypto-src-004",
+      "title": "Lummis Releases Updated CLARITY Act Text",
+      "publisher": "Office of Senator Cynthia Lummis",
+      "published_at": "2026-07-22",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.lummis.senate.gov/press-releases/lummis-releases-updated-clarity-act-text/",
+      "source_type": "government_press_release",
+      "claims_supported": [
+        "7月文本合并两委员会工作成果",
+        "推进紧迫性与失败风险并存"
+      ],
+      "source_ids": [
+        "crypto-src-004"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-004"
+    },
+    {
+      "source_id": "crypto-src-005",
+      "title": "Digital Asset Market Clarity Act — July 22, 2026 Senate Merged Substitute Draft",
+      "publisher": "Offices of Senators Lummis, Scott and Boozman",
+      "published_at": "2026-07-22",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.lummis.senate.gov/wp-content/uploads/Clarity-Act.pdf",
+      "source_type": "legislative_text",
+      "claims_supported": [
+        "最新版发行豁免和DeFi条款不同于2025年众议院版本",
+        "拟明确SEC与CFTC分工"
+      ],
+      "source_ids": [
+        "crypto-src-005"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-005"
+    },
+    {
+      "source_id": "crypto-src-006",
+      "title": "Order Approving Trading of Securities in Tokenized Form",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "published_at": "2026-03-18",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.sec.gov/files/rules/sro/nasdaq/2026/34-105047.pdf",
+      "source_type": "regulatory_order",
+      "claims_supported": [
+        "Nasdaq可在既有订单簿交易特定代币化证券并通过DTC试点结算"
+      ],
+      "source_ids": [
+        "crypto-src-006"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-006"
+    },
+    {
+      "source_id": "crypto-src-007",
+      "title": "Tokenization at Scale: Why Market Infrastructure Still Matters",
+      "publisher": "Depository Trust & Clearing Corporation",
+      "published_at": "2026-06-01",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.dtcc.com/dtcc-connection/articles/2026/june/01/tokenization-at-scale-why-market-infrastructure-still-matters",
+      "source_type": "market_infrastructure_analysis",
+      "claims_supported": [
+        "净额、最终性、资产服务与风险管理仍是核心基础设施功能"
+      ],
+      "source_ids": [
+        "crypto-src-007"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-007"
+    },
+    {
+      "source_id": "crypto-src-008",
+      "title": "SEC Approves Generic Listing Standards for Commodity-Based Trust Shares",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "published_at": "2025-09-17",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.sec.gov/newsroom/press-releases/2025-121-sec-approves-generic-listing-standards-commodity-based-trust-shares",
+      "source_type": "regulatory_press_release",
+      "claims_supported": [
+        "部分数字资产机构通道不必等待CLARITY"
+      ],
+      "source_ids": [
+        "crypto-src-008"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-008"
+    },
+    {
+      "source_id": "crypto-src-009",
+      "title": "CME Group Announces 24/7 Cryptocurrency Futures and Options Trading",
+      "publisher": "CME Group",
+      "published_at": "2026-06-01",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.cmegroup.com/media-room/press-releases/2026/6/01/cme_group_announceslaunchof247cryptocurrencyfuturesandoptionstra.html",
+      "source_type": "exchange_press_release",
+      "claims_supported": [
+        "已存在全天候受监管的加密衍生品工具"
+      ],
+      "source_ids": [
+        "crypto-src-009"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-009"
+    },
+    {
+      "source_id": "crypto-src-010",
+      "title": "Estimating the Impact of the Bitcoin Halving on Its Price Using Synthetic Control",
+      "publisher": "arXiv",
+      "published_at": "2025-10-25",
+      "accessed_at": "2026-08-02",
+      "url": "https://arxiv.org/abs/2511.05512",
+      "source_type": "research_preprint",
+      "claims_supported": [
+        "2024减半影响有限",
+        "2020结果不稳健",
+        "供应事件不等于稳定价格周期"
+      ],
+      "source_ids": [
+        "crypto-src-010"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-010"
+    },
+    {
+      "source_id": "crypto-src-011",
+      "title": "Tentative 2026 Legislative Schedule",
+      "publisher": "U.S. Senate",
+      "published_at": "2025-11-21",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.senate.gov/legislative/2026_schedule.htm",
+      "source_type": "legislative_calendar",
+      "claims_supported": [
+        "2026年剩余院会时间有限"
+      ],
+      "source_ids": [
+        "crypto-src-011"
+      ],
+      "research_topics": [
+        "crypto-legislation"
+      ],
+      "citation_id": "citation-011"
+    },
+    {
+      "source_id": "dalio-src-001",
+      "title": "AI: A Bubble or a Lasting Impact?",
+      "publisher": "Ray Dalio / LinkedIn",
+      "published_at": "2026-03-19",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.linkedin.com/pulse/ai-bubble-lasting-impact-ray-dalio-2m1le/",
+      "source_type": "speaker_primary_commentary",
+      "claims_supported": [
+        "Dalio本人区分技术长期影响与资产泡沫"
+      ],
+      "source_ids": [
+        "dalio-src-001"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-012"
+    },
+    {
+      "source_id": "dalio-src-002",
+      "title": "Generative AI at Work",
+      "publisher": "Quarterly Journal of Economics",
+      "published_at": "2025-02-04",
+      "accessed_at": "2026-08-02",
+      "url": "https://academic.oup.com/qje/article/140/2/889/7990658",
+      "source_type": "peer_reviewed_research",
+      "claims_supported": [
+        "5172名客服人员使用生成式AI后每小时解决问题数平均提高15%"
+      ],
+      "source_ids": [
+        "dalio-src-002"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-013"
+    },
+    {
+      "source_id": "dalio-src-003",
+      "title": "The Global Economy Enters a New Era",
+      "publisher": "International Monetary Fund",
+      "published_at": "2026-01-19",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.imf.org/en/blogs/articles/2026/01/19/the-global-economy-enters-a-new-era",
+      "source_type": "multilateral_analysis",
+      "claims_supported": [
+        "AI生产率潜力与高估值重估风险并存"
+      ],
+      "source_ids": [
+        "dalio-src-003"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-014"
+    },
+    {
+      "source_id": "dalio-src-004",
+      "title": "United States: 2026 Article IV Consultation",
+      "publisher": "International Monetary Fund",
+      "published_at": "2026-03-17",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.imf.org/-/media/Websites/IMF/imported-full-text-pdf/external/pubs/ft/scr/2026/english/1usaea2026001-source-pdf.ashx",
+      "source_type": "multilateral_country_report",
+      "claims_supported": [
+        "标普500前瞻估值位于历史高分位",
+        "广义高估程度小于互联网泡沫时期"
+      ],
+      "source_ids": [
+        "dalio-src-004"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-015"
+    },
+    {
+      "source_id": "dalio-src-005",
+      "title": "Financial Stability Report — May 2026",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2026-05",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.federalreserve.gov/publications/financial-stability-report.htm",
+      "source_type": "central_bank_report",
+      "claims_supported": [
+        "杠杆、融资压力、估值和市场深度共同决定去杠杆风险"
+      ],
+      "source_ids": [
+        "dalio-src-005"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-016"
+    },
+    {
+      "source_id": "dalio-src-006",
+      "title": "Treasury Quarterly Refunding Statement",
+      "publisher": "U.S. Department of the Treasury",
+      "published_at": "2026-05-06",
+      "accessed_at": "2026-08-02",
+      "url": "https://home.treasury.gov/news/press-releases/sb0142",
+      "source_type": "government_financing_statement",
+      "claims_supported": [
+        "发行结构与财政现金管理会改变市场流动性影响"
+      ],
+      "source_ids": [
+        "dalio-src-006"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-017"
+    },
+    {
+      "source_id": "dalio-src-007",
+      "title": "The Budget and Economic Outlook: 2026 to 2036",
+      "publisher": "Congressional Budget Office",
+      "published_at": "2026-02-11",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.cbo.gov/publication/61880",
+      "source_type": "government_fiscal_projection",
+      "claims_supported": [
+        "美国债务与赤字路径构成中长期财政压力"
+      ],
+      "source_ids": [
+        "dalio-src-007"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-018"
+    },
+    {
+      "source_id": "dalio-src-008",
+      "title": "Distributional Financial Accounts",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2026-06-18",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.federalreserve.gov/releases/z1/dataviz/dfa/",
+      "source_type": "official_distribution_data",
+      "claims_supported": [
+        "财富分布高度不均"
+      ],
+      "source_ids": [
+        "dalio-src-008"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-019"
+    },
+    {
+      "source_id": "dalio-src-009",
+      "title": "The International Role of the U.S. Dollar — 2025 Edition",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2025",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.federalreserve.gov/econres/notes/feds-notes/the-international-role-of-the-us-dollar-2025-edition-20250620.html",
+      "source_type": "central_bank_research",
+      "claims_supported": [
+        "美元在国际融资、贸易与储备中仍居核心地位"
+      ],
+      "source_ids": [
+        "dalio-src-009"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-020"
+    },
+    {
+      "source_id": "dalio-src-010",
+      "title": "Currency Composition of Official Foreign Exchange Reserves — 2026 Q1",
+      "publisher": "International Monetary Fund",
+      "published_at": "2026-07-01",
+      "accessed_at": "2026-08-02",
+      "url": "https://data.imf.org/en/news/july-1-2026-currency-composition-of-official-foreign-exchange-reserves",
+      "source_type": "multilateral_reserve_data",
+      "claims_supported": [
+        "美元占已配置外汇储备约57.13%"
+      ],
+      "source_ids": [
+        "dalio-src-010"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-021"
+    },
+    {
+      "source_id": "dalio-src-011",
+      "title": "Generative AI and Jobs: A Refined Global Index of Occupational Exposure",
+      "publisher": "International Labour Organization",
+      "published_at": "2025-05-20",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.ilo.org/publications/generative-ai-and-jobs-refined-global-index-occupational-exposure",
+      "source_type": "multilateral_employment_report",
+      "claims_supported": [
+        "高暴露更多意味着任务转型而非职业整体自动消失"
+      ],
+      "source_ids": [
+        "dalio-src-011"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-022"
+    },
+    {
+      "source_id": "dalio-src-012",
+      "title": "Introducing the OECD AI Capability Indicators",
+      "publisher": "OECD",
+      "published_at": "2025-06-03",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.oecd.org/en/publications/2025/06/introducing-the-oecd-ai-capability-indicators_7c0731f0/full-report/component-6.html",
+      "source_type": "multilateral_ai_report",
+      "claims_supported": [
+        "机器人在非结构化环境、灵巧操作与实时适应方面仍受限"
+      ],
+      "source_ids": [
+        "dalio-src-012"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-023"
+    },
+    {
+      "source_id": "dalio-src-013",
+      "title": "OECD Employment Outlook 2026",
+      "publisher": "OECD",
+      "published_at": "2026-07-07",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.oecd.org/en/publications/oecd-employment-outlook-2026_7e710f54-en/full-report/component-5.html",
+      "source_type": "multilateral_employment_report",
+      "claims_supported": [
+        "生成式AI就业实证结果仍混合",
+        "青年就业困难还有多种替代解释"
+      ],
+      "source_ids": [
+        "dalio-src-013"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-024"
+    },
+    {
+      "source_id": "dalio-src-014",
+      "title": "AI Impacts in BLS Employment Projections",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "published_at": "2025-03-11",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.bls.gov/opub/ted/2025/ai-impacts-in-bls-employment-projections.htm",
+      "source_type": "government_employment_analysis",
+      "claims_supported": [
+        "任务自动化不等于职业净就业必然下降",
+        "软件岗位仍可能增长"
+      ],
+      "source_ids": [
+        "dalio-src-014"
+      ],
+      "research_topics": [
+        "dalio-cycles-ai"
+      ],
+      "citation_id": "citation-025"
+    },
+    {
+      "source_id": "leverage-src-001",
+      "title": "Investor Bulletin: Understanding Margin Accounts",
+      "publisher": "U.S. Securities and Exchange Commission, Investor.gov",
+      "published_at": "2021-06-10",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-29",
+      "source_type": "official_investor_guidance",
+      "claims_supported": [
+        "保证金放大损失",
+        "券商可追加保证金并强制卖出"
+      ],
+      "source_ids": [
+        "leverage-src-001"
+      ],
+      "research_topics": [
+        "leverage-ai-fund"
+      ],
+      "citation_id": "citation-026"
+    },
+    {
+      "source_id": "leverage-src-002",
+      "title": "SEC Charges Archegos and its Founder with Massive Market Manipulation Scheme",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "published_at": "2022-04-27",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.sec.gov/newsroom/press-releases/2022-70",
+      "source_type": "official_enforcement_release",
+      "claims_supported": [
+        "集中杠杆敞口可触发巨额保证金要求和强制平仓",
+        "案例涉及欺诈，仅用于说明机制"
+      ],
+      "source_ids": [
+        "leverage-src-002"
+      ],
+      "research_topics": [
+        "leverage-ai-fund"
+      ],
+      "citation_id": "citation-027"
+    },
+    {
+      "source_id": "leverage-src-003",
+      "title": "Read Leopold Aschenbrenner's letter to investors after his fund lost 67% this month",
+      "publisher": "Business Insider",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.businessinsider.com/leopold-aschenbrenners-letter-to-investors-after-hedge-fund-meltdown-2026-7",
+      "source_type": "financial_press_with_reproduced_fund_letter",
+      "claims_supported": [
+        "基金信称出售部分公开组合以移除杠杆",
+        "基金未关闭并保留私人投资",
+        "临时回报数字未经审计"
+      ],
+      "source_ids": [
+        "leverage-src-003"
+      ],
+      "research_topics": [
+        "leverage-ai-fund"
+      ],
+      "citation_id": "citation-028"
+    },
+    {
+      "source_id": "leverage-src-004",
+      "title": "AI-focused hedge fund sells all of its stocks",
+      "publisher": "Axios",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.axios.com/2026/07/30/ai-hedge-fund-situational-awareness-citadel",
+      "source_type": "financial_press_anonymous_source_report",
+      "claims_supported": [
+        "匿名信源称出售全部公开股票组合",
+        "与基金信口径存在差异"
+      ],
+      "source_ids": [
+        "leverage-src-004"
+      ],
+      "research_topics": [
+        "leverage-ai-fund"
+      ],
+      "citation_id": "citation-029"
+    },
+    {
+      "source_id": "leverage-src-005",
+      "title": "Form 13F-HR — Situational Awareness LP, quarter ended March 31, 2026",
+      "publisher": "U.S. Securities and Exchange Commission, EDGAR",
+      "published_at": "2026-05-18",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.sec.gov/Archives/edgar/data/2045724/000204572426000008/0002045724-26-000008-index.htm",
+      "source_type": "official_regulatory_filing",
+      "claims_supported": [
+        "13F申报42个条目和约136.77亿美元可报告价值",
+        "未披露私人持仓、借款或总杠杆"
+      ],
+      "source_ids": [
+        "leverage-src-005"
+      ],
+      "research_topics": [
+        "leverage-ai-fund"
+      ],
+      "citation_id": "citation-030"
+    },
+    {
+      "source_id": "leverage-src-006",
+      "title": "Frequently Asked Questions About Form 13F",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "published_at": "2026-03-06",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.sec.gov/rules-regulations/staff-guidance/division-investment-management-frequently-asked-questions/frequently-asked-questions-about-form-13f",
+      "source_type": "official_regulatory_guidance",
+      "claims_supported": [
+        "13F不披露股票空头和已写期权",
+        "不能还原净敞口与杠杆"
+      ],
+      "source_ids": [
+        "leverage-src-006"
+      ],
+      "research_topics": [
+        "leverage-ai-fund"
+      ],
+      "citation_id": "citation-031"
+    },
+    {
+      "source_id": "leverage-src-007",
+      "title": "Anthropic raises $65B in Series H funding at $965B post-money valuation",
+      "publisher": "Anthropic",
+      "published_at": "2026-05-28",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.anthropic.com/news/series-h",
+      "source_type": "company_official_announcement",
+      "claims_supported": [
+        "Situational Awareness列为重要投资者但金额未披露",
+        "Anthropic披露公司口径收入与融资",
+        "基础设施伙伴仍关键"
+      ],
+      "source_ids": [
+        "leverage-src-007"
+      ],
+      "research_topics": [
+        "leverage-ai-fund"
+      ],
+      "citation_id": "citation-032"
+    },
+    {
+      "source_id": "leverage-src-008",
+      "title": "Unauthorized Anthropic stock sales and investment scams",
+      "publisher": "Anthropic, Claude Help Center",
+      "published_at": "2026-06-29",
+      "accessed_at": "2026-08-02",
+      "url": "https://support.claude.com/en/articles/13704655-unauthorized-anthropic-stock-sales-and-investment-scams",
+      "source_type": "company_official_share_transfer_notice",
+      "claims_supported": [
+        "Anthropic股票转让原则上需董事会批准",
+        "保留私人持仓可能反映流动性约束"
+      ],
+      "source_ids": [
+        "leverage-src-008"
+      ],
+      "research_topics": [
+        "leverage-ai-fund"
+      ],
+      "citation_id": "citation-033"
+    },
+    {
+      "source_id": "resilience-src-001",
+      "title": "An essential guide to building an emergency fund",
+      "publisher": "Consumer Financial Protection Bureau",
+      "published_at": "2025-10-29",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/",
+      "source_type": "official_consumer_guidance",
+      "claims_supported": [
+        "应急资金用于意外支出和收入中断",
+        "没有储备会增加依赖信用与债务的风险",
+        "所需金额取决于个人情况",
+        "储备应安全且容易取得"
+      ],
+      "source_ids": [
+        "resilience-src-001"
+      ],
+      "research_topics": [
+        "personal-resilience-allocation"
+      ],
+      "citation_id": "citation-034"
+    },
+    {
+      "source_id": "resilience-src-002",
+      "title": "Asset Allocation and Diversification",
+      "publisher": "U.S. Securities and Exchange Commission, Investor.gov",
+      "published_at": "undated",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.investor.gov/introduction-investing/getting-started/asset-allocation",
+      "source_type": "official_investor_guidance",
+      "claims_supported": [
+        "资产配置取决于期限与风险承受能力",
+        "跨资产和资产内部的分散可降低集中风险",
+        "窄基基金或ETF未必提供充分分散"
+      ],
+      "source_ids": [
+        "resilience-src-002"
+      ],
+      "research_topics": [
+        "personal-resilience-allocation"
+      ],
+      "citation_id": "citation-035"
+    },
+    {
+      "source_id": "resilience-src-003",
+      "title": "Money Market Funds",
+      "publisher": "U.S. Securities and Exchange Commission, Investor.gov",
+      "published_at": "undated",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.investor.gov/introduction-investing/investing-basics/investment-products/mutual-funds-and-exchange-traded-5",
+      "source_type": "official_investor_guidance",
+      "claims_supported": [
+        "货币市场基金投资短期高流动性资产并通常可按工作日赎回",
+        "货币市场基金不受FDIC担保且可能亏损",
+        "低收益可能被通胀和费用侵蚀"
+      ],
+      "source_ids": [
+        "resilience-src-003"
+      ],
+      "research_topics": [
+        "personal-resilience-allocation"
+      ],
+      "citation_id": "citation-036"
+    },
+    {
+      "source_id": "resilience-src-004",
+      "title": "Brokerage Accounts: Margin Accounts",
+      "publisher": "Financial Industry Regulatory Authority",
+      "published_at": "undated",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.finra.org/investors/investing/investment-accounts/brokerage-accounts",
+      "source_type": "self_regulatory_investor_guidance",
+      "claims_supported": [
+        "保证金不足时券商可强制出售证券",
+        "强平可以不提前通知且投资者仍承担短缺",
+        "保证金融资会产生利息费用"
+      ],
+      "source_ids": [
+        "resilience-src-004"
+      ],
+      "research_topics": [
+        "personal-resilience-allocation"
+      ],
+      "citation_id": "citation-037"
+    },
+    {
+      "source_id": "resilience-src-005",
+      "title": "What share for gold? On the interaction of gold and foreign exchange reserve returns",
+      "publisher": "Bank for International Settlements",
+      "published_at": "2020-11-26",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.bis.org/publ/work906.htm",
+      "source_type": "official_institution_working_paper",
+      "claims_supported": [
+        "黄金配置的风险收益结果高度依赖久期、计价货币与目标",
+        "低久期储备组合的平均黄金比例可能只有0%至5%",
+        "黄金自身市场风险会限制普适的高比例配置"
+      ],
+      "source_ids": [
+        "resilience-src-005"
+      ],
+      "research_topics": [
+        "personal-resilience-allocation"
+      ],
+      "citation_id": "citation-038"
+    },
+    {
+      "source_id": "resilience-src-006",
+      "title": "From skills to labour market opportunities: OECD Skills Outlook 2025",
+      "publisher": "Organisation for Economic Co-operation and Development",
+      "published_at": "2025-12-09",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.oecd.org/en/publications/oecd-skills-outlook-2025_26163cd3-en/full-report/from-skills-to-labour-market-opportunities_c97cd32b.html",
+      "source_type": "intergovernmental_research_report",
+      "claims_supported": [
+        "AI与技术变化正在改变岗位组合和任务所需技能",
+        "快速变化岗位需要适应能力与持续学习",
+        "再培训和技能转型应按岗位暴露程度定向安排"
+      ],
+      "source_ids": [
+        "resilience-src-006"
+      ],
+      "research_topics": [
+        "personal-resilience-allocation"
+      ],
+      "citation_id": "citation-039"
+    },
+    {
+      "source_id": "resilience-src-007",
+      "title": "AI and skills",
+      "publisher": "Organisation for Economic Co-operation and Development",
+      "published_at": "2026-07-01",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.oecd.org/en/publications/ai-and-skills_f843b352-en/full-report.html",
+      "source_type": "intergovernmental_research_report",
+      "claims_supported": [
+        "多数劳动者需要数字、数据解释、管理和人类技能而非高级AI开发技能",
+        "培训与更好的AI使用结果相关",
+        "终身学习与再培训是AI转型的重要应对方式"
+      ],
+      "source_ids": [
+        "resilience-src-007"
+      ],
+      "research_topics": [
+        "personal-resilience-allocation"
+      ],
+      "citation_id": "citation-040"
+    },
+    {
+      "source_id": "semi-src-001",
+      "title": "Market Insights",
+      "publisher": "J.P. Morgan Markets",
+      "published_at": "undated",
+      "accessed_at": "2026-08-02",
+      "url": "https://emea-markets.jpmorgan.com/research-and-insights/market-insights",
+      "source_type": "institutional_methodology",
+      "claims_supported": [
+        "Positioning Intelligence使用Prime Book、零售、ETF、CTA和共同基金数据",
+        "完整客户报告未公开"
+      ],
+      "source_ids": [
+        "semi-src-001"
+      ],
+      "research_topics": [
+        "semiconductor-positioning"
+      ],
+      "citation_id": "citation-041"
+    },
+    {
+      "source_id": "semi-src-002",
+      "title": "Margin Statistics",
+      "publisher": "FINRA",
+      "published_at": "2026-07",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.finra.org/rules-guidance/key-topics/margin-accounts/margin-statistics",
+      "source_type": "regulatory_statistics",
+      "claims_supported": [
+        "客户融资账户借方余额5月至6月增加6.1%",
+        "7月数据尚未公布"
+      ],
+      "source_ids": [
+        "semi-src-002"
+      ],
+      "research_topics": [
+        "semiconductor-positioning"
+      ],
+      "citation_id": "citation-042"
+    },
+    {
+      "source_id": "semi-src-003",
+      "title": "Traders in Financial Futures — July 28, 2026",
+      "publisher": "U.S. Commodity Futures Trading Commission",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.cftc.gov/sites/default/files/files/dea/cotarchives/2026/futures/financial_lf072826.htm",
+      "source_type": "regulatory_positioning_data",
+      "claims_supported": [
+        "纳斯达克100期货Leveraged Funds多空总持仓未显示广义同步收缩"
+      ],
+      "source_ids": [
+        "semi-src-003"
+      ],
+      "research_topics": [
+        "semiconductor-positioning"
+      ],
+      "citation_id": "citation-043"
+    },
+    {
+      "source_id": "semi-src-004",
+      "title": "Updated Investor Bulletin: Leveraged and Inverse ETFs",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "published_at": "2023-08-29",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-alerts/sec",
+      "source_type": "official_investor_guidance",
+      "claims_supported": [
+        "杠杆及反向ETF每日重置和波动复利可放大偏离与损失"
+      ],
+      "source_ids": [
+        "semi-src-004"
+      ],
+      "research_topics": [
+        "semiconductor-positioning"
+      ],
+      "citation_id": "citation-044"
+    },
+    {
+      "source_id": "semi-src-005",
+      "title": "VIX Index Data for 1990 to Present",
+      "publisher": "Cboe Global Markets",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-02",
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+      "source_type": "exchange_time_series",
+      "claims_supported": [
+        "VIX由7月29日20.66降至7月31日15.99"
+      ],
+      "source_ids": [
+        "semi-src-005"
+      ],
+      "research_topics": [
+        "semiconductor-positioning"
+      ],
+      "citation_id": "citation-045"
+    },
+    {
+      "source_id": "semi-src-006",
+      "title": "Cboe Semiconductor ETF Volatility Index Daily Prices",
+      "publisher": "Cboe Global Markets",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-02",
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VXSMH_History.csv",
+      "source_type": "exchange_time_series",
+      "claims_supported": [
+        "VXSMH由63.54降至56.21",
+        "仍较5月初高32.8%"
+      ],
+      "source_ids": [
+        "semi-src-006"
+      ],
+      "research_topics": [
+        "semiconductor-positioning"
+      ],
+      "citation_id": "citation-046"
+    },
+    {
+      "source_id": "semi-src-007",
+      "title": "PHLX Semiconductor Index History",
+      "publisher": "Nasdaq",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-02",
+      "url": "https://indexes.nasdaq.com/Index/History/SOX",
+      "source_type": "exchange_index_data",
+      "claims_supported": [
+        "SOX高点至7月29日回撤28.6%",
+        "随后两日反弹约8.3%"
+      ],
+      "source_ids": [
+        "semi-src-007"
+      ],
+      "research_topics": [
+        "semiconductor-positioning"
+      ],
+      "citation_id": "citation-047"
+    },
+    {
+      "source_id": "semi-src-008",
+      "title": "Daily Treasury Par Yield Curve Rates — July 2026",
+      "publisher": "U.S. Department of the Treasury",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-02",
+      "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202607&type=daily_treasury_yield_curve",
+      "source_type": "government_rate_data",
+      "claims_supported": [
+        "10年期由4.48%升至4.75%",
+        "30年期由4.97%升至5.27%"
+      ],
+      "source_ids": [
+        "semi-src-008"
+      ],
+      "research_topics": [
+        "semiconductor-positioning"
+      ],
+      "citation_id": "citation-048"
+    },
+    {
+      "source_id": "semi-src-009",
+      "title": "Mid-year Market Outlook 2026: The Tug of War Continues",
+      "publisher": "J.P. Morgan Global Research",
+      "published_at": "2026-07-01",
+      "accessed_at": "2026-08-02",
+      "url": "https://www.jpmorgan.com/insights/global-research/outlook/mid-year-outlook",
+      "source_type": "institutional_research",
+      "claims_supported": [
+        "预计10年期收益率年底约4.70%",
+        "同时仍对股票持建设性观点"
+      ],
+      "source_ids": [
+        "semi-src-009"
+      ],
+      "research_topics": [
+        "semiconductor-positioning"
+      ],
+      "citation_id": "citation-049"
+    },
+    {
+      "source_id": "semi-src-010",
+      "title": "1Q26 Earnings: Chipenomics",
+      "publisher": "J.P. Morgan Asset Management",
+      "published_at": "2026-05-06",
+      "accessed_at": "2026-08-02",
+      "url": "https://am.jpmorgan.com/us/en/asset-management/liq/insights/market-insights/market-updates/bulletins/1q26-earnings-chipenomics/",
+      "source_type": "institutional_industry_research",
+      "claims_supported": [
+        "1Q26半导体EPS同比增长97%",
+        "行业增长仍依赖AI资本开支转化为利润"
+      ],
+      "source_ids": [
+        "semi-src-010"
+      ],
+      "research_topics": [
+        "semiconductor-positioning"
+      ],
+      "citation_id": "citation-050"
+    }
+  ]
+}

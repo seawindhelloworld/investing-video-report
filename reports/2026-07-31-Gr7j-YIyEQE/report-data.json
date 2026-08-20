@@ -1,0 +1,2286 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-08-01T19:25:10.040296+00:00",
+  "video": {
+    "video_id": "Gr7j-YIyEQE",
+    "title": "半导体大反弹！苹果估值崩溃！亚马逊有五倍空间？微软创历史记录！",
+    "source_url": "https://www.youtube.com/watch?v=Gr7j-YIyEQE",
+    "creator": "美投侃新闻",
+    "published_at": "2026-07-30T17:59:10-07:00",
+    "duration_seconds": 1438.73161
+  },
+  "analysis": {
+    "video_id": "Gr7j-YIyEQE",
+    "title": "半导体大反弹！苹果估值崩溃！亚马逊有五倍空间？微软创历史记录！",
+    "source_url": "https://www.youtube.com/watch?v=Gr7j-YIyEQE",
+    "creator": "美投侃新闻",
+    "published_at": "2026-07-30T17:59:10-07:00",
+    "duration_seconds": 1438.73161,
+    "summary": "视频先回顾美股在微软财报带动下的反弹，并提醒这更像财报驱动的修复，尚不足以证明通胀和长端美债收益率压力已经消失。作者认为半导体长期需求逻辑仍在，但短期存在套牢盘和历史走势带来的交易压力；随后分析苹果、亚马逊和微软财报，分别讨论苹果高估值与长期护城河、AWS收入利润率双增长与自由现金流风险，以及微软在Azure、Copilot、利润率和资本开支之间的平衡。",
+    "chapters": [
+      {
+        "chapter_id": "chapter-01",
+        "timestamp_start": 0.0,
+        "timestamp_end": 109.74,
+        "title": "市场概览与节目提要",
+        "summary": "概述AI、半导体、软件、科技巨头、债券、美元和大宗商品当日表现。"
+      },
+      {
+        "chapter_id": "chapter-02",
+        "timestamp_start": 109.74,
+        "timestamp_end": 361.0,
+        "title": "半导体反弹与美债警报",
+        "summary": "讨论微软财报对AI交易的提振、半导体短期套牢盘压力、长期需求逻辑，以及长端美债收益率对高估值和高融资依赖公司的潜在影响。"
+      },
+      {
+        "chapter_id": "chapter-03",
+        "timestamp_start": 361.0,
+        "timestamp_end": 584.0,
+        "title": "苹果：短期估值压力与长期持有逻辑",
+        "summary": "绕过相对平稳的财报数据，重点讨论收入指引、毛利率、存储涨价、AI变现和苹果估值；作者同时表达短期仓位管理与五到十年长期持有的不同判断。"
+      },
+      {
+        "chapter_id": "chapter-04",
+        "timestamp_start": 584.0,
+        "timestamp_end": 901.0,
+        "title": "亚马逊：AWS高增长、利润率与现金流",
+        "summary": "梳理AWS收入和利润率、自研芯片、资本开支、营运资金与自由现金流，并转述Steven对亚马逊财报质量和后续上涨空间的判断。"
+      },
+      {
+        "chapter_id": "chapter-05",
+        "timestamp_start": 901.0,
+        "timestamp_end": 1321.0,
+        "title": "微软：Azure、Copilot与投资平衡",
+        "summary": "根据大摩和小摩复盘Azure增速、Copilot商业化、利润率、租赁会计变化和远期自由现金流，并强调市场奖励有纪律的AI开支。"
+      },
+      {
+        "chapter_id": "chapter-06",
+        "timestamp_start": 1367.0,
+        "timestamp_end": 1438.73161,
+        "title": "科技五大新闻",
+        "summary": "简述DeepSeek、Meta、Arm、三星与SK海力士、微软五条科技新闻。"
+      }
+    ],
+    "excluded_ranges": [
+      {
+        "timestamp_start": 1321.0,
+        "timestamp_end": 1367.0,
+        "category": "commercial_promotion",
+        "reason": "商业推广不进入最终报告正文；原始内容仍保留在转录中。"
+      }
+    ],
+    "asr_quality": {
+      "provider": "whisper.cpp",
+      "model": "ggml-large-v3-turbo-q5_0.bin",
+      "model_sha256": "394221709cd5ad1f40c46e6031ca61bce88931e6e088c188294c6d5a55ffa7e2",
+      "segment_count": 671,
+      "coverage_start_seconds": 0.0,
+      "coverage_end_seconds": 1436.48,
+      "coverage_ratio": 0.998435,
+      "average_token_confidence": 0.977718,
+      "maximum_gap_seconds": 0.32,
+      "validation_status": "passed",
+      "comparison_run": "ggml-small-q5_1.bin",
+      "human_relisten_status": "not_performed_in_tooling; high-risk passages were checked by a second local model and contextual consistency",
+      "known_issues": [
+        "片头00:00-00:27为押韵快速口播，少数字词仍不稳定，不作为关键原话引用。",
+        "个别英文专名存在音译或识别差异，例如IREN、Azure、经营租赁等；报告中仅在上下文明确时采用规范写法。",
+        "22:46以后五条快讯语速较快且数字密集，仅作为视频概览，不纳入作者主观观点研判。"
+      ],
+      "relisten_segments": [
+        {
+          "start": 0.0,
+          "end": 27.14,
+          "reason": "快速押韵片头"
+        },
+        {
+          "start": 47.66,
+          "end": 50.86,
+          "reason": "英文公司名IREN、NBIS、CoreWeave"
+        },
+        {
+          "start": 1079.0,
+          "end": 1140.0,
+          "reason": "融资租赁/经营租赁会计分类"
+        },
+        {
+          "start": 1208.0,
+          "end": 1268.0,
+          "reason": "远期自由现金流数字与机构分歧"
+        },
+        {
+          "start": 1364.0,
+          "end": 1429.0,
+          "reason": "快讯专名与数字密集"
+        }
+      ]
+    },
+    "opinion_count": 16,
+    "research_topics": [
+      "macro-semiconductors-rates",
+      "apple",
+      "amazon",
+      "microsoft"
+    ]
+  },
+  "opinions": [
+    {
+      "opinion_id": "opinion-001",
+      "timestamp_start": 217.0,
+      "timestamp_end": 226.0,
+      "exact_quote": "但我倒认为这个组合起码缓解了一下经济过热和通胀继续走高的压力它不是一个好组合但对现在的股市来说反而是一个好消息",
+      "faithful_paraphrase": "作者认为，低于预期的经济增长与仍高于目标的通胀并非好组合，但它至少缓解了经济过热和通胀继续上行的压力，因此对当下股市反而算是好消息。",
+      "opinion_type": "market_judgment",
+      "target": "美国股票市场",
+      "time_horizon": "当下",
+      "stated_basis": [
+        "经济增长不及预期",
+        "核心PCE仍高于美联储目标",
+        "该组合缓解经济过热和通胀继续上行的压力"
+      ],
+      "qualifiers": [
+        "我倒认为",
+        "起码",
+        "反而"
+      ],
+      "context_before": "视频先转述CNBC对增长不及预期、通胀超目标组合的负面评价。",
+      "context_after": "作者随后指出债券市场并未完全配合股市。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "macro-semiconductors-rates",
+      "research_status": "mixed",
+      "assessment": {
+        "opinion_id": "opinion-001",
+        "status": "mixed",
+        "status_zh": "存在明显分歧",
+        "rationale": "GDP与月度核心PCE边际降温支持缓解进一步紧缩担忧的一部分逻辑，但私人国内最终销售仍强、季度总PCE价格上涨且核心PCE同比仍高于目标；当日上涨主要由微软盈利与AI信号驱动。‘对股市是好消息’在当日结果上成立，宏观因果归因存在分歧。",
+        "applicable_conditions": [
+          "通胀环比降温持续",
+          "增长放缓被理解为软着陆而非盈利下修",
+          "数据降低政策利率或实际利率预期",
+          "长端期限溢价和国债供给不抵消改善"
+        ],
+        "counterevidence": [
+          "私人国内最终销售增长3.9%",
+          "季度总PCE价格指数年化上涨5.1%",
+          "核心PCE同比3.3%",
+          "当日反弹主要由微软盈利和AI信号驱动"
+        ],
+        "premise_differences": [
+          "BEA报告实际值但不提供市场预期",
+          "GDP标题与私人国内最终销售对动能的信号不同",
+          "不同PCE口径信号不完全一致"
+        ],
+        "topic_id": "macro-semiconductors-rates"
+      }
+    },
+    {
+      "opinion_id": "opinion-002",
+      "timestamp_start": 241.0,
+      "timestamp_end": 251.0,
+      "exact_quote": "科技股今天的反弹从一定程度上绕开了债市定价所以周四的行情更像是财报驱动的修复还不能证明美股已经摆脱了通胀和美债收益率的压力",
+      "faithful_paraphrase": "作者判断，周四科技股反弹更像财报驱动的修复，尚不能证明美股已摆脱通胀和美债收益率压力。",
+      "opinion_type": "market_judgment",
+      "target": "美国科技股与美股",
+      "time_horizon": "周四行情及短期",
+      "stated_basis": [
+        "长端美债收益率仍在高位",
+        "科技股反弹主要由财报推动"
+      ],
+      "qualifiers": [
+        "从一定程度上",
+        "更像",
+        "还不能证明"
+      ],
+      "context_before": "作者说明长端利率会提高融资成本和估值折现率。",
+      "context_after": "转入投资者在半导体反弹中的行为讨论。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "macro-semiconductors-rates",
+      "research_status": "supported",
+      "assessment": {
+        "opinion_id": "opinion-002",
+        "status": "supported",
+        "status_zh": "总体支持",
+        "rationale": "7月30日微软和芯片股推动科技股显著上涨，同期10年期和30年期美债收益率仍约4.68%和5.21%；美联储会议纪要也记录过盈利与AI乐观情绪在收益率上升时推动股票上涨的阶段。证据支持当日更像财报修复、不能证明已摆脱通胀与收益率压力。",
+        "applicable_conditions": [
+          "主要适用于单日及相邻短期",
+          "盈利改善持续转化为现金流",
+          "长端收益率继续上行或盈利回落时修复可能减弱"
+        ],
+        "counterevidence": [
+          "强劲盈利与AI乐观可在一段时间内持续压过收益率上升",
+          "股债收益率同涨也可能反映增长预期"
+        ],
+        "premise_differences": [
+          "同日走势不能严格识别因果",
+          "上涨集中于微软和部分AI/半导体公司"
+        ],
+        "topic_id": "macro-semiconductors-rates"
+      }
+    },
+    {
+      "opinion_id": "opinion-003",
+      "timestamp_start": 267.0,
+      "timestamp_end": 290.0,
+      "exact_quote": "Jason认为在经历如此剧烈的大起大落后更多散户大概率会选择卖掉保平安这个一般被叫做套牢盘压力或者叫处置效应",
+      "faithful_paraphrase": "作者认为，经历剧烈涨跌后，更多散户大概率会在反弹到成本附近时卖出，从而形成套牢盘压力或处置效应。",
+      "opinion_type": "behavioral_inference",
+      "target": "被套的半导体散户投资者",
+      "time_horizon": "下一轮反弹接近成本价时",
+      "stated_basis": [
+        "亏损时不愿卖出",
+        "回到成本线附近会产生解套后的卖出冲动"
+      ],
+      "qualifiers": [
+        "认为",
+        "更多",
+        "大概率"
+      ],
+      "context_before": "作者向观众提出反弹至成本价后继续持有还是卖出的假设。",
+      "context_after": "用2000年互联网泡沫时期走势作类比。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "macro-semiconductors-rates",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-003",
+        "status": "partially_supported",
+        "status_zh": "部分支持",
+        "rationale": "交易研究发现卖出概率在收益由负转零附近跳升，支持成本价参考点和解套卖出机制；但该效应存在显著个体差异，且缺少本轮半导体股票账户级持仓成本数据，无法确认‘更多散户大概率卖出’的数量判断。",
+        "applicable_conditions": [
+          "投资者以成本为主要参考点",
+          "反弹接近成本线且未重设参考价",
+          "水下散户持仓比例较高",
+          "税务、再平衡和新信息不是主要卖因"
+        ],
+        "counterevidence": [
+          "处置效应并非所有投资者共有",
+          "卖出可能来自理性风险控制",
+          "没有账户级数据量化套牢盘"
+        ],
+        "premise_differences": [
+          "个体倾向不必然形成市场级压力",
+          "散户与专业人士行为不同",
+          "多次买入者参考价不唯一"
+        ],
+        "topic_id": "macro-semiconductors-rates"
+      }
+    },
+    {
+      "opinion_id": "opinion-004",
+      "timestamp_start": 291.0,
+      "timestamp_end": 306.0,
+      "exact_quote": "结合2000年互联网泡沫的走势来看历史是惊人的相似半导体指数SOX基本和互联网泡沫时代一样按照时间轴线性外推那么SOX需要在四个月内突破前高这样才会改写历史轨迹我觉得压力还是不小的",
+      "faithful_paraphrase": "作者用2000年互联网泡沫时期走势作线性类比，认为SOX若要改写该历史轨迹，需要在四个月内突破前高，压力不小。",
+      "opinion_type": "market_prediction",
+      "target": "费城半导体指数SOX",
+      "time_horizon": "未来四个月",
+      "stated_basis": [
+        "作者观察到当前SOX走势与互联网泡沫时期相似",
+        "按时间轴线性外推"
+      ],
+      "qualifiers": [
+        "按照时间轴线性外推",
+        "我觉得",
+        "压力还是不小"
+      ],
+      "context_before": "讨论套牢盘和处置效应。",
+      "context_after": "作者立即强调这一类比不等于预测半导体泡沫破裂。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "macro-semiconductors-rates",
+      "research_status": "insufficient",
+      "assessment": {
+        "opinion_id": "opinion-004",
+        "status": "insufficient",
+        "status_zh": "信息不足",
+        "rationale": "没有针对两段SOX路径、相似度定义、归一化方式和四个月阈值的样本外检验。SOX指数会年度重构和季度再平衡，当前成分、权重和行业结构与2000年并非固定可比。技术形态只有在系统定义与大样本检验后才可能含增量信息。",
+        "applicable_conditions": [
+          "事先固定起点、归一化、时间缩放和相似度指标",
+          "调整指数成分与权重变化",
+          "四个月阈值经多样本和样本外验证",
+          "控制估值、盈利、利率与产业周期差异"
+        ],
+        "counterevidence": [
+          "部分系统定义的技术形态可能有增量信息",
+          "但不能直接支持两段视觉相似走势的精确外推",
+          "指数篮子不是自2000年保持不变"
+        ],
+        "premise_differences": [
+          "2000年与2026年行业经济结构不同",
+          "不同起点与缩放会改变结论",
+          "价格路径不等于基本面泡沫是否破裂"
+        ],
+        "topic_id": "macro-semiconductors-rates"
+      }
+    },
+    {
+      "opinion_id": "opinion-005",
+      "timestamp_start": 307.0,
+      "timestamp_end": 329.0,
+      "exact_quote": "并不是说半导体要泡沫破裂现在半导体的需求还有进一步扩张的空间短期交易压力是投资者需要留意的但拉长视野我认为半导体的逻辑不会就此终止只是短期压力或许不会彻底释放",
+      "faithful_paraphrase": "作者并非判断半导体泡沫将破裂；他认为需求仍有扩张空间、长期逻辑不会就此终止，但短期交易压力可能尚未彻底释放。",
+      "opinion_type": "sector_outlook",
+      "target": "半导体行业与相关股票",
+      "time_horizon": "短期与长期",
+      "stated_basis": [
+        "半导体需求仍可能扩张",
+        "大型科技公司财报后普遍提高资本性开支"
+      ],
+      "qualifiers": [
+        "并不是说",
+        "还有空间",
+        "我认为",
+        "不会就此终止",
+        "或许"
+      ],
+      "context_before": "作者作了SOX与2000年走势的历史类比。",
+      "context_after": "转向其更担心的美债问题。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "macro-semiconductors-rates",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-005",
+        "status": "partially_supported",
+        "status_zh": "部分支持",
+        "rationale": "微软、Meta、Amazon、Broadcom和SIA/WSTS材料支持AI与半导体需求仍有扩张空间；但这主要说明当前需求和投资周期，不能单独证明相关股票长期回报。巨额投资正在压缩自由现金流，行业周期、客户融资与订单延迟仍是风险。",
+        "applicable_conditions": [
+          "云与AI需求转化为持续收入和资本回报",
+          "供应约束不长期阻断部署",
+          "客户融资能力足够",
+          "新增产能不会形成过剩",
+          "估值未透支增长"
+        ],
+        "counterevidence": [
+          "高资本开支已明显消耗部分公司自由现金流",
+          "Broadcom披露AI上行可能不可持续",
+          "半导体行业高度周期化",
+          "行业协会预测需与订单库存交叉验证"
+        ],
+        "premise_differences": [
+          "数据中心资本开支并非全流向公开半导体公司",
+          "行业需求扩张不等于股票回报",
+          "不同半导体子行业周期不同"
+        ],
+        "topic_id": "macro-semiconductors-rates"
+      }
+    },
+    {
+      "opinion_id": "opinion-006",
+      "timestamp_start": 331.0,
+      "timestamp_end": 359.0,
+      "exact_quote": "相较于半导体我更担心的还是美债如果川普没有快速降温局势我认为用不了多久债市警报就会传染到股市上面那个时候高估值高杠杆融资续命蓄势主导的公司很可能会受到新一轮制裁",
+      "faithful_paraphrase": "相较半导体，作者更担忧美债；他认为若相关局势未被快速降温，债市压力可能很快传导至股市，高估值、高杠杆及依赖融资维持发展的公司可能首当其冲。",
+      "opinion_type": "risk_prediction",
+      "target": "美国股票市场中的高估值、高杠杆和融资依赖公司",
+      "time_horizon": "视频中未明确，表述为“用不了多久”",
+      "stated_basis": [
+        "10年期和30年期美债收益率处于高位",
+        "高利率提高企业融资成本和股票估值折现率"
+      ],
+      "qualifiers": [
+        "我更担心",
+        "如果",
+        "我认为",
+        "用不了多久",
+        "很可能"
+      ],
+      "context_before": "作者认为半导体长期逻辑仍在、短期压力未完全释放。",
+      "context_after": "进入苹果财报分析。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "macro-semiconductors-rates",
+      "research_status": "conditional",
+      "assessment": {
+        "opinion_id": "opinion-006",
+        "status": "conditional",
+        "status_zh": "取决于条件",
+        "rationale": "美联储金融稳定报告支持长期利率上升会压低资产价格、提高企业偿债成本并放大高杠杆和临近再融资企业脆弱性。但总体企业债务脆弱性仍温和，上市公司利息保障倍数稳健，风险集中于特定借款人；高收益率下科技股仍可因盈利上涨。因此方向合理，传导速度和范围取决于利率持续性、盈利和再融资结构。",
+        "applicable_conditions": [
+          "长期利率与期限溢价持续上升",
+          "通胀使宽松预期后移",
+          "高利率窗口集中再融资",
+          "信用利差扩大或贷款收紧",
+          "盈利增长不足以抵消折现率"
+        ],
+        "counterevidence": [
+          "总体企业债务脆弱性温和",
+          "多数上市公司利息保障倍数稳健",
+          "强盈利可暂时抵消收益率上升",
+          "低杠杆现金充裕公司敏感度不同"
+        ],
+        "premise_differences": [
+          "长端利率不能归因于单一政治人物",
+          "估值渠道与实际融资困难的时点不同",
+          "高估值、高杠杆、融资依赖是不同风险特征"
+        ],
+        "topic_id": "macro-semiconductors-rates"
+      }
+    },
+    {
+      "opinion_id": "opinion-007",
+      "timestamp_start": 499.0,
+      "timestamp_end": 534.0,
+      "exact_quote": "近期上涨的核心原因是防御属性而不是业绩盈利但是防御属性很可能会随着AI情绪转暖而下降如果盈利预期没有积极上修叠加防御属性随着AI回暖而回落苹果现在35倍的前瞻市盈率比较难守今天的财报出炉某种程度上也验证了我当时的判断",
+      "faithful_paraphrase": "作者认为苹果近期上涨主要来自防御属性而非盈利；若盈利预期不上修且AI情绪回暖削弱其防御溢价，约35倍前瞻市盈率较难维持，并认为本次财报在一定程度上验证了这一判断。",
+      "opinion_type": "valuation_judgment",
+      "target": "苹果公司股票估值",
+      "time_horizon": "近期",
+      "stated_basis": [
+        "市场此前惩罚AI概念并偏好现金流较好的公司",
+        "苹果指引面临存储涨价和成本压力",
+        "盈利预期上修速度可能放缓"
+      ],
+      "qualifiers": [
+        "核心原因",
+        "很可能",
+        "如果",
+        "比较难守",
+        "某种程度上"
+      ],
+      "context_before": "作者回顾苹果电话会中的收入增速和毛利率压力。",
+      "context_after": "转向短期仓位与长期持有框架。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "apple",
+      "research_status": "mixed",
+      "assessment": {
+        "opinion_id": "opinion-007",
+        "status": "mixed",
+        "status_zh": "存在明显分歧",
+        "rationale": "估值风险部分得到支持：财报前2027年一致预期市盈率约34倍，目标价隐含回报约3.5%；关税退款的一次性影响、存储成本和供应限制也会提高估值脆弱性。但苹果当季收入同比增长16%、EPS增长29%、iPhone增长22%、Mac增长29%、服务收入增长12%，公开数据无法证明近期上涨主要是防御属性而非盈利驱动。",
+        "applicable_conditions": [
+          "未来十二个月盈利一致预期没有显著上修",
+          "关税退款不再重复且存储和先进芯片成本继续上升",
+          "市场风险偏好重新转向直接受益于AI投资周期的公司"
+        ],
+        "counterevidence": [
+          "2026财年第三季度收入1094.17亿美元，同比增长16%",
+          "稀释EPS为2.02美元，同比增长29%",
+          "九个月经营现金流增至1169.96亿美元"
+        ],
+        "premise_differences": [
+          "35倍前瞻市盈率取决于口径，S&P Global财报前口径约34倍",
+          "股价驱动是市场归因，公开财务数据不能分离防御资金、产品周期和盈利预期的贡献",
+          "本季毛利率和EPS受到关税退款的有利影响"
+        ],
+        "topic_id": "apple"
+      }
+    },
+    {
+      "opinion_id": "opinion-008",
+      "timestamp_start": 535.0,
+      "timestamp_end": 549.0,
+      "exact_quote": "但是9月发布会4季度和明年1季度的业绩我还是比较期待也是比较看好的如果你短期恐高可以去管理一下仓位但对我来说放在5到10年的投资框架来看我完全没必要动",
+      "faithful_paraphrase": "作者较期待并看好9月发布会以及第四季度和次年第一季度业绩；他认为短期恐高者可以管理仓位，但在其五到十年框架下没有调整必要。",
+      "opinion_type": "investment_view",
+      "target": "苹果公司股票",
+      "time_horizon": "短期至五到十年",
+      "stated_basis": [
+        "作者认为当前两个季度产品青黄不接",
+        "预期9月后第四季度产品和业绩改善"
+      ],
+      "qualifiers": [
+        "比较期待",
+        "比较看好",
+        "如果",
+        "可以",
+        "对我来说"
+      ],
+      "context_before": "作者认为苹果约35倍前瞻市盈率短期较难维持。",
+      "context_after": "作者说明自己此前承诺跌5%补仓。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "apple",
+      "research_status": "conditional",
+      "assessment": {
+        "opinion_id": "opinion-008",
+        "status": "conditional",
+        "status_zh": "取决于条件",
+        "rationale": "对秋季产品与短期收入的期待有产品路线和当季增长支撑，但苹果截至研究日尚未正式确认视频所说的具体9月发布会；AI功能存在语言、地区和设备限制，公司还披露供应约束、存储成本和AI算力成本将加剧。五到十年不调整仓位属于个人框架，不能由一两个季度的产品周期充分论证。",
+        "applicable_conditions": [
+          "秋季硬件和软件按计划推出并形成真实换机需求",
+          "先进芯片、NAND、DRAM和云端算力供应充足",
+          "产品定价覆盖成本且不显著损害销量",
+          "长期持有者能承受估值收缩和阶段性回撤"
+        ],
+        "counterevidence": [
+          "10-Q称组件供应约束和成本上升预计加剧",
+          "Siri AI初期存在语言、地区和设备限制",
+          "高估值意味着即使业绩增长，低于已计价预期时股价仍可能下跌"
+        ],
+        "premise_differences": [
+          "官方材料确认秋季软件发布计划，但截至研究日未正式确认具体9月发布会",
+          "第四季度产品周期和下一财年第一季度业绩是不同时间窗口"
+        ],
+        "topic_id": "apple"
+      }
+    },
+    {
+      "opinion_id": "opinion-009",
+      "timestamp_start": 560.0,
+      "timestamp_end": 584.0,
+      "exact_quote": "说苹果大跌5%我就会补仓所以今天盘后我就补了补的不多主要是仓位太重但是态度摆在这我认为对短期投资者来说苹果依然是防御AI的首选对长期投资来说苹果的稳定现金流产品设计生态护城河边缘AI高端消费属性这些都没有任何变化长期持有不用担心",
+      "faithful_paraphrase": "作者表示已在苹果盘后大跌时小幅补仓；他把苹果视为短期防御AI波动的首选，并认为其现金流、产品设计、生态、边缘AI和高端消费属性等长期逻辑没有变化。",
+      "opinion_type": "investment_action_and_thesis",
+      "target": "苹果公司股票",
+      "time_horizon": "短期与长期",
+      "stated_basis": [
+        "稳定现金流",
+        "产品设计",
+        "生态护城河",
+        "边缘AI",
+        "高端消费属性"
+      ],
+      "qualifiers": [
+        "补的不多",
+        "我认为",
+        "依然",
+        "没有任何变化",
+        "不用担心"
+      ],
+      "context_before": "作者区分短期仓位管理与五到十年投资框架。",
+      "context_after": "进入亚马逊财报分析。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "apple",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-009",
+        "status": "partially_supported",
+        "status_zh": "部分支持",
+        "rationale": "长期经营论据获得较强支持：九个月经营现金流1169.96亿美元，服务收入同比增长12%、服务毛利率75.6%，活跃设备基础创新高；苹果也有端侧模型与Private Cloud Compute的具体技术载体。但‘没有任何变化、长期持有不用担心’过于绝对，供应链、AI算力、第三方云、App Store监管和估值均构成风险。补仓合理性还取决于买入价格、仓位和风险承受能力。",
+        "applicable_conditions": [
+          "设备基础和开发者支持继续维持生态网络效应",
+          "服务业务抵消硬件周期和组件成本压力",
+          "AI功能逐步扩展并形成可商业化差异",
+          "买入估值和组合集中度符合投资者风险预算"
+        ],
+        "counterevidence": [
+          "组件和第三方云依赖可能延迟功能或提高成本",
+          "AI功能存在地区与设备限制",
+          "App Store商业模式面临监管压力",
+          "约34至35倍前瞻市盈率使回报高度依赖持续增长"
+        ],
+        "premise_differences": [
+          "产品设计和高端消费属性属于竞争力判断，不能仅靠财报定量证明",
+          "苹果AI路线同时依赖端侧与云端",
+          "防御AI首选需要跨资产比较，现有材料不足以确认其为唯一或最佳选择",
+          "公司质量与股票买入价格是两个问题"
+        ],
+        "topic_id": "apple"
+      }
+    },
+    {
+      "opinion_id": "opinion-010",
+      "timestamp_start": 721.0,
+      "timestamp_end": 733.0,
+      "exact_quote": "其中应收账款的负贡献最大和预期相比拖累了160亿美元这可能意味着亚马逊客户的账期可能在拖后付款能力或者付款意愿可能在恶化这点和谷歌一样需要持续关注",
+      "faithful_paraphrase": "作者推测，亚马逊应收账款相对预期的负贡献可能意味着客户账期延后，付款能力或意愿可能恶化，值得持续关注。",
+      "opinion_type": "financial_inference",
+      "target": "亚马逊客户回款与营运资金",
+      "time_horizon": "后续季度",
+      "stated_basis": [
+        "应收账款相对预期形成较大负贡献"
+      ],
+      "qualifiers": [
+        "可能意味着",
+        "可能在",
+        "可能在恶化",
+        "需要持续关注"
+      ],
+      "context_before": "作者对资本开支、经营现金流和自由现金流与预期的差异进行拆解。",
+      "context_after": "进入下一季度指引。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "amazon",
+      "research_status": "insufficient",
+      "assessment": {
+        "opinion_id": "opinion-010",
+        "status": "insufficient",
+        "status_zh": "信息不足",
+        "rationale": "2026年上半年‘Accounts receivable, net and other’营运资金占用显著增加，但该项目不等同于客户应收账款，包含客户与供应商应收、其他应收、预付款等。Q1构成中其他应收增量还高于客户应收，坏账准备未异常跃升。没有Q2同口径构成、账龄、逾期率或核销数据，不能据此推出客户付款能力或意愿恶化。",
+        "applicable_conditions": [
+          "客户应收增速持续显著高于AWS及服务收入增速",
+          "周转天数、逾期账龄、坏账准备率或核销连续上升",
+          "管理层明确归因于客户延迟付款或信用质量下降",
+          "现象持续多个季度"
+        ],
+        "counterevidence": [
+          "Q1其他应收增量高于客户应收",
+          "营运资金受结算时点、付款条件和汇率等多重因素影响",
+          "业务规模扩张本身会推高应收",
+          "坏账准备暂未显示异常跃升"
+        ],
+        "premise_differences": [
+          "视频使用相对预期拖累，官方报表给的是实际同比，基准不同",
+          "现金流项目不是纯客户应收",
+          "付款能力、意愿、合同账期和结算时点无法区分"
+        ],
+        "topic_id": "amazon"
+      }
+    },
+    {
+      "opinion_id": "opinion-011",
+      "timestamp_start": 752.0,
+      "timestamp_end": 780.0,
+      "exact_quote": "我认为最大亮点是AWS的高增长和大幅扩张的利润率尤其是利润率为AI需求和投资可持续支撑了不少也很大程度上缓解了市场焦虑情绪但是随着自由现金流的进一步恶化接下来继续举债融资将是大概率事件而在当前市场环境下融资成本可并不友好与之而来的额外财务费用也会对每股收益造成压制这点需要额外的AWS增速来抵消",
+      "faithful_paraphrase": "作者认为AWS高增长和利润率扩张为AI需求及投资可持续性提供了支撑，但自由现金流恶化使继续举债融资成为大概率事件，较高融资成本及财务费用可能压制每股收益，需要更高AWS增速抵消。",
+      "opinion_type": "financial_outlook",
+      "target": "亚马逊公司",
+      "time_horizon": "后续季度",
+      "stated_basis": [
+        "AWS收入高增长",
+        "AWS利润率大幅扩张",
+        "自由现金流进一步恶化",
+        "当前融资成本不友好"
+      ],
+      "qualifiers": [
+        "我认为",
+        "支撑了不少",
+        "很大程度上",
+        "大概率",
+        "会",
+        "需要"
+      ],
+      "context_before": "作者梳理亚马逊财报和指引。",
+      "context_after": "管理层更新资本开支和AWS长期目标。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "amazon",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-011",
+        "status": "partially_supported",
+        "status_zh": "部分支持",
+        "rationale": "Q2 AWS收入同比增长37%、经营利润增长64%，利润率升至39.4%，为AI投资提供强劲利润基础；TTM自由现金流转为流出76.04亿美元，主要因AI相关净资本开支增加。上半年长期债务融资流入669.98亿美元，长期债务升至1288.94亿美元，公司预计还会融资且设立175亿美元定期贷款额度。利息费用上升，但AWS经营利润增量远大于利息增量，公司仍有约1230亿美元现金及有价证券和强劲经营现金流，因此‘融资成本显著压制EPS且必须靠额外AWS增速抵消’强度偏高。",
+        "applicable_conditions": [
+          "约2200亿美元资本开支持续且新产能变现滞后",
+          "继续动用新增债券或贷款额度",
+          "新债利率维持高位且更多利息进入损益",
+          "AWS增速、利用率或利润率低于预期"
+        ],
+        "counterevidence": [
+          "TTM经营现金流同比增长33%至1614.03亿美元",
+          "现金和有价证券约1229.88亿美元",
+          "AWS利润增量约为利息费用增量八倍以上",
+          "资本开支通过折旧逐期影响EPS而非当期全额计入"
+        ],
+        "premise_differences": [
+          "负自由现金流不自动等于缺乏流动性或被迫举债",
+          "融资可能用于投资和一般用途，不全由AWS缺口导致",
+          "GAAP EPS受Anthropic巨额投资收益干扰",
+          "AWS之外业务也可抵消利息压力"
+        ],
+        "topic_id": "amazon"
+      }
+    },
+    {
+      "opinion_id": "opinion-012",
+      "timestamp_start": 823.0,
+      "timestamp_end": 900.0,
+      "exact_quote": "Steven认为这次亚马逊的财报核心就是资本开支和AWS的表现整体来看我认为亚马逊这份财报质量相当高往后看Anthropic的收入增长还会持续自研芯片的放量也在提升需求那边也不用担心所以我认为这个收入利润率双增长的故事至少在26年还能持续我认为还没有完全Priced in这个叙事因此我认为在本次大涨过后亚马逊仍然有不俗的上涨空间",
+      "faithful_paraphrase": "Steven认为亚马逊财报质量较高，AWS收入与利润率双增长至少在2026年仍可持续，且这一叙事尚未完全反映在股价中，因此大涨后仍有不俗上涨空间。",
+      "opinion_type": "company_outlook",
+      "target": "亚马逊公司及其股票",
+      "time_horizon": "至少2026年",
+      "stated_basis": [
+        "AWS收入同比增长37%",
+        "AWS利润率约39%",
+        "Anthropic收入增长",
+        "自研芯片放量",
+        "需求仍强"
+      ],
+      "qualifiers": [
+        "认为",
+        "大概率",
+        "至少",
+        "还没有完全",
+        "仍然有"
+      ],
+      "context_before": "主持人邀请Steven给出亚马逊财报观点。",
+      "context_after": "进入大摩和小摩对微软的复盘。",
+      "speaker_attribution": "Steven/视频中明确归因的团队观点",
+      "research_topic": "amazon",
+      "research_status": "conditional",
+      "assessment": {
+        "opinion_id": "opinion-012",
+        "status": "conditional",
+        "status_zh": "取决于条件",
+        "rationale": "AWS同比增速连续加速，利润率从32.9%升至39.4%；长期合同未履约义务约3640亿美元，AI与芯片业务年化收入均超过250亿美元且三位数增长，经营层面支持2026年双增长延续。但财报后股价已单日上涨15.32%，Morningstar公允价值280美元接近当时股价，而卖方目标价约333至350美元；‘未完全计价、有不俗空间’因此取决于估值模型和资本开支回报。",
+        "applicable_conditions": [
+          "已签约容量按计划上线并转化为收入",
+          "自研芯片与Bedrock扩大采用且单位经济性稳定",
+          "新增折旧后AWS利润率仍维持高位",
+          "大客户履行长期承诺",
+          "约2200亿美元资本开支带来可接受的自由现金流与ROIC"
+        ],
+        "counterevidence": [
+          "财报后股价已快速重估",
+          "独立公允价值框架显示上行空间有限",
+          "Q3集团指引并非无条件向上",
+          "负自由现金流、新增债务和未来折旧可能削弱股东现金流",
+          "Anthropic同时使用多云和多元硬件"
+        ],
+        "premise_differences": [
+          "AWS双增长是经营预测，股票未计价是估值判断，应分别验证",
+          "Anthropic增长不会一比一成为AWS收入",
+          "自研芯片没有独立利润表",
+          "不同估值框架结论明显分化"
+        ],
+        "topic_id": "amazon"
+      }
+    },
+    {
+      "opinion_id": "opinion-013",
+      "timestamp_start": 989.0,
+      "timestamp_end": 1000.0,
+      "exact_quote": "Jason认为Azure重新加速是最大的催化剂而CPU和GPU的效率改善数据中心部署流程优化这两点在一定程度上增强了资产回报率",
+      "faithful_paraphrase": "作者认为Azure重新加速是微软最大的催化剂，而CPU/GPU效率改善和数据中心部署流程优化在一定程度上提高了资产回报率。",
+      "opinion_type": "company_outlook",
+      "target": "微软Azure与AI基础设施",
+      "time_horizon": "当前及后续季度",
+      "stated_basis": [
+        "Azure按固定汇率增速加快",
+        "CPU和GPU集群效率提升",
+        "基础设施部署流程改善"
+      ],
+      "qualifiers": [
+        "认为",
+        "最大的",
+        "在一定程度上"
+      ],
+      "context_before": "视频转述大摩和小摩对Azure增长和产能的解读。",
+      "context_after": "转入Copilot应用层商业化。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "microsoft",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-013",
+        "status": "partially_supported",
+        "status_zh": "部分支持",
+        "rationale": "微软披露Azure增长43%，超预期增长由CPU/GPU机群效率提升和新产能更早交付推动，新GPU从到货到上线时间全年缩短近50%；CFO称模型、芯片和基础设施效率提高了其对投入资本回报率的信心。这支持方向性判断，但微软未披露Azure或AI基础设施层面的已实现ROA/ROIC。",
+        "applicable_conditions": [
+          "Azure需求继续高于可用产能并使新增容量快速变现",
+          "效率改善不被芯片价格、能耗、折旧或更高用量抵消",
+          "按包含租赁资产与承诺的经济资本口径衡量回报"
+        ],
+        "counterevidence": [
+          "Q4资本开支410亿美元且约三分之二为短寿命CPU/GPU资产",
+          "Microsoft Cloud毛利率降至65%",
+          "FY27资本开支仍预计同比增长"
+        ],
+        "premise_differences": [
+          "管理层谈的是对ROIC的信心，不是已披露的Azure分部ROA或ROIC",
+          "Azure增长同时包含传统云与AI工作负载"
+        ],
+        "topic_id": "microsoft"
+      }
+    },
+    {
+      "opinion_id": "opinion-014",
+      "timestamp_start": 1043.0,
+      "timestamp_end": 1060.0,
+      "exact_quote": "Jason认为Copilot互动次数和高频使用率增长反映了两点第一Copilot比之前更好用有更多用户接受也代表之前划拨给研发部门的算力现在开始有了回报第二微软软件的深度捆绑上季度开始加速起效",
+      "faithful_paraphrase": "作者认为Copilot互动次数和高频使用率增长说明产品更好用、用户接受度提高、此前分配给研发的算力开始产生回报，同时微软软件深度捆绑开始加速见效。",
+      "opinion_type": "causal_inference",
+      "target": "微软Copilot商业化",
+      "time_horizon": "当前季度",
+      "stated_basis": [
+        "Copilot互动次数增长",
+        "高频使用率增长",
+        "付费席位与用量收费模式扩展"
+      ],
+      "qualifiers": [
+        "认为",
+        "反映了"
+      ],
+      "context_before": "视频梳理M365 Copilot和GitHub Copilot的席位与使用量。",
+      "context_after": "转入利润率分析。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "microsoft",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-014",
+        "status": "partially_supported",
+        "status_zh": "部分支持",
+        "rationale": "微软披露Copilot满意度、延迟、每用户对话数、付费席位和高使用客户均改善，且高端产品推动ARPU增长。这支持产品改善、接受度提高和商业化开始显现，但无法仅凭互动次数证明此前研发算力已取得足额回报，也无法区分产品质量、销售推广、许可证扩张和深度捆绑的各自贡献。",
+        "applicable_conditions": [
+          "高频使用在推广期后持续并转化为续费、扩席、用量收入和更高ARPU",
+          "增量收入覆盖研发算力、推理成本与销售折扣",
+          "使用增长伴随可验证的任务质量和业务结果"
+        ],
+        "counterevidence": [
+          "M365分部毛利率因Copilot使用增加而略有下降",
+          "英国政府试验的节省时间主要为自报且复杂任务仍有限制",
+          "企业随机试验中仅约40%的授权员工持续规律使用"
+        ],
+        "premise_differences": [
+          "不同Copilot指标分母不同，不能合并为单一转化漏斗",
+          "算力回报需要成本与增量收入或现金流配对",
+          "嵌入和治理整合提高使用便利不等于单独证明产品更好用"
+        ],
+        "topic_id": "microsoft"
+      }
+    },
+    {
+      "opinion_id": "opinion-015",
+      "timestamp_start": 1082.0,
+      "timestamp_end": 1141.0,
+      "exact_quote": "不过资本开支指引必须正确理解这个变化主要是会计分类变化导致的并不代表实际投资减少但我认为可能还不止存续的数据中心可能会包括未来新增的一部分当然我的理解不一定对市场目前也还有分歧具体会不会这么做到下季度自然就清晰了",
+      "faithful_paraphrase": "作者强调微软资本开支指引下降主要来自会计分类变化，并非实际投资减少；他进一步推测经营租赁模式可能也会覆盖部分未来新增项目，但明确承认这一理解未必正确、市场仍有分歧，需等待下季度澄清。",
+      "opinion_type": "accounting_interpretation",
+      "target": "微软数据中心租赁与资本开支指引",
+      "time_horizon": "下季度验证",
+      "stated_basis": [
+        "数据中心预计使用年限调整",
+        "部分融资租赁转为经营租赁",
+        "总开支规模未变"
+      ],
+      "qualifiers": [
+        "必须正确理解",
+        "并不代表",
+        "我认为",
+        "可能",
+        "不一定对",
+        "还有分歧"
+      ],
+      "context_before": "视频讨论微软营业利润率和资本开支指引。",
+      "context_after": "进入个人电脑业务短板。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "microsoft",
+      "research_status": "supported",
+      "assessment": {
+        "opinion_id": "opinion-015",
+        "status": "supported",
+        "status_zh": "总体支持",
+        "rationale": "微软CFO直接说明，自FY27起数据中心和办公楼预计使用寿命从15年延长到25年，导致更多未来数据中心租赁从融资租赁转为经营租赁；除该影响外，2026日历年经济投资预期保持不变，报告资本开支约1750亿美元。因此报告资本开支下降不能解释为实际投资同步减少。10-K披露3291亿美元尚未开始的租赁，主要是数据中心。",
+        "applicable_conditions": [
+          "投资未减少严格适用于管理层所说的2026日历年投资预期",
+          "经济投资口径同时考虑购买设备、融资租赁、经营租赁付款和尚未开始的承诺",
+          "未来项目具体覆盖比例仍需后续披露"
+        ],
+        "counterevidence": [
+          "经营租赁付款进入经营现金流，并非没有经济影响",
+          "两类租赁权利、风险、期限和费用确认模式不同",
+          "尚未开始租赁未按经营和融资类别拆分且部分受合同条件约束"
+        ],
+        "premise_differences": [
+          "这是预计使用寿命变更引发的租赁分类变化，不只是机械展示调整",
+          "经营租赁不计入报告CapEx不等于没有使用权资产、付款义务或现金流影响",
+          "官方措辞已覆盖未来数据中心租赁，但未披露项目数量或金额"
+        ],
+        "topic_id": "microsoft"
+      }
+    },
+    {
+      "opinion_id": "opinion-016",
+      "timestamp_start": 1221.0,
+      "timestamp_end": 1279.0,
+      "exact_quote": "所以两家机构对微软近期的经营趋势其实基本没有分歧真正的分歧集中在2028财年以后Jason认为今明两年的关键词这就是摩根大通所说的平衡谁能在收入利润两头在支出和自由现金流之间取得平衡谁就能获得市场的奖励换言之市场看到了AI带来的增长但换回这份增长的必须是有纪律的合理开支",
+      "faithful_paraphrase": "作者认为大摩和小摩对微软近期经营趋势基本一致，真正分歧在2028财年以后；他把今明两年关键词概括为“平衡”，即AI收入与利润增长必须以有纪律、合理的开支和自由现金流管理来实现，市场才会给予奖励。",
+      "opinion_type": "market_principle",
+      "target": "大型科技公司的AI投资与微软估值",
+      "time_horizon": "今明两年，并延伸至2028财年以后",
+      "stated_basis": [
+        "Azure需求和增长加速",
+        "Copilot规模化采用",
+        "经营杠杆暂时抵消AI投资对毛利率的压力",
+        "机构对远期资本开支和自由现金流假设存在分歧"
+      ],
+      "qualifiers": [
+        "基本没有分歧",
+        "真正的分歧",
+        "认为",
+        "必须"
+      ],
+      "context_before": "视频对比小摩和大摩对微软远期自由现金流的不同判断。",
+      "context_after": "作者批评投行报告偏重解释过去，并预告后续深度分析。",
+      "speaker_attribution": "Jason/视频作者",
+      "research_topic": "microsoft",
+      "research_status": "conditional",
+      "assessment": {
+        "opinion_id": "opinion-016",
+        "status": "conditional",
+        "status_zh": "取决于条件",
+        "rationale": "微软Q4同时交出Azure 43%增长、收入和营业利润各增长18%，并表示2026年经济投资预期未提高；随后股价上涨15.5%。相反，FY26 Q2出现创纪录AI支出而云增长仅小幅超预期时，盘后下跌6.5%。这与‘增长和纪律性开支平衡’一致，但市场反应混合了盈利、指引、估值、租赁重分类与宏观因素，不能证明2028财年后的回报。",
+        "applicable_conditions": [
+          "Azure和Copilot增长持续达到预期并改善利润率与自由现金流",
+          "资本开支与租赁承诺有经营现金流和可验证需求支撑",
+          "按经济现金流而非仅报告CapEx判断纪律",
+          "估值、利率和竞争环境不压过公司基本面"
+        ],
+        "counterevidence": [
+          "Q4自由现金流受更高资本开支影响且云毛利率下降",
+          "主要超大规模云厂商资本开支可能快于自由现金流",
+          "FY27资本开支仍预计增长并有巨额未来租赁承诺",
+          "单次股价上涨不能证明长期资本配置一定创造超额回报"
+        ],
+        "premise_differences": [
+          "公开证据最强的是微软的事件反应，跨公司普遍性仍需检验",
+          "投行对FY28以后假设的具体分歧未在微软公开文件中披露",
+          "自由现金流为正不等于回报足以匹配估值"
+        ],
+        "topic_id": "microsoft"
+      }
+    }
+  ],
+  "research_topics": [
+    {
+      "topic_id": "amazon",
+      "opinion_ids": [
+        "opinion-010",
+        "opinion-011",
+        "opinion-012"
+      ],
+      "overall_summary": "应收账款现金流项目不足以推出客户付款能力或意愿恶化；AWS高增长、高利润率、自由现金流恶化及继续融资的方向有较强证据，但Amazon仍有强劲经营现金流和约1230亿美元现金及有价证券，新增利息尚未构成必须由额外AWS增长抵消的重大EPS压力；AWS双增长延续至2026年末具备较强经营证据，但‘尚未完全计价、仍有不俗上涨空间’取决于估值模型、资本开支回报和增长兑现，市场观点明显分化。",
+      "assessments": [
+        {
+          "opinion_id": "opinion-010",
+          "status": "insufficient",
+          "status_zh": "信息不足",
+          "rationale": "2026年上半年‘Accounts receivable, net and other’营运资金占用显著增加，但该项目不等同于客户应收账款，包含客户与供应商应收、其他应收、预付款等。Q1构成中其他应收增量还高于客户应收，坏账准备未异常跃升。没有Q2同口径构成、账龄、逾期率或核销数据，不能据此推出客户付款能力或意愿恶化。",
+          "applicable_conditions": [
+            "客户应收增速持续显著高于AWS及服务收入增速",
+            "周转天数、逾期账龄、坏账准备率或核销连续上升",
+            "管理层明确归因于客户延迟付款或信用质量下降",
+            "现象持续多个季度"
+          ],
+          "counterevidence": [
+            "Q1其他应收增量高于客户应收",
+            "营运资金受结算时点、付款条件和汇率等多重因素影响",
+            "业务规模扩张本身会推高应收",
+            "坏账准备暂未显示异常跃升"
+          ],
+          "premise_differences": [
+            "视频使用相对预期拖累，官方报表给的是实际同比，基准不同",
+            "现金流项目不是纯客户应收",
+            "付款能力、意愿、合同账期和结算时点无法区分"
+          ]
+        },
+        {
+          "opinion_id": "opinion-011",
+          "status": "partially_supported",
+          "status_zh": "部分支持",
+          "rationale": "Q2 AWS收入同比增长37%、经营利润增长64%，利润率升至39.4%，为AI投资提供强劲利润基础；TTM自由现金流转为流出76.04亿美元，主要因AI相关净资本开支增加。上半年长期债务融资流入669.98亿美元，长期债务升至1288.94亿美元，公司预计还会融资且设立175亿美元定期贷款额度。利息费用上升，但AWS经营利润增量远大于利息增量，公司仍有约1230亿美元现金及有价证券和强劲经营现金流，因此‘融资成本显著压制EPS且必须靠额外AWS增速抵消’强度偏高。",
+          "applicable_conditions": [
+            "约2200亿美元资本开支持续且新产能变现滞后",
+            "继续动用新增债券或贷款额度",
+            "新债利率维持高位且更多利息进入损益",
+            "AWS增速、利用率或利润率低于预期"
+          ],
+          "counterevidence": [
+            "TTM经营现金流同比增长33%至1614.03亿美元",
+            "现金和有价证券约1229.88亿美元",
+            "AWS利润增量约为利息费用增量八倍以上",
+            "资本开支通过折旧逐期影响EPS而非当期全额计入"
+          ],
+          "premise_differences": [
+            "负自由现金流不自动等于缺乏流动性或被迫举债",
+            "融资可能用于投资和一般用途，不全由AWS缺口导致",
+            "GAAP EPS受Anthropic巨额投资收益干扰",
+            "AWS之外业务也可抵消利息压力"
+          ]
+        },
+        {
+          "opinion_id": "opinion-012",
+          "status": "conditional",
+          "status_zh": "取决于条件",
+          "rationale": "AWS同比增速连续加速，利润率从32.9%升至39.4%；长期合同未履约义务约3640亿美元，AI与芯片业务年化收入均超过250亿美元且三位数增长，经营层面支持2026年双增长延续。但财报后股价已单日上涨15.32%，Morningstar公允价值280美元接近当时股价，而卖方目标价约333至350美元；‘未完全计价、有不俗空间’因此取决于估值模型和资本开支回报。",
+          "applicable_conditions": [
+            "已签约容量按计划上线并转化为收入",
+            "自研芯片与Bedrock扩大采用且单位经济性稳定",
+            "新增折旧后AWS利润率仍维持高位",
+            "大客户履行长期承诺",
+            "约2200亿美元资本开支带来可接受的自由现金流与ROIC"
+          ],
+          "counterevidence": [
+            "财报后股价已快速重估",
+            "独立公允价值框架显示上行空间有限",
+            "Q3集团指引并非无条件向上",
+            "负自由现金流、新增债务和未来折旧可能削弱股东现金流",
+            "Anthropic同时使用多云和多元硬件"
+          ],
+          "premise_differences": [
+            "AWS双增长是经营预测，股票未计价是估值判断，应分别验证",
+            "Anthropic增长不会一比一成为AWS收入",
+            "自研芯片没有独立利润表",
+            "不同估值框架结论明显分化"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "source_id": "amzn-S1",
+          "title": "Amazon.com Announces Second Quarter Results",
+          "publisher": "Amazon.com, Inc.",
+          "published_at": "2026-07-30",
+          "accessed_at": "2026-08-01",
+          "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/",
+          "source_type": "issuer_earnings_release",
+          "claims_supported": [
+            "AWS收入、利润和利润率",
+            "现金流和资本开支",
+            "债务与利息",
+            "AI和芯片业务年化收入"
+          ]
+        },
+        {
+          "source_id": "amzn-S2",
+          "title": "Amazon.com, Inc. Form 10-Q for the Quarterly Period Ended March 31, 2026",
+          "publisher": "U.S. Securities and Exchange Commission / Amazon.com, Inc.",
+          "published_at": "2026-04-30",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+          "source_type": "sec_filing_10q",
+          "claims_supported": [
+            "应收及其他项目构成",
+            "营运资金因素",
+            "债务与流动性",
+            "AWS合同义务"
+          ]
+        },
+        {
+          "source_id": "amzn-S3",
+          "title": "Amazon.com, Inc. Form 8-K — $17.5 Billion Delayed Draw Term Loan Facility",
+          "publisher": "U.S. Securities and Exchange Commission / Amazon.com, Inc.",
+          "published_at": "2026-06-10",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926072140/tm2613616d4_8k.htm",
+          "source_type": "sec_filing_8k",
+          "claims_supported": [
+            "175亿美元延迟提款定期贷款额度"
+          ]
+        },
+        {
+          "source_id": "amzn-S4",
+          "title": "Amazon.com, Inc. Form 8-K — Canadian-Dollar Notes Offering",
+          "publisher": "U.S. Securities and Exchange Commission / Amazon.com, Inc.",
+          "published_at": "2026-06-12",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926073562/tm2613616d5_8k.htm",
+          "source_type": "sec_filing_8k",
+          "claims_supported": [
+            "2026年6月继续发行长期债券"
+          ]
+        },
+        {
+          "source_id": "amzn-S5",
+          "title": "Anthropic and Amazon expand collaboration for up to 5 gigawatts of new compute",
+          "publisher": "Anthropic",
+          "published_at": "2026-04-20",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.anthropic.com/news/anthropic-amazon-compute",
+          "source_type": "counterparty_official_announcement",
+          "claims_supported": [
+            "十年AWS承诺与最高5GW容量",
+            "Anthropic收入规模与多云策略"
+          ]
+        },
+        {
+          "source_id": "amzn-S6",
+          "title": "Amazon to boost spending on AI and other technology by $20 billion after strong Q2 results",
+          "publisher": "Associated Press",
+          "published_at": "2026-07-30",
+          "accessed_at": "2026-08-01",
+          "url": "https://apnews.com/article/b4ce02b4666a35b8975823c5c22072ee",
+          "source_type": "authoritative_media_report",
+          "claims_supported": [
+            "2026年资本开支计划约2200亿美元",
+            "容量约束与Q3指引"
+          ]
+        },
+        {
+          "source_id": "amzn-S7",
+          "title": "Amazon.com (AMZN) Stock Price History",
+          "publisher": "StockAnalysis.com, data sourced from S&P Global Market Intelligence",
+          "published_at": "2026-08-01",
+          "accessed_at": "2026-08-01",
+          "url": "https://stockanalysis.com/stocks/amzn/history/",
+          "source_type": "market_data",
+          "claims_supported": [
+            "财报后股价单日上涨15.32%"
+          ]
+        },
+        {
+          "source_id": "amzn-S8",
+          "title": "KeyBanc, Truist Raise Amazon (AMZN) Stock Price Targets after Stellar Q2 Earnings",
+          "publisher": "TipRanks",
+          "published_at": "2026-08-01",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.tipranks.com/news/keybanc-truist-raise-amazon-amzn-stock-price-targets-after-stellar-q2-earnings",
+          "source_type": "analyst_reaction_aggregation",
+          "claims_supported": [
+            "卖方目标价及正面估值观点"
+          ]
+        },
+        {
+          "source_id": "amzn-S9",
+          "title": "Going Into Earnings, Is Amazon Stock a Buy, a Sell, or Fairly Valued?",
+          "publisher": "Morningstar",
+          "published_at": "2026-07-23",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.morningstar.com/stocks/going-into-earnings-is-amazon-stock-buy-sell-or-fairly-valued-10",
+          "source_type": "independent_equity_research",
+          "claims_supported": [
+            "280美元公允价值和资本开支/现金流约束"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "apple",
+      "opinion_ids": [
+        "opinion-007",
+        "opinion-008",
+        "opinion-009"
+      ],
+      "overall_summary": "外部证据支持苹果具有强现金流、庞大活跃设备基础、高利润率服务业务，以及端侧与私有云结合的AI路线；但这些经营优势不能直接推出当前估值安全或补仓必然合理。约34至35倍前瞻市盈率处于高位，若盈利预期不上修、关税退款的一次性利好消失、存储成本和供应限制加剧，估值存在回落条件。不过，2026财年第三季度收入、EPS、iPhone、Mac和服务业务均显示强劲增长，因此‘近期上涨主要不是业绩驱动’缺乏足够证据。",
+      "assessments": [
+        {
+          "opinion_id": "opinion-007",
+          "status": "mixed",
+          "status_zh": "存在明显分歧",
+          "rationale": "估值风险部分得到支持：财报前2027年一致预期市盈率约34倍，目标价隐含回报约3.5%；关税退款的一次性影响、存储成本和供应限制也会提高估值脆弱性。但苹果当季收入同比增长16%、EPS增长29%、iPhone增长22%、Mac增长29%、服务收入增长12%，公开数据无法证明近期上涨主要是防御属性而非盈利驱动。",
+          "applicable_conditions": [
+            "未来十二个月盈利一致预期没有显著上修",
+            "关税退款不再重复且存储和先进芯片成本继续上升",
+            "市场风险偏好重新转向直接受益于AI投资周期的公司"
+          ],
+          "counterevidence": [
+            "2026财年第三季度收入1094.17亿美元，同比增长16%",
+            "稀释EPS为2.02美元，同比增长29%",
+            "九个月经营现金流增至1169.96亿美元"
+          ],
+          "premise_differences": [
+            "35倍前瞻市盈率取决于口径，S&P Global财报前口径约34倍",
+            "股价驱动是市场归因，公开财务数据不能分离防御资金、产品周期和盈利预期的贡献",
+            "本季毛利率和EPS受到关税退款的有利影响"
+          ]
+        },
+        {
+          "opinion_id": "opinion-008",
+          "status": "conditional",
+          "status_zh": "取决于条件",
+          "rationale": "对秋季产品与短期收入的期待有产品路线和当季增长支撑，但苹果截至研究日尚未正式确认视频所说的具体9月发布会；AI功能存在语言、地区和设备限制，公司还披露供应约束、存储成本和AI算力成本将加剧。五到十年不调整仓位属于个人框架，不能由一两个季度的产品周期充分论证。",
+          "applicable_conditions": [
+            "秋季硬件和软件按计划推出并形成真实换机需求",
+            "先进芯片、NAND、DRAM和云端算力供应充足",
+            "产品定价覆盖成本且不显著损害销量",
+            "长期持有者能承受估值收缩和阶段性回撤"
+          ],
+          "counterevidence": [
+            "10-Q称组件供应约束和成本上升预计加剧",
+            "Siri AI初期存在语言、地区和设备限制",
+            "高估值意味着即使业绩增长，低于已计价预期时股价仍可能下跌"
+          ],
+          "premise_differences": [
+            "官方材料确认秋季软件发布计划，但截至研究日未正式确认具体9月发布会",
+            "第四季度产品周期和下一财年第一季度业绩是不同时间窗口"
+          ]
+        },
+        {
+          "opinion_id": "opinion-009",
+          "status": "partially_supported",
+          "status_zh": "部分支持",
+          "rationale": "长期经营论据获得较强支持：九个月经营现金流1169.96亿美元，服务收入同比增长12%、服务毛利率75.6%，活跃设备基础创新高；苹果也有端侧模型与Private Cloud Compute的具体技术载体。但‘没有任何变化、长期持有不用担心’过于绝对，供应链、AI算力、第三方云、App Store监管和估值均构成风险。补仓合理性还取决于买入价格、仓位和风险承受能力。",
+          "applicable_conditions": [
+            "设备基础和开发者支持继续维持生态网络效应",
+            "服务业务抵消硬件周期和组件成本压力",
+            "AI功能逐步扩展并形成可商业化差异",
+            "买入估值和组合集中度符合投资者风险预算"
+          ],
+          "counterevidence": [
+            "组件和第三方云依赖可能延迟功能或提高成本",
+            "AI功能存在地区与设备限制",
+            "App Store商业模式面临监管压力",
+            "约34至35倍前瞻市盈率使回报高度依赖持续增长"
+          ],
+          "premise_differences": [
+            "产品设计和高端消费属性属于竞争力判断，不能仅靠财报定量证明",
+            "苹果AI路线同时依赖端侧与云端",
+            "防御AI首选需要跨资产比较，现有材料不足以确认其为唯一或最佳选择",
+            "公司质量与股票买入价格是两个问题"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "source_id": "apple-q3-2026-results",
+          "title": "Apple reports third quarter results",
+          "publisher": "Apple",
+          "published_at": "2026-07-30",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/",
+          "source_type": "company_earnings_release",
+          "claims_supported": [
+            "季度收入和EPS增长",
+            "毛利率与关税退款影响",
+            "活跃设备基础创新高"
+          ]
+        },
+        {
+          "source_id": "apple-q3-2026-10q",
+          "title": "Apple Inc. Form 10-Q for the fiscal quarter ended June 27, 2026",
+          "publisher": "U.S. Securities and Exchange Commission / Apple Inc.",
+          "published_at": "2026-07-31",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+          "source_type": "regulatory_filing",
+          "claims_supported": [
+            "分业务收入增长",
+            "服务毛利率",
+            "九个月经营现金流",
+            "供应、云与监管风险"
+          ]
+        },
+        {
+          "source_id": "apple-wwdc26-ai",
+          "title": "WWDC26: Apple unveils next generation of Apple Intelligence, Siri AI, powerful parental controls, and an expansive set of software improvements",
+          "publisher": "Apple",
+          "published_at": "2026-06-08",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.apple.com/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/",
+          "source_type": "company_product_announcement",
+          "claims_supported": [
+            "秋季发布计划",
+            "Siri AI集成范围",
+            "语言和地区限制"
+          ]
+        },
+        {
+          "source_id": "apple-foundation-models-2026",
+          "title": "Introducing the Third Generation of Apple’s Foundation Models",
+          "publisher": "Apple Machine Learning Research",
+          "published_at": "2026-06-08",
+          "accessed_at": "2026-08-01",
+          "url": "https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models",
+          "source_type": "company_technical_research",
+          "claims_supported": [
+            "端侧模型与Private Cloud Compute并存",
+            "苹果AI路线并非纯端侧"
+          ]
+        },
+        {
+          "source_id": "spglobal-aapl-q3-preview",
+          "title": "Apple earnings preview: Q3 2026",
+          "publisher": "S&P Global Market Intelligence",
+          "published_at": "2026-07-24",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/07/apple-earnings-preview-q3-2026",
+          "source_type": "institutional_market_research",
+          "claims_supported": [
+            "财报前约34倍一致预期市盈率",
+            "目标价隐含回报约3.5%",
+            "升级周期仍是估值兑现关键"
+          ]
+        },
+        {
+          "source_id": "ap-apple-q3-2026",
+          "title": "Strong iPhone sales propel Apple’s fiscal Q3 results past Wall Street’s expectations",
+          "publisher": "Associated Press",
+          "published_at": "2026-07-30",
+          "accessed_at": "2026-08-01",
+          "url": "https://apnews.com/article/apple-earnings-revenue-iphone-ai-94102918cb3592ebc1d2a38c4d7d819a",
+          "source_type": "reputable_news_analysis",
+          "claims_supported": [
+            "收入和EPS超过一致预期",
+            "分析师的避风港属性解释",
+            "成本和关税退款风险"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "macro-semiconductors-rates",
+      "opinion_ids": [
+        "opinion-001",
+        "opinion-002",
+        "opinion-003",
+        "opinion-004",
+        "opinion-005",
+        "opinion-006"
+      ],
+      "overall_summary": "财报驱动的科技股修复尚未摆脱长端利率压力，获得市场表现、国债数据和美联储材料的较强支持；高利率压力更可能集中于高杠杆、临近再融资等脆弱企业，而非必然迅速传染整个股市。半导体需求与大型科技公司资本开支有强劲数据支撑，但周期性、回报和估值仍是限制。处置效应是成熟现象，却不足以断定本轮多数被套散户必在成本线卖出。SOX与2000年走势的四个月线性外推缺乏统计验证，只能视作风险情景。",
+      "assessments": [
+        {
+          "opinion_id": "opinion-001",
+          "status": "mixed",
+          "status_zh": "存在明显分歧",
+          "rationale": "GDP与月度核心PCE边际降温支持缓解进一步紧缩担忧的一部分逻辑，但私人国内最终销售仍强、季度总PCE价格上涨且核心PCE同比仍高于目标；当日上涨主要由微软盈利与AI信号驱动。‘对股市是好消息’在当日结果上成立，宏观因果归因存在分歧。",
+          "applicable_conditions": [
+            "通胀环比降温持续",
+            "增长放缓被理解为软着陆而非盈利下修",
+            "数据降低政策利率或实际利率预期",
+            "长端期限溢价和国债供给不抵消改善"
+          ],
+          "counterevidence": [
+            "私人国内最终销售增长3.9%",
+            "季度总PCE价格指数年化上涨5.1%",
+            "核心PCE同比3.3%",
+            "当日反弹主要由微软盈利和AI信号驱动"
+          ],
+          "premise_differences": [
+            "BEA报告实际值但不提供市场预期",
+            "GDP标题与私人国内最终销售对动能的信号不同",
+            "不同PCE口径信号不完全一致"
+          ]
+        },
+        {
+          "opinion_id": "opinion-002",
+          "status": "supported",
+          "status_zh": "总体支持",
+          "rationale": "7月30日微软和芯片股推动科技股显著上涨，同期10年期和30年期美债收益率仍约4.68%和5.21%；美联储会议纪要也记录过盈利与AI乐观情绪在收益率上升时推动股票上涨的阶段。证据支持当日更像财报修复、不能证明已摆脱通胀与收益率压力。",
+          "applicable_conditions": [
+            "主要适用于单日及相邻短期",
+            "盈利改善持续转化为现金流",
+            "长端收益率继续上行或盈利回落时修复可能减弱"
+          ],
+          "counterevidence": [
+            "强劲盈利与AI乐观可在一段时间内持续压过收益率上升",
+            "股债收益率同涨也可能反映增长预期"
+          ],
+          "premise_differences": [
+            "同日走势不能严格识别因果",
+            "上涨集中于微软和部分AI/半导体公司"
+          ]
+        },
+        {
+          "opinion_id": "opinion-003",
+          "status": "partially_supported",
+          "status_zh": "部分支持",
+          "rationale": "交易研究发现卖出概率在收益由负转零附近跳升，支持成本价参考点和解套卖出机制；但该效应存在显著个体差异，且缺少本轮半导体股票账户级持仓成本数据，无法确认‘更多散户大概率卖出’的数量判断。",
+          "applicable_conditions": [
+            "投资者以成本为主要参考点",
+            "反弹接近成本线且未重设参考价",
+            "水下散户持仓比例较高",
+            "税务、再平衡和新信息不是主要卖因"
+          ],
+          "counterevidence": [
+            "处置效应并非所有投资者共有",
+            "卖出可能来自理性风险控制",
+            "没有账户级数据量化套牢盘"
+          ],
+          "premise_differences": [
+            "个体倾向不必然形成市场级压力",
+            "散户与专业人士行为不同",
+            "多次买入者参考价不唯一"
+          ]
+        },
+        {
+          "opinion_id": "opinion-004",
+          "status": "insufficient",
+          "status_zh": "信息不足",
+          "rationale": "没有针对两段SOX路径、相似度定义、归一化方式和四个月阈值的样本外检验。SOX指数会年度重构和季度再平衡，当前成分、权重和行业结构与2000年并非固定可比。技术形态只有在系统定义与大样本检验后才可能含增量信息。",
+          "applicable_conditions": [
+            "事先固定起点、归一化、时间缩放和相似度指标",
+            "调整指数成分与权重变化",
+            "四个月阈值经多样本和样本外验证",
+            "控制估值、盈利、利率与产业周期差异"
+          ],
+          "counterevidence": [
+            "部分系统定义的技术形态可能有增量信息",
+            "但不能直接支持两段视觉相似走势的精确外推",
+            "指数篮子不是自2000年保持不变"
+          ],
+          "premise_differences": [
+            "2000年与2026年行业经济结构不同",
+            "不同起点与缩放会改变结论",
+            "价格路径不等于基本面泡沫是否破裂"
+          ]
+        },
+        {
+          "opinion_id": "opinion-005",
+          "status": "partially_supported",
+          "status_zh": "部分支持",
+          "rationale": "微软、Meta、Amazon、Broadcom和SIA/WSTS材料支持AI与半导体需求仍有扩张空间；但这主要说明当前需求和投资周期，不能单独证明相关股票长期回报。巨额投资正在压缩自由现金流，行业周期、客户融资与订单延迟仍是风险。",
+          "applicable_conditions": [
+            "云与AI需求转化为持续收入和资本回报",
+            "供应约束不长期阻断部署",
+            "客户融资能力足够",
+            "新增产能不会形成过剩",
+            "估值未透支增长"
+          ],
+          "counterevidence": [
+            "高资本开支已明显消耗部分公司自由现金流",
+            "Broadcom披露AI上行可能不可持续",
+            "半导体行业高度周期化",
+            "行业协会预测需与订单库存交叉验证"
+          ],
+          "premise_differences": [
+            "数据中心资本开支并非全流向公开半导体公司",
+            "行业需求扩张不等于股票回报",
+            "不同半导体子行业周期不同"
+          ]
+        },
+        {
+          "opinion_id": "opinion-006",
+          "status": "conditional",
+          "status_zh": "取决于条件",
+          "rationale": "美联储金融稳定报告支持长期利率上升会压低资产价格、提高企业偿债成本并放大高杠杆和临近再融资企业脆弱性。但总体企业债务脆弱性仍温和，上市公司利息保障倍数稳健，风险集中于特定借款人；高收益率下科技股仍可因盈利上涨。因此方向合理，传导速度和范围取决于利率持续性、盈利和再融资结构。",
+          "applicable_conditions": [
+            "长期利率与期限溢价持续上升",
+            "通胀使宽松预期后移",
+            "高利率窗口集中再融资",
+            "信用利差扩大或贷款收紧",
+            "盈利增长不足以抵消折现率"
+          ],
+          "counterevidence": [
+            "总体企业债务脆弱性温和",
+            "多数上市公司利息保障倍数稳健",
+            "强盈利可暂时抵消收益率上升",
+            "低杠杆现金充裕公司敏感度不同"
+          ],
+          "premise_differences": [
+            "长端利率不能归因于单一政治人物",
+            "估值渠道与实际融资困难的时点不同",
+            "高估值、高杠杆、融资依赖是不同风险特征"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "source_id": "macro-src-001",
+          "title": "GDP (Advance Estimate), 2nd Quarter 2026",
+          "publisher": "U.S. Bureau of Economic Analysis",
+          "published_at": "2026-07-30",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.bea.gov/news/2026/gdp-advance-estimate-2nd-quarter-2026",
+          "source_type": "official_government_economic_release",
+          "claims_supported": [
+            "GDP、私人国内最终销售和季度PCE"
+          ]
+        },
+        {
+          "source_id": "macro-src-002",
+          "title": "Personal Income and Outlays, June 2026",
+          "publisher": "U.S. Bureau of Economic Analysis",
+          "published_at": "2026-07-30",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.bea.gov/news/2026/personal-income-and-outlays-june-2026",
+          "source_type": "official_government_economic_release",
+          "claims_supported": [
+            "6月核心PCE环比与同比"
+          ]
+        },
+        {
+          "source_id": "macro-src-003",
+          "title": "Stagflationary Stock Returns",
+          "publisher": "Board of Governors of the Federal Reserve System",
+          "published_at": "2025-08",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.federalreserve.gov/econres/feds/stagflationary-stock-returns.htm",
+          "source_type": "central_bank_staff_research",
+          "claims_supported": [
+            "通胀意外对折现率和股票价格的影响"
+          ]
+        },
+        {
+          "source_id": "macro-src-004",
+          "title": "Microsoft's best day since 2008 leads US stocks, while inflation worries remain in the bond market",
+          "publisher": "Associated Press",
+          "published_at": "2026-07-30",
+          "accessed_at": "2026-08-01",
+          "url": "https://apnews.com/article/stock-markets-rates-korea-ai-oil-99b5702d93a2b5c6e513fb952ccdcc92",
+          "source_type": "financial_news_report",
+          "claims_supported": [
+            "当日市场表现与财报驱动叙事"
+          ]
+        },
+        {
+          "source_id": "macro-src-005",
+          "title": "Daily Treasury Par Yield Curve Rates, July 2026",
+          "publisher": "U.S. Department of the Treasury",
+          "published_at": "2026-07-31",
+          "accessed_at": "2026-08-01",
+          "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202607&type=daily_treasury_yield_curve",
+          "source_type": "official_government_market_data",
+          "claims_supported": [
+            "7月30日至31日长期美债收益率"
+          ]
+        },
+        {
+          "source_id": "macro-src-006",
+          "title": "Minutes of the Federal Open Market Committee, June 16–17, 2026",
+          "publisher": "Board of Governors of the Federal Reserve System",
+          "published_at": "2026-07-08",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.federalreserve.gov/monetarypolicy/fomcminutes20260617.htm",
+          "source_type": "official_central_bank_minutes",
+          "claims_supported": [
+            "盈利和AI乐观可暂时抵消收益率上升"
+          ]
+        },
+        {
+          "source_id": "macro-src-007",
+          "title": "Prospect Theory and the Disposition Effect",
+          "publisher": "Journal of Financial and Quantitative Analysis / Cambridge University Press",
+          "published_at": "2010-04-28",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/abs/prospect-theory-and-the-disposition-effect/C606F8F6AD493D7E43481C484200A51E",
+          "source_type": "peer_reviewed_academic_article",
+          "claims_supported": [
+            "零收益附近卖出概率跳升与处置效应"
+          ]
+        },
+        {
+          "source_id": "macro-src-008",
+          "title": "Irrational Beliefs May Drive the Disposition Effect: Evidence from Financial Professionals",
+          "publisher": "Journal of Financial and Quantitative Analysis / Cambridge University Press",
+          "published_at": "2025-09-05",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/irrational-beliefs-may-drive-the-disposition-effect-evidence-from-financial-professionals/0773EE86C942D5FFB0405752575D0973",
+          "source_type": "peer_reviewed_academic_article",
+          "claims_supported": [
+            "处置效应异质性与信念机制"
+          ]
+        },
+        {
+          "source_id": "macro-src-009",
+          "title": "PHLX Semiconductor Sector Index Methodology",
+          "publisher": "Nasdaq",
+          "published_at": "2026",
+          "accessed_at": "2026-08-01",
+          "url": "https://indexes.nasdaq.com/docs/methodology_SOX.pdf",
+          "source_type": "official_index_methodology",
+          "claims_supported": [
+            "SOX成分、重构与加权规则"
+          ]
+        },
+        {
+          "source_id": "macro-src-010",
+          "title": "Foundations of Technical Analysis: Computational Algorithms, Statistical Inference, and Empirical Implementation",
+          "publisher": "National Bureau of Economic Research",
+          "published_at": "2000-03",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.nber.org/papers/w7613",
+          "source_type": "academic_working_paper",
+          "claims_supported": [
+            "技术图形的主观性与系统检验要求"
+          ]
+        },
+        {
+          "source_id": "macro-src-011",
+          "title": "Microsoft Fiscal Year 2026 Fourth Quarter Earnings Conference Call",
+          "publisher": "Microsoft Investor Relations",
+          "published_at": "2026-07-29",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
+          "source_type": "company_primary_earnings_material",
+          "claims_supported": [
+            "Azure需求与资本开支"
+          ]
+        },
+        {
+          "source_id": "macro-src-012",
+          "title": "Meta Reports Second Quarter 2026 Results",
+          "publisher": "Meta Platforms Investor Relations",
+          "published_at": "2026-07-29",
+          "accessed_at": "2026-08-01",
+          "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx",
+          "source_type": "company_primary_earnings_release",
+          "claims_supported": [
+            "Meta资本开支和自由现金流"
+          ]
+        },
+        {
+          "source_id": "macro-src-013",
+          "title": "Amazon.com Announces Second Quarter 2026 Results",
+          "publisher": "Amazon Investor Relations",
+          "published_at": "2026-07-30",
+          "accessed_at": "2026-08-01",
+          "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
+          "source_type": "company_primary_earnings_release",
+          "claims_supported": [
+            "AWS与AI芯片业务增长、AI资本开支和自由现金流"
+          ]
+        },
+        {
+          "source_id": "macro-src-014",
+          "title": "2026 State of the Industry Report: Historic Growth Amid Intensifying Global Competition",
+          "publisher": "Semiconductor Industry Association",
+          "published_at": "2026-07-27",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.semiconductors.org/2026-state-of-the-industry-report-historic-growth-amid-intensifying-global-competition/",
+          "source_type": "industry_association_report",
+          "claims_supported": [
+            "WSTS半导体销售预测"
+          ]
+        },
+        {
+          "source_id": "macro-src-015",
+          "title": "Broadcom Inc. Announces Second Quarter Fiscal Year 2026 Financial Results and Quarterly Dividend",
+          "publisher": "Broadcom / U.S. Securities and Exchange Commission",
+          "published_at": "2026-06-03",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000051/avgo-05032026x8kxex99.htm",
+          "source_type": "company_earnings_release_sec",
+          "claims_supported": [
+            "AI半导体收入增长"
+          ]
+        },
+        {
+          "source_id": "macro-src-016",
+          "title": "Broadcom Inc. Quarterly Report on Form 10-Q for the Quarter Ended February 1, 2026",
+          "publisher": "U.S. Securities and Exchange Commission",
+          "published_at": "2026-03-11",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000016/avgo-20260201.htm",
+          "source_type": "sec_filing",
+          "claims_supported": [
+            "行业周期、AI上行与客户融资风险"
+          ]
+        },
+        {
+          "source_id": "macro-src-017",
+          "title": "Financial Stability Report, May 2026 — Overview",
+          "publisher": "Board of Governors of the Federal Reserve System",
+          "published_at": "2026-05-28",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.federalreserve.gov/publications/2026-may-financial-stability-report-overview.htm",
+          "source_type": "official_financial_stability_report",
+          "claims_supported": [
+            "估值压力、期限溢价和企业债务脆弱性"
+          ]
+        },
+        {
+          "source_id": "macro-src-018",
+          "title": "Financial Stability Report, May 2026 — Near-Term Risks to the Financial System",
+          "publisher": "Board of Governors of the Federal Reserve System",
+          "published_at": "2026-05-28",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.federalreserve.gov/publications/2026-may-financial-stability-report-near-term-risks.htm",
+          "source_type": "official_financial_stability_report",
+          "claims_supported": [
+            "长期利率对资产价格与脆弱企业的风险"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "microsoft",
+      "opinion_ids": [
+        "opinion-013",
+        "opinion-014",
+        "opinion-015",
+        "opinion-016"
+      ],
+      "overall_summary": "微软FY26第四季度披露为Azure效率改善、Copilot接受度与商业化、租赁会计分类变化提供了较强支持，但证据强度不同。Azure新增产能快速变现支持效率改善有助于回报，但未披露Azure层面ROA或ROIC。Copilot满意度、使用强度、付费席位和ARPU同步上升，但不能仅凭互动次数识别捆绑、产品质量和算力回报之间的因果关系。经营租赁观点得到管理层和10-K直接印证；远期回报仍取决于资本开支、租赁承诺、毛利和自由现金流能否形成可持续平衡。",
+      "assessments": [
+        {
+          "opinion_id": "opinion-013",
+          "status": "partially_supported",
+          "status_zh": "部分支持",
+          "rationale": "微软披露Azure增长43%，超预期增长由CPU/GPU机群效率提升和新产能更早交付推动，新GPU从到货到上线时间全年缩短近50%；CFO称模型、芯片和基础设施效率提高了其对投入资本回报率的信心。这支持方向性判断，但微软未披露Azure或AI基础设施层面的已实现ROA/ROIC。",
+          "applicable_conditions": [
+            "Azure需求继续高于可用产能并使新增容量快速变现",
+            "效率改善不被芯片价格、能耗、折旧或更高用量抵消",
+            "按包含租赁资产与承诺的经济资本口径衡量回报"
+          ],
+          "counterevidence": [
+            "Q4资本开支410亿美元且约三分之二为短寿命CPU/GPU资产",
+            "Microsoft Cloud毛利率降至65%",
+            "FY27资本开支仍预计同比增长"
+          ],
+          "premise_differences": [
+            "管理层谈的是对ROIC的信心，不是已披露的Azure分部ROA或ROIC",
+            "Azure增长同时包含传统云与AI工作负载"
+          ]
+        },
+        {
+          "opinion_id": "opinion-014",
+          "status": "partially_supported",
+          "status_zh": "部分支持",
+          "rationale": "微软披露Copilot满意度、延迟、每用户对话数、付费席位和高使用客户均改善，且高端产品推动ARPU增长。这支持产品改善、接受度提高和商业化开始显现，但无法仅凭互动次数证明此前研发算力已取得足额回报，也无法区分产品质量、销售推广、许可证扩张和深度捆绑的各自贡献。",
+          "applicable_conditions": [
+            "高频使用在推广期后持续并转化为续费、扩席、用量收入和更高ARPU",
+            "增量收入覆盖研发算力、推理成本与销售折扣",
+            "使用增长伴随可验证的任务质量和业务结果"
+          ],
+          "counterevidence": [
+            "M365分部毛利率因Copilot使用增加而略有下降",
+            "英国政府试验的节省时间主要为自报且复杂任务仍有限制",
+            "企业随机试验中仅约40%的授权员工持续规律使用"
+          ],
+          "premise_differences": [
+            "不同Copilot指标分母不同，不能合并为单一转化漏斗",
+            "算力回报需要成本与增量收入或现金流配对",
+            "嵌入和治理整合提高使用便利不等于单独证明产品更好用"
+          ]
+        },
+        {
+          "opinion_id": "opinion-015",
+          "status": "supported",
+          "status_zh": "总体支持",
+          "rationale": "微软CFO直接说明，自FY27起数据中心和办公楼预计使用寿命从15年延长到25年，导致更多未来数据中心租赁从融资租赁转为经营租赁；除该影响外，2026日历年经济投资预期保持不变，报告资本开支约1750亿美元。因此报告资本开支下降不能解释为实际投资同步减少。10-K披露3291亿美元尚未开始的租赁，主要是数据中心。",
+          "applicable_conditions": [
+            "投资未减少严格适用于管理层所说的2026日历年投资预期",
+            "经济投资口径同时考虑购买设备、融资租赁、经营租赁付款和尚未开始的承诺",
+            "未来项目具体覆盖比例仍需后续披露"
+          ],
+          "counterevidence": [
+            "经营租赁付款进入经营现金流，并非没有经济影响",
+            "两类租赁权利、风险、期限和费用确认模式不同",
+            "尚未开始租赁未按经营和融资类别拆分且部分受合同条件约束"
+          ],
+          "premise_differences": [
+            "这是预计使用寿命变更引发的租赁分类变化，不只是机械展示调整",
+            "经营租赁不计入报告CapEx不等于没有使用权资产、付款义务或现金流影响",
+            "官方措辞已覆盖未来数据中心租赁，但未披露项目数量或金额"
+          ]
+        },
+        {
+          "opinion_id": "opinion-016",
+          "status": "conditional",
+          "status_zh": "取决于条件",
+          "rationale": "微软Q4同时交出Azure 43%增长、收入和营业利润各增长18%，并表示2026年经济投资预期未提高；随后股价上涨15.5%。相反，FY26 Q2出现创纪录AI支出而云增长仅小幅超预期时，盘后下跌6.5%。这与‘增长和纪律性开支平衡’一致，但市场反应混合了盈利、指引、估值、租赁重分类与宏观因素，不能证明2028财年后的回报。",
+          "applicable_conditions": [
+            "Azure和Copilot增长持续达到预期并改善利润率与自由现金流",
+            "资本开支与租赁承诺有经营现金流和可验证需求支撑",
+            "按经济现金流而非仅报告CapEx判断纪律",
+            "估值、利率和竞争环境不压过公司基本面"
+          ],
+          "counterevidence": [
+            "Q4自由现金流受更高资本开支影响且云毛利率下降",
+            "主要超大规模云厂商资本开支可能快于自由现金流",
+            "FY27资本开支仍预计增长并有巨额未来租赁承诺",
+            "单次股价上涨不能证明长期资本配置一定创造超额回报"
+          ],
+          "premise_differences": [
+            "公开证据最强的是微软的事件反应，跨公司普遍性仍需检验",
+            "投行对FY28以后假设的具体分歧未在微软公开文件中披露",
+            "自由现金流为正不等于回报足以匹配估值"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "source_id": "msft-source-01",
+          "title": "Microsoft Fiscal Year 2026 Fourth Quarter Earnings Conference Call",
+          "publisher": "Microsoft",
+          "published_at": "2026-07-29",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.microsoft.com/en-us/Investor/events/fy-2026/earnings-fy-2026-q4",
+          "source_type": "primary_company_earnings_call",
+          "claims_supported": [
+            "Azure增长与基础设施效率",
+            "Copilot指标",
+            "使用寿命和租赁分类变化",
+            "资本开支、毛利率和现金流"
+          ]
+        },
+        {
+          "source_id": "msft-source-02",
+          "title": "Microsoft Cloud and AI Strength Fuels Fourth Quarter Results",
+          "publisher": "Microsoft",
+          "published_at": "2026-07-29",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+          "source_type": "primary_company_earnings_release",
+          "claims_supported": [
+            "Azure增长43%",
+            "M365 Copilot付费席位超过3000万",
+            "Q4经营结果"
+          ]
+        },
+        {
+          "source_id": "msft-source-03",
+          "title": "Microsoft FY2026 Form 10-K, Note 13 — Leases",
+          "publisher": "Microsoft / U.S. Securities and Exchange Commission",
+          "published_at": "2026-07-29",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R23.htm",
+          "source_type": "primary_regulatory_filing",
+          "claims_supported": [
+            "租赁资产负债和现金流",
+            "3291亿美元尚未开始的数据中心租赁承诺"
+          ]
+        },
+        {
+          "source_id": "msft-source-04",
+          "title": "Private company ASC 842 adoption: Key considerations",
+          "publisher": "PwC US",
+          "published_at": null,
+          "accessed_at": "2026-08-01",
+          "url": "https://www.pwc.com/us/en/services/audit-assurance/private-company-services/library/asc-842-adoption-considerations.html",
+          "source_type": "professional_accounting_guidance",
+          "claims_supported": [
+            "融资与经营租赁的分类及资产负债确认"
+          ]
+        },
+        {
+          "source_id": "msft-source-05",
+          "title": "Microsoft 365 Copilot Experiment: Cross-Government Findings Report",
+          "publisher": "UK Government Digital Service",
+          "published_at": "2025-06-02",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.gov.uk/government/publications/microsoft-365-copilot-experiment-cross-government-findings-report/microsoft-365-copilot-experiment-cross-government-findings-report-html",
+          "source_type": "government_evaluation",
+          "claims_supported": [
+            "Copilot采用、满意度、自报时间节省及局限"
+          ]
+        },
+        {
+          "source_id": "msft-source-06",
+          "title": "Early Impacts of M365 Copilot",
+          "publisher": "arXiv; Microsoft and participating firms",
+          "published_at": "2025-04-15",
+          "accessed_at": "2026-08-01",
+          "url": "https://arxiv.org/abs/2504.11443",
+          "source_type": "company_coauthored_randomized_field_experiment",
+          "claims_supported": [
+            "企业随机试验的效率和持续使用比例"
+          ]
+        },
+        {
+          "source_id": "msft-source-07",
+          "title": "Microsoft’s best day since 2008 leads US stocks, while inflation worries remain in the bond market",
+          "publisher": "Associated Press",
+          "published_at": "2026-07-30",
+          "accessed_at": "2026-08-01",
+          "url": "https://apnews.com/article/stock-markets-rates-korea-ai-oil-99b5702d93a2b5c6e513fb952ccdcc92",
+          "source_type": "independent_market_report",
+          "claims_supported": [
+            "微软股价上涨15.5%及市场解释"
+          ]
+        },
+        {
+          "source_id": "msft-source-08",
+          "title": "AI investment boom puts Big Tech's free cash flow under pressure",
+          "publisher": "Reuters",
+          "published_at": "2026-07-22",
+          "accessed_at": "2026-08-01",
+          "url": "https://au.marketscreener.com/news/ai-investment-boom-puts-big-tech-s-free-cash-flow-under-pressure-ce7f51d8d18ff322",
+          "source_type": "independent_financial_analysis",
+          "claims_supported": [
+            "超大规模云厂商资本开支与自由现金流压力"
+          ]
+        },
+        {
+          "source_id": "msft-source-09",
+          "title": "Microsoft capital spending jumps, cloud revenue fails to impress, shares drop after hours",
+          "publisher": "Reuters",
+          "published_at": "2026-01-28",
+          "accessed_at": "2026-08-01",
+          "url": "https://www.investing.com/news/stock-market-news/microsoft-edges-past-cloud-growth-expectations-4471218",
+          "source_type": "independent_market_report",
+          "claims_supported": [
+            "AI资本开支与股价负面反应的对照事件"
+          ]
+        }
+      ]
+    }
+  ],
+  "research_status_counts": {
+    "mixed": 2,
+    "supported": 2,
+    "partially_supported": 6,
+    "insufficient": 2,
+    "conditional": 4
+  },
+  "agent_judgment": {
+    "schema_version": 1,
+    "video_id": "Gr7j-YIyEQE",
+    "generated_at": "2026-08-01T13:55:05Z",
+    "source_as_of": "2026-08-01",
+    "market_data_as_of": "2026-08-01T00:15:00Z",
+    "disclaimer": "本节为 Agent 基于视频内容、既有外部研判和注明日期的公开资料形成的综合判断，不代表视频作者观点，也不构成投资建议。",
+    "cross_topic_summary": "本期最可靠的共同结论不是简单看多或看空，而是市场正在把 AI 投入从叙事阶段推进到回报验证阶段。微软目前给出的收入、利润和商业化证据最完整；亚马逊的 AWS 经营惊喜很强，但现金流转换仍待证明；苹果的公司质量没有被本季否定，但高估值需要秋季产品、AI 商业化和利润率继续兑现；半导体结构性需求仍在，却不能外推到所有子行业。与此同时，长端名义与实际利率仍高，意味着盈利兑现能够支持反弹，却不足以证明估值压力已经解除。",
+    "market_snapshot": {
+      "source": "session market-data feed; Nasdaq quote pages supplied as public reference links",
+      "notes": "价格和单日涨跌用于观察财报后的即时重估，不是公允价值结论；市盈率为动态市场口径，跨公司不可直接比较。",
+      "items": [
+        {
+          "ticker": "AAPL",
+          "price_usd": 308.91,
+          "day_change_pct": -7.138,
+          "trailing_pe": 37.3983,
+          "reference_url": "https://www.nasdaq.com/market-activity/stocks/aapl"
+        },
+        {
+          "ticker": "AMZN",
+          "price_usd": 271.58,
+          "day_change_pct": 15.253,
+          "trailing_pe": 32.4856,
+          "reference_url": "https://www.nasdaq.com/market-activity/stocks/amzn"
+        },
+        {
+          "ticker": "MSFT",
+          "price_usd": 464.72,
+          "day_change_pct": 3.013,
+          "trailing_pe": 27.6619,
+          "reference_url": "https://www.nasdaq.com/market-activity/stocks/msft"
+        },
+        {
+          "ticker": "SOXX",
+          "price_usd": 504.89,
+          "day_change_pct": -0.061,
+          "trailing_pe": null,
+          "reference_url": "https://www.nasdaq.com/market-activity/etf/soxx"
+        }
+      ]
+    },
+    "cross_topic_ranking": {
+      "dimension": "经营证据完整度，不是股票评级或预期收益排序",
+      "order": [
+        "Microsoft",
+        "Amazon AWS",
+        "Apple",
+        "Semiconductor industry aggregate"
+      ],
+      "explanation": "微软同时提供增长、商业化、经营杠杆和现金流数据；Amazon AWS 的增长和利润率强，但集团自由现金流转负；苹果现金流与生态仍强，但本期股票争议更集中于估值和下一轮产品兑现；半导体需求证据集中在 AI、网络、逻辑与存储，行业内部离散度最大。"
+    },
+    "review": {
+      "status": "passed",
+      "reviewed_at": "2026-08-01T13:58:00Z",
+      "topic_count": 5,
+      "checks": {
+        "authorship_and_advice_disclaimer": "passed",
+        "facts_management_claims_inference_judgment_separated": "passed",
+        "source_as_of_present": "passed",
+        "priced_in_caveats_present": "passed",
+        "what_must_be_true_present": "passed",
+        "measurable_disconfirmers_present": "passed",
+        "downside_mechanisms_present": "passed",
+        "missing_evidence_present": "passed",
+        "personalized_trade_instruction_absent": "passed"
+      },
+      "limitations": [
+        "市场价格来自会话市场数据快照，公开参考页可能为动态内容。",
+        "缺少最新规范化前瞻一致预期、公司级ROIC与AI产品单位经济性。",
+        "观察阈值为Agent研究规则，不是公司指引、官方预测或收益概率。"
+      ]
+    },
+    "topics": [
+      {
+        "topic_id": "macro_rates",
+        "theme": "市场反弹与长端利率",
+        "conclusion": "这轮上涨可以由强财报继续支撑，但不能据此认定利率压力已经解除；短期更像盈利驱动的修复，风险会先落在高估值、负自由现金流和融资依赖公司，而不是立即演变为全市场系统性危机。",
+        "confidence": "medium_high",
+        "time_horizon": "0-3个月",
+        "evidence_layers": {
+          "facts": [
+            "2026年7月31日10年与30年美债收益率分别为4.75%和5.27%，7月30日10年实际收益率约2.41%。",
+            "2026年二季度实际GDP年化增长1.5%，但私人国内最终销售增长3.9%；6月核心PCE同比3.3%。",
+            "7月29日FOMC维持3.5%-3.75%目标区间，三名委员主张加息25个基点。"
+          ],
+          "management_claims": [
+            "大型云厂商称AI需求仍超过可用产能，但这属于公司管理层对需求与回报的判断。"
+          ],
+          "inference": "盈利惊喜能够暂时压过折现率，但若实际利率与期限溢价继续上升，估值渠道会先受压，随后才可能通过融资与资本开支传导到盈利。",
+          "agent_judgment": "视频对‘财报修复、利率未解除’的核心定性成立；对债市风险的方向判断合理，但传播速度与广度应保持条件语气。"
+        },
+        "priced_in": "政策利率、通胀仍高和长端收益率上行均为公开信息；当前缺少同口径股票风险溢价、期权分布和组合估值数据，无法判断利率风险已被充分计价。",
+        "what_must_be_true": [
+          "核心通胀继续降温，10年实际利率与期限溢价不再持续上升。",
+          "大型科技公司的收入、利润和自由现金流增速足以抵消较高折现率。",
+          "信用利差与银行贷款条件不出现同步收紧。"
+        ],
+        "disconfirmers": [
+          "10年美债连续10个交易日高于5.0%，或10年实际收益率连续10日高于2.5%。",
+          "核心PCE连续三个月环比不低于0.3%，或FOMC实际加息。",
+          "投资级信用利差较7月基准扩大100个基点，或高收益利差扩大200个基点。"
+        ],
+        "downside_mechanism": {
+          "shock": "通胀、能源或国债供给冲击",
+          "transmission": "实际利率和期限溢价上升，股票折现率与融资成本同时提高",
+          "constraint": "高估值、负自由现金流、浮息或临近再融资公司首先受限",
+          "outcome": "先估值压缩，后资本开支和订单放缓；信用同步收紧时才可能扩散"
+        },
+        "action_posture": "watchlist",
+        "missing_evidence": "缺少当前股票风险溢价、公司级再融资日历、期权隐含分布和统一估值模型。",
+        "next_verification": "下一次核心PCE、下一次FOMC，以及10年实际收益率是否持续越过2.5%。",
+        "source_urls": [
+          "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202607&type=daily_treasury_yield_curve",
+          "https://www.federalreserve.gov/releases/h15/",
+          "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm",
+          "https://www.bea.gov/news/2026/gdp-advance-estimate-2nd-quarter-2026",
+          "https://www.bea.gov/news/2026/personal-income-and-outlays-june-2026"
+        ]
+      },
+      {
+        "topic_id": "semiconductors",
+        "theme": "半导体反弹与AI需求",
+        "conclusion": "AI算力、网络、逻辑和存储需求有真实经营证据，长期产业逻辑没有终止；但增长高度集中、预测修订巨大，不能把‘AI需求强’外推为所有半导体股票都值得追涨，SOX与2000年的线性类比也不应进入主判断。",
+        "confidence": "medium_high",
+        "time_horizon": "6-12个月",
+        "evidence_layers": {
+          "facts": [
+            "微软Azure增长43%且新增容量被快速变现，Amazon AWS收入增长37%、经营利润增长64%。",
+            "Broadcom当季AI半导体收入108亿美元、同比增长143%。",
+            "WSTS春季预测2026年全球半导体销售额1.51万亿美元，但增长主要由存储和逻辑推动。"
+          ],
+          "management_claims": [
+            "Broadcom预计下一季度AI半导体收入同比增长超过200%至160亿美元；WSTS数字属于行业预测而非已实现销售。"
+          ],
+          "inference": "需求并非纯叙事，但集中度、客户融资、库存、产能和估值会造成显著个股分化。",
+          "agent_judgment": "保留长期正向产业判断，同时把研究单位从行业指数下沉到公司级现金流、客户集中度与估值。"
+        },
+        "priced_in": "强劲AI需求和主要云厂商资本开支均已公开；缺少SOX成分股一致预期、前瞻估值与自由现金流收益率，不能声称利好完全或尚未计价。",
+        "what_must_be_true": [
+          "云厂商新增容量继续快速转化为收入、利润和现金回流。",
+          "需求从少数AI加速器、网络与HBM环节扩散，同时新产能不造成价格和库存逆转。",
+          "盈利增长足以消化当前无风险利率与估值，而非依赖倍数继续扩张。"
+        ],
+        "disconfirmers": [
+          "主要云厂商资本开支仍增长而Azure增速降至30%以下、Amazon TTM自由现金流连续恶化。",
+          "Broadcom AI半导体收入增速低于100%，或库存、应收环比增长超过30%而收入放缓。",
+          "WSTS将2026年预测下调超过15%，或月度三个月移动平均同比增速快速跌破20%。"
+        ],
+        "downside_mechanism": {
+          "shock": "AI回报不及预期、客户融资恶化或存储价格反转",
+          "transmission": "云厂商推迟容量，客户削减或延迟订单",
+          "constraint": "供应商客户集中、固定研发和新增产能难以快速调整",
+          "outcome": "库存与应收上升、毛利和自由现金流下降，盈利预期与估值同时下修"
+        },
+        "action_posture": "re_underwrite",
+        "missing_evidence": "缺少SOX逐股权重、账户级持仓成本、统一前瞻估值、库存周期与期权隐含分布。",
+        "next_verification": "WSTS下一次更新、云厂商下一季度资本开支与自由现金流、主要供应商库存和应收。",
+        "source_urls": [
+          "https://www.microsoft.com/en-us/Investor/events/fy-2026/earnings-fy-2026-q4",
+          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/",
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000051/avgo-05032026x8kxex99.htm",
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000016/avgo-20260201.htm",
+          "https://www.wsts.org/esraCMS/extension/esrapdf/generate/105",
+          "https://indexes.nasdaq.com/docs/methodology_SOX.pdf"
+        ]
+      },
+      {
+        "topic_id": "apple",
+        "theme": "苹果公司质量、AI产品周期与估值",
+        "conclusion": "本季数据没有破坏苹果的长期经营质量，但公司质量与股票价格必须分开：财报后下跌已经重估一部分风险，约37.4倍动态市场口径市盈率仍要求秋季产品、AI商业化和利润率继续兑现，因此更适合等待证据，而不是仅凭‘长期逻辑没变’推导补仓合理。",
+        "confidence": "medium",
+        "time_horizon": "2-4个季度",
+        "evidence_layers": {
+          "facts": [
+            "2026财年第三季度收入同比增长16%、稀释EPS增长29%、iPhone增长22%、Mac增长29%、服务收入增长12%。",
+            "总毛利率50.1%，但约2个百分点来自关税退款，EPS中约0.11美元同样来自退款。",
+            "九个月经营现金流1169.96亿美元，服务毛利率75.6%，活跃设备基础创新高。",
+            "市场快照显示AAPL约308.91美元、财报后一日约下跌7.14%，动态市场口径市盈率约37.4倍。"
+          ],
+          "management_claims": [
+            "苹果给出了端侧模型与Private Cloud Compute并用的AI路线，并计划在秋季扩展软件能力；管理层对Q4给出约10%的收入增长中位数和47%-48%毛利率指引，这些仍是前瞻目标。"
+          ],
+          "inference": "生态、现金流和服务业务提供缓冲，但高估值把未来回报更多押在盈利继续上修，而不是单纯维持现状。",
+          "agent_judgment": "经营面维持正向，股票层面保持估值纪律；下一步证据应来自产品采用、ARPU、毛利与盈利上修。"
+        },
+        "priced_in": "财报后一日下跌约7.14%，说明成本、指引与估值担忧已被部分计入；但37.4倍动态市场口径仍不代表安全边际。缺少最新一致预期和规范化前瞻EPS，不能给出公允价值。",
+        "what_must_be_true": [
+          "秋季硬件与软件按计划推出，并形成真实换机、使用或服务收入。",
+          "关税退款退出后总毛利率仍能守住约47%，服务毛利率维持约74%-76%，先进芯片、存储和云算力成本能够被吸收。",
+          "盈利预期持续上修，服务增长和现金流足以支撑高于历史常态的估值。"
+        ],
+        "disconfirmers": [
+          "FY2026 Q4收入同比低于8%，明显未达约10%指引中位数，或后续EPS预期下修。",
+          "总毛利率低于47%，或连续两个季度低于指引区间；服务毛利率跌破74%。",
+          "关键AI功能再次延期，或新产品发布后两个季度未带来设备、服务或ARPU改善。"
+        ],
+        "downside_mechanism": {
+          "shock": "AI功能延期、换机弱于预期或组件成本超预期",
+          "transmission": "收入与毛利预期下修，盈利上修停止",
+          "constraint": "高估值缺少新增利润支撑，防御溢价不能独自维持",
+          "outcome": "盈利预期与估值倍数同时压缩，即使公司长期竞争力仍在"
+        },
+        "action_posture": "wait_for_proof",
+        "missing_evidence": "缺少财报后最新一致预期、规范化前瞻估值、秋季产品订单、AI功能付费与单位经济性数据。",
+        "next_verification": "秋季产品发布与首个销售季度、下一次毛利率指引、AI功能的设备覆盖和商业化数据。",
+        "source_urls": [
+          "https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/",
+          "https://www.apple.com/investor/earnings-call/",
+          "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+          "https://www.apple.com/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/",
+          "https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models",
+          "https://www.nasdaq.com/market-activity/stocks/aapl"
+        ]
+      },
+      {
+        "topic_id": "amazon",
+        "theme": "Amazon AWS增长、自由现金流与融资",
+        "conclusion": "AWS的增长质量和合同可见度明显改善，但股票已经用财报后约15%的上涨重估了相当一部分惊喜；融资与折旧压力是真实约束，却尚未构成流动性危机，因此经营面条件性正向、估值面等待自由现金流证明。",
+        "confidence": "medium_high",
+        "time_horizon": "未来1-2个季度",
+        "evidence_layers": {
+          "facts": [
+            "Q2 AWS收入422.32亿美元、同比增长37%，经营利润166.21亿美元、同比增长64%，经营利润率39.4%。",
+            "TTM经营现金流1614.03亿美元、同比增长33%，TTM自由现金流为负76.04亿美元，房产及设备净现金投入1690.07亿美元。",
+            "Q2利息费用13.14亿美元，较去年同期增加7.98亿美元；同期AWS经营利润同比增加64.61亿美元。",
+            "市场快照显示AMZN约271.58美元、财报后一日约上涨15.25%。"
+          ],
+          "management_claims": [
+            "Amazon称AWS AI与芯片业务各自年化收入均超过250亿美元，主要AWS长期合同义务约4960亿美元。"
+          ],
+          "inference": "合同与自研芯片提高收入可见度，但不能一比一转化为近期收入、利润或现金流；负自由现金流和举债支持融资压力方向，却不能归因为AWS单一资金缺口。",
+          "agent_judgment": "对AWS经营趋势偏正向，对集团资本回报保持条件；不接受‘应收变化已经证明客户付款恶化’或‘财报后仍完全未计价’。"
+        },
+        "priced_in": "财报后一日约15.25%的上涨表明AWS增速、39.4%利润率和合同可见度已被快速计价一部分；GAAP EPS受非经营收益扭曲，缺少规范化一致预期与AWS独立估值，无法判断剩余上行。",
+        "what_must_be_true": [
+          "AWS未来两个季度仍保持至少中高20%区间增长，经营利润率维持约35%以上。",
+          "4960亿美元合同义务随客户使用与Amazon履约转化为收入，新增容量利用率保持健康。",
+          "经营现金流逐步追上资本开支，负自由现金流表现为建设周期而非长期结构。"
+        ],
+        "disconfirmers": [
+          "AWS增速在未来两个季度跌破25%，或经营利润率跌破35%。",
+          "TTM自由现金流恶化至低于负150亿至200亿美元，且至2026年末无触底迹象。",
+          "季度利息费用超过20亿美元，或利息费用占AWS经营利润约12%-15%以上。",
+          "客户净应收增速连续两季高于服务收入增速10个百分点以上，同时坏账准备加速。"
+        ],
+        "downside_mechanism": {
+          "shock": "AI容量、内存、电力和数据中心成本继续上升，同时AWS需求放缓",
+          "transmission": "自由现金流持续为负，更多债券、贷款或租赁融资",
+          "constraint": "利息先上升、折旧随后进入利润表，固定投入难以快速收缩",
+          "outcome": "规范化EPS、自由现金流和投入资本回报率下降，触发估值压缩"
+        },
+        "action_posture": "wait_for_proof",
+        "missing_evidence": "缺少规范化盈利一致预期、AWS独立估值、资本开支回报模型、客户应收账龄和合同取消数据。",
+        "next_verification": "Q3/Q4 AWS增速与利润率、应收构成、资本开支、季度利息费用和TTM自由现金流。",
+        "source_urls": [
+          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/",
+          "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+          "https://www.sec.gov/Archives/edgar/data/1018724/000110465926082293/tm2619352d4_8k.htm",
+          "https://www.anthropic.com/news/anthropic-amazon-compute",
+          "https://www.nasdaq.com/market-activity/stocks/amzn"
+        ]
+      },
+      {
+        "topic_id": "microsoft",
+        "theme": "Microsoft Azure、Copilot与资本回报",
+        "conclusion": "微软在本期三家公司中给出了最完整的AI经营证据，但强业务不等于任意价格都可追：Azure与Copilot已证明需求和商业化，下一阶段必须证明高资本开支与租赁承诺能够持续转化为毛利和自由现金流。",
+        "confidence": "high_business_medium_stock",
+        "time_horizon": "2-4个季度",
+        "evidence_layers": {
+          "facts": [
+            "FY26 Q4收入900亿美元、同比增长18%，Azure及其他云服务增长43%，新增产能在季度内被快速变现。",
+            "M365 Copilot付费席位超过3000万，净新增席位环比翻倍；优质产品推动ARPU增长。",
+            "季度资本开支410亿美元、经营现金流554亿美元、自由现金流196亿美元，Microsoft Cloud毛利率65%。",
+            "10-K披露3291亿美元尚未开始的租赁，主要为数据中心。"
+          ],
+          "management_claims": [
+            "管理层预计FY27资本开支继续同比增长、营业利润率下降不到1个百分点，并保持自由现金流为正；Azure下一季度约45%恒定汇率增长属于指引。"
+          ],
+          "inference": "容量快速变现、Copilot席位与ARPU、经营利润增长共同提高AI投资回报可信度，但经营租赁分类变化不等于经济投入减少。",
+          "agent_judgment": "公司经营判断偏正向且置信度最高；股票判断需按财报后价格、前瞻盈利和包含租赁的经济资本重新估值。"
+        },
+        "priced_in": "市场快照显示MSFT约464.72美元、当日约上涨3.01%，动态市场口径市盈率约27.7倍；结合前一日大涨，正面惊喜显然已部分计价。缺少最新前瞻一致预期与包含租赁的回报模型，无法判断安全边际。",
+        "what_must_be_true": [
+          "Azure保持接近管理层约45%的近期指引，新增容量与RPO按期转化为收入。",
+          "Copilot席位、用量收入与ARPU增长覆盖推理、研发算力和销售成本。",
+          "FY27营业利润率下降不到1个百分点且自由现金流保持正向，同时租赁义务没有使经济资本回报恶化。"
+        ],
+        "disconfirmers": [
+          "Azure连续两个季度低于管理层指引或降至30%以下，而资本开支仍高速增长。",
+          "Microsoft Cloud毛利率连续两个季度低于65%，或智能云经营利润率低于41%并继续下滑。",
+          "现金资本开支与经营租赁付款上升而自由现金流同比下降超过25%。",
+          "Copilot付费席位增长但ARPU、续费或M365增量利润没有同步改善。"
+        ],
+        "downside_mechanism": {
+          "shock": "AI需求或商业化低于预期",
+          "transmission": "新增CPU/GPU利用率下降，Copilot推理成本无法被收入覆盖",
+          "constraint": "短寿命设备、经营租赁和巨额未开始承诺形成固定经济成本",
+          "outcome": "云毛利、自由现金流与投入资本回报下滑，盈利预期和估值共同收缩"
+        },
+        "action_posture": "re_underwrite",
+        "missing_evidence": "缺少Azure与Copilot独立ROIC、Copilot单位经济性、最新前瞻一致预期以及3291亿美元租赁的分类和项目节奏。",
+        "next_verification": "下一季度Azure约45%指引、M365/Copilot ARPU与毛利、现金资本开支、经营租赁付款和自由现金流。",
+        "source_urls": [
+          "https://www.microsoft.com/en-us/Investor/events/fy-2026/earnings-fy-2026-q4",
+          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+          "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R23.htm",
+          "https://www.nasdaq.com/market-activity/stocks/msft"
+        ]
+      }
+    ]
+  },
+  "fidelity_review": {
+    "overall_verdict": "needs_revision",
+    "reviewed_paragraph_count": 33,
+    "external_research_visible_to_reviewer": false,
+    "review_scope": [
+      "work/Gr7j-YIyEQE/transcript/transcript.md",
+      "work/Gr7j-YIyEQE/video-analysis.json",
+      "work/Gr7j-YIyEQE/draft-body.md"
+    ],
+    "issues": [
+      {
+        "paragraph_locator": "半导体与美债末段",
+        "verdict": "unsupported_by_video",
+        "video_timestamp": "00:05:46-00:06:00",
+        "problem": "初稿加入了承压先后顺序，视频只表达这些公司很可能受到影响。",
+        "suggested_revision": "删除‘首先’。",
+        "severity": "low",
+        "resolution_status": "applied"
+      },
+      {
+        "paragraph_locator": "苹果AI路线",
+        "verdict": "decontextualized",
+        "video_timestamp": "00:07:37-00:07:45",
+        "problem": "初稿把Mac‘被重点定位’改成未来时态。",
+        "suggested_revision": "恢复为‘也被重点定位’。",
+        "severity": "low",
+        "resolution_status": "applied"
+      },
+      {
+        "paragraph_locator": "苹果估值",
+        "verdict": "overstated",
+        "video_timestamp": "00:08:20-00:08:55",
+        "problem": "初稿弱化了防御属性和盈利预期两条链路中的可能性限定。",
+        "suggested_revision": "恢复‘很可能’‘也可能’及双条件。",
+        "severity": "medium",
+        "resolution_status": "applied"
+      },
+      {
+        "paragraph_locator": "亚马逊融资",
+        "verdict": "understated",
+        "video_timestamp": "00:12:44-00:13:01",
+        "problem": "初稿将作者对财务费用和额外AWS增速的强表述弱化。",
+        "suggested_revision": "恢复‘会压制每股收益，需要额外AWS增速抵消’。",
+        "severity": "medium",
+        "resolution_status": "applied"
+      },
+      {
+        "paragraph_locator": "Steven的亚马逊判断",
+        "verdict": "overstated",
+        "video_timestamp": "00:14:01-00:14:08",
+        "problem": "初稿遗漏了37%增长‘应该’反映产能提升的推测语气。",
+        "suggested_revision": "补回‘应该’。",
+        "severity": "medium",
+        "resolution_status": "applied"
+      },
+      {
+        "paragraph_locator": "微软租赁会计",
+        "verdict": "uncertain_asr",
+        "video_timestamp": "00:18:02-00:19:02",
+        "problem": "租赁类别专名存在ASR歧义。",
+        "suggested_revision": "正文只保留分类变化、经济投入未消失和成本压力的方向性关系。",
+        "severity": "high",
+        "resolution_status": "applied_without_unverified_term"
+      },
+      {
+        "paragraph_locator": "片尾DeepSeek快讯",
+        "verdict": "uncertain_asr",
+        "video_timestamp": "00:22:47-00:22:58",
+        "problem": "数据中心功率数量级在快速口播中识别不稳定。",
+        "suggested_revision": "改为‘大型AI数据中心’，不写具体功率规模。",
+        "severity": "medium",
+        "resolution_status": "applied"
+      }
+    ],
+    "passed_checks": [
+      "全部31个实质性视频内容段均能定位到对应时间范围。",
+      "Jason、Steven、公司管理层及大摩小摩的主体归因清楚。",
+      "保留了趋势反转、半导体泡沫、特朗普前提和应收账款推断中的否定词与条件。",
+      "苹果、AWS、Azure与Copilot的主要数字与转录一致。",
+      "外部研判未参与第一轮原意审查。",
+      "PC业务不清晰口径、Copilot席位增长措辞和快讯功率规模均已降精度处理。"
+    ],
+    "unresolved_audio_checks": [
+      {
+        "video_timestamp": "00:18:02-00:19:02",
+        "reason": "租赁类别专名存在ASR歧义。",
+        "impact": "正文不命名具体租赁类别，只写视频明确的方向性关系。"
+      },
+      {
+        "video_timestamp": "00:19:02-00:19:14",
+        "reason": "PC相关业务口径在ASR中不清晰。",
+        "impact": "正文保留降幅和PC相关范围，但不补写业务名称。"
+      },
+      {
+        "video_timestamp": "00:22:46-00:23:50",
+        "reason": "片尾快讯语速快、数字和专名密集。",
+        "impact": "只保留可确认主题，主动移除不稳定功率数量级。"
+      }
+    ],
+    "post_revision_verdict": "passed_with_asr_caveats"
+  },
+  "citation_count": 41
+}

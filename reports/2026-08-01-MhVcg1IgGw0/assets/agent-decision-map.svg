@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Agent综合判断的五个观察姿态</title>
+  <desc id="desc">半导体与加密等待证据，AI基金杠杆结构暂避，周期框架只作研究，家庭配置重新核算约束。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7f9ff"/><stop offset="1" stop-color="#eef6f4"/></linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#172447" flood-opacity=".09"/></filter>
+    <style>
+      .eyebrow{font:700 18px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#667085}.headline{font:800 34px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#172447}.title{font:800 22px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#172447}.posture{font:800 17px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#fff}.copy{font:500 16px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#475467}.center{font:800 24px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#6f3b00}.small{font:500 16px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#8a5a20}
+    </style>
+  </defs>
+  <rect width="1200" height="650" rx="26" fill="url(#bg)"/>
+  <text x="56" y="54" class="eyebrow">Agent 综合判断 · 资料截至 2026-08-02</text>
+  <text x="56" y="97" class="headline">同一底线，五种不同观察姿态</text>
+  <g stroke="#aeb8ca" stroke-width="3" fill="none"><path d="M600 325L315 213"/><path d="M600 325L885 213"/><path d="M600 325L245 475"/><path d="M600 325L600 505"/><path d="M600 325L955 475"/></g>
+  <g filter="url(#shadow)">
+    <rect x="455" y="250" width="290" height="150" rx="75" fill="#fff4d8" stroke="#e7b85e"/>
+    <rect x="125" y="130" width="380" height="160" rx="18" fill="#fff" stroke="#cdd6f7"/>
+    <rect x="695" y="130" width="380" height="160" rx="18" fill="#fff" stroke="#cdd6f7"/>
+    <rect x="55" y="410" width="380" height="170" rx="18" fill="#fff" stroke="#e0b1a9"/>
+    <rect x="410" y="455" width="380" height="150" rx="18" fill="#fff" stroke="#d4c4e5"/>
+    <rect x="765" y="410" width="380" height="170" rx="18" fill="#fff" stroke="#a9d4c1"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="600" y="307" class="center">先检验生存条件</text><text x="600" y="340" class="center">再讨论方向与价格</text><text x="600" y="370" class="small">事实 → 主张 → 推断 → Agent判断</text>
+    <text x="315" y="169" class="title">半导体仓位</text><rect x="235" y="183" width="160" height="28" rx="14" fill="#4f7ac9"/><text x="315" y="203" class="posture">等待证据</text><text x="315" y="239" class="copy"><tspan x="315">波动、融资余额、盈利</tspan><tspan x="315" dy="24">需要同时确认</tspan></text>
+    <text x="885" y="169" class="title">加密立法</text><rect x="805" y="183" width="160" height="28" rx="14" fill="#4f7ac9"/><text x="885" y="203" class="posture">等待证据</text><text x="885" y="239" class="copy"><tspan x="885">先看院会排程与票数</tspan><tspan x="885" dy="24">横盘不等于已计价</tspan></text>
+    <text x="245" y="449" class="title">AI基金杠杆</text><rect x="165" y="465" width="160" height="28" rx="14" fill="#b4533c"/><text x="245" y="485" class="posture">暂避该结构</text><text x="245" y="522" class="copy"><tspan x="245">缺审计、融资合同</tspan><tspan x="245" dy="24">与完整敞口</tspan></text>
+    <text x="600" y="493" class="title">大周期与就业</text><rect x="520" y="507" width="160" height="28" rx="14" fill="#8064a2"/><text x="600" y="527" class="posture">仅作研究</text><text x="600" y="563" class="copy"><tspan x="600">框架组织条件</tspan><tspan x="600" dy="24">不承担择时</tspan></text>
+    <text x="955" y="449" class="title">家庭韧性</text><rect x="875" y="465" width="160" height="28" rx="14" fill="#237a57"/><text x="955" y="485" class="posture">重新核算</text><text x="955" y="522" class="copy"><tspan x="955">先算现金流与保险</tspan><tspan x="955" dy="24">再定工具和比例</tspan></text>
+  </g>
+</svg>

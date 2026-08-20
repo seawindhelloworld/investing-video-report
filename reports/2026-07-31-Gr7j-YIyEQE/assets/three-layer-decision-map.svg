@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="790" viewBox="0 0 1200 790" role="img" aria-labelledby="title desc">
+  <title id="title">五个主题的三层判断总表</title>
+  <desc id="desc">按主题并列视频内容、外部证据研判和 Agent 综合判断，并列出下一验证点。</desc>
+  <rect width="1200" height="790" fill="#ffffff"/>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; fill: #17233f; }
+    .title { font-size: 34px; font-weight: 800; }
+    .sub { font-size: 17px; fill: #667085; }
+    .head { font-size: 18px; font-weight: 750; }
+    .topic { font-size: 21px; font-weight: 800; }
+    .body { font-size: 16px; }
+    .small { font-size: 14px; fill: #667085; }
+    .status { font-size: 14px; font-weight: 750; }
+  </style>
+
+  <text class="title" x="52" y="58">五个主题，一张图看完三层判断</text>
+  <text class="sub" x="52" y="90">左到右依次切换视角；每行只保留结论、证据状态与下一验证点</text>
+
+  <rect x="52" y="122" width="142" height="52" rx="14" fill="#f2f4f7"/>
+  <rect x="212" y="122" width="286" height="52" rx="14" fill="#eef3ff"/>
+  <rect x="516" y="122" width="286" height="52" rx="14" fill="#fff7e8"/>
+  <rect x="820" y="122" width="328" height="52" rx="14" fill="#eef8f3"/>
+  <text class="head" x="123" y="155" text-anchor="middle">主题</text>
+  <text class="head" x="355" y="155" text-anchor="middle" fill="#3157d5">第一层｜视频内容</text>
+  <text class="head" x="659" y="155" text-anchor="middle" fill="#a45f0a">第二层｜外部研判</text>
+  <text class="head" x="984" y="155" text-anchor="middle" fill="#19734b">第三层｜Agent 判断</text>
+
+  <!-- 市场 -->
+  <rect x="52" y="192" width="1096" height="102" rx="16" fill="#fbfcfe" stroke="#e4e7ec"/>
+  <circle cx="83" cy="223" r="17" fill="#3157d5"/><text x="83" y="229" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">1</text>
+  <text class="topic" x="108" y="230">市场与利率</text>
+  <text class="small" x="76" y="261">短期催化 / 宏观约束</text>
+  <text class="body" x="234" y="226">财报修复成立</text>
+  <text class="body" x="234" y="252">利率压力尚未解除</text>
+  <rect x="538" y="210" width="74" height="26" rx="13" fill="#eaf8f1"/><text class="status" x="575" y="228" text-anchor="middle" fill="#19734b">总体支持</text>
+  <text class="body" x="538" y="260">宏观组合与政治归因有分歧</text>
+  <text class="body" x="842" y="222">盈利可支撑反弹，先观察利率传导</text>
+  <text class="small" x="842" y="252">验证：10Y实际利率、核心PCE、信用利差</text>
+
+  <!-- 半导体 -->
+  <rect x="52" y="308" width="1096" height="102" rx="16" fill="#fbfcfe" stroke="#e4e7ec"/>
+  <circle cx="83" cy="339" r="17" fill="#4f6edb"/><text x="83" y="345" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">2</text>
+  <text class="topic" x="108" y="346">半导体</text>
+  <text class="small" x="76" y="377">长期需求 / 短期交易</text>
+  <text class="body" x="234" y="342">需求逻辑未终止</text>
+  <text class="body" x="234" y="368">套牢盘与历史类比构成短压</text>
+  <rect x="538" y="326" width="74" height="26" rx="13" fill="#eef3ff"/><text class="status" x="575" y="344" text-anchor="middle" fill="#3157d5">部分支持</text>
+  <text class="body" x="538" y="376">历史轨迹外推证据不足</text>
+  <text class="body" x="842" y="338">产业偏正，股票判断下沉到公司</text>
+  <text class="small" x="842" y="368">验证：云CapEx→收入/FCF、库存与应收</text>
+
+  <!-- 苹果 -->
+  <rect x="52" y="424" width="1096" height="102" rx="16" fill="#fbfcfe" stroke="#e4e7ec"/>
+  <circle cx="83" cy="455" r="17" fill="#d89c1d"/><text x="83" y="461" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">3</text>
+  <text class="topic" x="108" y="462">Apple</text>
+  <text class="small" x="76" y="493">长期质量 / 短期估值</text>
+  <text class="body" x="234" y="458">约35×估值短期承压</text>
+  <text class="body" x="234" y="484">5–10年框架不变，小幅补仓</text>
+  <rect x="538" y="442" width="74" height="26" rx="13" fill="#fff3e8"/><text class="status" x="575" y="460" text-anchor="middle" fill="#b54708">存在分歧</text>
+  <text class="body" x="538" y="492">高估值风险成立，防御归因不充分</text>
+  <text class="body" x="842" y="454">经营建设性，估值等待产品证明</text>
+  <text class="small" x="842" y="484">验证：收入/毛利、AI采用、服务ARPU</text>
+
+  <!-- 亚马逊 -->
+  <rect x="52" y="540" width="1096" height="102" rx="16" fill="#fbfcfe" stroke="#e4e7ec"/>
+  <circle cx="83" cy="571" r="17" fill="#dd7831"/><text x="83" y="577" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">4</text>
+  <text class="topic" x="108" y="578">Amazon</text>
+  <text class="small" x="76" y="609">AWS增长 / 现金流</text>
+  <text class="body" x="234" y="574">AWS收入与利润率双升</text>
+  <text class="body" x="234" y="600">FCF与融资成本是风险</text>
+  <rect x="538" y="558" width="74" height="26" rx="13" fill="#fff3e8"/><text class="status" x="575" y="576" text-anchor="middle" fill="#b54708">有条件</text>
+  <text class="body" x="538" y="608">应收不足以证明客户付款恶化</text>
+  <text class="body" x="842" y="570">AWS偏强，等待自由现金流证明</text>
+  <text class="small" x="842" y="600">验证：AWS增速/利润率、TTM FCF、利息</text>
+
+  <!-- 微软 -->
+  <rect x="52" y="656" width="1096" height="102" rx="16" fill="#fbfcfe" stroke="#e4e7ec"/>
+  <circle cx="83" cy="687" r="17" fill="#19734b"/><text x="83" y="693" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">5</text>
+  <text class="topic" x="108" y="694">Microsoft</text>
+  <text class="small" x="76" y="725">增长 / 商业化 / 投入</text>
+  <text class="body" x="234" y="690">Azure、Copilot与利润暂时平衡</text>
+  <text class="body" x="234" y="716">租赁变化不等于投入减少</text>
+  <rect x="538" y="674" width="74" height="26" rx="13" fill="#eaf8f1"/><text class="status" x="575" y="692" text-anchor="middle" fill="#19734b">证据最强</text>
+  <text class="body" x="538" y="724">远期现金流仍取决于资本回报</text>
+  <text class="body" x="842" y="686">经营证据最完整，按经济投入重估</text>
+  <text class="small" x="842" y="716">验证：Azure、Copilot ARPU、云毛利与FCF</text>
+</svg>

@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI增长能否穿过利率与现金流约束？</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #152033;
+      --muted: #667085;
+      --line: #e3e8ef;
+      --paper: #ffffff;
+      --canvas: #f2f5f9;
+      --note: #f7f9fc;
+      --accent: #3157d5;
+      --accent-soft: #eef3ff;
+      --warm: #a45f0a;
+      --warm-soft: #fff7e8;
+      --positive: #19734b;
+      --positive-soft: #eaf8f1;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--canvas);
+      font: 17px/1.78 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 28px auto 56px;
+      padding: clamp(28px, 5vw, 68px);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 20px 54px rgba(16, 24, 40, .08);
+    }
+    header { margin-bottom: 2rem; }
+    h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+    h1 { max-width: 18em; margin: .15em 0 .35em; font-size: clamp(2rem, 5vw, 3.55rem); }
+    h2 { margin-top: 2.8em; padding-bottom: .4em; border-bottom: 1px solid var(--line); font-size: clamp(1.55rem, 3vw, 2.15rem); }
+    h3 { margin-top: 2em; font-size: 1.28rem; }
+    h4 { margin-bottom: .4em; }
+    p { max-width: 78ch; }
+    li + li { margin-top: .35rem; }
+    a { color: var(--accent); text-underline-offset: .18em; }
+    a:hover { text-decoration-thickness: 2px; }
+    .meta { color: var(--muted); }
+    header > p:last-child { max-width: 72ch; color: #475467; font-size: 1.08rem; }
+    blockquote {
+      margin: 1.5em 0;
+      padding: 1em 1.25em;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      color: #263a72;
+    }
+    table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; }
+    th, td { min-width: 8rem; padding: .75rem .7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: #344054; background: #f8fafc; font-size: .86rem; }
+    code { font-size: .88em; }
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      main { width: 100%; margin: 0; padding: 22px 18px 48px; border: 0; border-radius: 0; box-shadow: none; }
+    }
+  
+    img { display: block; max-width: 100%; height: auto; border-radius: 14px; }
+    img[src$=".svg"] { width: 100%; margin: 1rem 0 .35rem; border: 1px solid var(--line); background: #fff; box-shadow: 0 12px 30px rgba(16, 24, 40, .06); }
+    .visual-caption { margin: .35rem 0 1.4rem; color: var(--muted); font-size: .86rem; }
+    .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: .75rem; margin: 1.4rem 0 1.8rem; }
+    .metric-card { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(145deg, #fff, #f8faff); }
+    .metric-card strong { display: block; color: #16213e; font-size: 1.55rem; line-height: 1.15; font-variant-numeric: tabular-nums; }
+    .metric-card span { display: block; margin-top: .3rem; color: var(--muted); font-size: .82rem; }
+    .logic-flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .55rem; margin: 1.1rem 0 1.4rem; }
+    .logic-step { position: relative; min-height: 92px; padding: .8rem .65rem; border: 1px solid #cdd6f7; border-radius: 12px; background: #f7f9ff; text-align: center; font-size: .84rem; line-height: 1.4; }
+    .logic-step strong { display: block; margin-bottom: .25rem; color: #2344a1; font-size: .92rem; }
+    .logic-step:not(:last-child)::after { content: "→"; position: absolute; top: 31px; right: -.62rem; z-index: 2; color: #667085; font-weight: 800; }
+    .reading-note { margin: 1rem 0 1.4rem; padding: 1rem 1.15rem; border-left: 4px solid #d7a12b; border-radius: 10px; background: #fffaf0; }
+    .chapter-lead { margin: 1.1rem 0 1.45rem; padding: 1rem 1.2rem; border-left: 4px solid var(--accent); background: var(--accent-soft); font-size: 1.02rem; }
+    .chapter-lead strong { color: #2344a1; }
+    .video-data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: .7rem; margin: 1rem 0 1.45rem; }
+    .data-card { padding: .9rem 1rem; border-top: 3px solid #9db0ef; background: #f8faff; }
+    .data-card strong { display: block; color: #1f3a8a; font-size: 1.22rem; font-variant-numeric: tabular-nums; }
+    .data-card span { display: block; margin-top: .2rem; color: var(--muted); font-size: .82rem; }
+    .signal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0 1.5rem; }
+    .signal-card { padding: 1rem; border: 1px solid var(--line); border-radius: 13px; background: #fbfcfe; }
+    .signal-card h4 { margin: 0 0 .35rem; font-size: 1rem; }
+    .signal-card p { margin: .25rem 0; font-size: .9rem; }
+    .signal-card.positive { border-top: 4px solid #55a47f; }
+    .signal-card.caution { border-top: 4px solid #d8a33a; }
+    .signal-card.question { border-top: 4px solid #8291ad; }
+    .quote-pull { margin: 1.3rem 0 1.6rem; padding: 1.2rem 1.35rem; border-radius: 14px; background: #172447; color: #fff; font-size: 1.1rem; }
+    .quote-pull p { margin: 0; max-width: none; }
+    .quote-pull a { color: #cfdbff; }
+    .number-ribbon { display: flex; flex-wrap: wrap; gap: .55rem; margin: .9rem 0 1.35rem; }
+    .number-ribbon span { padding: .42rem .65rem; border-radius: 999px; background: #eef2f7; color: #344054; font-size: .82rem; font-variant-numeric: tabular-nums; }
+    .quick-news-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0 1.4rem; }
+    .quick-news-grid article { padding: .95rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfd; }
+    .quick-news-grid h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    .quick-news-grid p { margin: .3rem 0; font-size: .88rem; }
+    .quick-news-grid article:first-child { grid-column: 1 / -1; }
+    .coverage-note { margin: 1rem 0; padding: .85rem 1rem; border: 1px dashed #98a2b3; border-radius: 11px; color: #475467; background: #fcfcfd; font-size: .88rem; }
+    details.source-group { margin: .75rem 0; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 11px; background: #fcfcfd; }
+    details.source-group summary { cursor: pointer; color: #344054; font-weight: 700; }
+    details.source-group[open] summary { margin-bottom: .65rem; }
+    .company-takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; margin: 1rem 0 1.4rem; }
+    .company-takeaways article { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: #fbfcfe; font-size: .9rem; }
+    .company-takeaways h3 { margin: 0 0 .45rem; }
+    .company-takeaways p { margin: .35rem 0; }
+    .assessment-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin: 1rem 0 1.4rem; }
+    .assessment-grid .assessment { margin: 0; }
+    .assessment-grid .assessment p { margin: .45rem 0; }
+    .status-row { display: flex; flex-wrap: wrap; gap: .35rem; margin: .65rem 0; }
+    .status-pill { display: inline-flex; padding: .2rem .55rem; border-radius: 999px; background: #eef2ff; color: #3157d5; font-size: .76rem; font-weight: 750; }
+    .status-pill.warn { background: #fff3e8; color: #b54708; }
+    .status-pill.neutral { background: #f2f4f7; color: #475467; }
+    .audit-links { padding: 1rem 1.15rem; border: 1px dashed #98a2b3; border-radius: 12px; background: #fcfcfd; }
+    .audit-links ul { margin-bottom: 0; }
+    .assessment h3 { margin-top: 0; color: var(--ink); }
+    .assessment ul { margin-bottom: .4rem; }
+    .status { display: inline-flex; padding: .2rem .55rem; border-radius: 999px; background: #e9efff; color: #2344a1; font-size: .8rem; font-weight: 700; }
+    .agent-disclaimer { margin: 1rem 0 1.3rem; padding: 1rem 1.15rem; border: 1px solid #b7c6f8; border-left: 5px solid #3157d5; border-radius: 12px; background: #f5f7ff; color: #263a72; }
+    .judgment-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: .7rem; margin: 1rem 0 1.5rem; }
+    .judgment-overview article { padding: .95rem; border: 1px solid var(--line); border-radius: 14px; background: #fbfcfe; }
+    .judgment-overview h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    .judgment-overview p { margin: .3rem 0; font-size: .86rem; }
+    .judgment-overview .verdict { color: #1f3a8a; font-weight: 750; }
+    .judgment-card { margin: 1rem 0 1.35rem; padding: 1.15rem 1.25rem; border: 1px solid #cdd6f7; border-radius: 15px; background: linear-gradient(145deg, #fff, #f7f9ff); }
+    .judgment-card h3 { margin: 0 0 .55rem; }
+    .judgment-meta { display: flex; flex-wrap: wrap; gap: .4rem; margin: .55rem 0 .8rem; }
+    .judgment-meta span { padding: .22rem .56rem; border-radius: 999px; background: #e9efff; color: #2344a1; font-size: .76rem; font-weight: 700; }
+    .judgment-meta span.caution { background: #fff3e8; color: #b54708; }
+    .decision-chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; margin: .85rem 0; }
+    .decision-chain div { position: relative; padding: .75rem; border-radius: 10px; background: #fff; border: 1px solid #dfe5f4; font-size: .82rem; }
+    .decision-chain strong { display: block; margin-bottom: .25rem; color: #344054; }
+    .decision-chain div:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -.48rem; z-index: 2; color: #667085; font-weight: 800; }
+    nav.toc { margin: 2rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfe; }
+    @media screen and (min-width: 900px) {
+      main { width: min(1080px, calc(100% - 48px)); padding: 56px 64px; }
+    }
+    @media (max-width: 760px) {
+      .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .logic-flow { grid-template-columns: 1fr; }
+      .logic-step { min-height: auto; text-align: left; }
+      .logic-step:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.95rem; }
+      .company-takeaways, .assessment-grid, .signal-grid, .quick-news-grid, .judgment-overview, .decision-chain { grid-template-columns: 1fr; }
+      .decision-chain div:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.8rem; }
+      .quick-news-grid article:first-child { grid-column: auto; }
+      p:has(> img[src$=".svg"]) { max-width: 100%; overflow-x: auto; padding-bottom: .35rem; }
+      p > img[src$=".svg"] { width: 700px; max-width: none; }
+    }
+    @page { size: A4; margin: 14mm 13mm 16mm; }
+    @media print {
+      html, body { background: #fff; }
+      body {
+        color: #172033;
+        font-size: 10.5pt;
+        line-height: 1.55;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      main {
+        width: auto !important;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      header { margin-bottom: 8mm; }
+      h1 { margin: .2em 0 .45em; font-size: 25pt; }
+      h2 { margin-top: 10mm; font-size: 17pt; break-after: avoid-page; page-break-after: avoid; }
+      h3 { font-size: 13pt; break-after: avoid-page; page-break-after: avoid; }
+      p, li { orphans: 3; widows: 3; }
+      a { color: inherit; text-decoration-color: #98a2b3; }
+      img { max-height: 240mm; object-fit: contain; }
+      img[src$=".svg"] { border: .3pt solid #d0d5dd; box-shadow: none; }
+      table { display: table; overflow: visible; font-size: 9pt; }
+      thead { display: table-header-group; }
+      tr, img, blockquote, nav.toc, .metric-grid, .logic-flow, .logic-step,
+      .reading-note, .chapter-lead, .data-card, .signal-card, .quote-pull,
+      .quick-news-grid article, .company-takeaways article, .assessment, .audit-links,
+      .judgment-overview article, .judgment-card, .decision-chain {
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+      .assessment-grid { display: block; }
+      .assessment-grid .assessment { margin: 0 0 5mm; }
+      .visual-caption { margin-bottom: 5mm; }
+    }
+    
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="meta">美投侃新闻 · 2026-07-31 08:59（北京时间） · 报告日期 2026-08-01</p>
+      <h1>AI增长能否穿过利率与现金流约束？</h1>
+      
+    </header>
+    <h2 id="executive-summary30">Executive Summary｜30 秒读懂</h2>
+<ul>
+<li><strong>这轮上涨更像财报驱动的修复。</strong> 视频认为，微软财报重新点燃了 AI 交易，但长端美债收益率仍高，不能据此判断利率压力已经解除。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=241s">04:01–04:11</a></li>
+<li><strong>三家公司是三种不同的“增长—成本”张力。</strong> 苹果是短期估值压力与长期护城河；亚马逊是 AWS 增长与自由现金流；微软是 Azure、Copilot 与资本开支纪律。</li>
+<li><strong>外部证据没有给出简单的是非答案。</strong> 16 条主观判断中，2 条总体支持、6 条部分支持、4 条取决于条件、2 条存在明显分歧、2 条信息不足，没有“倾向不支持”。</li>
+<li><strong>真正需要跟踪的是兑现条件。</strong> AI 需求能否变成收入和利润、资本开支与租赁义务是否压住现金流，以及高利率是否传导到融资与估值，决定这些判断能否持续成立。</li>
+</ul>
+<blockquote>
+<p>正文先忠实整理视频作者的表达；外部信源形成的独立研判单独展示，不代表视频作者观点，也不构成投资建议。</p>
+</blockquote>
+<section class="metric-grid" aria-label="报告概览">
+  <div class="metric-card"><strong>1 条</strong><span>贯穿全片的核心命题</span></div>
+  <div class="metric-card"><strong>16 条</strong><span>可追溯主观观点</span></div>
+  <div class="metric-card"><strong>4 组</strong><span>外部研判主题</span></div>
+  <div class="metric-card"><strong>41 个</strong><span>去重外部信源</span></div>
+</section>
+
+<nav class="toc">
+<strong>快速阅读</strong>
+<ol>
+<li><a href="#thesis">核心命题</a></li>
+<li><a href="#companies">三家公司对比</a></li>
+<li><a href="#evidence">外部证据怎么看</a></li>
+<li><a href="#monitor">下一步跟踪什么</a></li>
+<li><a href="#audit">限制与详细附录</a></li>
+</ol>
+</nav>
+
+<h2 id="thesis">核心命题不是“AI还涨不涨”，而是增长能否覆盖成本</h2>
+<p>把视频中的市场、半导体和三家公司讨论重新组合后，可以提炼出一条贯穿全片的命题：<strong>微软财报让市场重新相信 AI 增长，但长端利率没有退场，因此增长最终仍要用利润、自由现金流和资本回报证明自己。</strong> 这也解释了为什么视频一面看好半导体长期需求，一面提醒短期交易压力；一面肯定 AWS、Azure 和 Copilot，一面反复检查资本开支、租赁义务和融资成本。</p>
+<p><img alt="内容主题关系图：微软财报和AI需求构成催化，长端利率构成约束，半导体、苹果、亚马逊和微软分别检验增长能否转化为利润与现金流" src="assets/content-thesis-map.svg"></p>
+<p class="visual-caption">该图按内容逻辑重组视频，不表示原视频的播放顺序。时间戳只在正文中作为原声证据入口。</p>
+
+<p>四个主题不是并列新闻，而是同一问题的不同测试：半导体检验长期需求是否会被短期交易压力打断；苹果检验护城河能否承受高估值与成本；亚马逊检验 AWS 利润能否覆盖投入；微软检验 AI 增长与开支纪律能否同时成立。</p>
+<p>作者的判断链条可以进一步压缩成五步：需求和产品采用只是起点，最终仍要穿过收入、支出、现金流和估值。</p>
+<div class="logic-flow" aria-label="AI投资判断链条">
+  <div class="logic-step"><strong>AI 需求</strong>采用、合同与算力需求</div>
+  <div class="logic-step"><strong>收入与利润</strong>增长能否兑现并改善利润率</div>
+  <div class="logic-step"><strong>支出与义务</strong>CapEx、租赁和供应成本</div>
+  <div class="logic-step"><strong>现金流与融资</strong>FCF 能否覆盖持续投入</div>
+  <div class="logic-step"><strong>估值与股价</strong>市场是否继续给予溢价</div>
+</div>
+
+<div class="reading-note"><strong>视频的核心提醒：</strong>增长与支出不是二选一。市场更可能奖励“增长兑现、利润率改善、开支有纪律、长期现金流可见”同时成立的公司。[20:21–21:19](https://www.youtube.com/watch?v=Gr7j-YIyEQE&t=1221s)</div>
+
+<h2 id="companies">三家公司不能用同一把尺子衡量</h2>
+<p>苹果、亚马逊和微软面对的关键矛盾不同。图中的上半部分只概括视频作者的关注重点；状态条来自外部研判，不是股票评级。最值得比较的不是“谁更好”，而是每家公司的增长证据需要跨过什么成本与现金流门槛。</p>
+<p><img alt="苹果、亚马逊、微软三家公司观点对比：各自的视频关注重点、外部研判状态与继续观察项" src="assets/company-comparison.svg"></p>
+<p class="visual-caption">状态条统计每家公司对应的主观观点，不代表公司整体质量或预期回报。</p>
+
+<div class="company-takeaways">
+  <article>
+    <h3>苹果｜短期与长期分开看</h3>
+    <p><strong>视频观点：</strong>约 35 倍前瞻市盈率在增长放缓、成本压力和防御溢价回落时可能承压；但作者的五到十年持有框架不变，并称盘后小幅补仓。</p>
+    <p><a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&t=499s">08:19–09:29 回看</a></p>
+  </article>
+  <article>
+    <h3>亚马逊｜AWS 很强，FCF 是约束</h3>
+    <p><strong>视频观点：</strong>AWS 收入与利润率改善是最大亮点；同时，自由现金流、营运资金和未来融资成本决定高资本开支能否持续。</p>
+    <p><a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&t=721s">12:01–15:00 回看</a></p>
+  </article>
+  <article>
+    <h3>微软｜平衡感最受关注</h3>
+    <p><strong>视频观点：</strong>Azure 再加速、Copilot 使用增长和经营杠杆构成正面证据；租赁分类变化不能被误读为经济投入下降。</p>
+    <p><a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&t=989s">16:29–21:19 回看</a></p>
+  </article>
+</div>
+
+<h2 id="evidence">外部证据更支持“有条件成立”，而非简单验证</h2>
+<p><strong>本注为基于外部信源形成的独立研判，不代表视频作者观点。</strong> 外部研究只处理视频中的主观判断、预测、因果推断、价值判断和建议；它不会静默改写作者原意。</p>
+<p>总体上，50% 的观点处于“部分支持”或“总体支持”，另有 25% 取决于明确条件。其余 25% 分别是明显分歧和信息不足。这里的重点不是给观点打分，而是标出哪些前提已经有证据、哪些仍需持续验证。</p>
+<p><img alt="16条视频观点的外部研判状态分布：总体支持2条、部分支持6条、明显分歧2条、信息不足2条、取决于条件4条" src="assets/research-status.svg"></p>
+<p class="visual-caption">分母为 16 条主观观点；完整逐条映射见详细版和 report-data.json。</p>
+
+<p>按主题拆开后，宏观与半导体的状态最分散，说明“财报修复”和“长期需求仍在”有数据支撑，但投资者行为、历史走势类比和政治归因仍存在证据缺口。微软的四条观点中有一条总体支持、两条部分支持，证据组合相对更完整。</p>
+<p><img alt="四个主题的外部研判状态矩阵，显示每个主题在五类研判状态下的观点数量" src="assets/topic-status-matrix.svg"></p>
+<p class="visual-caption">矩阵按宏观与半导体、苹果、亚马逊、微软四个研究主题汇总；空心格表示 0 条。</p>
+
+<div class="assessment-grid">
+  <article class="assessment">
+    <h3>宏观、半导体与利率</h3>
+    <p><strong>本注为基于外部信源形成的独立研判，不代表视频作者观点。</strong></p>
+    <div class="status-row"><span class="status-pill">支持 1</span><span class="status-pill">部分支持 2</span><span class="status-pill warn">分歧 1</span><span class="status-pill neutral">不足 1</span><span class="status-pill warn">有条件 1</span></div>
+    <p>当日科技股上涨而长端收益率仍高，支持“财报修复未解除利率压力”。但 SOX 与 2000 年的四个月线性类比缺少样本外检验；长端收益率也不能只归因于单一政治人物。</p>
+    <p>依据：<a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202607&amp;type=daily_treasury_yield_curve">美国财政部</a>、<a href="https://www.bea.gov/news/2026/gdp-advance-estimate-2nd-quarter-2026">BEA</a>、<a href="https://www.federalreserve.gov/publications/2026-may-financial-stability-report-overview.htm">美联储</a>。</p>
+  </article>
+  <article class="assessment">
+    <h3>苹果</h3>
+    <p><strong>本注为基于外部信源形成的独立研判，不代表视频作者观点。</strong></p>
+    <div class="status-row"><span class="status-pill">部分支持 1</span><span class="status-pill warn">分歧 1</span><span class="status-pill warn">有条件 1</span></div>
+    <p>高估值、存储成本与供应约束会提高脆弱性；但当季收入、EPS、iPhone、Mac 和服务均增长，公开数据无法证明近期上涨主要来自防御资金。长期逻辑仍取决于产品、供货、定价与 AI 变现。</p>
+    <p>依据：<a href="https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/">Apple 财报</a>、<a href="https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm">Apple 10-Q</a>。</p>
+  </article>
+  <article class="assessment">
+    <h3>亚马逊</h3>
+    <p><strong>本注为基于外部信源形成的独立研判，不代表视频作者观点。</strong></p>
+    <div class="status-row"><span class="status-pill">部分支持 1</span><span class="status-pill neutral">信息不足 1</span><span class="status-pill warn">有条件 1</span></div>
+    <p>AWS 增长与利润支持继续投资，但应收变化不足以单独证明客户付款恶化。上行空间要同时满足合同兑现、利润率维持、资本开支纪律和现金流改善。</p>
+    <p>依据：<a href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/">Amazon 财报</a>、<a href="https://www.sec.gov/Archives/edgar/data/1018724/000110465926072140/tm2613616d4_8k.htm">融资披露</a>。</p>
+  </article>
+  <article class="assessment">
+    <h3>微软</h3>
+    <p><strong>本注为基于外部信源形成的独立研判，不代表视频作者观点。</strong></p>
+    <div class="status-row"><span class="status-pill">支持 1</span><span class="status-pill">部分支持 2</span><span class="status-pill warn">有条件 1</span></div>
+    <p>官方披露支持 Azure、云业务和租赁义务的方向性判断；Copilot 使用增长尚需进一步转化为续费、用量收入与净利润。长期奖励仍取决于利润率、自由现金流和资本回报。</p>
+    <p>依据：<a href="https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast">Microsoft 财报</a>、<a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R23.htm">Microsoft 租赁披露</a>。</p>
+  </article>
+</div>
+
+<h2 id="monitor">下一步只需盯住五个兑现条件</h2>
+<p><strong>本注为基于外部信源形成的独立研判，不代表视频作者观点。</strong> 与其追逐每次股价波动，更有用的是持续更新以下五个观察点：</p>
+<ol>
+<li><strong>长端利率：</strong> 是否继续高企，并开始通过再融资、信用利差或折现率压制高估值公司。</li>
+<li><strong>AI 收入：</strong> Azure、AWS 与 Copilot 的需求是否转化为可持续收入，而不是只停留在合同、用户数或算力预订。</li>
+<li><strong>利润率：</strong> 新增容量和产品采用能否覆盖折旧、租赁、芯片和电力成本。</li>
+<li><strong>自由现金流：</strong> 亚马逊和微软的资本投入是否换来经营现金流与长期 FCF 改善。</li>
+<li><strong>苹果产品兑现：</strong> 秋季产品、供应、价格弹性和 AI 变现能否支持当前盈利与估值预期。</li>
+</ol>
+<h2 id="_1">仍可能改变结论的问题</h2>
+<ul>
+<li>本轮半导体投资者的真实持仓成本和卖出行为，是否支持“套牢盘”判断？</li>
+<li>亚马逊应收账款的客户构成、账龄和坏账趋势，能否验证付款恶化推断？</li>
+<li>Copilot 的使用增长有多少转化为续费、增量席位、用量收入和净利润？</li>
+<li>苹果的 AI 功能和服务能否在不明显伤害毛利率的前提下形成可见变现？</li>
+</ul>
+<h2 id="audit">限制与详细附录</h2>
+<ul>
+<li>原始视频和音频是最高优先级信源；正文先于外部研究完成，并通过不读取外部研判的忠实性审查。</li>
+<li>本地 ASR 共 671 个时间段，覆盖约 99.84% 音频；片头快口播、少数英文专名、微软租赁术语及尾部密集数字仍有回听风险，因此本版避开不确定逐字引语和精确远期数字。</li>
+<li>视频中的一般数据、人名和日期未做全面事实核查，不应理解为已证实准确。外部资料访问于 2026-08-01，估值结论会随价格、预期和时间变化。</li>
+<li>为减少默认页面文字量，16 条观点索引、完整外部研判、全部一级信源和详细方法已移到长版附录。</li>
+</ul>
+<div class="audit-links">
+  <strong>可追溯材料</strong>
+  <ul>
+    <li><a href="report-detailed.md">完整详细版 Markdown</a></li>
+    <li><a href="report-data.json">16 条观点与研判的结构化数据</a></li>
+    <li><a href="citations.json">41 个去重外部信源</a></li>
+    <li><a href="../../work/Gr7j-YIyEQE/video-analysis.json">视频章节与内容分析</a></li>
+    <li><a href="../../work/Gr7j-YIyEQE/transcript/transcript.md">带时间戳转录</a></li>
+  </ul>
+</div>
+  </main>
+</body>
+</html>

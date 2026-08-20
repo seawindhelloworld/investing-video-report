@@ -1,0 +1,1056 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-08T18:56:35.584745+00:00",
+  "citations": [
+    {
+      "source_id": "vish-src-001",
+      "title": "Senior U.S. Officials Continue To Be Impersonated in Malicious Messaging Campaign",
+      "publisher": "Federal Bureau of Investigation",
+      "published_at": "2025-12-19",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.fbi.gov/investigate/cyber/alerts/2025/senior-us-officials-continue-to-be-impersonated-in-malicious-messaging-campaign",
+      "source_type": "official_security_alert",
+      "claims_supported": [
+        "独立回拨和可信平台核验",
+        "可预设秘密词辅助身份核验",
+        "AI内容难以仅凭感官识别"
+      ],
+      "source_ids": [
+        "vish-src-001"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-001"
+    },
+    {
+      "source_id": "vish-src-002",
+      "title": "Business E-Mail Compromise",
+      "publisher": "Federal Bureau of Investigation",
+      "published_at": "2017-02-27",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.fbi.gov/news/stories/business-e-mail-compromise-on-the-rise",
+      "source_type": "official_security_guidance",
+      "claims_supported": [
+        "付款信息变更应增加第二人签核",
+        "使用已知号码确认转账请求"
+      ],
+      "source_ids": [
+        "vish-src-002"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-002"
+    },
+    {
+      "source_id": "vish-src-003",
+      "title": "Scammers use AI to enhance their family emergency schemes",
+      "publisher": "Federal Trade Commission",
+      "published_at": "2023-03-20",
+      "accessed_at": "2026-08-09",
+      "url": "https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes",
+      "source_type": "official_consumer_alert",
+      "claims_supported": [
+        "短音频可用于克隆声音",
+        "紧急求款应挂断并直接核验"
+      ],
+      "source_ids": [
+        "vish-src-003"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-003"
+    },
+    {
+      "source_id": "vish-src-004",
+      "title": "LCQ9: Combating frauds involving deepfake",
+      "publisher": "Hong Kong SAR Government / Hong Kong Police Force",
+      "published_at": "2024-06-26",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.info.gov.hk/gia/general/202406/26/P2024062600192p.htm",
+      "source_type": "official_case_report",
+      "claims_supported": [
+        "预录深伪会议与约2亿港元损失",
+        "诈骗者通过即时通信继续指令",
+        "警方建议实时互动测试和电话核验"
+      ],
+      "source_ids": [
+        "vish-src-004"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-004"
+    },
+    {
+      "source_id": "vish-src-005",
+      "title": "Approaches to Address AI-enabled Voice Cloning",
+      "publisher": "Federal Trade Commission",
+      "published_at": "2024-04-08",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.ftc.gov/policy/advocacy-research/tech-at-ftc/2024/04/approaches-address-ai-enabled-voice-cloning",
+      "source_type": "regulatory_technology_analysis",
+      "claims_supported": [
+        "治理需要分层措施",
+        "水印和检测可被规避或误报"
+      ],
+      "source_ids": [
+        "vish-src-005"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-005"
+    },
+    {
+      "source_id": "vish-src-006",
+      "title": "NIST SP 800-63 Digital Identity Guidelines FAQ",
+      "publisher": "National Institute of Standards and Technology",
+      "published_at": "2025-04-28",
+      "accessed_at": "2026-08-09",
+      "url": "https://pages.nist.gov/800-63-FAQ/?pubDate=20250428",
+      "source_type": "official_identity_standard_guidance",
+      "claims_supported": [
+        "传统知识型安全问题不是可接受认证器",
+        "答案可能被发现或猜测"
+      ],
+      "source_ids": [
+        "vish-src-006"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-006"
+    },
+    {
+      "source_id": "vish-src-007",
+      "title": "Does Audio Deepfake Detection Generalize?",
+      "publisher": "Nicolas M. Müller et al. / arXiv",
+      "published_at": "2022-03-30",
+      "accessed_at": "2026-08-09",
+      "url": "https://arxiv.org/abs/2203.16263",
+      "source_type": "primary_academic_research",
+      "claims_supported": [
+        "音频深伪检测在分布外数据表现可能显著下降",
+        "自动检测不能独立承担身份认证"
+      ],
+      "source_ids": [
+        "vish-src-007"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-007"
+    },
+    {
+      "source_id": "vish-src-008",
+      "title": "FBI Warns of Increasing Threat of Cyber Criminals Utilizing Artificial Intelligence",
+      "publisher": "Federal Bureau of Investigation",
+      "published_at": "2024-05-08",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.fbi.gov/contact-us/field-offices/sanfrancisco/news/fbi-warns-of-increasing-threat-of-cyber-criminals-utilizing-artificial-intelligence",
+      "source_type": "official_threat_assessment",
+      "claims_supported": [
+        "生成式AI提高攻击速度、规模与自动化",
+        "可生成定制消息及语音视频克隆"
+      ],
+      "source_ids": [
+        "vish-src-008"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-008"
+    },
+    {
+      "source_id": "vish-src-009",
+      "title": "2025 IC3 Annual Report",
+      "publisher": "FBI Internet Crime Complaint Center",
+      "published_at": "2026-04-09",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf",
+      "source_type": "official_complaint_statistics",
+      "claims_supported": [
+        "2025年记录22364件AI相关投诉及约8.93亿美元报告损失",
+        "报案统计不等于总体发生率或供应商收入"
+      ],
+      "source_ids": [
+        "vish-src-009"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-009"
+    },
+    {
+      "source_id": "vish-src-010",
+      "title": "Q2 2026 Earnings Presentation",
+      "publisher": "TransUnion",
+      "published_at": "2026-07-28",
+      "accessed_at": "2026-08-09",
+      "url": "https://investors.transunion.com/~/media/Files/T/Transunion-IR-V2/reports-and-presentations/transunion-q2-2026-earnings-presentation.pdf",
+      "source_type": "company_investor_presentation",
+      "claims_supported": [
+        "欺诈解决方案约占2025年收入17%",
+        "2026年上半年高个位数增长"
+      ],
+      "source_ids": [
+        "vish-src-010"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-010"
+    },
+    {
+      "source_id": "vish-src-011",
+      "title": "Quarterly Report for the Quarter Ended June 30, 2026",
+      "publisher": "TransUnion",
+      "published_at": "2026-07-28",
+      "accessed_at": "2026-08-09",
+      "url": "https://investors.transunion.com/~/media/Files/T/Transunion-IR-V2/reports-and-presentations/transunion-q2-2026-10-q.pdf",
+      "source_type": "regulatory_filing",
+      "claims_supported": [
+        "二季度收入约13.10亿美元",
+        "欺诈业务未单列为报告分部",
+        "长期债务约53.7亿美元"
+      ],
+      "source_ids": [
+        "vish-src-011"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-011"
+    },
+    {
+      "source_id": "vish-src-012",
+      "title": "Experian Annual Report 2026",
+      "publisher": "Experian plc",
+      "published_at": "2026-06-11",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.experianplc.com/content/dam/marketing/global/plc/en/assets/documents/reports/2026/experian-annual-report-2026.pdf",
+      "source_type": "company_annual_report",
+      "claims_supported": [
+        "每月处理超过3.5亿次身份与欺诈预防交易",
+        "欺诈与身份未单列收入"
+      ],
+      "source_ids": [
+        "vish-src-012"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-012"
+    },
+    {
+      "source_id": "vish-src-013",
+      "title": "Trading Update, First Quarter FY27",
+      "publisher": "Experian plc",
+      "published_at": "2026-07-16",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.experianplc.com/newsroom/press-releases/2026/trading-update--first-quarter-fy27",
+      "source_type": "company_trading_update",
+      "claims_supported": [
+        "集团有机增长7%、B2B增长9%",
+        "北美与巴西增长部分由欺诈产品推动"
+      ],
+      "source_ids": [
+        "vish-src-013"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-013"
+    },
+    {
+      "source_id": "vish-src-014",
+      "title": "RELX 2026 First Half Results",
+      "publisher": "RELX PLC",
+      "published_at": "2026-07-23",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.relx.com/~/media/Files/R/RELX-Group/documents/press-releases/2026/first-half-results-2026-pressrelease.pdf",
+      "source_type": "company_results_release",
+      "claims_supported": [
+        "Risk收入18.10亿英镑、内生增长8%",
+        "金融犯罪合规及数字欺诈身份推动增长"
+      ],
+      "source_ids": [
+        "vish-src-014"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-014"
+    },
+    {
+      "source_id": "vish-src-015",
+      "title": "NICE Ltd. 2025 Form 20-F",
+      "publisher": "NICE Ltd.",
+      "published_at": "2026-02-27",
+      "accessed_at": "2026-08-09",
+      "url": "https://resources.nice.com/wp-content/uploads/2026/02/NICE-20-F-2025-final.pdf",
+      "source_type": "regulatory_filing",
+      "claims_supported": [
+        "FICC收入4.854亿美元、约占集团16.5%",
+        "产品覆盖反洗钱、欺诈与社交工程",
+        "竞争和监管可能限制回报"
+      ],
+      "source_ids": [
+        "vish-src-015"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-015"
+    },
+    {
+      "source_id": "vish-src-016",
+      "title": "Evaluating Stocks",
+      "publisher": "Financial Industry Regulatory Authority",
+      "published_at": "undated",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.finra.org/investors/investing/investment-products/stocks/evaluating-stocks",
+      "source_type": "official_investor_education",
+      "claims_supported": [
+        "股票评估需结合业务、盈利、资产负债表、行业与估值",
+        "行业主题只是证券分析的一部分"
+      ],
+      "source_ids": [
+        "vish-src-016"
+      ],
+      "research_topics": [
+        "ai-vishing-defense-investability"
+      ],
+      "citation_id": "citation-016"
+    },
+    {
+      "source_id": "labor-src-001",
+      "title": "The Employment Situation — July 2026",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.bls.gov/news.release/empsit.nr0.htm",
+      "source_type": "official_statistical_release",
+      "claims_supported": [
+        "总非农减少2.3万、失业率4.1%",
+        "参与率61.4%",
+        "临时裁员增加15.3万",
+        "前两月合计下修10.3万"
+      ],
+      "source_ids": [
+        "labor-src-001"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-017"
+    },
+    {
+      "source_id": "labor-src-002",
+      "title": "Table A-1. Employment status of the civilian population by sex and age — July 2026",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.bls.gov/news.release/empsit.t01.htm",
+      "source_type": "official_data_table",
+      "claims_supported": [
+        "6月至7月劳动力减少26.4万",
+        "就业人口减少8.7万、失业人口减少17.8万",
+        "失业率由4.2%降至4.1%"
+      ],
+      "source_ids": [
+        "labor-src-002"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-018"
+    },
+    {
+      "source_id": "labor-src-003",
+      "title": "Table B-1. Employees on nonfarm payrolls by industry sector and selected industry detail — July 2026",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.bls.gov/news.release/empsit.t17.htm",
+      "source_type": "official_data_table",
+      "claims_supported": [
+        "四行业5月至7月合计及行业拆分",
+        "信息业增量主要来自电影和录音",
+        "政府和休闲酒店为负、私人教育医疗为正"
+      ],
+      "source_ids": [
+        "labor-src-003"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-019"
+    },
+    {
+      "source_id": "labor-src-004",
+      "title": "Job Openings and Labor Turnover — June 2026",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "published_at": "2026-08-04",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.bls.gov/news.release/jolts.nr0.htm",
+      "source_type": "official_statistical_release",
+      "claims_supported": [
+        "职位空缺、招聘、离职与裁员变化不大",
+        "支持低招聘低裁员状态"
+      ],
+      "source_ids": [
+        "labor-src-004"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-020"
+    },
+    {
+      "source_id": "labor-src-005",
+      "title": "Federal Reserve issues FOMC statement",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm",
+      "source_type": "official_policy_statement",
+      "claims_supported": [
+        "目标利率维持3.50%至3.75%",
+        "9票维持、3票加息",
+        "通胀仍高于2%目标"
+      ],
+      "source_ids": [
+        "labor-src-005"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-021"
+    },
+    {
+      "source_id": "labor-src-006",
+      "title": "Transcript of Chairman Warsh’s Press Conference — July 29, 2026",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20260729.pdf",
+      "source_type": "official_policy_transcript",
+      "claims_supported": [
+        "委员会关注趋势而非单一数据",
+        "6月凉爽CPI对维持决定影响不大",
+        "通胀持续高企时加息仍可能成为选项"
+      ],
+      "source_ids": [
+        "labor-src-006"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-022"
+    },
+    {
+      "source_id": "labor-src-007",
+      "title": "Consumer Price Index — June 2026",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "published_at": "2026-07-14",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.bls.gov/news.release/archives/cpi_07142026.htm",
+      "source_type": "official_statistical_release",
+      "claims_supported": [
+        "6月总体CPI环比下降0.4%、核心持平",
+        "7月CPI定于8月12日发布"
+      ],
+      "source_ids": [
+        "labor-src-007"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-023"
+    },
+    {
+      "source_id": "labor-src-008",
+      "title": "Summary of Economic Projections — June 17, 2026",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2026-06-17",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260617.htm",
+      "source_type": "official_policy_projections",
+      "claims_supported": [
+        "2026年末联邦基金利率预测中位数3.8%",
+        "18人中9人预计年末不高于当前、9人预计更高",
+        "通胀目标以PCE表述"
+      ],
+      "source_ids": [
+        "labor-src-008"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-024"
+    },
+    {
+      "source_id": "labor-src-009",
+      "title": "FOMC meeting calendars and information",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "source_type": "official_calendar",
+      "claims_supported": [
+        "下次会议9月15日至16日",
+        "8月无利率决议会议"
+      ],
+      "source_ids": [
+        "labor-src-009"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-025"
+    },
+    {
+      "source_id": "labor-src-010",
+      "title": "CME FedWatch",
+      "publisher": "CME Group",
+      "published_at": "undated",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
+      "source_type": "official_market_methodology",
+      "claims_supported": [
+        "概率由30天联邦基金期货价格推导",
+        "属于市场定价而非官方预测"
+      ],
+      "source_ids": [
+        "labor-src-010"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-026"
+    },
+    {
+      "source_id": "labor-src-011",
+      "title": "Weak July Jobs Report Cools Rate-Hike Odds",
+      "publisher": "Kiplinger",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.kiplinger.com/investing/economy/jobs-report-july-2026-what-to-expect",
+      "source_type": "contemporaneous_market_snapshot",
+      "claims_supported": [
+        "页面记录FedWatch所示9月加息概率由55%降至44%",
+        "就业报告本身推动市场定价变化"
+      ],
+      "source_ids": [
+        "labor-src-011"
+      ],
+      "research_topics": [
+        "labor-fed-policy"
+      ],
+      "citation_id": "citation-027"
+    },
+    {
+      "source_id": "flow-src-001",
+      "title": "Market Insights — Positioning Intelligence",
+      "publisher": "J.P. Morgan",
+      "published_at": "undated",
+      "accessed_at": "2026-08-09",
+      "url": "https://markets.jpmorgan.com/research-and-insights/market-insights",
+      "source_type": "official_capabilities_page",
+      "claims_supported": [
+        "JPM使用Prime book、零售、ETF、CTA和共同基金等专有数据",
+        "公开页面没有可复算的半导体去杠杆序列"
+      ],
+      "source_ids": [
+        "flow-src-001"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-028"
+    },
+    {
+      "source_id": "flow-src-002",
+      "title": "Semiquincententacles: the US grip on global markets at 250",
+      "publisher": "J.P. Morgan Asset Management",
+      "published_at": "2026-06",
+      "accessed_at": "2026-08-09",
+      "url": "https://am.jpmorgan.com/content/dam/jpm-am-aem/global/en/insights/eye-on-the-market/semiquincententacles-amv.pdf",
+      "source_type": "public_institutional_analysis",
+      "claims_supported": [
+        "5至6月半导体对冲基金敞口、保证金融资和零售期权活跃",
+        "杠杆半导体ETF再平衡影响较2024年初增加约5倍"
+      ],
+      "source_ids": [
+        "flow-src-002"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-029"
+    },
+    {
+      "source_id": "flow-src-003",
+      "title": "Traders in Financial Futures — May 5, 2026",
+      "publisher": "U.S. Commodity Futures Trading Commission",
+      "published_at": "2026-05-08",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.cftc.gov/sites/default/files/files/dea/cotarchives/2026/futures/financial_lf050526.htm",
+      "source_type": "regulator_market_data",
+      "claims_supported": [
+        "NASDAQ-100机构净多86653张",
+        "Leveraged Funds净空56339张"
+      ],
+      "source_ids": [
+        "flow-src-003"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-030"
+    },
+    {
+      "source_id": "flow-src-004",
+      "title": "Traders in Financial Futures — August 4, 2026",
+      "publisher": "U.S. Commodity Futures Trading Commission",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.cftc.gov/sites/default/files/files/dea/cotarchives/2026/futures/financial_lf080426.htm",
+      "source_type": "regulator_market_data",
+      "claims_supported": [
+        "NASDAQ-100机构净多65252张",
+        "Leveraged Funds净空100640张"
+      ],
+      "source_ids": [
+        "flow-src-004"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-031"
+    },
+    {
+      "source_id": "flow-src-005",
+      "title": "Margin Statistics",
+      "publisher": "FINRA",
+      "published_at": "2026-07",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.finra.org/rules-guidance/key-topics/margin-accounts/margin-statistics",
+      "source_type": "regulator_aggregate_account_data",
+      "claims_supported": [
+        "客户保证金借方余额4月至6月增长约15.2%",
+        "数据不能拆分投资者或行业"
+      ],
+      "source_ids": [
+        "flow-src-005"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-032"
+    },
+    {
+      "source_id": "flow-src-006",
+      "title": "Updated Investor Bulletin: Leveraged and Inverse ETFs",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "published_at": "2023-08-29",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-alerts/sec",
+      "source_type": "regulator_investor_bulletin",
+      "claims_supported": [
+        "杠杆ETF以每日倍数为目标并每日重置",
+        "波动会放大复利偏离和损失"
+      ],
+      "source_ids": [
+        "flow-src-006"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-033"
+    },
+    {
+      "source_id": "flow-src-007",
+      "title": "Cboe Semiconductor ETF Volatility Index Historical Data",
+      "publisher": "Cboe Global Markets",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-08-09",
+      "url": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VXSMH_History.csv",
+      "source_type": "exchange_index_time_series",
+      "claims_supported": [
+        "7月均值61.46、8月1至7日均值52.97",
+        "8月7日收于47.53"
+      ],
+      "source_ids": [
+        "flow-src-007"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-034"
+    },
+    {
+      "source_id": "flow-src-008",
+      "title": "PHLX Semiconductor Index Historical Data",
+      "publisher": "Nasdaq",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-08-09",
+      "url": "https://api.nasdaq.com/api/quote/SOX/historical?assetclass=index&fromdate=2026-06-01&todate=2026-08-07&limit=5000",
+      "source_type": "exchange_index_time_series",
+      "claims_supported": [
+        "6月22日至7月29日回撤28.6%",
+        "至8月7日反弹18.3%但仍低峰值15.6%"
+      ],
+      "source_ids": [
+        "flow-src-008"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-035"
+    },
+    {
+      "source_id": "flow-src-009",
+      "title": "Global Semiconductor Sales Increase 35.1% from Q1 2026 to Q2 2026",
+      "publisher": "Semiconductor Industry Association",
+      "published_at": "2026-08-06",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.semiconductors.org/global-semiconductor-sales-increase-35-1-from-q1-2026-to-q2-2026/",
+      "source_type": "industry_association_market_data",
+      "claims_supported": [
+        "二季度全球芯片销售环比增长35.1%",
+        "6月销售同比增长123.6%"
+      ],
+      "source_ids": [
+        "flow-src-009"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-036"
+    },
+    {
+      "source_id": "flow-src-010",
+      "title": "TSMC Reports Second Quarter EPS of NT$27.25",
+      "publisher": "Taiwan Semiconductor Manufacturing Company",
+      "published_at": "2026-07-16",
+      "accessed_at": "2026-08-09",
+      "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-07/a80d7933be643644081584087731f73b22ea5a2c/2Q26%20EarningsRelease.pdf",
+      "source_type": "issuer_earnings_release",
+      "claims_supported": [
+        "二季度美元收入同比增长33.7%",
+        "三季度收入指引仍强"
+      ],
+      "source_ids": [
+        "flow-src-010"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-037"
+    },
+    {
+      "source_id": "flow-src-011",
+      "title": "TSMC Q2 2026 Earnings Conference Transcript",
+      "publisher": "Taiwan Semiconductor Manufacturing Company",
+      "published_at": "2026-07-16",
+      "accessed_at": "2026-08-09",
+      "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/reports/2026-07/547d1696765e05ce3adb81c108ce1c8c1682b80c/TSMC%202Q26%20Transcript.pdf",
+      "source_type": "issuer_earnings_call",
+      "claims_supported": [
+        "2026年资本预算上调至600亿至640亿美元",
+        "管理层同时提示消费端压力"
+      ],
+      "source_ids": [
+        "flow-src-011"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-038"
+    },
+    {
+      "source_id": "flow-src-012",
+      "title": "Micron Technology Reports Record Results for the Third Quarter of Fiscal 2026",
+      "publisher": "Micron Technology",
+      "published_at": "2026-06-24",
+      "accessed_at": "2026-08-09",
+      "url": "https://investors.micron.com/node/50671",
+      "source_type": "issuer_earnings_release",
+      "claims_supported": [
+        "季度收入、利润和现金流创纪录",
+        "下一季收入指引仍强"
+      ],
+      "source_ids": [
+        "flow-src-012"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-039"
+    },
+    {
+      "source_id": "flow-src-013",
+      "title": "Microsoft Fiscal Year 2026 Third Quarter Earnings Conference Call",
+      "publisher": "Microsoft",
+      "published_at": "2026-04-29",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3",
+      "source_type": "issuer_earnings_call",
+      "claims_supported": [
+        "2026日历年资本开支预计约1900亿美元",
+        "GPU、CPU与存储供给仍受约束"
+      ],
+      "source_ids": [
+        "flow-src-013"
+      ],
+      "research_topics": [
+        "semiconductor-fund-flows"
+      ],
+      "citation_id": "citation-040"
+    },
+    {
+      "source_id": "rot-src-001",
+      "title": "HubSpot Reports Q2 2026 Results — Exhibit 99.1",
+      "publisher": "HubSpot / U.S. SEC",
+      "published_at": "2026-08-05",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.sec.gov/Archives/edgar/data/1404655/000119312526335148/hubs-ex99_1.htm",
+      "source_type": "sec_8k_exhibit_company_release",
+      "claims_supported": [
+        "Q2收入9.117亿美元、增长20%",
+        "Q3增速指引14%、全年收入指引下调"
+      ],
+      "source_ids": [
+        "rot-src-001"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-041"
+    },
+    {
+      "source_id": "rot-src-002",
+      "title": "Datadog Announces Second Quarter 2026 Financial Results — Exhibit 99.1",
+      "publisher": "Datadog / U.S. SEC",
+      "published_at": "2026-08-06",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.sec.gov/Archives/edgar/data/1561550/000162828026053829/ex-991x20260630x8k.htm",
+      "source_type": "sec_8k_exhibit_company_release",
+      "claims_supported": [
+        "Q2收入增长36%",
+        "全年收入指引上调"
+      ],
+      "source_ids": [
+        "rot-src-002"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-042"
+    },
+    {
+      "source_id": "rot-src-003",
+      "title": "AppLovin Announces Second Quarter 2026 Financial Results — Exhibit 99.1",
+      "publisher": "AppLovin / U.S. SEC",
+      "published_at": "2026-08-05",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000057/exhibit991-2q26earningspre.htm",
+      "source_type": "sec_8k_exhibit_company_release",
+      "claims_supported": [
+        "Q2收入19.24亿美元、增长53%",
+        "结果处于原指引范围内"
+      ],
+      "source_ids": [
+        "rot-src-003"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-043"
+    },
+    {
+      "source_id": "rot-src-004",
+      "title": "Unity Reports Second Quarter 2026 Financial Results — Exhibit 99.1",
+      "publisher": "Unity / U.S. SEC",
+      "published_at": "2026-08-06",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000041/a2026q2ex-991.htm",
+      "source_type": "sec_8k_exhibit_company_release",
+      "claims_supported": [
+        "总收入增长24%、战略收入增长38%",
+        "Q3战略收入指引增长44%至47%"
+      ],
+      "source_ids": [
+        "rot-src-004"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-044"
+    },
+    {
+      "source_id": "rot-src-005",
+      "title": "Atlassian Announces Fourth Quarter and Fiscal Year 2026 Results — Exhibit 99.1",
+      "publisher": "Atlassian / U.S. SEC",
+      "published_at": "2026-08-06",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.sec.gov/Archives/edgar/data/1650372/000165037226000031/ex991q4fy26.htm",
+      "source_type": "sec_8k_exhibit_company_release",
+      "claims_supported": [
+        "季度收入增长28%、云收入31%、RPO 44%",
+        "FY2027总收入增长目标13%"
+      ],
+      "source_ids": [
+        "rot-src-005"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-045"
+    },
+    {
+      "source_id": "rot-src-006",
+      "title": "Shopify Q2 2026 Results — Exhibit 99.1",
+      "publisher": "Shopify / U.S. SEC",
+      "published_at": "2026-08-05",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.sec.gov/Archives/edgar/data/1594805/000159480526000046/exhibit991pressreleaseq220.htm",
+      "source_type": "sec_8k_exhibit_company_release",
+      "claims_supported": [
+        "Q2收入增长34%、自由现金流率18%",
+        "Q3收入指引低30%增长"
+      ],
+      "source_ids": [
+        "rot-src-006"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-046"
+    },
+    {
+      "source_id": "rot-src-007",
+      "title": "SOX Historical Index Values, 2022-09-01 to 2026-08-07",
+      "publisher": "Nasdaq",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-08-09",
+      "url": "https://api.nasdaq.com/api/quote/SOX/historical?assetclass=index&fromdate=2022-09-01&todate=2026-08-07&limit=5000",
+      "source_type": "official_exchange_index_data",
+      "claims_supported": [
+        "用于206周取样、四周滚动收益与后续收益复算"
+      ],
+      "source_ids": [
+        "rot-src-007"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-047"
+    },
+    {
+      "source_id": "rot-src-008",
+      "title": "IGV Historical ETF Closing Prices, 2022-09-01 to 2026-08-07",
+      "publisher": "Nasdaq",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-08-09",
+      "url": "https://api.nasdaq.com/api/quote/IGV/historical?assetclass=etf&fromdate=2022-09-01&todate=2026-08-07&limit=5000",
+      "source_type": "official_exchange_market_data",
+      "claims_supported": [
+        "用于与SOX共同交易日配对及全部复算"
+      ],
+      "source_ids": [
+        "rot-src-008"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-048"
+    },
+    {
+      "source_id": "rot-src-009",
+      "title": "PHLX Semiconductor Sector Index Methodology",
+      "publisher": "Nasdaq",
+      "published_at": "2026-07-06",
+      "accessed_at": "2026-08-09",
+      "url": "https://indexes.nasdaq.com/docs/methodology_SOX.pdf",
+      "source_type": "official_index_methodology",
+      "claims_supported": [
+        "SOX覆盖30家大型美国上市半导体公司",
+        "修改市值加权并定期再平衡"
+      ],
+      "source_ids": [
+        "rot-src-009"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-049"
+    },
+    {
+      "source_id": "rot-src-010",
+      "title": "iShares Expanded Tech-Software Sector ETF Fact Sheet as of June 30, 2026",
+      "publisher": "iShares / BlackRock",
+      "published_at": "2026-06-30",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.ishares.com/us/literature/fact-sheet/igv-ishares-expanded-tech-software-sector-etf-fund-fact-sheet-en-us.pdf",
+      "source_type": "etf_provider_factsheet",
+      "claims_supported": [
+        "IGV行业与持仓构成",
+        "前十大持仓60.65%",
+        "份额1.495亿"
+      ],
+      "source_ids": [
+        "rot-src-010"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-050"
+    },
+    {
+      "source_id": "rot-src-011",
+      "title": "iShares Expanded Tech-Software Sector ETF — Product Page",
+      "publisher": "iShares / BlackRock",
+      "published_at": "2026-08-04",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.ishares.com/us/products/239771/ishares-north-american-techsoftware-etf?qt=IGV",
+      "source_type": "etf_provider_product_data",
+      "claims_supported": [
+        "8月4日份额1.442亿",
+        "与6月末相比减少约3.5%"
+      ],
+      "source_ids": [
+        "rot-src-011"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-051"
+    },
+    {
+      "source_id": "rot-src-012",
+      "title": "iShares Trust Supplement — Authorized Stock Splits",
+      "publisher": "iShares Trust / U.S. SEC",
+      "published_at": "2023-12-19",
+      "accessed_at": "2026-08-09",
+      "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312523298660/d611816d497.htm",
+      "source_type": "sec_fund_supplement",
+      "claims_supported": [
+        "IGV实施5比1拆股",
+        "长期价格序列需调整口径"
+      ],
+      "source_ids": [
+        "rot-src-012"
+      ],
+      "research_topics": [
+        "software-semiconductor-rotation"
+      ],
+      "citation_id": "citation-052"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390" role="img" aria-labelledby="status-title status-desc">
+  <title id="status-title">16条观点的外部研判状态分布</title>
+  <desc id="status-desc">总体支持2条，部分支持6条，存在明显分歧2条，信息不足2条，取决于条件4条，倾向不支持0条。</desc>
+  <rect width="1200" height="390" rx="24" fill="#ffffff"/>
+  <text x="60" y="58" fill="#16213e" font-size="30" font-weight="700" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">外部研判状态分布</text>
+  <text x="60" y="92" fill="#667085" font-size="17" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">样本：视频中提取的 16 条主观判断；0 条“倾向不支持”</text>
+  <g transform="translate(60 130)">
+    <rect x="0" y="0" width="135" height="88" rx="16" fill="#237a57"/>
+    <rect x="135" y="0" width="405" height="88" fill="#4f6fd8"/>
+    <rect x="540" y="0" width="135" height="88" fill="#d97737"/>
+    <rect x="675" y="0" width="135" height="88" fill="#8a8f98"/>
+    <rect x="810" y="0" width="270" height="88" rx="16" fill="#b07b16"/>
+    <g fill="#fff" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">
+      <text x="67.5" y="38" font-size="21" font-weight="800">2 条</text><text x="67.5" y="65" font-size="15">12.5%</text>
+      <text x="337.5" y="38" font-size="21" font-weight="800">6 条</text><text x="337.5" y="65" font-size="15">37.5%</text>
+      <text x="607.5" y="38" font-size="21" font-weight="800">2 条</text><text x="607.5" y="65" font-size="15">12.5%</text>
+      <text x="742.5" y="38" font-size="21" font-weight="800">2 条</text><text x="742.5" y="65" font-size="15">12.5%</text>
+      <text x="945" y="38" font-size="21" font-weight="800">4 条</text><text x="945" y="65" font-size="15">25.0%</text>
+    </g>
+  </g>
+  <g transform="translate(60 258)" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+    <g transform="translate(0 0)"><rect width="16" height="16" rx="4" fill="#237a57"/><text x="26" y="14" fill="#344054" font-size="16">总体支持 · 2</text></g>
+    <g transform="translate(210 0)"><rect width="16" height="16" rx="4" fill="#4f6fd8"/><text x="26" y="14" fill="#344054" font-size="16">部分支持 · 6</text></g>
+    <g transform="translate(420 0)"><rect width="16" height="16" rx="4" fill="#d97737"/><text x="26" y="14" fill="#344054" font-size="16">明显分歧 · 2</text></g>
+    <g transform="translate(630 0)"><rect width="16" height="16" rx="4" fill="#8a8f98"/><text x="26" y="14" fill="#344054" font-size="16">信息不足 · 2</text></g>
+    <g transform="translate(840 0)"><rect width="16" height="16" rx="4" fill="#b07b16"/><text x="26" y="14" fill="#344054" font-size="16">取决于条件 · 4</text></g>
+  </g>
+  <text x="60" y="338" fill="#667085" font-size="16" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">读法：多数观点不是简单“真/假”，而是只在特定时间、估值、现金流或数据条件下成立。</text>
+</svg>

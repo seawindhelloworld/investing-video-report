@@ -1,0 +1,363 @@
+import tempfile
+import unittest
+from pathlib import Path
+
+from video_opinion_report.reporting import (
+    build_structured_artifacts,
+    parse_front_matter,
+    render_markdown_report,
+    validate_rendered_report,
+    validate_report_layers,
+)
+
+
+class ReportingTests(unittest.TestCase):
+    def test_render_markdown_report_parses_markdown_in_opted_in_html_container(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            markdown_path = root / "report.md"
+            template_path = root / "template.html"
+            output_path = root / "report.html"
+            markdown_path.write_text(
+                "---\ntitle: Container test\n---\n\n"
+                "# Container test\n\n"
+                '<section class="card" markdown="1">\n\n'
+                "**Rendered** body.\n\n"
+                "</section>\n",
+                encoding="utf-8",
+            )
+            template_path.write_text(
+                "<html><head><title>{{TITLE}}</title></head>"
+                "<body>{{REPORT_META}}{{SUMMARY}}{{REPORT_BODY}}</body></html>",
+                encoding="utf-8",
+            )
+
+            render_markdown_report(markdown_path, template_path, output_path)
+
+            rendered = output_path.read_text(encoding="utf-8")
+            self.assertIn('<section class="card">', rendered)
+            self.assertIn("<strong>Rendered</strong> body.", rendered)
+            self.assertNotIn("**Rendered**", rendered)
+
+    def test_parse_front_matter(self) -> None:
+        metadata, body = parse_front_matter('---\ntitle: "Example"\ncreator: Me\n---\n# Example\n')
+        self.assertEqual(metadata["title"], "Example")
+        self.assertEqual(metadata["creator"], "Me")
+        self.assertTrue(body.startswith("# Example"))
+
+    def test_render_report_replaces_template_placeholders(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / "report.md"
+            template = root / "template.html"
+            output = root / "index.html"
+            source.write_text(
+                '---\ntitle: "示例"\ncreator: 作者\nreport_date: "2026-08-01"\n---\n# 示例\n\n## 表格 {#table}\n\n| A | B |\n|---|---|\n| 1 | 2 |\n',
+                encoding="utf-8",
+            )
+            template.write_text(
+                "<html><style></style><title>{{TITLE}}</title><body>{{REPORT_META}}|{{SUMMARY}}|{{REPORT_BODY}}</body></html>",
+                encoding="utf-8",
+            )
+            render_markdown_report(source, template, output)
+            html = output.read_text(encoding="utf-8")
+            self.assertIn("<title>示例</title>", html)
+            self.assertIn("<table>", html)
+            self.assertIn('id="table"', html)
+            self.assertIn("@page { size: A4;", html)
+            self.assertIn("@media print", html)
+            self.assertNotIn("{{REPORT_BODY}}", html)
+
+    def test_render_report_can_suppress_unlabeled_header_summary(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / "report.md"
+            template = root / "template.html"
+            output = root / "index.html"
+            source.write_text(
+                '---\ntitle: "Report"\ndescription: ""\n---\n\n# Report\n\n## Executive Summary\n',
+                encoding="utf-8",
+            )
+            template.write_text(
+                "<html><style></style><body><h1>{{TITLE}}</h1><p>{{SUMMARY}}</p>{{REPORT_BODY}}<span>{{REPORT_META}}</span></body></html>",
+                encoding="utf-8",
+            )
+
+            render_markdown_report(source, template, output)
+
+            document = output.read_text(encoding="utf-8")
+            self.assertNotIn("<p></p>", document)
+            self.assertIn(">Executive Summary</h2>", document)
+
+    def test_validate_rendered_report_checks_local_assets_and_anchors(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            report_dir = root / "reports" / "example"
+            report_dir.mkdir(parents=True)
+            (report_dir / "chart.svg").write_text("<svg/>", encoding="utf-8")
+            report = report_dir / "index.html"
+            report.write_text(
+                "<html><head><title>R</title></head><body><main>"
+                '<a href="#topic">Topic</a><h2 id="topic">Topic</h2>'
+                '<img src="chart.svg" alt="Chart">'
+                + ("content " * 40)
+                + "</main></body></html>",
+                encoding="utf-8",
+            )
+
+            counts = validate_rendered_report(report, root)
+
+            self.assertEqual(counts["image_count"], 1)
+            self.assertEqual(counts["local_reference_count"], 1)
+            self.assertEqual(counts["internal_anchor_count"], 1)
+
+            report.write_text(report.read_text(encoding="utf-8").replace("#topic", "#missing"), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "Broken internal anchor"):
+                validate_rendered_report(report, root)
+
+    def test_validate_report_layers_requires_external_and_agent_sections(self) -> None:
+        text = """# R
+
+## 第一部分｜视频 / 作者内容
+
+<div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>以下为忠实整理。</div>
+
+市场修复来自盈利改善，但利率压力仍未解除。
+
+## 第二部分｜外部证据研判
+
+**观点研判注 1**
+本注为基于外部信源形成的独立研判，不代表视频作者观点。
+
+## 第三部分｜Agent 综合判断
+
+本节为 Agent 基于视频、研判和注明日期的资料形成，不代表视频作者观点，也不构成投资建议。
+"""
+        counts = validate_report_layers(text)
+        self.assertEqual(counts["external_assessment_disclaimer_count"], 1)
+        self.assertEqual(counts["agent_judgment_heading_count"], 1)
+        self.assertEqual(counts["layer_heading_count"], 3)
+        self.assertEqual(counts["creator_direct_voice_attribution_count"], 0)
+        self.assertEqual(counts["duration_weighting_count"], 0)
+        self.assertEqual(counts["unlabeled_editorial_note_count"], 0)
+        self.assertEqual(counts["speaker_opinion_marker_count"], 0)
+        self.assertEqual(counts["tech_five_news_heading_count"], 0)
+        self.assertEqual(counts["promotional_content_count"], 0)
+        self.assertEqual(counts["tech_news_visible_timestamp_count"], 0)
+        with self.assertRaisesRegex(ValueError, "third Agent judgment"):
+            validate_report_layers(text.replace("## 第三部分｜Agent 综合判断", "## 总结"))
+        with self.assertRaisesRegex(ValueError, "video information"):
+            validate_report_layers(text + "\n## 视频信息\n")
+        with self.assertRaisesRegex(ValueError, "video cover"):
+            validate_report_layers(text + "\n![视频封面](cover.jpg)\n")
+        described = text.replace("# R", '---\ndescription: "完整保留视频内容"\n---\n# R')
+        with self.assertRaisesRegex(ValueError, "header description"):
+            validate_report_layers(described)
+
+    def test_validate_report_layers_rejects_host_voice_only_in_creator_section(self) -> None:
+        text = """# R
+
+## 第一部分｜视频 / 作者内容
+
+<div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>以下为忠实整理。</div>
+
+视频称市场已经修复。
+
+## 第二部分｜外部证据研判
+
+本注为基于外部信源形成的独立研判，不代表视频作者观点。
+
+## 第三部分｜Agent 综合判断
+
+本节为 Agent 基于视频、研判和注明日期的资料形成，不代表视频作者观点，也不构成投资建议。
+"""
+        with self.assertRaisesRegex(ValueError, "third-person attribution"):
+            validate_report_layers(text)
+
+        external_only = text.replace(
+            "视频称市场已经修复。",
+            "市场已经修复。",
+        ).replace(
+            "本注为基于外部信源形成的独立研判，不代表视频作者观点。",
+            "视频称市场已经修复。\n\n本注为基于外部信源形成的独立研判，不代表视频作者观点。",
+        )
+        counts = validate_report_layers(external_only)
+        self.assertEqual(counts["creator_direct_voice_attribution_count"], 0)
+
+        topic_word_only = external_only.replace(
+            "市场已经修复。",
+            "生成式视频模型的成本可能继续下降。",
+            1,
+        )
+        counts = validate_report_layers(topic_word_only)
+        self.assertEqual(counts["creator_direct_voice_attribution_count"], 0)
+
+    def test_validate_report_layers_rejects_duration_derived_importance(self) -> None:
+        text = """# R
+
+## 第一部分｜视频 / 作者内容
+
+<div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>以下为忠实整理。</div>
+
+市场修复来自盈利改善。因为微软部分更长，报告按章节时长分配篇幅权重。
+
+## 第二部分｜外部证据研判
+
+本注为基于外部信源形成的独立研判，不代表视频作者观点。
+
+## 第三部分｜Agent 综合判断
+
+本节为 Agent 基于视频、研判和注明日期的资料形成，不代表视频作者观点，也不构成投资建议。
+"""
+        with self.assertRaisesRegex(ValueError, "duration-derived topic weighting"):
+            validate_report_layers(text)
+
+    def test_validate_report_layers_rejects_unlabeled_editorial_notes(self) -> None:
+        text = """# R
+
+## 第一部分｜视频 / 作者内容
+
+<div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>以下为忠实整理。</div>
+
+已经小幅补仓。这是个人行动，不构成本报告的投资建议。
+
+## 第二部分｜外部证据研判
+
+本注为基于外部信源形成的独立研判，不代表视频作者观点。
+
+## 第三部分｜Agent 综合判断
+
+本节为 Agent 基于视频、研判和注明日期的资料形成，不代表视频作者观点，也不构成投资建议。
+"""
+        with self.assertRaisesRegex(ValueError, "unlabeled editorial note"):
+            validate_report_layers(text)
+
+        labeled = text.replace(
+            "已经小幅补仓。这是个人行动，不构成本报告的投资建议。",
+            "已经小幅补仓。\n\n<aside class=\"editorial-note\"><strong>报告说明（非原内容）：</strong>上述行动不构成本报告的投资建议。</aside>",
+        )
+        counts = validate_report_layers(labeled)
+        self.assertEqual(counts["unlabeled_editorial_note_count"], 0)
+
+    def test_validate_report_layers_counts_and_scopes_speaker_opinion_markers(self) -> None:
+        text = """# R
+
+## 第一部分｜视频 / 作者内容
+
+<div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>以下为忠实整理。</div>
+
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">市场</span></div>
+
+> 这更像财报驱动的修复。
+
+## 第二部分｜外部证据研判
+
+本注为基于外部信源形成的独立研判，不代表视频作者观点。
+
+## 第三部分｜Agent 综合判断
+
+本节为 Agent 基于视频、研判和注明日期的资料形成，不代表视频作者观点，也不构成投资建议。
+"""
+        counts = validate_report_layers(text)
+        self.assertEqual(counts["speaker_opinion_marker_count"], 1)
+
+        malformed = text.replace(' data-speaker="Jason"', "")
+        with self.assertRaisesRegex(ValueError, "malformed speaker-opinion marker"):
+            validate_report_layers(malformed)
+
+        outside = text.replace(
+            "## 第三部分｜Agent 综合判断",
+            '<div class="speaker-opinion-marker" data-speaker="X"><span>报告标注 · 视频内个人判断</span></div>\n\n## 第三部分｜Agent 综合判断',
+        )
+        with self.assertRaisesRegex(ValueError, "outside creator-content"):
+            validate_report_layers(outside)
+
+    def test_validate_report_layers_requires_fixed_tech_news_name_and_rejects_ads(self) -> None:
+        text = """# R
+
+## 第一部分｜视频 / 作者内容
+
+<div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>以下为忠实整理。</div>
+
+### 六、科技五大新闻 {#tech-five-news}
+
+<section class="quick-news-grid"><article>新闻一</article></section>
+
+## 第二部分｜外部证据研判
+
+本注为基于外部信源形成的独立研判，不代表视频作者观点。
+
+## 第三部分｜Agent 综合判断
+
+本节为 Agent 基于视频、研判和注明日期的资料形成，不代表视频作者观点，也不构成投资建议。
+"""
+        counts = validate_report_layers(text)
+        self.assertEqual(counts["tech_five_news_heading_count"], 1)
+        self.assertEqual(counts["promotional_content_count"], 0)
+        self.assertEqual(counts["tech_news_visible_timestamp_count"], 0)
+
+        legacy = text.replace("科技五大新闻", "片尾五条快讯", 1)
+        with self.assertRaisesRegex(ValueError, "科技五大新闻"):
+            validate_report_layers(legacy)
+
+        promotional = text.replace(
+            '<section class="quick-news-grid">',
+            "节目先介绍美投Pro的研究内容。\n\n<section class=\"quick-news-grid\">",
+        )
+        with self.assertRaisesRegex(ValueError, "promotional content"):
+            validate_report_layers(promotional)
+
+        timestamped = text.replace(
+            "新闻一</article>",
+            '新闻一 <a href="https://www.youtube.com/watch?v=v1&t=10s">00:10</a></article>',
+        )
+        with self.assertRaisesRegex(ValueError, "visible video timestamps"):
+            validate_report_layers(timestamped)
+
+    def test_build_structured_artifacts_joins_assessments_and_deduplicates_sources(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            research = root / "research"
+            research.mkdir()
+            (root / "analysis.json").write_text(
+                '{"video_id":"v1","title":"T","source_url":"https://video","creator":"C","published_at":"2026-01-01","duration_seconds":10}',
+                encoding="utf-8",
+            )
+            (root / "opinions.jsonl").write_text(
+                '{"opinion_id":"o1","research_status":"pending"}\n', encoding="utf-8"
+            )
+            (root / "review.json").write_text('{"post_revision_verdict":"passed"}', encoding="utf-8")
+            (root / "judgment.json").write_text(
+                '{"video_id":"v1","source_as_of":"2026-08-01","topics":[{"topic_id":"j1"}]}',
+                encoding="utf-8",
+            )
+            (research / "topic.json").write_text(
+                '{"topic_id":"t1","assessments":[{"opinion_id":"o1","status":"supported"}],"sources":[{"source_id":"s1","title":"S","publisher":"P","published_at":"2026","accessed_at":"2026","url":"https://source","source_type":"primary","claims_supported":["x"]}]}',
+                encoding="utf-8",
+            )
+            counts = build_structured_artifacts(
+                root / "analysis.json",
+                root / "opinions.jsonl",
+                research,
+                root / "judgment.json",
+                root / "review.json",
+                root / "report-data.json",
+                root / "citations.json",
+            )
+            self.assertEqual(
+                counts,
+                {
+                    "opinion_count": 1,
+                    "topic_count": 1,
+                    "citation_count": 1,
+                    "agent_judgment_topic_count": 1,
+                },
+            )
+            report_data = __import__("json").loads((root / "report-data.json").read_text(encoding="utf-8"))
+            self.assertEqual(report_data["opinions"][0]["research_status"], "supported")
+            self.assertEqual(report_data["schema_version"], 2)
+            self.assertEqual(report_data["agent_judgment"]["topics"][0]["topic_id"], "j1")
+
+
+if __name__ == "__main__":
+    unittest.main()

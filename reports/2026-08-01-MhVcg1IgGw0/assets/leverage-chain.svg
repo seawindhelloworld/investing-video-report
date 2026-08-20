@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">视频解释的杠杆下行机制</title>
+  <desc id="desc">资产下跌通过抵押品缩水、保证金补缴和融资约束，最终导致被迫平仓；长期逻辑是否正确无法阻止短期强平。</desc>
+  <defs><style>.h{font:800 28px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#172447}.n{font:800 21px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#1f3a8a}.c{font:500 16px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#475467}.warn{font:800 19px system-ui,-apple-system,"PingFang SC",sans-serif;fill:#7a3e00}</style></defs>
+  <rect width="1200" height="360" rx="24" fill="#f8fafc"/>
+  <text x="50" y="55" class="h">从价格波动到融资出局：杠杆把时间变成约束</text>
+  <g>
+    <rect x="50" y="105" width="230" height="125" rx="16" fill="#fff" stroke="#cdd6f7"/><text x="165" y="148" text-anchor="middle" class="n">资产价格下跌</text><text x="165" y="181" text-anchor="middle" class="c"><tspan x="165">多头亏损</tspan><tspan x="165" dy="25">空头也可能反向亏损</tspan></text>
+    <rect x="340" y="105" width="230" height="125" rx="16" fill="#fff" stroke="#cdd6f7"/><text x="455" y="148" text-anchor="middle" class="n">抵押品缩水</text><text x="455" y="181" text-anchor="middle" class="c"><tspan x="455">同一敞口对应的</tspan><tspan x="455" dy="25">权益缓冲变薄</tspan></text>
+    <rect x="630" y="105" width="230" height="125" rx="16" fill="#fff" stroke="#e7b85e"/><text x="745" y="148" text-anchor="middle" class="n">追加保证金</text><text x="745" y="181" text-anchor="middle" class="c"><tspan x="745">补现金或降敞口</tspan><tspan x="745" dy="25">融资成本同步上升</tspan></text>
+    <rect x="920" y="105" width="230" height="125" rx="16" fill="#fff4d8" stroke="#d97706"/><text x="1035" y="148" text-anchor="middle" class="warn">被迫出售 / 出局</text><text x="1035" y="181" text-anchor="middle" class="c"><tspan x="1035">无法等待</tspan><tspan x="1035" dy="25">长期逻辑兑现</tspan></text>
+    <path d="M280 168h49M570 168h49M860 168h49" stroke="#667085" stroke-width="4" marker-end="url(#a)"/>
+  </g>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#667085"/></marker></defs>
+  <rect x="250" y="275" width="700" height="50" rx="25" fill="#e9efff"/>
+  <text x="600" y="307" text-anchor="middle" class="n">关键分离：看对产业方向 ≠ 拥有足够现金与时间</text>
+</svg>

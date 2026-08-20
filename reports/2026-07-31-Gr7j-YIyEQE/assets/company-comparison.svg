@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660" role="img" aria-labelledby="company-title company-desc">
+  <title id="company-title">苹果、亚马逊、微软三家公司观点对比</title>
+  <desc id="company-desc">苹果的核心张力是短期估值压力与长期持有逻辑；亚马逊是AWS增长与自由现金流融资压力；微软是Azure和Copilot增长与资本开支纪律。外部研判中，苹果包含部分支持、明显分歧和取决于条件；亚马逊包含部分支持、信息不足和取决于条件；微软包含总体支持、部分支持和取决于条件。</desc>
+  <rect width="1200" height="660" rx="24" fill="#ffffff"/>
+  <text x="60" y="58" fill="#16213e" font-size="30" font-weight="700" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">三家公司观点对比</text>
+  <text x="60" y="92" fill="#667085" font-size="17" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">上半部分是视频作者的关注重点；状态条是外部研判的三项结果</text>
+  <g font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+    <g transform="translate(60 130)">
+      <rect width="340" height="460" rx="22" fill="#fffaf0" stroke="#ead7a5" stroke-width="2"/>
+      <circle cx="44" cy="48" r="24" fill="#d7a12b"/><text x="44" y="56" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">A</text>
+      <text x="82" y="55" fill="#16213e" font-size="25" font-weight="800">苹果</text>
+      <text x="28" y="105" fill="#667085" font-size="14" font-weight="700">视频关注的核心张力</text>
+      <text x="28" y="137" fill="#16213e" font-size="18" font-weight="700">短期：估值与成本承压</text>
+      <text x="28" y="167" fill="#16213e" font-size="18" font-weight="700">长期：护城河判断不变</text>
+      <line x1="28" y1="196" x2="312" y2="196" stroke="#ead7a5"/>
+      <text x="28" y="228" fill="#667085" font-size="14" font-weight="700">外部研判 · 3 条</text>
+      <rect x="28" y="250" width="94" height="18" rx="9" fill="#4f6fd8"/><rect x="122" y="250" width="94" height="18" fill="#d97737"/><rect x="216" y="250" width="96" height="18" rx="9" fill="#b07b16"/>
+      <text x="28" y="296" fill="#4f6fd8" font-size="15" font-weight="700">部分支持 1</text><text x="28" y="324" fill="#d97737" font-size="15" font-weight="700">明显分歧 1</text><text x="28" y="352" fill="#b07b16" font-size="15" font-weight="700">取决于条件 1</text>
+      <text x="28" y="397" fill="#667085" font-size="14" font-weight="700">继续观察</text>
+      <text x="28" y="428" fill="#344054" font-size="16">盈利预期 · 存储成本</text>
+      <text x="28" y="454" fill="#344054" font-size="16">AI 产品与变现兑现</text>
+    </g>
+    <g transform="translate(430 130)">
+      <rect width="340" height="460" rx="22" fill="#fff7f2" stroke="#efc4a8" stroke-width="2"/>
+      <circle cx="44" cy="48" r="24" fill="#d97737"/><text x="44" y="56" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">A</text>
+      <text x="82" y="55" fill="#16213e" font-size="25" font-weight="800">亚马逊</text>
+      <text x="28" y="105" fill="#667085" font-size="14" font-weight="700">视频关注的核心张力</text>
+      <text x="28" y="137" fill="#16213e" font-size="18" font-weight="700">增长：AWS 收入与利润率</text>
+      <text x="28" y="167" fill="#16213e" font-size="18" font-weight="700">风险：FCF 与融资压力</text>
+      <line x1="28" y1="196" x2="312" y2="196" stroke="#efc4a8"/>
+      <text x="28" y="228" fill="#667085" font-size="14" font-weight="700">外部研判 · 3 条</text>
+      <rect x="28" y="250" width="94" height="18" rx="9" fill="#4f6fd8"/><rect x="122" y="250" width="94" height="18" fill="#8a8f98"/><rect x="216" y="250" width="96" height="18" rx="9" fill="#b07b16"/>
+      <text x="28" y="296" fill="#4f6fd8" font-size="15" font-weight="700">部分支持 1</text><text x="28" y="324" fill="#8a8f98" font-size="15" font-weight="700">信息不足 1</text><text x="28" y="352" fill="#b07b16" font-size="15" font-weight="700">取决于条件 1</text>
+      <text x="28" y="397" fill="#667085" font-size="14" font-weight="700">继续观察</text>
+      <text x="28" y="428" fill="#344054" font-size="16">AWS 合同兑现 · 利润率</text>
+      <text x="28" y="454" fill="#344054" font-size="16">资本开支与自由现金流</text>
+    </g>
+    <g transform="translate(800 130)">
+      <rect width="340" height="460" rx="22" fill="#f5f7ff" stroke="#bdc9f4" stroke-width="2"/>
+      <circle cx="44" cy="48" r="24" fill="#3157d5"/><text x="44" y="56" text-anchor="middle" fill="#fff" font-size="22" font-weight="800">M</text>
+      <text x="82" y="55" fill="#16213e" font-size="25" font-weight="800">微软</text>
+      <text x="28" y="105" fill="#667085" font-size="14" font-weight="700">视频关注的核心张力</text>
+      <text x="28" y="137" fill="#16213e" font-size="18" font-weight="700">增长：Azure 与 Copilot</text>
+      <text x="28" y="167" fill="#16213e" font-size="18" font-weight="700">约束：资本开支纪律</text>
+      <line x1="28" y1="196" x2="312" y2="196" stroke="#bdc9f4"/>
+      <text x="28" y="228" fill="#667085" font-size="14" font-weight="700">外部研判 · 4 条</text>
+      <rect x="28" y="250" width="71" height="18" rx="9" fill="#237a57"/><rect x="99" y="250" width="142" height="18" fill="#4f6fd8"/><rect x="241" y="250" width="71" height="18" rx="9" fill="#b07b16"/>
+      <text x="28" y="296" fill="#237a57" font-size="15" font-weight="700">总体支持 1</text><text x="28" y="324" fill="#4f6fd8" font-size="15" font-weight="700">部分支持 2</text><text x="28" y="352" fill="#b07b16" font-size="15" font-weight="700">取决于条件 1</text>
+      <text x="28" y="397" fill="#667085" font-size="14" font-weight="700">继续观察</text>
+      <text x="28" y="428" fill="#344054" font-size="16">Copilot 收入与续费</text>
+      <text x="28" y="454" fill="#344054" font-size="16">租赁义务 · 长期 FCF</text>
+    </g>
+  </g>
+  <text x="60" y="630" fill="#667085" font-size="15" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">状态表示外部证据对视频中具体主观判断的支持程度，不是公司评级，也不构成投资建议。</text>
+</svg>

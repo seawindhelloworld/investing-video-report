@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+  <title id="title">九条观点的外部证据状态</title><desc id="desc">总体支持一条，部分支持四条，证据混合两条，取决于条件两条。</desc>
+  <defs><style>.t{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#17213b}.h{font-size:28px;font-weight:800}.n{font-size:46px;font-weight:900}.b{font-size:17px}.s{font-size:14px;fill:#637088}</style></defs>
+  <rect width="1200" height="480" rx="28" fill="#f7f9fc"/><text x="54" y="66" class="t h">外部证据状态｜9条观点，4个主题，52个信源</text>
+  <g><rect x="54" y="112" width="250" height="224" rx="22" fill="#dff3e8"/><text x="82" y="160" class="t h">总体支持</text><text x="82" y="232" class="t n" fill="#177953">1</text><text x="82" y="276" class="t b">流程防御方向</text><text x="82" y="306" class="t s">独立回拨与多人审批</text></g>
+  <g><rect x="330" y="112" width="250" height="224" rx="22" fill="#e2e9ff"/><text x="358" y="160" class="t h">部分支持</text><text x="358" y="232" class="t n" fill="#5061d7">4</text><text x="358" y="276" class="t b">结构方向成立</text><text x="358" y="306" class="t s">趋势、对象或期限需收窄</text></g>
+  <g><rect x="606" y="112" width="250" height="224" rx="22" fill="#fff0d7"/><text x="634" y="160" class="t h">证据混合</text><text x="634" y="232" class="t n" fill="#af6926">2</text><text x="634" y="276" class="t b">政策与软件反应</text><text x="634" y="306" class="t s">关键反例不可忽略</text></g>
+  <g><rect x="882" y="112" width="264" height="224" rx="22" fill="#f2e4f2"/><text x="910" y="160" class="t h">取决于条件</text><text x="910" y="232" class="t n" fill="#965082">2</text><text x="910" y="276" class="t b">专有资金与股票回报</text><text x="910" y="306" class="t s">公开证据尚不能闭环</text></g>
+  <rect x="54" y="372" width="1092" height="62" rx="16" fill="#fff"/><text x="80" y="399" class="t b">阅读结论</text><text x="196" y="399" class="t h">没有“已证实准确”的笼统标签；每条结论都保留对象、期限、条件与反方。</text><text x="80" y="422" class="t s">本图只统计状态，不按数量暗示主题重要性。</text>
+</svg>

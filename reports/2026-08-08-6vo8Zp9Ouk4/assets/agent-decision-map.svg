@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">四个主题的Agent观察姿态</title><desc id="desc">就业与半导体等待证据，软件轮动与反电诈股票仅作研究。</desc>
+  <defs><style>.t{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#17213b}.k{font-size:17px;font-weight:800;letter-spacing:1px}.h{font-size:25px;font-weight:800}.b{font-size:17px}.s{font-size:14px;fill:#657188}.a{stroke:#7e89a2;stroke-width:2.5;fill:none;marker-end:url(#m)}</style><marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#7e89a2"/></marker></defs>
+  <rect width="1200" height="620" rx="30" fill="#f6f8ff"/><text x="54" y="62" class="t k" fill="#5061d7">视频内容 → 外部证据 → Agent判断 → 下一验证</text>
+  <g><rect x="54" y="104" width="264" height="174" rx="21" fill="#fff"/><text x="78" y="146" class="t h">就业与利率</text><text x="78" y="186" class="t b">结构好于标题</text><text x="78" y="216" class="t b">趋势与政策仍未确认</text><text x="78" y="250" class="t s">姿态：等待证据</text></g>
+  <path d="M324 191H380" class="a"/>
+  <g><rect x="390" y="104" width="334" height="174" rx="21" fill="#e2e9ff"/><text x="414" y="146" class="t h">验证：8/12 CPI + 后续就业</text><text x="414" y="186" class="t b">不把单一CPI当政策开关</text><text x="414" y="216" class="t b">看行业广度、参与率与临时裁员</text><text x="414" y="250" class="t s">期限：至9月FOMC</text></g>
+  <path d="M730 191H786" class="a"/>
+  <g><rect x="796" y="104" width="350" height="174" rx="21" fill="#fff"/><text x="820" y="146" class="t h">半导体资金流</text><text x="820" y="186" class="t b">波动缓和、基本面强</text><text x="820" y="216" class="t b">Prime数据与持有人结构缺失</text><text x="820" y="250" class="t s">姿态：等待证据</text></g>
+  <g><rect x="54" y="326" width="264" height="174" rx="21" fill="#fff"/><text x="78" y="368" class="t h">软件 / 芯片轮动</text><text x="78" y="408" class="t b">财报高离散</text><text x="78" y="438" class="t b">均值回归样本太小</text><text x="78" y="472" class="t s">姿态：仅作研究</text></g>
+  <path d="M324 413H380" class="a"/>
+  <g><rect x="390" y="326" width="334" height="174" rx="21" fill="#fff0d7"/><text x="414" y="368" class="t h">验证：4周相对 + 2季盈利</text><text x="414" y="408" class="t b">看SOX/IGV、份额与盈利修订</text><text x="414" y="438" class="t b">不从价格结果倒推资金来源</text><text x="414" y="472" class="t s">期限：1–4周 / 2–4季度</text></g>
+  <path d="M730 413H786" class="a"/>
+  <g><rect x="796" y="326" width="350" height="174" rx="21" fill="#fff"/><text x="820" y="368" class="t h">AI语音诈骗</text><text x="820" y="408" class="t b">流程防御证据强</text><text x="820" y="438" class="t b">股票定价证据弱</text><text x="820" y="472" class="t s">姿态：仅作研究</text></g>
+  <rect x="54" y="540" width="1092" height="44" rx="13" fill="#fff"/><text x="78" y="568" class="t s">观察姿态是研究工作流状态，不是买入、卖出、仓位或收益承诺。</text>
+</svg>

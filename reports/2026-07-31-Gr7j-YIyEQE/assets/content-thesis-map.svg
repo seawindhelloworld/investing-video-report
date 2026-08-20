@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="thesis-title thesis-desc">
+  <title id="thesis-title">视频内容主题关系图</title>
+  <desc id="thesis-desc">微软财报与AI需求是市场催化，长端利率、融资和估值是约束。核心问题是AI增长能否转化为利润和自由现金流。半导体、苹果、亚马逊和微软分别从需求、估值、现金流和资本开支纪律检验这一命题。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#98a2b3"/></marker>
+  </defs>
+  <rect width="1200" height="760" rx="24" fill="#ffffff"/>
+  <g font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+    <text x="60" y="58" fill="#16213e" font-size="30" font-weight="700">视频内容主题关系图</text>
+    <text x="60" y="92" fill="#667085" font-size="17">按核心命题和验证案例重组，不代表原视频播放顺序</text>
+
+    <g transform="translate(60 126)">
+      <rect width="500" height="94" rx="18" fill="#f1f4ff" stroke="#bdc9f4" stroke-width="2"/>
+      <text x="26" y="36" fill="#3157d5" font-size="15" font-weight="800">市场催化</text>
+      <text x="26" y="67" fill="#16213e" font-size="21" font-weight="750">微软财报与 AI 需求重燃增长预期</text>
+    </g>
+    <g transform="translate(640 126)">
+      <rect width="500" height="94" rx="18" fill="#fff8f1" stroke="#efc4a8" stroke-width="2"/>
+      <text x="26" y="36" fill="#d97737" font-size="15" font-weight="800">现实约束</text>
+      <text x="26" y="67" fill="#16213e" font-size="21" font-weight="750">长端利率、融资成本与高估值仍在</text>
+    </g>
+
+    <path d="M310 220 L480 270" fill="none" stroke="#98a2b3" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M890 220 L720 270" fill="none" stroke="#98a2b3" stroke-width="3" marker-end="url(#arrow)"/>
+
+    <g transform="translate(260 270)">
+      <rect width="680" height="116" rx="22" fill="#16213e"/>
+      <text x="340" y="38" text-anchor="middle" fill="#8ba5f5" font-size="15" font-weight="800">贯穿全片的核心命题</text>
+      <text x="340" y="72" text-anchor="middle" fill="#ffffff" font-size="24" font-weight="800">AI 增长能否转化为利润与自由现金流</text>
+      <text x="340" y="99" text-anchor="middle" fill="#d0d5dd" font-size="17">并覆盖资本开支、租赁与供应成本，最终支撑估值</text>
+    </g>
+
+    <path d="M600 386 L600 424" fill="none" stroke="#98a2b3" stroke-width="3"/>
+    <path d="M180 424 L1020 424" fill="none" stroke="#98a2b3" stroke-width="3"/>
+    <path d="M180 424 L180 454" fill="none" stroke="#98a2b3" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M460 424 L460 454" fill="none" stroke="#98a2b3" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M740 424 L740 454" fill="none" stroke="#98a2b3" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M1020 424 L1020 454" fill="none" stroke="#98a2b3" stroke-width="3" marker-end="url(#arrow)"/>
+
+    <g transform="translate(60 454)">
+      <rect width="240" height="154" rx="18" fill="#f6f8ff" stroke="#cdd6f7" stroke-width="2"/>
+      <circle cx="32" cy="34" r="16" fill="#3157d5"/><text x="32" y="40" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">1</text>
+      <text x="58" y="41" fill="#16213e" font-size="20" font-weight="800">半导体</text>
+      <text x="24" y="82" fill="#344054" font-size="16" font-weight="700">长期需求仍在</text>
+      <text x="24" y="110" fill="#667085" font-size="15">vs. 套牢盘与历史类比</text>
+      <text x="24" y="136" fill="#667085" font-size="14">检验：需求能否兑现</text>
+    </g>
+    <g transform="translate(340 454)">
+      <rect width="240" height="154" rx="18" fill="#fffaf0" stroke="#ead7a5" stroke-width="2"/>
+      <circle cx="32" cy="34" r="16" fill="#d7a12b"/><text x="32" y="40" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">2</text>
+      <text x="58" y="41" fill="#16213e" font-size="20" font-weight="800">苹果</text>
+      <text x="24" y="82" fill="#344054" font-size="16" font-weight="700">长期护城河</text>
+      <text x="24" y="110" fill="#667085" font-size="15">vs. 高估值与成本</text>
+      <text x="24" y="136" fill="#667085" font-size="14">检验：盈利能否支撑估值</text>
+    </g>
+    <g transform="translate(620 454)">
+      <rect width="240" height="154" rx="18" fill="#fff7f2" stroke="#efc4a8" stroke-width="2"/>
+      <circle cx="32" cy="34" r="16" fill="#d97737"/><text x="32" y="40" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">3</text>
+      <text x="58" y="41" fill="#16213e" font-size="20" font-weight="800">亚马逊</text>
+      <text x="24" y="82" fill="#344054" font-size="16" font-weight="700">AWS 增长与利润</text>
+      <text x="24" y="110" fill="#667085" font-size="15">vs. FCF 与融资压力</text>
+      <text x="24" y="136" fill="#667085" font-size="14">检验：利润能否覆盖投入</text>
+    </g>
+    <g transform="translate(900 454)">
+      <rect width="240" height="154" rx="18" fill="#f4f6fb" stroke="#b9c2d0" stroke-width="2"/>
+      <circle cx="32" cy="34" r="16" fill="#16213e"/><text x="32" y="40" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">4</text>
+      <text x="58" y="41" fill="#16213e" font-size="20" font-weight="800">微软</text>
+      <text x="24" y="82" fill="#344054" font-size="16" font-weight="700">Azure 与 Copilot</text>
+      <text x="24" y="110" fill="#667085" font-size="15">vs. CapEx 与租赁义务</text>
+      <text x="24" y="136" fill="#667085" font-size="14">检验：增长与纪律平衡</text>
+    </g>
+
+    <g transform="translate(170 652)">
+      <rect width="860" height="64" rx="18" fill="#f2f4f7"/>
+      <text x="430" y="27" text-anchor="middle" fill="#667085" font-size="14" font-weight="800">共同判断条件</text>
+      <text x="430" y="50" text-anchor="middle" fill="#16213e" font-size="18" font-weight="750">增长兑现 · 利润率改善 · 支出纪律 · 自由现金流与资本回报</text>
+    </g>
+  </g>
+</svg>

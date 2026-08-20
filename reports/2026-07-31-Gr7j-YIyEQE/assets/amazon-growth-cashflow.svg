@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="amazon-title amazon-desc">
+  <title id="amazon-title">亚马逊增长与现金流对照</title>
+  <desc id="amazon-desc">视频称AWS收入同比增长37%，营业利润率39.4%、高于33.5%的市场预期；含融资租赁资本开支542亿美元、约高于预期10%；自由现金流负76亿美元、差于负17亿美元预期。作者因此同时强调AWS双增长和现金流融资压力。</desc>
+  <rect width="1200" height="650" rx="24" fill="#ffffff"/>
+  <text x="60" y="58" fill="#16213e" font-size="30" font-weight="700" font-family="system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">亚马逊：AWS双增长，对上现金流缺口</text>
+  <text x="60" y="92" fill="#667085" font-size="17" font-family="system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">视频口播数据；每个面板使用各自单位，不共用尺度</text>
+  <g transform="translate(60 135)" font-family="system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect width="510" height="185" rx="18" fill="#eef8f2"/>
+    <text x="25" y="38" fill="#237653" font-size="20" font-weight="700">AWS收入增速</text>
+    <text x="25" y="96" fill="#164f38" font-size="48" font-weight="700">37%</text>
+    <text x="135" y="94" fill="#475467" font-size="17">同比 · 过去18个季度最快</text>
+    <rect x="25" y="125" width="430" height="18" rx="9" fill="#cfe9db"/><rect x="25" y="125" width="370" height="18" rx="9" fill="#3d9269"/>
+    <text x="25" y="167" fill="#667085" font-size="15">较市场预期约高4%</text>
+
+    <rect x="540" width="510" height="185" rx="18" fill="#eef8f2"/>
+    <text x="565" y="38" fill="#237653" font-size="20" font-weight="700">AWS营业利润率</text>
+    <text x="565" y="96" fill="#164f38" font-size="48" font-weight="700">39.4%</text>
+    <text x="725" y="94" fill="#475467" font-size="17">预期 33.5%</text>
+    <rect x="565" y="125" width="430" height="18" rx="9" fill="#cfe9db"/><rect x="565" y="125" width="394" height="18" rx="9" fill="#3d9269"/>
+    <line x1="900" y1="119" x2="900" y2="151" stroke="#164f38" stroke-width="3"/>
+    <text x="565" y="167" fill="#667085" font-size="15">视频称较上季再提升约1.7个百分点</text>
+
+    <rect y="215" width="510" height="185" rx="18" fill="#fff6e8"/>
+    <text x="25" y="253" fill="#915b13" font-size="20" font-weight="700">含融资租赁资本开支</text>
+    <text x="25" y="311" fill="#633c0e" font-size="48" font-weight="700">$54.2B</text>
+    <text x="225" y="309" fill="#475467" font-size="17">约高于预期10%</text>
+    <rect x="25" y="340" width="430" height="18" rx="9" fill="#f2d9a9"/><rect x="25" y="340" width="390" height="18" rx="9" fill="#d79a34"/>
+    <text x="25" y="382" fill="#667085" font-size="15">公司随后把2026年计划从$200B上调至$220B</text>
+
+    <rect x="540" y="215" width="510" height="185" rx="18" fill="#fff0ee"/>
+    <text x="565" y="253" fill="#a3483e" font-size="20" font-weight="700">自由现金流</text>
+    <text x="565" y="311" fill="#7d2f2a" font-size="48" font-weight="700">−$7.6B</text>
+    <text x="760" y="309" fill="#475467" font-size="17">预期 −$1.7B</text>
+    <line x1="565" y1="349" x2="995" y2="349" stroke="#e2b5b0" stroke-width="18" stroke-linecap="round"/>
+    <line x1="565" y1="349" x2="925" y2="349" stroke="#c95e59" stroke-width="18" stroke-linecap="round"/>
+    <text x="565" y="382" fill="#667085" font-size="15">作者据此担忧后续融资成本与财务费用</text>
+  </g>
+  <rect x="60" y="570" width="1050" height="44" rx="12" fill="#eef3ff"/>
+  <text x="82" y="599" fill="#344054" font-size="17" font-family="system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">视频核心张力：AWS收入和利润率同时改善，能否持续覆盖资本开支、营运资金和融资成本？</text>
+</svg>

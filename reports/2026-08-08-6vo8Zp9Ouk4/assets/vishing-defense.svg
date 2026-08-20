@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">AI语音钓鱼的流程防御</title><desc id="desc">攻击者利用紧迫感绕过身份确认，防御由挂断来电、通讯录确认、二次确认、多人审批与离线验证构成。</desc>
+  <defs><style>.t{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#17213b}.h{font-size:26px;font-weight:800}.b{font-size:18px}.s{font-size:14px;fill:#647087}.step{font-size:16px;font-weight:800;fill:#fff}.arrow{stroke:#9b6b8d;stroke-width:3;fill:none;marker-end:url(#a)}</style><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#9b6b8d"/></marker></defs>
+  <rect width="1200" height="470" rx="28" fill="#fcf5fb"/><text x="54" y="62" class="t h">视频所述：别让“听起来像”替代可信渠道与权限流程</text>
+  <g><rect x="54" y="106" width="252" height="246" rx="22" fill="#382f4b"/><text x="78" y="151" class="step">攻击入口</text><text x="78" y="194" class="step">AI 话术 + 声音克隆</text><text x="78" y="226" class="step">+ 实时对话</text><text x="78" y="278" class="step">紧急付款 / 重置密码</text><text x="78" y="310" class="step">/ 变更权限</text></g>
+  <path d="M316 229H380" class="arrow"/>
+  <g><rect x="390" y="106" width="268" height="246" rx="22" fill="#fff"/><circle cx="434" cy="153" r="24" fill="#9a4f88"/><text x="429" y="160" class="step">1</text><text x="474" y="160" class="t h">切断来电渠道</text><text x="422" y="207" class="t b">挂断电话</text><text x="422" y="240" class="t b">通过企业通讯录</text><text x="422" y="273" class="t b">确认号码</text><text x="422" y="318" class="t s">不使用来电者提供的号码</text></g>
+  <path d="M668 229H732" class="arrow"/>
+  <g><rect x="742" y="106" width="404" height="246" rx="22" fill="#fff"/><circle cx="786" cy="153" r="24" fill="#0e8f7d"/><text x="781" y="160" class="step">2</text><text x="826" y="160" class="t h">把身份确认变成多层流程</text><text x="774" y="207" class="t b">企业即时通讯二次确认</text><text x="774" y="240" class="t b">双人或多人审批</text><text x="774" y="273" class="t b">高敏岗位使用离线口令</text><text x="774" y="306" class="t b">或非公开验证问题</text></g>
+  <rect x="54" y="386" width="1092" height="48" rx="14" fill="#fff"/><text x="78" y="416" class="t s">证据边界：本图整理视频转述的流程建议；不代表仅靠单一工具即可消除AI语音诈骗。</text>
+</svg>

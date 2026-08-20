@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img" aria-labelledby="matrix-title matrix-desc">
+  <title id="matrix-title">四个主题的外部研判状态矩阵</title>
+  <desc id="matrix-desc">宏观半导体和利率主题6条观点，状态最分散；苹果3条中包含1条明显分歧；亚马逊3条中包含1条信息不足；微软4条中有1条总体支持、2条部分支持和1条取决于条件。</desc>
+  <rect width="1200" height="610" rx="24" fill="#ffffff"/>
+  <text x="60" y="58" fill="#16213e" font-size="30" font-weight="700" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">主题 × 研判状态</text>
+  <text x="60" y="92" fill="#667085" font-size="17" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">数字为观点条数；空心单元格表示 0 条</text>
+  <g font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+    <g fill="#475467" font-size="15" font-weight="700" text-anchor="middle">
+      <text x="460" y="142">总体支持</text><text x="600" y="142">部分支持</text><text x="740" y="142">明显分歧</text><text x="880" y="142">信息不足</text><text x="1020" y="142">取决于条件</text>
+    </g>
+    <g fill="#16213e">
+      <text x="60" y="214" font-size="19" font-weight="700">宏观、半导体与利率</text><text x="60" y="238" font-size="14" fill="#667085">6 条观点</text>
+      <text x="60" y="314" font-size="19" font-weight="700">苹果</text><text x="60" y="338" font-size="14" fill="#667085">3 条观点</text>
+      <text x="60" y="414" font-size="19" font-weight="700">亚马逊</text><text x="60" y="438" font-size="14" fill="#667085">3 条观点</text>
+      <text x="60" y="514" font-size="19" font-weight="700">微软</text><text x="60" y="538" font-size="14" fill="#667085">4 条观点</text>
+    </g>
+    <g text-anchor="middle" font-size="23" font-weight="800">
+      <g transform="translate(410 170)"><rect width="100" height="70" rx="14" fill="#237a57"/><text x="50" y="44" fill="#fff">1</text></g>
+      <g transform="translate(550 170)"><rect width="100" height="70" rx="14" fill="#4f6fd8"/><text x="50" y="44" fill="#fff">2</text></g>
+      <g transform="translate(690 170)"><rect width="100" height="70" rx="14" fill="#d97737"/><text x="50" y="44" fill="#fff">1</text></g>
+      <g transform="translate(830 170)"><rect width="100" height="70" rx="14" fill="#8a8f98"/><text x="50" y="44" fill="#fff">1</text></g>
+      <g transform="translate(970 170)"><rect width="100" height="70" rx="14" fill="#b07b16"/><text x="50" y="44" fill="#fff">1</text></g>
+
+      <g transform="translate(410 270)"><rect width="100" height="70" rx="14" fill="#fff" stroke="#d0d5dd" stroke-width="2"/><text x="50" y="44" fill="#98a2b3">0</text></g>
+      <g transform="translate(550 270)"><rect width="100" height="70" rx="14" fill="#4f6fd8"/><text x="50" y="44" fill="#fff">1</text></g>
+      <g transform="translate(690 270)"><rect width="100" height="70" rx="14" fill="#d97737"/><text x="50" y="44" fill="#fff">1</text></g>
+      <g transform="translate(830 270)"><rect width="100" height="70" rx="14" fill="#fff" stroke="#d0d5dd" stroke-width="2"/><text x="50" y="44" fill="#98a2b3">0</text></g>
+      <g transform="translate(970 270)"><rect width="100" height="70" rx="14" fill="#b07b16"/><text x="50" y="44" fill="#fff">1</text></g>
+
+      <g transform="translate(410 370)"><rect width="100" height="70" rx="14" fill="#fff" stroke="#d0d5dd" stroke-width="2"/><text x="50" y="44" fill="#98a2b3">0</text></g>
+      <g transform="translate(550 370)"><rect width="100" height="70" rx="14" fill="#4f6fd8"/><text x="50" y="44" fill="#fff">1</text></g>
+      <g transform="translate(690 370)"><rect width="100" height="70" rx="14" fill="#fff" stroke="#d0d5dd" stroke-width="2"/><text x="50" y="44" fill="#98a2b3">0</text></g>
+      <g transform="translate(830 370)"><rect width="100" height="70" rx="14" fill="#8a8f98"/><text x="50" y="44" fill="#fff">1</text></g>
+      <g transform="translate(970 370)"><rect width="100" height="70" rx="14" fill="#b07b16"/><text x="50" y="44" fill="#fff">1</text></g>
+
+      <g transform="translate(410 470)"><rect width="100" height="70" rx="14" fill="#237a57"/><text x="50" y="44" fill="#fff">1</text></g>
+      <g transform="translate(550 470)"><rect width="100" height="70" rx="14" fill="#4f6fd8"/><text x="50" y="44" fill="#fff">2</text></g>
+      <g transform="translate(690 470)"><rect width="100" height="70" rx="14" fill="#fff" stroke="#d0d5dd" stroke-width="2"/><text x="50" y="44" fill="#98a2b3">0</text></g>
+      <g transform="translate(830 470)"><rect width="100" height="70" rx="14" fill="#fff" stroke="#d0d5dd" stroke-width="2"/><text x="50" y="44" fill="#98a2b3">0</text></g>
+      <g transform="translate(970 470)"><rect width="100" height="70" rx="14" fill="#b07b16"/><text x="50" y="44" fill="#fff">1</text></g>
+    </g>
+  </g>
+</svg>

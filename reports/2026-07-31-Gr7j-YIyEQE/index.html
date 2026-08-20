@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>半导体大反弹！苹果估值崩溃！亚马逊有五倍空间？微软创历史记录！</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #152033;
+      --muted: #667085;
+      --line: #e3e8ef;
+      --paper: #ffffff;
+      --canvas: #f2f5f9;
+      --note: #f7f9fc;
+      --accent: #3157d5;
+      --accent-soft: #eef3ff;
+      --warm: #a45f0a;
+      --warm-soft: #fff7e8;
+      --positive: #19734b;
+      --positive-soft: #eaf8f1;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--canvas);
+      font: 17px/1.68 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 28px auto 56px;
+      padding: clamp(28px, 5vw, 68px);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 20px 54px rgba(16, 24, 40, .08);
+    }
+    header { margin-bottom: 2rem; }
+    h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+    h1 { max-width: 18em; margin: .15em 0 .35em; font-size: clamp(2rem, 5vw, 3.55rem); }
+    h2 { margin-top: 2.35em; padding-bottom: .4em; border-bottom: 1px solid var(--line); font-size: clamp(1.55rem, 3vw, 2.15rem); }
+    h3 { margin-top: 1.65em; font-size: 1.28rem; }
+    h4 { margin-bottom: .4em; }
+    p { max-width: 74ch; }
+    li + li { margin-top: .35rem; }
+    a { color: var(--accent); text-underline-offset: .18em; }
+    a:hover { text-decoration-thickness: 2px; }
+    .meta { color: var(--muted); }
+    header > p:last-child { max-width: 72ch; color: #475467; font-size: 1.08rem; }
+    blockquote {
+      margin: 1.5em 0;
+      padding: 1em 1.25em;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      color: #263a72;
+    }
+    table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; }
+    th, td { min-width: 8rem; padding: .75rem .7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: #344054; background: #f8fafc; font-size: .86rem; }
+    code { font-size: .88em; }
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      main { width: 100%; margin: 0; padding: 22px 18px 48px; border: 0; border-radius: 0; box-shadow: none; }
+    }
+  
+    img { display: block; max-width: 100%; height: auto; border-radius: 14px; }
+    img[src$=".svg"] { width: 100%; margin: 1rem 0 .35rem; border: 1px solid var(--line); background: #fff; box-shadow: 0 12px 30px rgba(16, 24, 40, .06); }
+    .visual-caption { margin: .35rem 0 1.4rem; color: var(--muted); font-size: .86rem; }
+    .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: .75rem; margin: 1.4rem 0 1.8rem; }
+    .metric-card { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(145deg, #fff, #f8faff); }
+    .metric-card strong { display: block; color: #16213e; font-size: 1.55rem; line-height: 1.15; font-variant-numeric: tabular-nums; }
+    .metric-card span { display: block; margin-top: .3rem; color: var(--muted); font-size: .82rem; }
+    .summary-dashboard { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .65rem; margin: 1rem 0 1.5rem; }
+    .summary-dashboard article { min-height: 120px; padding: .85rem .9rem; border: 1px solid var(--line); border-top: 4px solid #6b83df; border-radius: 13px; background: #fbfcfe; }
+    .summary-dashboard span { color: var(--muted); font-size: .76rem; font-weight: 750; text-transform: uppercase; }
+    .summary-dashboard strong { display: block; margin-top: .28rem; color: #1f3a8a; font-size: .98rem; }
+    .summary-dashboard p { margin: .28rem 0 0; color: #475467; font-size: .8rem; line-height: 1.45; }
+    .logic-flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .55rem; margin: 1.1rem 0 1.4rem; }
+    .logic-step { position: relative; min-height: 92px; padding: .8rem .65rem; border: 1px solid #cdd6f7; border-radius: 12px; background: #f7f9ff; text-align: center; font-size: .84rem; line-height: 1.4; }
+    .logic-step strong { display: block; margin-bottom: .25rem; color: #2344a1; font-size: .92rem; }
+    .logic-step:not(:last-child)::after { content: "→"; position: absolute; top: 31px; right: -.62rem; z-index: 2; color: #667085; font-weight: 800; }
+    .reading-note { margin: 1rem 0 1.4rem; padding: 1rem 1.15rem; border-left: 4px solid #d7a12b; border-radius: 10px; background: #fffaf0; }
+    .chapter-lead { margin: 1.1rem 0 1.45rem; padding: 1rem 1.2rem; border-left: 4px solid var(--accent); background: var(--accent-soft); font-size: 1.02rem; }
+    .chapter-lead strong { color: #2344a1; }
+    .video-data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: .7rem; margin: 1rem 0 1.45rem; }
+    .data-card { padding: .9rem 1rem; border-top: 3px solid #9db0ef; background: #f8faff; }
+    .data-card strong { display: block; color: #1f3a8a; font-size: 1.22rem; font-variant-numeric: tabular-nums; }
+    .data-card span { display: block; margin-top: .2rem; color: var(--muted); font-size: .82rem; }
+    .signal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0 1.5rem; }
+    .signal-card { padding: 1rem; border: 1px solid var(--line); border-radius: 13px; background: #fbfcfe; }
+    .signal-card h4 { margin: 0 0 .35rem; font-size: 1rem; }
+    .signal-card p { margin: .25rem 0; font-size: .9rem; }
+    .signal-card.positive { border-top: 4px solid #55a47f; }
+    .signal-card.caution { border-top: 4px solid #d8a33a; }
+    .signal-card.question { border-top: 4px solid #8291ad; }
+    .quote-pull { margin: 1.3rem 0 1.6rem; padding: 1.2rem 1.35rem; border-radius: 14px; background: #172447; color: #fff; font-size: 1.1rem; }
+    .quote-pull p { margin: 0; max-width: none; }
+    .quote-pull a { color: #cfdbff; }
+    .number-ribbon { display: flex; flex-wrap: wrap; gap: .55rem; margin: .9rem 0 1.35rem; }
+    .number-ribbon span { padding: .42rem .65rem; border-radius: 999px; background: #eef2f7; color: #344054; font-size: .82rem; font-variant-numeric: tabular-nums; }
+    .quick-news-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0 1.4rem; }
+    .quick-news-grid article { padding: .95rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfd; }
+    .quick-news-grid h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    .quick-news-grid p { margin: .3rem 0; font-size: .88rem; }
+    .quick-news-grid article:first-child { grid-column: 1 / -1; }
+    .coverage-note { margin: 1rem 0; padding: .85rem 1rem; border: 1px dashed #98a2b3; border-radius: 11px; color: #475467; background: #fcfcfd; font-size: .88rem; }
+    details.source-group { margin: .75rem 0; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 11px; background: #fcfcfd; }
+    details.source-group summary { cursor: pointer; color: #344054; font-weight: 700; }
+    details.source-group[open] summary { margin-bottom: .65rem; }
+    .company-takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; margin: 1rem 0 1.4rem; }
+    .company-takeaways article { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: #fbfcfe; font-size: .9rem; }
+    .company-takeaways h3 { margin: 0 0 .45rem; }
+    .company-takeaways p { margin: .35rem 0; }
+    .assessment-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin: 1rem 0 1.4rem; }
+    .assessment-grid .assessment { margin: 0; }
+    .assessment-grid .assessment p { margin: .45rem 0; }
+    .scope-label { color: #7a4b08; font-size: .78rem; line-height: 1.45; }
+    .source-row { color: var(--muted); font-size: .8rem; }
+    .assessment-depth { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin: 1rem 0 1.6rem; }
+    .assessment-depth article { padding: 1rem 1.05rem; border: 1px solid var(--line); border-radius: 14px; background: #fcfcfd; }
+    .assessment-depth h3 { margin: 0 0 .55rem; font-size: 1.02rem; }
+    .assessment-depth p { margin: .5rem 0; font-size: .86rem; line-height: 1.62; }
+    .status-row { display: flex; flex-wrap: wrap; gap: .35rem; margin: .65rem 0; }
+    .status-pill { display: inline-flex; padding: .2rem .55rem; border-radius: 999px; background: #eef2ff; color: #3157d5; font-size: .76rem; font-weight: 750; }
+    .status-pill.warn { background: #fff3e8; color: #b54708; }
+    .status-pill.neutral { background: #f2f4f7; color: #475467; }
+    .audit-links { padding: 1rem 1.15rem; border: 1px dashed #98a2b3; border-radius: 12px; background: #fcfcfd; }
+    .audit-links ul { margin-bottom: 0; }
+    .assessment h3 { margin-top: 0; color: var(--ink); }
+    .assessment ul { margin-bottom: .4rem; }
+    .layer-intro { margin: 1rem 0 1.6rem; padding: 1rem 1.15rem; border-radius: 12px; background: #f4f7fb; color: #344054; }
+    .layer-intro.creator { border-left: 5px solid #3157d5; }
+    .layer-intro.external { border-left: 5px solid #d8a33a; }
+    .speaker-opinion-marker { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .65rem; margin: 1.15rem 0 0; padding: .8rem 1rem .72rem; border: 1px solid #e7b85e; border-bottom: 0; border-radius: 14px 14px 0 0; background: #fff4d8; color: #6f3b00; box-shadow: 0 9px 24px rgba(146, 85, 10, .08); }
+    .speaker-opinion-marker::before { content: "◆"; color: #c66a08; font-size: .8rem; }
+    .speaker-opinion-kicker { padding: .18rem .5rem; border-radius: 999px; background: #b45309; color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: .02em; }
+    .speaker-opinion-marker strong { color: #7a3e00; font-size: 1.08rem; }
+    .speaker-opinion-topic { color: #8a5a20; font-size: .82rem; }
+    .speaker-opinion-marker + blockquote { margin-top: 0; padding: 1rem 1.2rem 1.08rem; border: 1px solid #e7b85e; border-left: 5px solid #d97706; border-radius: 0 0 14px 14px; background: linear-gradient(145deg, #fffdf8, #fff8e8); color: #3f2a12; box-shadow: 0 12px 28px rgba(146, 85, 10, .08); }
+    .speaker-opinion-marker + blockquote p { max-width: none; }
+    .speaker-opinion-marker + blockquote p:first-child { margin-top: 0; }
+    .speaker-opinion-marker + blockquote p:last-child { margin-bottom: 0; }
+    .editorial-note { margin: .75rem 0 1.2rem; padding: .8rem 1rem; border: 1px dashed #98a2b3; border-left: 4px solid #667085; border-radius: 10px; background: #f8fafc; color: #475467; font-size: .86rem; }
+    .editorial-note strong { color: #344054; }
+    .editorial-note.compact { margin: .5rem 0; padding: .65rem .75rem; font-size: .8rem; }
+    .annotation-target { margin: -.15rem 0 .85rem; color: #475467; font-size: .88rem; }
+    .annotation-target a { font-weight: 700; }
+    .status { display: inline-flex; padding: .2rem .55rem; border-radius: 999px; background: #e9efff; color: #2344a1; font-size: .8rem; font-weight: 700; }
+    .agent-disclaimer { margin: 1rem 0 1.3rem; padding: 1rem 1.15rem; border: 1px solid #b7c6f8; border-left: 5px solid #3157d5; border-radius: 12px; background: #f5f7ff; color: #263a72; }
+    .judgment-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: .7rem; margin: 1rem 0 1.5rem; }
+    .judgment-overview article { padding: .95rem; border: 1px solid var(--line); border-radius: 14px; background: #fbfcfe; }
+    .judgment-overview h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    .judgment-overview p { margin: .3rem 0; font-size: .86rem; }
+    .judgment-overview .verdict { color: #1f3a8a; font-weight: 750; }
+    .judgment-card { margin: 1rem 0 1.35rem; padding: 1.15rem 1.25rem; border: 1px solid #cdd6f7; border-radius: 15px; background: linear-gradient(145deg, #fff, #f7f9ff); }
+    .judgment-card h3 { margin: 0 0 .55rem; }
+    .judgment-card.compact { padding: 1rem 1.1rem; }
+    .judgment-card.compact h3 { font-size: 1.08rem; }
+    .judgment-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: .65rem 0; }
+    .judgment-facts p { margin: 0; padding: .72rem .78rem; border-radius: 10px; background: #fff; border: 1px solid #e2e7f2; font-size: .84rem; line-height: 1.55; }
+    .judgment-rationale { margin: .7rem 0; padding: .72rem .8rem; border-left: 3px solid #8296df; background: #f7f9ff; color: #344054; font-size: .84rem; line-height: 1.58; }
+    .next-verification { margin: .72rem 0 0; padding-top: .65rem; border-top: 1px dashed #cdd5e7; color: #344054; font-size: .82rem; }
+    .judgment-checklist { display: grid; grid-template-columns: 68px minmax(0, 1fr) 68px minmax(0, 1fr); gap: .45rem .55rem; margin: .7rem 0 0; font-size: .8rem; }
+    .judgment-checklist dt { margin: 0; padding: .5rem .35rem; border-radius: 8px; background: #e9efff; color: #2344a1; font-weight: 800; text-align: center; }
+    .judgment-checklist dd { margin: 0; padding: .48rem .15rem; color: #475467; line-height: 1.45; }
+    .judgment-meta { display: flex; flex-wrap: wrap; gap: .4rem; margin: .55rem 0 .8rem; }
+    .judgment-meta span { padding: .22rem .56rem; border-radius: 999px; background: #e9efff; color: #2344a1; font-size: .76rem; font-weight: 700; }
+    .judgment-meta span.caution { background: #fff3e8; color: #b54708; }
+    .decision-chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; margin: .85rem 0; }
+    .decision-chain div { position: relative; padding: .75rem; border-radius: 10px; background: #fff; border: 1px solid #dfe5f4; font-size: .82rem; }
+    .decision-chain strong { display: block; margin-bottom: .25rem; color: #344054; }
+    .decision-chain div:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -.48rem; z-index: 2; color: #667085; font-weight: 800; }
+    nav.toc { margin: 2rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfe; }
+    @media screen and (min-width: 900px) {
+      main { width: min(1080px, calc(100% - 48px)); padding: 56px 64px; }
+    }
+    @media (max-width: 760px) {
+      .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .logic-flow { grid-template-columns: 1fr; }
+      .logic-step { min-height: auto; text-align: left; }
+      .logic-step:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.95rem; }
+      .summary-dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .company-takeaways, .assessment-grid, .assessment-depth, .signal-grid, .quick-news-grid, .judgment-overview, .decision-chain, .judgment-facts { grid-template-columns: 1fr; }
+      .judgment-checklist { grid-template-columns: 62px minmax(0, 1fr); }
+      .speaker-opinion-marker { align-items: flex-start; }
+      .decision-chain div:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.8rem; }
+      .quick-news-grid article:first-child { grid-column: auto; }
+      p:has(> img[src$=".svg"]) { max-width: 100%; overflow-x: auto; padding-bottom: .35rem; }
+      p > img[src$=".svg"] { width: 700px; max-width: none; }
+    }
+    @page { size: A4; margin: 14mm 13mm 16mm; }
+    @media print {
+      html, body { background: #fff; }
+      body {
+        color: #172033;
+        font-size: 10.5pt;
+        line-height: 1.55;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      main {
+        width: auto !important;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      header { margin-bottom: 8mm; }
+      h1 { margin: .2em 0 .45em; font-size: 25pt; }
+      h2 { margin-top: 10mm; font-size: 17pt; break-after: avoid-page; page-break-after: avoid; }
+      h3 { font-size: 13pt; break-after: avoid-page; page-break-after: avoid; }
+      p, li { orphans: 3; widows: 3; }
+      a { color: inherit; text-decoration-color: #98a2b3; }
+      img { max-height: 240mm; object-fit: contain; }
+      img[src$=".svg"] { border: .3pt solid #d0d5dd; box-shadow: none; }
+      table { display: table; overflow: visible; font-size: 9pt; }
+      thead { display: table-header-group; }
+      tr, img, blockquote, nav.toc, .metric-grid, .logic-flow, .logic-step,
+      .reading-note, .chapter-lead, .data-card, .signal-card, .quote-pull,
+      .quick-news-grid article, .company-takeaways article, .assessment, .audit-links,
+      .summary-dashboard article, .judgment-overview article, .judgment-card, .decision-chain,
+      .speaker-opinion-marker, .speaker-opinion-marker + blockquote {
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+      .speaker-opinion-marker { break-after: avoid-page; page-break-after: avoid; }
+      .assessment-grid { display: block; }
+      .assessment-grid .assessment { margin: 0 0 5mm; }
+      .visual-caption { margin-bottom: 5mm; }
+    }
+    
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="meta">美投侃新闻 · 2026-07-31 08:59（北京时间） · 报告日期 2026-08-01</p>
+      <h1>半导体大反弹！苹果估值崩溃！亚马逊有五倍空间？微软创历史记录！</h1>
+      
+    </header>
+    <h2 id="creator-content">第一部分｜视频 / 作者内容</h2>
+<div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>本部分直接呈现原内容中的数据、推理、判断、结论与限定，不等同于已核验事实。Jason 与 Steven 的个人研判、持仓或行动以橙色卡片标示；卡片仍属于原内容层。核心观点后的链接用于回溯上下文。</div>
+
+<h3 id="_1">一页看懂</h3>
+<p><img alt="内容主题关系：微软财报和AI需求构成催化，利率与现金流构成约束" src="assets/content-thesis-map.svg"></p>
+<p class="visual-caption"><strong>图表说明（报告整理，非原内容）：</strong>核心不是“AI还涨不涨”，而是增长能否转化为利润、自由现金流和可持续估值。</p>
+
+<section class="summary-dashboard" aria-label="五个主题结论">
+  <article><span>市场</span><strong>财报修复</strong><p>利率压力未解除</p></article>
+  <article><span>半导体</span><strong>长期需求仍在</strong><p>短期套牢盘与利率承压</p></article>
+  <article><span>Apple</span><strong>经营尚稳</strong><p>高估值遇到增长与成本压力</p></article>
+  <article><span>Amazon</span><strong>AWS双增长</strong><p>自由现金流与融资是约束</p></article>
+  <article><span>Microsoft</span><strong>证据最均衡</strong><p>远期仍看投入回报</p></article>
+</section>
+
+<h3 id="market">一、市场：上涨是财报修复，不是利率解除</h3>
+<p><img alt="市场涨跌与美债收益率" src="assets/market-pulse.svg"></p>
+<p>资金重新集中到AI交易。此前连续六日跑赢的标普等权指数，当日落后大盘约180个基点；半导体、存储和AI基础设施明显走强，软件板块没有同步大幅回撤。大型科技股内部则出现清晰分化：微软财报后大涨，Amazon收盘和盘后继续走高，Meta与Apple承压。这说明市场并非无差别回补科技股，而是在重新评估不同公司的AI投入能否带来收入和利润。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=33s">00:33–02:29</a></p>
+<p>美元、贵金属、比特币期货与原油也出现明显波动，但跨资产变化没有被扩展成独立趋势判断。最重要的对照仍是：股票端因财报回暖，债券端却没有同步给出“压力解除”的信号。因此，股市上涨与长端收益率高企可以同时存在，只是前者更依赖盈利兑现，后者继续限制估值扩张空间。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=33s">00:33–04:11</a></p>
+<table>
+<thead>
+<tr>
+<th>观察面</th>
+<th>口播要点</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>风格</td>
+<td>纳指100约 +3.2%，SOX约 +8%；微软强、Meta和苹果弱</td>
+<td>资金重新集中到AI，个股开始按投入质量分化</td>
+</tr>
+<tr>
+<td>宏观</td>
+<td>核心PCE同比3.3%，二季度GDP增长1.5%</td>
+<td>不是理想组合，但暂未继续强化“过热”交易</td>
+</tr>
+<tr>
+<td>债券</td>
+<td>长端收益率仍处高位</td>
+<td>企业融资成本和股票折现率约束仍在</td>
+</tr>
+</tbody>
+</table>
+<p>核心PCE仍高于目标，而GDP低于预期，这不是典型利好组合；但较弱的增长数据也暂时缓解了经济继续过热、通胀再加速的担忧。由此形成的不是“宏观转好”，而是一个更窄的判断：在市场高度担心利率进一步上行时，没有继续恶化也可能被当作阶段性利好。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=197s">03:17–03:46</a></p>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">市场修复与利率风险</span></div>
+
+<blockquote>
+<p>微软财报重新点燃AI交易，但一天的上涨不能确认趋势反转。AI资本开支可以很高，前提是收入、利润和现金流给出回报；若长端利率继续上行，周四行情更适合定义为“财报驱动的修复”。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=123s">02:03–04:11</a></p>
+</blockquote>
+<h3 id="semiconductors">二、半导体：短期承压，长期逻辑未终止</h3>
+<div class="signal-grid">
+  <article class="signal-card caution"><h4>短期</h4><p>深度回撤后，成本线附近可能出现套牢盘卖压。</p></article>
+  <article class="signal-card question"><h4>类比</h4><p>SOX与2000年轨迹只是一种情景，不是预测模型。</p></article>
+  <article class="signal-card positive"><h4>长期</h4><p>大科技继续扩张资本开支，需求逻辑尚未终止。</p></article>
+</div>
+
+<p>短期压力先从投资者行为解释：高位买入、经历深度回撤后重新接近成本线，部分投资者会优先选择保本离场。这种“亏损时不愿卖、回本后急于卖”的处置效应，意味着单日强反弹不必然消除上方卖压。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=252s">04:12–04:50</a></p>
+<p>SOX与2000年互联网泡沫时期的走势被放在一起作线性类比。按照这条类比路径，指数需要在四个月内突破前高才会改写轨迹；但类比只用于描述短期压力，不构成“泡沫必然破裂”的预测。大型科技公司仍在增加资本开支，AI算力、存储和基础设施需求并没有因短期价格波动而消失。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=291s">04:51–05:29</a></p>
+<p>真正可能把行业压力扩散到更广泛股票的变量是长端利率。若融资环境继续恶化，受影响最大的不会是所有半导体公司，而是高估值、高杠杆、自由现金流不足，或需要持续外部融资才能扩张的公司。这一判断保留了明确前提，并没有把风险写成已经发生的结果。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=330s">05:30–05:59</a></p>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">半导体的两套时间框架</span></div>
+
+<blockquote>
+<p>回到成本线的投资者可能卖出保本，因此短期反弹仍会遇到压力；但不能因2000年类比就判断泡沫必然破裂。长线看需求与资本开支，短线看套牢盘和长端利率。若债市压力继续升高，高估值、高杠杆和依赖融资的公司会先受影响。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=252s">04:12–05:59</a></p>
+</blockquote>
+<h3 id="apple">三、Apple：短期估值承压，长期框架不变</h3>
+<div class="video-data-grid" aria-label="苹果口播数据">
+  <div class="data-card"><strong>16% → 约10%</strong><span>本季到下一季收入增速中位数</span></div>
+  <div class="data-card"><strong>47.5%</strong><span>下一季毛利率指引中位数</span></div>
+  <div class="data-card"><strong>约35×</strong><span>讨论中的前瞻市盈率</span></div>
+  <div class="data-card"><strong>5–10年</strong><span>长期持有框架</span></div>
+</div>
+
+<p>本季财报本身大体平稳，真正改变市场关注点的是电话会中的下一季展望。除iPad和应用商店外，多数产品线表现尚可；本季毛利率也因关税相关利好维持在50%以上。问题在于，下一季收入增速中位数从本季16%降至约10%，毛利率指引中位数约47.5%，增长与利润率的组合都比本季弱。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=361s">06:01–07:20</a></p>
+<p>管理层给出的原因不只有需求：先进制程产能不足、低估iPhone和Mac需求、汇率逆风，以及存储价格自去年12月以来持续上涨。现有库存、其他零部件降价和产品组合可以暂时抵消部分成本，但缓冲会逐步减弱。提高部分Mac和iPad价格、扩大DRAM采购来源可以分担压力，却可能带来销量和价格弹性的新问题。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=422s">07:02–07:31</a></p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>关键信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>财报</td>
+<td>除iPad和应用商店外，多数产品线尚可；电话会把关注点转向收入放缓、毛利率和存储成本</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>库存、零部件降价和产品组合可暂时缓冲；Mac、iPad已部分涨价，DRAM采购来源在评估中</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>端侧运行和Mac本地推理是优势；高频云端AI可能进入更高档iCloud+，但成本与变现尚未平衡</td>
+</tr>
+<tr>
+<td>补充</td>
+<td>硬件租赁计划、在美投入6000亿美元等为已披露事项，没有改变本段主判断</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="苹果短期财务压力、AI支撑与持仓行动" src="assets/apple-pressure-balance.svg"></p>
+<p>AI路线强调端侧运行、本地推理和Mac作为Agent及模型运行平台的能力，这是长期产品支撑；云端AI则引出另一层约束：高频使用会增加推理成本，未来可能需要更高档的iCloud+套餐承接，但成本与变现如何平衡仍不确定。因此，产品能力可以增强长期护城河，却还不能直接回答短期盈利能否支撑约35倍估值。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=452s">07:32–08:09</a></p>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">估值、持仓与行动</span></div>
+
+<blockquote>
+<p>近期上涨更像防御属性，而非盈利改善；若盈利预期不上修、防御溢价回落且成本继续上升，约35倍估值难以维持。短期估值判断不改变五到十年框架，盘后已按“大跌5%补仓”的规则小幅买入，但因原仓位较重而控制了规模。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=499s">08:19–09:44</a></p>
+</blockquote>
+<h3 id="amazon">四、Amazon：AWS双增长，现金流是门槛</h3>
+<div class="number-ribbon" aria-label="亚马逊口播数字">
+  <span>净销售额 $200.6B</span><span>同比 +20%</span><span>AWS $42.2B</span><span>AWS +37%</span><span>AWS利润率 39.4%</span><span>FCF -$7.6B</span>
+</div>
+
+<p>集团净销售额2006亿美元，同比增长20%，高于预期约2%。每股收益5.75美元包含较大规模的Anthropic投资收益；估算剔除后约1.95美元，仍高于预期。在线购物约704亿美元、基本符合预期，广告略好于预期，其他业务没有明显偏离，因此零售基本盘提供稳定性，但不是财报的主要惊喜。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=587s">09:47–10:23</a></p>
+<p>真正改变财报质量的是AWS。收入422亿美元、同比增长37%，是过去18个季度最快增速，并在一个季度内提高9个百分点；营业利润率39.4%，也明显好于口播所引述的市场预期。Graviton、Trainium等自研芯片可能改善成本结构，AI业务和芯片业务的ARR均已超过250亿美元，多年期模型公司合作则提高了后续需求可见度。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=623s">10:23–11:34</a></p>
+<p><img alt="亚马逊AWS增长、利润率、资本开支与自由现金流对照" src="assets/amazon-growth-cashflow.svg"></p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>结论</th>
+<th>关键数字 / 限定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>零售基本盘</td>
+<td>稳住但惊喜有限</td>
+<td>在线购物约704亿美元；EPS 5.75美元含Anthropic投资收益，估算剔除后约1.95美元</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>收入与利润率同时加速</td>
+<td>增长37%、过去18个季度最快；自研芯片与AI业务均在扩张</td>
+</tr>
+<tr>
+<td>现金流</td>
+<td>投入和营运资金形成压力</td>
+<td>含融资租赁CapEx约542亿美元、经营现金流约454亿美元、FCF负76亿美元</td>
+</tr>
+<tr>
+<td>指引与融资</td>
+<td>下季中位数略低于预期，资本开支继续上调</td>
+<td>2026年CapEx计划约2000亿→2200亿美元；AWS远期万亿美元收入是管理层目标，不是已实现事实</td>
+</tr>
+</tbody>
+</table>
+<p>增长亮点与现金流压力同时存在。含融资租赁的资本开支约542亿美元，高于预期近10%；经营现金流约454亿美元，低于预期约12%；自由现金流负76亿美元，也弱于负17亿美元的市场预期。营运资金三项合计相对预期少近100亿美元，其中应收贡献最大，但单个季度的变化不足以确认客户信用已经恶化。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=694s">11:34–12:15</a></p>
+<p>下一季收入和营业利润指引中位数略低于预期，剔除约80个基点的汇率影响后大致接近预期。与此同时，2026年资本开支计划继续上调，意味着AWS增长越快，市场越需要回答新增折旧、融资和利息最终如何进入每股收益与自由现金流。管理层提出AWS远期达到万亿美元年收入，是长期目标和容量判断，不是当前估值可以直接使用的已实现结果。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=735s">12:15–13:42</a></p>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">应收、现金流与融资</span></div>
+
+<blockquote>
+<p>应收相对预期形成较大负贡献，可能意味着账期延后或付款意愿变化，但这只是单期数据推断。若自由现金流继续恶化，举债和利息费用会增加，并对每股收益形成压力；AWS增速需要覆盖新增融资成本。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=694s">11:34–13:20</a></p>
+</blockquote>
+<div class="speaker-opinion-marker" data-speaker="Steven"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Steven</strong><span class="speaker-opinion-topic">AWS双增长与股价空间</span></div>
+
+<blockquote>
+<p>AWS收入与利润率双增长说明巨额投入正在被合理化，这一趋势至少在2026年仍可能持续；财报质量较高，相关增长叙事尚未完全反映在股价中，大涨后仍有上涨空间。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=823s">13:43–15:00</a></p>
+</blockquote>
+<h3 id="microsoft">五、Microsoft：三项检验暂时同时过关</h3>
+<p>市场原本集中追问三件事：Azure能否重新加速、Copilot能否形成规模化收入、巨额AI投资是否会拖累利润率。这次财报对三项问题都给出阶段性正面证据，但“阶段性”很重要——近期经营改善与远期资本回报仍然是两个不同问题。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=901s">15:01–15:24</a></p>
+<p><img alt="微软Azure、Copilot和利润率三个检验" src="assets/microsoft-three-tests.svg"></p>
+<table>
+<thead>
+<tr>
+<th>检验</th>
+<th>口播证据</th>
+<th>尚未解决的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure再加速</td>
+<td>固定汇率 +43%，上季 +39%，下季约 +45%；GPU上线周期缩短近50%</td>
+<td>新增容量能否持续转化为资本回报</td>
+</tr>
+<tr>
+<td>Copilot规模化</td>
+<td>M365付费席位 3000万+；GitHub Copilot用户 5000万，收费向“席位+用量”扩展</td>
+<td>使用增长能否变成续费、收入和净利润</td>
+</tr>
+<tr>
+<td>利润率与投入</td>
+<td>收入增长快于费用；报告CapEx因使用年限和租赁分类而下降</td>
+<td>经济投入、租赁义务和2028年以后FCF仍有分歧</td>
+</tr>
+<tr>
+<td>被忽略的短板</td>
+<td>一项PC相关收入下季可能下降8%–11%，Windows OEM与设备或下降20%以上</td>
+<td>是否开始拖累未来盈利</td>
+</tr>
+</tbody>
+</table>
+<p>Azure固定汇率增速由39%提高到43%，下一季预计约45%。加速不完全依赖新建数据中心：微软第四季度新增31座数据中心、全年新增88座，同时通过CPU/GPU集群效率和部署流程改善，使主要区域GPU从到货到使用的时间缩短近50%。这意味着已有资产更早进入收入环节，但能否持续改善资产回报仍需后续现金流验证。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=924s">15:24–16:40</a></p>
+<p>应用层也从“用户数”进入“使用深度和收费方式”的检验。M365 Copilot付费席位超过3000万，大型企业部署和高频使用速度提高；GitHub Copilot用户达到5000万，收费从单纯席位扩展到“席位+使用量”，收入环比加速。采用增长说明商业化在推进，但席位、互动和调用最终仍要转化为续费、ARPU和净利润。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=1001s">16:41–17:40</a></p>
+<p>利润率压力暂时被经营杠杆抵消：收入增速快于费用增速，营业利润率好于预期。不过，数据中心使用年限由15年延长至25年，部分租赁分类变化又使报告资本开支下降；这改变的是会计呈现和付款路径，不是经济投入消失。相关租赁仍会形成成本、付款义务和现金流约束，未来新增项目的适用范围也尚待澄清。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=1061s">17:41–19:02</a></p>
+<p>正面主线之外还保留了一项PC业务短板：一项相关收入下一季可能下降8%至11%，Windows OEM与设备收入可能下降20%以上。它暂时没有推翻Azure和Copilot的改善，但如果下滑持续，仍可能削弱整体盈利增速。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=1142s">19:02–19:18</a></p>
+<aside class="editorial-note"><strong>转录提示（非原内容）：</strong>租赁类别专名与第一项PC业务口径存在 ASR 不确定性，因此这里只保留方向性关系。</aside>
+
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">增长、商业化与经济投入</span></div>
+
+<blockquote>
+<p>Azure再加速和效率改善增强了资产回报；Copilot席位、部署与使用深度增长，说明商业化开始见效。资本开支数字下降主要来自使用年限和租赁分类变化，不能理解为实际投入消失。今明两年的最终检验，是收入与利润增长能否和有纪律的支出、自由现金流同时成立。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=901s">15:01–21:19</a></p>
+</blockquote>
+<p>大摩与小摩都认可近期Azure、Copilot和经营杠杆改善；差异集中在2028年以后资本开支能否继续与经营现金流、自由现金流平衡。财报究竟改变了微软的长期定价格局，还是只完成一次风险释放，仍待后续验证。<a href="https://www.youtube.com/watch?v=Gr7j-YIyEQE&amp;t=1159s">19:19–22:00</a></p>
+<h3 id="tech-five-news">六、科技五大新闻</h3>
+<section class="quick-news-grid" aria-label="科技五大新闻">
+  <article><h3>1｜微软市值</h3><p>单日增加约4500亿美元；Azure增长和资本开支计划是核心背景。</p></article>
+  <article><h3>2｜三星与SK海力士</h3><p>二季度营业利润合计创纪录；AI存储强，但扩产过剩风险仍在。</p></article>
+  <article><h3>3｜Arm</h3><p>数据中心授权翻倍、CPU订单管道超20亿美元；手机授权放缓。</p></article>
+  <article><h3>4｜Meta</h3><p>三季度指引逊于预期、自由现金流降至多年低位；AI支出仍扩张。</p></article>
+  <article><h3>5｜DeepSeek</h3><p>计划在内蒙古建设大型AI数据中心，投资或达500亿美元；芯片来源与出口限制受关注。</p><p class="editorial-note compact"><strong>转录提示（非原内容）：</strong>具体功率规模存在 ASR 不确定性，未写入正文。</p></article>
+</section>
+
+<h2 id="external-assessment">第二部分｜外部证据研判</h2>
+<div class="layer-intro external"><strong>视角切换：</strong>从这里开始检验主观判断、预测和因果推断；不重复第一部分的叙述，只保留证据状态、分歧与成立条件。</div>
+
+<p><img alt="16条观点的外部研判状态分布" src="assets/research-status.svg"></p>
+<p><img alt="四个主题与五种研判状态的分布矩阵" src="assets/topic-status-matrix.svg"></p>
+<p class="visual-caption">16条判断中：总体支持2、部分支持6、明显分歧2、信息不足2、取决于条件4。状态针对具体观点，不是公司评级。</p>
+
+<div class="assessment-grid">
+  <article class="assessment"><h3>宏观、半导体与利率</h3><p class="annotation-target">对应第一部分：<a href="#market">市场与利率</a>、<a href="#semiconductors">半导体</a></p><p class="scope-label">本注为基于外部信源形成的独立研判，不代表视频作者观点。</p><div class="status-row"><span class="status-pill">支持 1</span><span class="status-pill">部分 2</span><span class="status-pill warn">分歧 1</span><span class="status-pill neutral">不足 1</span><span class="status-pill warn">有条件 1</span></div><p><strong>支持：</strong>科技股反弹时长端收益率仍高，“财报修复、利率未解除”成立。<br><strong>保留：</strong>套牢盘缺账户数据；SOX与2000年的四个月外推无统计验证；利率不能归因于单一政治人物。<br><strong>条件：</strong>AI需求必须转化为现金流，新增产能不能演变为过剩。</p><p class="source-row"><a href="https://www.bea.gov/news/2026/gdp-advance-estimate-2nd-quarter-2026">BEA</a> · <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202607&amp;type=daily_treasury_yield_curve">美国财政部</a> · <a href="https://www.federalreserve.gov/publications/2026-may-financial-stability-report-overview.htm">美联储</a></p></article>
+  <article class="assessment"><h3>Apple</h3><p class="annotation-target">对应第一部分：<a href="#apple">Apple</a></p><p class="scope-label">本注为基于外部信源形成的独立研判，不代表视频作者观点。</p><div class="status-row"><span class="status-pill">部分 1</span><span class="status-pill warn">分歧 1</span><span class="status-pill warn">有条件 1</span></div><p><strong>支持：</strong>高估值、存储成本和供应限制提高脆弱性。<br><strong>保留：</strong>当季收入、EPS、iPhone、Mac和服务均增长，无法证明上涨主要来自防御资金。<br><strong>条件：</strong>产品、供货、定价、AI变现和风险承受力都需兑现。</p><p class="source-row"><a href="https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/">Apple财报</a> · <a href="https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm">10-Q</a> · <a href="https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models">基础模型说明</a></p></article>
+  <article class="assessment"><h3>Amazon</h3><p class="annotation-target">对应第一部分：<a href="#amazon">Amazon</a></p><p class="scope-label">本注为基于外部信源形成的独立研判，不代表视频作者观点。</p><div class="status-row"><span class="status-pill">部分 1</span><span class="status-pill neutral">不足 1</span><span class="status-pill warn">有条件 1</span></div><p><strong>支持：</strong>AWS增长和利润率、资本开支与融资方向均有直接证据。<br><strong>保留：</strong>单期“应收及其他”不足以证明客户付款恶化；新增利息尚未吞噬AWS利润增量。<br><strong>条件：</strong>合同兑现、利润率、折旧后盈利与FCF必须同时改善。</p><p class="source-row"><a href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/">Amazon财报</a> · <a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm">10-Q</a> · <a href="https://www.sec.gov/Archives/edgar/data/1018724/000110465926072140/tm2613616d4_8k.htm">融资披露</a></p></article>
+  <article class="assessment"><h3>Microsoft</h3><p class="annotation-target">对应第一部分：<a href="#microsoft">Microsoft</a></p><p class="scope-label">本注为基于外部信源形成的独立研判，不代表视频作者观点。</p><div class="status-row"><span class="status-pill">支持 1</span><span class="status-pill">部分 2</span><span class="status-pill warn">有条件 1</span></div><p><strong>支持：</strong>Azure加速、效率改善和租赁方向有官方披露。<br><strong>保留：</strong>使用与席位增长不能单独证明产品效果或足额投资回报。<br><strong>条件：</strong>需继续改善续费、ARPU、云毛利、FCF，并把经营租赁计入经济投入。</p><p class="source-row"><a href="https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast">Microsoft财报</a> · <a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R23.htm">租赁附注</a> · <a href="https://www.gov.uk/government/publications/microsoft-365-copilot-experiment-cross-government-findings-report/microsoft-365-copilot-experiment-cross-government-findings-report-html">英国政府试验</a></p></article>
+</div>
+
+<p><img alt="苹果、亚马逊、微软的关注重点、研判状态与跟踪条件" src="assets/company-comparison.svg"></p>
+<h3 id="_2">关键分歧为什么不能只看“支持 / 不支持”</h3>
+<div class="assessment-depth">
+  <article><h3>宏观与半导体：方向有依据，传播路径仍不确定</h3><p>7月30日科技股反弹时，10年和30年美债收益率仍约为4.68%和5.21%，直接支持“盈利修复没有解除长端利率压力”。云厂商需求和资本开支也为AI、数据中心及其供应链提供了产业需求依据。</p><p>但GDP放缓与核心PCE边际变化不能自动等同于软着陆；私人国内最终销售仍强。处置效应有学术研究支持，却缺少本轮半导体投资者的账户级成本数据；SOX与2000年的四个月路径也没有固定起点、缩放方法和样本外检验。</p><p><strong>决定性证据：</strong>实际利率、信用利差、云厂商CapEx到收入与FCF的转化，以及供应商库存和应收，而不是单日指数涨跌。</p></article>
+  <article><h3>Apple：公司质量有支撑，买入价格仍是另一命题</h3><p>官方数据确认当季收入、EPS、iPhone、Mac和服务均增长，经营现金流、服务毛利率和活跃设备基础继续提供长期韧性；端侧模型与Private Cloud Compute也说明AI路线并非空白。</p><p>另一方面，财报前约34倍的一致预期前瞻市盈率、存储成本、供应限制和一次性关税退款，使“盈利不上修时估值更脆弱”具备依据。外部资料无法证明近期上涨主要来自防御资金，也无法仅凭公司质量证明任何价格下补仓都合理。</p><p><strong>决定性证据：</strong>秋季产品是否形成真实换机、AI是否带来使用或服务收入，以及一次性利好退出后的毛利率。</p></article>
+  <article><h3>Amazon：融资约束是真，客户付款恶化尚未证实</h3><p>AWS收入增长37%、经营利润增长64%、利润率升至39.4%，为继续投资提供了直接经营证据；自由现金流转负、长期债务和利息增加、新贷款安排，则说明融资方向和资金约束同样真实。</p><p>但现金流表的“应收及其他”包含多类项目，缺少同口径构成、账龄和坏账数据，不能由单季变化推出客户付款能力恶化。公司仍有强劲经营现金流和大量现金及有价证券，因此风险更接近“资本回报待验证”，还不是流动性危机。</p><p><strong>决定性证据：</strong>AWS合同兑现速度、折旧进入利润表后的利润率、应收账龄，以及未来两季TTM自由现金流。</p></article>
+  <article><h3>Microsoft：近期证据最强，远期成本不能被会计分类遮住</h3><p>Azure增长43%、容量更快上线、Copilot席位和ARPU改善，构成了本期最完整的“采用—收入—利润”证据链。管理层也明确说明，报告资本开支下降主要来自未来租赁分类变化，经济投资预期并未同步下降。</p><p>仍需保留的分歧是：互动次数和席位增长不能单独证明复杂任务效果、持续使用率或足额投资回报；经营租赁依然形成使用权资产、付款义务和经营现金流影响。近期经营改善不等于2028年以后资本开支与FCF已经平衡。</p><p><strong>决定性证据：</strong>Copilot续费与用量收入、云毛利率、含租赁的经济投入，以及未来四个季度自由现金流。</p></article>
+</div>
+
+<h2 id="agent-judgment">第三部分｜Agent 综合判断</h2>
+<div class="agent-disclaimer"><strong>身份与边界：</strong>本节为 Agent 基于视频内容、既有外部研判和截至 2026-08-01 的公开资料形成的综合判断，不代表视频作者观点，也不构成投资建议。“观察”“等待证据”和“重新估值”是研究姿态，不是交易指令。</div>
+
+<p><img alt="五个主题的视频内容、外部证据与Agent综合判断" src="assets/three-layer-decision-map.svg"></p>
+<div class="chapter-lead"><strong>总判断：</strong>市场正在把AI投入从“叙事”推进到“回报验证”。Microsoft的经营证据最完整；Amazon AWS强，但集团FCF待证；Apple质量仍在，高估值需要产品与利润兑现；半导体需求真实，却不能外推到所有公司。长端利率仍是共同约束。</div>
+
+<p>这里比较的是“经营证据完整度”，不是预期收益排序。Microsoft同时给出了云增长、产品采用、利润率和现金流；Amazon的亮点集中在AWS，集团层面仍处于高投入期；Apple的长期护城河和现金流没有被本季否定，但股票回报更依赖估值与下一轮产品兑现；半导体则必须从行业总量下沉到具体公司的客户、库存、资本强度和价格。[截至2026-08-01]</p>
+<h3 id="_3">定价快照：财报惊喜已经部分进入价格</h3>
+<table>
+<thead>
+<tr>
+<th>标的</th>
+<th style="text-align: right;">价格</th>
+<th style="text-align: right;">单日</th>
+<th style="text-align: right;">动态市场口径PE</th>
+<th>已计价观察</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Apple</td>
+<td style="text-align: right;">$308.91</td>
+<td style="text-align: right;">-7.14%</td>
+<td style="text-align: right;">37.4×</td>
+<td>已计入部分成本与指引担忧，但倍数仍高</td>
+</tr>
+<tr>
+<td>Amazon</td>
+<td style="text-align: right;">$271.58</td>
+<td style="text-align: right;">+15.25%</td>
+<td style="text-align: right;">32.5×</td>
+<td>AWS惊喜已被快速重估，不能称“市场尚未反应”</td>
+</tr>
+<tr>
+<td>Microsoft</td>
+<td style="text-align: right;">$464.72</td>
+<td style="text-align: right;">+3.01%</td>
+<td style="text-align: right;">27.7×</td>
+<td>正面财报已部分计价，仍需含租赁的回报模型</td>
+</tr>
+<tr>
+<td>SOXX</td>
+<td style="text-align: right;">$504.89</td>
+<td style="text-align: right;">-0.06%</td>
+<td style="text-align: right;">—</td>
+<td>指数平稳不能替代逐公司估值</td>
+</tr>
+</tbody>
+</table>
+<p class="visual-caption">快照截至 2026-08-01 00:15 UTC，只用于观察即时重估，不代表公允价值。</p>
+
+<article class="judgment-card compact">
+<h3>市场与利率｜盈利修复成立，系统性传导未成立</h3>
+<p class="annotation-target">对应第一部分：<a href="#market">市场与利率</a></p>
+<div class="judgment-meta"><span>中高置信度</span><span>0–3个月</span><span class="caution">观察传导</span></div>
+<div class="judgment-facts"><p><strong>事实 / 管理层：</strong>10年与30年美债约4.75%和5.27%；核心PCE 3.3%；云厂商称AI需求仍超产能。</p><p><strong>推断 / 已计价：</strong>强盈利可暂时压过折现率；高利率已公开，但信用传导和股票风险溢价未充分量化。</p></div>
+<p class="judgment-rationale"><strong>为什么这样判断：</strong>高利率已经进入公开预期，但它对不同公司的影响并不同时发生。第一步通常是估值倍数压缩；只有当信用条件、再融资或资本开支同步收紧，才会进入盈利和系统性风险层面。因此支持“利率约束仍在”，但不把它写成即将全面扩散的确定事件。</p>
+<dl class="judgment-checklist"><dt>成立</dt><dd>实际利率不再持续上升，利润与FCF能覆盖折现率。</dd><dt>反证</dt><dd>10Y连续10日&gt;5%或实际利率&gt;2.5%；信用利差显著扩大。</dd><dt>下行</dt><dd>通胀/供给冲击 → 利率上升 → 高估值与再融资公司先压缩。</dd><dt>缺口</dt><dd>股票风险溢价、再融资日历、期权分布。</dd></dl>
+<p class="next-verification"><strong>下一验证：</strong>核心PCE、下一次FOMC、10年实际收益率是否持续高于2.5%，以及投资级与高收益信用利差。</p>
+</article>
+
+<article class="judgment-card compact">
+<h3>半导体｜产业偏正，股票判断必须下沉到公司</h3>
+<p class="annotation-target">对应第一部分：<a href="#semiconductors">半导体</a></p>
+<div class="judgment-meta"><span>中高置信度</span><span>6–12个月</span><span class="caution">逐公司重估</span></div>
+<div class="judgment-facts"><p><strong>事实 / 管理层：</strong>Azure +43%、AWS +37%、Broadcom AI半导体收入 +143%；WSTS预计增长集中于存储与逻辑。</p><p><strong>推断 / 已计价：</strong>需求并非纯叙事，但客户集中、库存、产能和估值会造成巨大分化；强需求已广泛公开。</p></div>
+<p class="judgment-rationale"><strong>为什么这样判断：</strong>云业务、自研芯片和AI网络已经形成真实收入，足以否定“需求完全是叙事”；但增长集中在少数客户和少数环节，行业指数会掩盖公司之间的现金流与估值差异。历史走势类比不能替代公司级订单、库存和回报数据。</p>
+<dl class="judgment-checklist"><dt>成立</dt><dd>云CapEx持续转化为收入、利润与现金回流。</dd><dt>反证</dt><dd>CapEx高增但Azure&lt;30%；供应商库存、应收大增且收入放缓。</dd><dt>下行</dt><dd>回报不足 → 订单延迟 → 库存/毛利/FCF/估值同步下修。</dd><dt>缺口</dt><dd>SOX逐股预期、FCF收益率和完整库存周期。</dd></dl>
+<p class="next-verification"><strong>下一验证：</strong>下一轮云厂商CapEx与FCF、WSTS更新，以及主要供应商库存、应收和客户集中度。</p>
+</article>
+
+<article class="judgment-card compact">
+<h3>Apple｜经营建设性，估值等待产品证明</h3>
+<p class="annotation-target">对应第一部分：<a href="#apple">Apple</a></p>
+<div class="judgment-meta"><span>中等置信度</span><span>2–4季度</span><span class="caution">等待证据</span></div>
+<div class="judgment-facts"><p><strong>事实 / 管理层：</strong>Q3收入 +16%、EPS +29%、服务 +12%；Q4收入指引中位数约 +10%，毛利率47%–48%。</p><p><strong>推断 / 已计价：</strong>生态与现金流提供缓冲；财报后下跌已计入部分风险，但约37.4×仍要求盈利上修。</p></div>
+<p class="judgment-rationale"><strong>为什么这样判断：</strong>设备生态、服务毛利和现金流可以支撑公司质量，却不能消除买入价格对回报的影响。财报后下跌说明市场已经计入部分成本与指引风险，但高倍数仍把未来回报押在产品采用、AI商业化和盈利继续上修，而不是单纯维持现状。</p>
+<dl class="judgment-checklist"><dt>成立</dt><dd>Q4收入约达指引、毛利率守住47%、AI带来采用或ARPU。</dd><dt>反证</dt><dd>收入&lt;8%、毛利率&lt;47%、关键AI延期且两个季度无商业改善。</dd><dt>下行</dt><dd>产品/成本冲击 → EPS下修 → 盈利与倍数双重收缩。</dd><dt>缺口</dt><dd>最新一致预期、产品订单和AI单位经济性。</dd></dl>
+<p class="next-verification"><strong>下一验证：</strong>秋季产品发布后的首个销售季度、Q4收入与毛利率、AI功能覆盖及服务ARPU。</p>
+</article>
+
+<article class="judgment-card compact">
+<h3>Amazon｜AWS偏强，等待自由现金流证明</h3>
+<p class="annotation-target">对应第一部分：<a href="#amazon">Amazon</a></p>
+<div class="judgment-meta"><span>中高置信度</span><span>1–2季度</span><span class="caution">等待FCF</span></div>
+<div class="judgment-facts"><p><strong>事实 / 管理层：</strong>AWS收入 +37%、利润 +64%、利润率39.4%；TTM FCF为负76亿美元，长期合同提高可见度。</p><p><strong>推断 / 已计价：</strong>融资约束真实但尚非流动性危机；财报后约15%上涨已吸收相当部分惊喜。</p></div>
+<p class="judgment-rationale"><strong>为什么这样判断：</strong>长期合同和容量约束提高收入可见度，却不会一比一、立即转化成现金流。新增资本开支会先形成现金流压力，随后通过折旧和融资成本进入利润表；因此AWS经营面可以偏正向，同时保留集团资本回报尚未验证的判断。</p>
+<dl class="judgment-checklist"><dt>成立</dt><dd>AWS保持中高20%以上增速、利润率约35%以上，经营现金流追上CapEx。</dd><dt>反证</dt><dd>AWS&lt;25%或利润率&lt;35%；TTM FCF恶化至负150亿–200亿美元。</dd><dt>下行</dt><dd>需求放缓 → 负FCF与融资增加 → EPS、ROIC与估值下修。</dd><dt>缺口</dt><dd>应收账龄、客户构成、规范化盈利与资本回报。</dd></dl>
+<p class="next-verification"><strong>下一验证：</strong>未来两季AWS增速与利润率、季度利息费用、应收构成，以及TTM自由现金流是否触底。</p>
+</article>
+
+<article class="judgment-card compact">
+<h3>Microsoft｜经营证据最完整，仍要穿透租赁口径</h3>
+<p class="annotation-target">对应第一部分：<a href="#microsoft">Microsoft</a></p>
+<div class="judgment-meta"><span>业务高 / 股票中等</span><span>2–4季度</span><span class="caution">按经济投入重算</span></div>
+<div class="judgment-facts"><p><strong>事实 / 管理层：</strong>Azure +43%；M365 Copilot付费席位3000万+；季度FCF 196亿美元；未开始租赁3291亿美元。</p><p><strong>推断 / 已计价：</strong>容量变现、席位与ARPU增强回报可信度；租赁分类只改变呈现，不消除付款义务。</p></div>
+<p class="judgment-rationale"><strong>为什么这样判断：</strong>本期同时观察到基础设施利用、云收入、应用收费和经营杠杆改善，证据链比其他公司完整。不过，短寿命AI设备和巨额未开始租赁会形成长期固定成本；只看报告CapEx会低估经济投入，因此业务判断可以偏正向，股票判断仍需重新建模。</p>
+<dl class="judgment-checklist"><dt>成立</dt><dd>Azure接近约45%指引，Copilot覆盖成本，云毛利与FCF保持韧性。</dd><dt>反证</dt><dd>Azure连续低于指引；云毛利连续两季&lt;65%；FCF同比降&gt;25%。</dd><dt>下行</dt><dd>商业化不足 → 利用率下降 → 固定设备/租赁压低ROIC与估值。</dd><dt>缺口</dt><dd>含租赁的前瞻回报模型、Copilot续费与单位经济性。</dd></dl>
+<p class="next-verification"><strong>下一验证：</strong>Azure下一季约45%指引、Copilot ARPU与续费、Microsoft Cloud毛利率、含租赁付款后的FCF。</p>
+</article>
+
+<h2 id="sources">外部信源</h2>
+<p>完整的41个去重信源、适用范围和观点映射保存在 <a href="citations.json">citations.json</a> 与 <a href="report-data.json">report-data.json</a>。默认页面只列最关键资料：</p>
+<details class="source-group"><summary>宏观、利率与半导体</summary><ul><li><a href="https://www.bea.gov/news/2026/gdp-advance-estimate-2nd-quarter-2026">BEA 二季度GDP</a></li><li><a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202607&amp;type=daily_treasury_yield_curve">美国财政部收益率曲线</a></li><li><a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm">7月FOMC声明</a></li><li><a href="https://www.wsts.org/esraCMS/extension/esrapdf/generate/105">WSTS 2026预测</a></li></ul></details>
+
+<details class="source-group"><summary>Apple</summary><ul><li><a href="https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/">Q3业绩</a></li><li><a href="https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm">Q3 10-Q</a></li><li><a href="https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models">基础模型技术说明</a></li></ul></details>
+
+<details class="source-group"><summary>Amazon</summary><ul><li><a href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/">Q2业绩</a></li><li><a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm">Q2 10-Q</a></li><li><a href="https://www.sec.gov/Archives/edgar/data/1018724/000110465926082293/tm2619352d4_8k.htm">7月债券发行</a></li></ul></details>
+
+<details class="source-group"><summary>Microsoft</summary><ul><li><a href="https://www.microsoft.com/en-us/Investor/events/fy-2026/earnings-fy-2026-q4">FY26 Q4电话会</a></li><li><a href="https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast">Q4业绩</a></li><li><a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R23.htm">10-K租赁附注</a></li><li><a href="https://www.gov.uk/government/publications/microsoft-365-copilot-experiment-cross-government-findings-report/microsoft-365-copilot-experiment-cross-government-findings-report-html">英国政府Copilot试验</a></li></ul></details>
+
+<h2 id="_4">方法与限制</h2>
+<ul>
+<li>原始媒体优先；正文在外部研究前完成，并通过不读取外部研判的忠实性审查。</li>
+<li>本地ASR共671段、覆盖约99.82%；租赁术语、PC业务专名和科技快讯仍有已标注的不确定性，不生成或保留可回听小音频。</li>
+<li>一般数据未做全面事实核查；外部研究只主动检验主观判断、预测和因果推断，资料截至2026-08-01。</li>
+<li>详细观点、证据、反证阈值和缺失数据保存在结构化产物中；页面压缩的是重复表述，不是实质主题。</li>
+</ul>
+  </main>
+</body>
+</html>

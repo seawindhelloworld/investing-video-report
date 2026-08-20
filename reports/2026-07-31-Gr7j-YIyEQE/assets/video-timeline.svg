@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="timeline-title timeline-desc">
+  <title id="timeline-title">视频内容时间分配</title>
+  <desc id="timeline-desc">全片23分59秒，共六个章节。微软相关内容最长，占29%；亚马逊占22%；半导体与美债占17%；苹果占16%；市场概览与快讯各约8%。</desc>
+  <rect width="1200" height="430" rx="24" fill="#ffffff"/>
+  <text x="60" y="58" fill="#16213e" font-size="30" font-weight="700" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">视频内容时间分配</text>
+  <text x="60" y="92" fill="#667085" font-size="17" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">全片 23:59；宽度代表各章节时长，百分比按完整视频计算</text>
+
+  <g transform="translate(60 128)">
+    <rect x="0" y="0" width="79" height="74" rx="14" fill="#8ba5f5"/>
+    <rect x="79" y="0" width="182" height="74" fill="#3157d5"/>
+    <rect x="261" y="0" width="161" height="74" fill="#d7a12b"/>
+    <rect x="422" y="0" width="229" height="74" fill="#d97737"/>
+    <rect x="651" y="0" width="304" height="74" fill="#16213e"/>
+    <rect x="955" y="0" width="85" height="74" rx="14" fill="#98a2b3"/>
+    <g fill="#ffffff" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif" text-anchor="middle">
+      <text x="39.5" y="32" font-size="18" font-weight="800">1</text><text x="39.5" y="54" font-size="14">8%</text>
+      <text x="170" y="32" font-size="18" font-weight="800">2</text><text x="170" y="54" font-size="14">17%</text>
+      <text x="341.5" y="32" font-size="18" font-weight="800">3</text><text x="341.5" y="54" font-size="14">16%</text>
+      <text x="536.5" y="32" font-size="18" font-weight="800">4</text><text x="536.5" y="54" font-size="14">22%</text>
+      <text x="803" y="32" font-size="18" font-weight="800">5</text><text x="803" y="54" font-size="14">29%</text>
+      <text x="997.5" y="32" font-size="18" font-weight="800">6</text><text x="997.5" y="54" font-size="14">8%</text>
+    </g>
+  </g>
+
+  <g transform="translate(60 240)" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif">
+    <g transform="translate(0 0)"><circle cx="12" cy="12" r="12" fill="#8ba5f5"/><text x="12" y="17" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">1</text><text x="34" y="9" fill="#16213e" font-size="17" font-weight="700">市场概览</text><text x="34" y="32" fill="#667085" font-size="14">00:00–01:50 · 1:50</text></g>
+    <g transform="translate(380 0)"><circle cx="12" cy="12" r="12" fill="#3157d5"/><text x="12" y="17" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">2</text><text x="34" y="9" fill="#16213e" font-size="17" font-weight="700">半导体与美债</text><text x="34" y="32" fill="#667085" font-size="14">01:50–06:01 · 4:11</text></g>
+    <g transform="translate(760 0)"><circle cx="12" cy="12" r="12" fill="#d7a12b"/><text x="12" y="17" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">3</text><text x="34" y="9" fill="#16213e" font-size="17" font-weight="700">苹果</text><text x="34" y="32" fill="#667085" font-size="14">06:01–09:44 · 3:43</text></g>
+    <g transform="translate(0 86)"><circle cx="12" cy="12" r="12" fill="#d97737"/><text x="12" y="17" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">4</text><text x="34" y="9" fill="#16213e" font-size="17" font-weight="700">亚马逊</text><text x="34" y="32" fill="#667085" font-size="14">09:44–15:01 · 5:17</text></g>
+    <g transform="translate(380 86)"><circle cx="12" cy="12" r="12" fill="#16213e"/><text x="12" y="17" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">5</text><text x="34" y="9" fill="#16213e" font-size="17" font-weight="700">微软</text><text x="34" y="32" fill="#667085" font-size="14">15:01–22:01 · 7:00</text></g>
+    <g transform="translate(760 86)"><circle cx="12" cy="12" r="12" fill="#98a2b3"/><text x="12" y="17" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">6</text><text x="34" y="9" fill="#16213e" font-size="17" font-weight="700">科技快讯与结尾</text><text x="34" y="32" fill="#667085" font-size="14">22:01–23:59 · 1:58</text></g>
+  </g>
+</svg>

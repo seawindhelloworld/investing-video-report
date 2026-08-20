@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">本期四个主题的原内容结论图</title>
+  <desc id="desc">就业、半导体资金流、软件芯片轮动与AI语音诈骗四个主题的证据、判断和限制。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6f8ff"/><stop offset="1" stop-color="#edf4f2"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#17213b" flood-opacity=".10"/></filter>
+    <style>
+      .t{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;fill:#17213b}.k{font-size:18px;font-weight:700;letter-spacing:1px}.h{font-size:28px;font-weight:800}.b{font-size:18px}.s{font-size:15px;fill:#5d6780}.tag{font-size:14px;font-weight:700}.line{stroke:#8b96ad;stroke-width:2;stroke-dasharray:6 7}.num{font-size:22px;font-weight:800;fill:#fff}
+    </style>
+  </defs>
+  <rect width="1200" height="720" rx="32" fill="url(#bg)"/>
+  <text x="60" y="68" class="t k" fill="#5061d7">视频 / 作者内容 · 一页结论</text>
+  <text x="60" y="112" class="t h">四条线索：标题、仓位、机会与真实约束</text>
+  <path d="M300 344H900M600 198V548" class="line"/>
+  <g filter="url(#shadow)">
+    <rect x="54" y="154" width="510" height="220" rx="24" fill="#fff"/>
+    <circle cx="96" cy="198" r="22" fill="#5061d7"/><text x="89" y="206" class="t num">1</text>
+    <text x="132" y="205" class="t h">就业：标题弱，核心结构更稳</text>
+    <text x="86" y="252" class="t b">政府与休闲酒店拖累标题非农</text>
+    <text x="86" y="284" class="t b">四个核心行业连续两月共同为正</text>
+    <text x="86" y="326" class="t s">限制：利率方向仍要等 CPI，而非只看一份就业报告</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="636" y="154" width="510" height="220" rx="24" fill="#fff"/>
+    <circle cx="678" cy="198" r="22" fill="#0e8f7d"/><text x="671" y="206" class="t num">2</text>
+    <text x="714" y="205" class="t h">资金流：卖压退潮，接盘能力变弱</text>
+    <text x="668" y="252" class="t b">TMT 与多策略基金历史级回撤</text>
+    <text x="668" y="284" class="t b">风险预算缩水可能令持有人更散户化</text>
+    <text x="668" y="326" class="t s">限制：去杠杆接近尾声 ≠ 机构会按原规模重建仓位</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="54" y="410" width="510" height="220" rx="24" fill="#fff"/>
+    <circle cx="96" cy="454" r="22" fill="#bd6a24"/><text x="89" y="462" class="t num">3</text>
+    <text x="132" y="461" class="t h">轮动：短期均值回归，中期重估软件</text>
+    <text x="86" y="508" class="t b">SOX 相对 IGV 最新处于四年极端低位</text>
+    <text x="86" y="540" class="t b">短期半导体相对反弹概率不低</text>
+    <text x="86" y="582" class="t s">限制：软件相对跑赢，不等于软件绝对上涨</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="636" y="410" width="510" height="220" rx="24" fill="#fff"/>
+    <circle cx="678" cy="454" r="22" fill="#9a4f88"/><text x="671" y="462" class="t num">4</text>
+    <text x="714" y="461" class="t h">电诈：身份流程是防线，也是生意</text>
+    <text x="668" y="508" class="t b">AI 将攻击瓶颈从人力转成算力</text>
+    <text x="668" y="540" class="t b">挂断、通讯录确认、二次确认、多人审批分层防御</text>
+    <text x="668" y="582" class="t s">限制：反电诈需求成立，不等于点名股票已有回报优势</text>
+  </g>
+  <text x="60" y="682" class="t tag" fill="#5061d7">图表说明（报告整理，非原内容）</text>
+  <text x="330" y="682" class="t s">只重排视频中的论证关系；不按时长、顺序或面积暗示重要性。</text>
+</svg>

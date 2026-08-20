@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img" aria-labelledby="ms-title ms-desc">
+  <title id="ms-title">微软财报的三个检验</title>
+  <desc id="ms-desc">视频按Azure能否再加速、Copilot能否形成规模化收入、AI投资是否拖累利润率三个问题展开。Azure固定汇率增速43%，下一季度约45%；M365 Copilot付费席位超过3000万，GitHub Copilot用户5000万；收入增长快于费用增长暂时抵消毛利率压力，但租赁与远期自由现金流仍是分歧点。</desc>
+  <rect width="1200" height="690" rx="24" fill="#ffffff"/>
+  <text x="60" y="58" fill="#16213e" font-size="30" font-weight="700" font-family="system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">微软：三个问题，三个阶段性答案</text>
+  <text x="60" y="92" fill="#667085" font-size="17" font-family="system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">视频依据大摩与小摩复盘整理；数字为视频口播值</text>
+  <g transform="translate(60 135)" font-family="system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">
+    <rect width="330" height="390" rx="18" fill="#eef7ff"/>
+    <circle cx="42" cy="42" r="20" fill="#3976ad"/><text x="42" y="49" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">1</text>
+    <text x="76" y="49" fill="#285b88" font-size="21" font-weight="700">Azure再加速？</text>
+    <text x="25" y="120" fill="#1f4d73" font-size="48" font-weight="700">43%</text>
+    <text x="25" y="153" fill="#475467" font-size="16">固定汇率增速，上季39%</text>
+    <text x="25" y="210" fill="#1f4d73" font-size="35" font-weight="700">≈45%</text>
+    <text x="25" y="240" fill="#475467" font-size="16">下一季度预期</text>
+    <line x1="25" y1="268" x2="305" y2="268" stroke="#bed7ec"/>
+    <text x="25" y="306" fill="#344054" font-size="16">需求仍超过产能</text>
+    <text x="25" y="340" fill="#344054" font-size="16">GPU上线周期缩短近50%</text>
+    <text x="25" y="374" fill="#237653" font-size="15" font-weight="700">阶段性答案：是</text>
+
+    <rect x="375" width="330" height="390" rx="18" fill="#f2f0ff"/>
+    <circle cx="417" cy="42" r="20" fill="#6858b5"/><text x="417" y="49" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">2</text>
+    <text x="451" y="49" fill="#55469a" font-size="21" font-weight="700">Copilot规模化？</text>
+    <text x="400" y="120" fill="#493d86" font-size="45" font-weight="700">30M+</text>
+    <text x="400" y="153" fill="#475467" font-size="16">M365付费席位</text>
+    <text x="400" y="210" fill="#493d86" font-size="45" font-weight="700">50M</text>
+    <text x="400" y="240" fill="#475467" font-size="16">GitHub Copilot用户</text>
+    <line x1="400" y1="268" x2="680" y2="268" stroke="#d1caef"/>
+    <text x="400" y="306" fill="#344054" font-size="16">席位 + 使用量收费</text>
+    <text x="400" y="340" fill="#344054" font-size="16">互动深度与部署速度提高</text>
+    <text x="400" y="374" fill="#237653" font-size="15" font-weight="700">阶段性答案：采用证据增强</text>
+
+    <rect x="750" width="330" height="390" rx="18" fill="#fff6e8"/>
+    <circle cx="792" cy="42" r="20" fill="#bd7b21"/><text x="792" y="49" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">3</text>
+    <text x="826" y="49" fill="#8b5715" font-size="21" font-weight="700">利润率被拖累？</text>
+    <text x="775" y="110" fill="#633c0e" font-size="20" font-weight="700">当期：暂时被抵消</text>
+    <text x="775" y="148" fill="#344054" font-size="16">收入增长快于费用增长</text>
+    <text x="775" y="181" fill="#344054" font-size="16">营业利润率高于预期</text>
+    <line x1="775" y1="213" x2="1055" y2="213" stroke="#ecd09d"/>
+    <text x="775" y="252" fill="#8b5715" font-size="17" font-weight="700">远期：仍有分歧</text>
+    <text x="775" y="288" fill="#344054" font-size="16">租赁分类改变展示方式</text>
+    <text x="775" y="321" fill="#344054" font-size="16">但经济投入没有消失</text>
+    <text x="775" y="354" fill="#344054" font-size="16">2028财年FCF判断分叉</text>
+    <text x="775" y="382" fill="#a35b13" font-size="15" font-weight="700">阶段性答案：今明两年看“平衡”</text>
+  </g>
+  <rect x="60" y="570" width="1080" height="64" rx="14" fill="#172447"/>
+  <text x="600" y="610" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700" font-family="system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">收入与利润增长 ↔ 有纪律的支出 ↔ 自由现金流：三者同时成立，市场才会奖励</text>
+</svg>

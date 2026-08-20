@@ -1,0 +1,22 @@
+.env
+.venv/
+.idea/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.DS_Store
+
+work/*
+!work/.gitkeep
+state/*.json
+!state/.gitkeep
+
+# Visual QA screenshots and regenerated PDFs are local verification artifacts.
+reports/**/qa/
+
+# Browser exports and local authentication material must never be committed.
+cookies*.txt
+*.cookies.txt
+*.pem
+*.p12

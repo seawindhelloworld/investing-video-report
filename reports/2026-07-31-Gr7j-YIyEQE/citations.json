@@ -1,0 +1,814 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-01T19:25:10.040296+00:00",
+  "citations": [
+    {
+      "source_id": "amzn-S1",
+      "title": "Amazon.com Announces Second Quarter Results",
+      "publisher": "Amazon.com, Inc.",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-01",
+      "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/",
+      "source_type": "issuer_earnings_release",
+      "claims_supported": [
+        "AWS收入、利润和利润率",
+        "现金流和资本开支",
+        "债务与利息",
+        "AI和芯片业务年化收入"
+      ],
+      "source_ids": [
+        "amzn-S1"
+      ],
+      "research_topics": [
+        "amazon"
+      ],
+      "citation_id": "citation-001"
+    },
+    {
+      "source_id": "amzn-S2",
+      "title": "Amazon.com, Inc. Form 10-Q for the Quarterly Period Ended March 31, 2026",
+      "publisher": "U.S. Securities and Exchange Commission / Amazon.com, Inc.",
+      "published_at": "2026-04-30",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm",
+      "source_type": "sec_filing_10q",
+      "claims_supported": [
+        "应收及其他项目构成",
+        "营运资金因素",
+        "债务与流动性",
+        "AWS合同义务"
+      ],
+      "source_ids": [
+        "amzn-S2"
+      ],
+      "research_topics": [
+        "amazon"
+      ],
+      "citation_id": "citation-002"
+    },
+    {
+      "source_id": "amzn-S3",
+      "title": "Amazon.com, Inc. Form 8-K — $17.5 Billion Delayed Draw Term Loan Facility",
+      "publisher": "U.S. Securities and Exchange Commission / Amazon.com, Inc.",
+      "published_at": "2026-06-10",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926072140/tm2613616d4_8k.htm",
+      "source_type": "sec_filing_8k",
+      "claims_supported": [
+        "175亿美元延迟提款定期贷款额度"
+      ],
+      "source_ids": [
+        "amzn-S3"
+      ],
+      "research_topics": [
+        "amazon"
+      ],
+      "citation_id": "citation-003"
+    },
+    {
+      "source_id": "amzn-S4",
+      "title": "Amazon.com, Inc. Form 8-K — Canadian-Dollar Notes Offering",
+      "publisher": "U.S. Securities and Exchange Commission / Amazon.com, Inc.",
+      "published_at": "2026-06-12",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926073562/tm2613616d5_8k.htm",
+      "source_type": "sec_filing_8k",
+      "claims_supported": [
+        "2026年6月继续发行长期债券"
+      ],
+      "source_ids": [
+        "amzn-S4"
+      ],
+      "research_topics": [
+        "amazon"
+      ],
+      "citation_id": "citation-004"
+    },
+    {
+      "source_id": "amzn-S5",
+      "title": "Anthropic and Amazon expand collaboration for up to 5 gigawatts of new compute",
+      "publisher": "Anthropic",
+      "published_at": "2026-04-20",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.anthropic.com/news/anthropic-amazon-compute",
+      "source_type": "counterparty_official_announcement",
+      "claims_supported": [
+        "十年AWS承诺与最高5GW容量",
+        "Anthropic收入规模与多云策略"
+      ],
+      "source_ids": [
+        "amzn-S5"
+      ],
+      "research_topics": [
+        "amazon"
+      ],
+      "citation_id": "citation-005"
+    },
+    {
+      "source_id": "amzn-S6",
+      "title": "Amazon to boost spending on AI and other technology by $20 billion after strong Q2 results",
+      "publisher": "Associated Press",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-01",
+      "url": "https://apnews.com/article/b4ce02b4666a35b8975823c5c22072ee",
+      "source_type": "authoritative_media_report",
+      "claims_supported": [
+        "2026年资本开支计划约2200亿美元",
+        "容量约束与Q3指引"
+      ],
+      "source_ids": [
+        "amzn-S6"
+      ],
+      "research_topics": [
+        "amazon"
+      ],
+      "citation_id": "citation-006"
+    },
+    {
+      "source_id": "amzn-S7",
+      "title": "Amazon.com (AMZN) Stock Price History",
+      "publisher": "StockAnalysis.com, data sourced from S&P Global Market Intelligence",
+      "published_at": "2026-08-01",
+      "accessed_at": "2026-08-01",
+      "url": "https://stockanalysis.com/stocks/amzn/history/",
+      "source_type": "market_data",
+      "claims_supported": [
+        "财报后股价单日上涨15.32%"
+      ],
+      "source_ids": [
+        "amzn-S7"
+      ],
+      "research_topics": [
+        "amazon"
+      ],
+      "citation_id": "citation-007"
+    },
+    {
+      "source_id": "amzn-S8",
+      "title": "KeyBanc, Truist Raise Amazon (AMZN) Stock Price Targets after Stellar Q2 Earnings",
+      "publisher": "TipRanks",
+      "published_at": "2026-08-01",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.tipranks.com/news/keybanc-truist-raise-amazon-amzn-stock-price-targets-after-stellar-q2-earnings",
+      "source_type": "analyst_reaction_aggregation",
+      "claims_supported": [
+        "卖方目标价及正面估值观点"
+      ],
+      "source_ids": [
+        "amzn-S8"
+      ],
+      "research_topics": [
+        "amazon"
+      ],
+      "citation_id": "citation-008"
+    },
+    {
+      "source_id": "amzn-S9",
+      "title": "Going Into Earnings, Is Amazon Stock a Buy, a Sell, or Fairly Valued?",
+      "publisher": "Morningstar",
+      "published_at": "2026-07-23",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.morningstar.com/stocks/going-into-earnings-is-amazon-stock-buy-sell-or-fairly-valued-10",
+      "source_type": "independent_equity_research",
+      "claims_supported": [
+        "280美元公允价值和资本开支/现金流约束"
+      ],
+      "source_ids": [
+        "amzn-S9"
+      ],
+      "research_topics": [
+        "amazon"
+      ],
+      "citation_id": "citation-009"
+    },
+    {
+      "source_id": "apple-q3-2026-results",
+      "title": "Apple reports third quarter results",
+      "publisher": "Apple",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/",
+      "source_type": "company_earnings_release",
+      "claims_supported": [
+        "季度收入和EPS增长",
+        "毛利率与关税退款影响",
+        "活跃设备基础创新高"
+      ],
+      "source_ids": [
+        "apple-q3-2026-results"
+      ],
+      "research_topics": [
+        "apple"
+      ],
+      "citation_id": "citation-010"
+    },
+    {
+      "source_id": "apple-q3-2026-10q",
+      "title": "Apple Inc. Form 10-Q for the fiscal quarter ended June 27, 2026",
+      "publisher": "U.S. Securities and Exchange Commission / Apple Inc.",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm",
+      "source_type": "regulatory_filing",
+      "claims_supported": [
+        "分业务收入增长",
+        "服务毛利率",
+        "九个月经营现金流",
+        "供应、云与监管风险"
+      ],
+      "source_ids": [
+        "apple-q3-2026-10q"
+      ],
+      "research_topics": [
+        "apple"
+      ],
+      "citation_id": "citation-011"
+    },
+    {
+      "source_id": "apple-wwdc26-ai",
+      "title": "WWDC26: Apple unveils next generation of Apple Intelligence, Siri AI, powerful parental controls, and an expansive set of software improvements",
+      "publisher": "Apple",
+      "published_at": "2026-06-08",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.apple.com/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/",
+      "source_type": "company_product_announcement",
+      "claims_supported": [
+        "秋季发布计划",
+        "Siri AI集成范围",
+        "语言和地区限制"
+      ],
+      "source_ids": [
+        "apple-wwdc26-ai"
+      ],
+      "research_topics": [
+        "apple"
+      ],
+      "citation_id": "citation-012"
+    },
+    {
+      "source_id": "apple-foundation-models-2026",
+      "title": "Introducing the Third Generation of Apple’s Foundation Models",
+      "publisher": "Apple Machine Learning Research",
+      "published_at": "2026-06-08",
+      "accessed_at": "2026-08-01",
+      "url": "https://machinelearning.apple.com/research/introducing-third-generation-of-apple-foundation-models",
+      "source_type": "company_technical_research",
+      "claims_supported": [
+        "端侧模型与Private Cloud Compute并存",
+        "苹果AI路线并非纯端侧"
+      ],
+      "source_ids": [
+        "apple-foundation-models-2026"
+      ],
+      "research_topics": [
+        "apple"
+      ],
+      "citation_id": "citation-013"
+    },
+    {
+      "source_id": "spglobal-aapl-q3-preview",
+      "title": "Apple earnings preview: Q3 2026",
+      "publisher": "S&P Global Market Intelligence",
+      "published_at": "2026-07-24",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/07/apple-earnings-preview-q3-2026",
+      "source_type": "institutional_market_research",
+      "claims_supported": [
+        "财报前约34倍一致预期市盈率",
+        "目标价隐含回报约3.5%",
+        "升级周期仍是估值兑现关键"
+      ],
+      "source_ids": [
+        "spglobal-aapl-q3-preview"
+      ],
+      "research_topics": [
+        "apple"
+      ],
+      "citation_id": "citation-014"
+    },
+    {
+      "source_id": "ap-apple-q3-2026",
+      "title": "Strong iPhone sales propel Apple’s fiscal Q3 results past Wall Street’s expectations",
+      "publisher": "Associated Press",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-01",
+      "url": "https://apnews.com/article/apple-earnings-revenue-iphone-ai-94102918cb3592ebc1d2a38c4d7d819a",
+      "source_type": "reputable_news_analysis",
+      "claims_supported": [
+        "收入和EPS超过一致预期",
+        "分析师的避风港属性解释",
+        "成本和关税退款风险"
+      ],
+      "source_ids": [
+        "ap-apple-q3-2026"
+      ],
+      "research_topics": [
+        "apple"
+      ],
+      "citation_id": "citation-015"
+    },
+    {
+      "source_id": "macro-src-001",
+      "title": "GDP (Advance Estimate), 2nd Quarter 2026",
+      "publisher": "U.S. Bureau of Economic Analysis",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.bea.gov/news/2026/gdp-advance-estimate-2nd-quarter-2026",
+      "source_type": "official_government_economic_release",
+      "claims_supported": [
+        "GDP、私人国内最终销售和季度PCE"
+      ],
+      "source_ids": [
+        "macro-src-001"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-016"
+    },
+    {
+      "source_id": "macro-src-002",
+      "title": "Personal Income and Outlays, June 2026",
+      "publisher": "U.S. Bureau of Economic Analysis",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.bea.gov/news/2026/personal-income-and-outlays-june-2026",
+      "source_type": "official_government_economic_release",
+      "claims_supported": [
+        "6月核心PCE环比与同比"
+      ],
+      "source_ids": [
+        "macro-src-002"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-017"
+    },
+    {
+      "source_id": "macro-src-003",
+      "title": "Stagflationary Stock Returns",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2025-08",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.federalreserve.gov/econres/feds/stagflationary-stock-returns.htm",
+      "source_type": "central_bank_staff_research",
+      "claims_supported": [
+        "通胀意外对折现率和股票价格的影响"
+      ],
+      "source_ids": [
+        "macro-src-003"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-018"
+    },
+    {
+      "source_id": "macro-src-004",
+      "title": "Microsoft's best day since 2008 leads US stocks, while inflation worries remain in the bond market",
+      "publisher": "Associated Press",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-01",
+      "url": "https://apnews.com/article/stock-markets-rates-korea-ai-oil-99b5702d93a2b5c6e513fb952ccdcc92",
+      "source_type": "financial_news_report",
+      "claims_supported": [
+        "当日市场表现与财报驱动叙事",
+        "微软股价上涨15.5%及市场解释"
+      ],
+      "source_ids": [
+        "macro-src-004",
+        "msft-source-07"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates",
+        "microsoft"
+      ],
+      "citation_id": "citation-019"
+    },
+    {
+      "source_id": "macro-src-005",
+      "title": "Daily Treasury Par Yield Curve Rates, July 2026",
+      "publisher": "U.S. Department of the Treasury",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-01",
+      "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202607&type=daily_treasury_yield_curve",
+      "source_type": "official_government_market_data",
+      "claims_supported": [
+        "7月30日至31日长期美债收益率"
+      ],
+      "source_ids": [
+        "macro-src-005"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-020"
+    },
+    {
+      "source_id": "macro-src-006",
+      "title": "Minutes of the Federal Open Market Committee, June 16–17, 2026",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2026-07-08",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcminutes20260617.htm",
+      "source_type": "official_central_bank_minutes",
+      "claims_supported": [
+        "盈利和AI乐观可暂时抵消收益率上升"
+      ],
+      "source_ids": [
+        "macro-src-006"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-021"
+    },
+    {
+      "source_id": "macro-src-007",
+      "title": "Prospect Theory and the Disposition Effect",
+      "publisher": "Journal of Financial and Quantitative Analysis / Cambridge University Press",
+      "published_at": "2010-04-28",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/abs/prospect-theory-and-the-disposition-effect/C606F8F6AD493D7E43481C484200A51E",
+      "source_type": "peer_reviewed_academic_article",
+      "claims_supported": [
+        "零收益附近卖出概率跳升与处置效应"
+      ],
+      "source_ids": [
+        "macro-src-007"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-022"
+    },
+    {
+      "source_id": "macro-src-008",
+      "title": "Irrational Beliefs May Drive the Disposition Effect: Evidence from Financial Professionals",
+      "publisher": "Journal of Financial and Quantitative Analysis / Cambridge University Press",
+      "published_at": "2025-09-05",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/irrational-beliefs-may-drive-the-disposition-effect-evidence-from-financial-professionals/0773EE86C942D5FFB0405752575D0973",
+      "source_type": "peer_reviewed_academic_article",
+      "claims_supported": [
+        "处置效应异质性与信念机制"
+      ],
+      "source_ids": [
+        "macro-src-008"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-023"
+    },
+    {
+      "source_id": "macro-src-009",
+      "title": "PHLX Semiconductor Sector Index Methodology",
+      "publisher": "Nasdaq",
+      "published_at": "2026",
+      "accessed_at": "2026-08-01",
+      "url": "https://indexes.nasdaq.com/docs/methodology_SOX.pdf",
+      "source_type": "official_index_methodology",
+      "claims_supported": [
+        "SOX成分、重构与加权规则"
+      ],
+      "source_ids": [
+        "macro-src-009"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-024"
+    },
+    {
+      "source_id": "macro-src-010",
+      "title": "Foundations of Technical Analysis: Computational Algorithms, Statistical Inference, and Empirical Implementation",
+      "publisher": "National Bureau of Economic Research",
+      "published_at": "2000-03",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.nber.org/papers/w7613",
+      "source_type": "academic_working_paper",
+      "claims_supported": [
+        "技术图形的主观性与系统检验要求"
+      ],
+      "source_ids": [
+        "macro-src-010"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-025"
+    },
+    {
+      "source_id": "macro-src-011",
+      "title": "Microsoft Fiscal Year 2026 Fourth Quarter Earnings Conference Call",
+      "publisher": "Microsoft Investor Relations",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
+      "source_type": "company_primary_earnings_material",
+      "claims_supported": [
+        "Azure需求与资本开支"
+      ],
+      "source_ids": [
+        "macro-src-011"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-026"
+    },
+    {
+      "source_id": "macro-src-012",
+      "title": "Meta Reports Second Quarter 2026 Results",
+      "publisher": "Meta Platforms Investor Relations",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-01",
+      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx",
+      "source_type": "company_primary_earnings_release",
+      "claims_supported": [
+        "Meta资本开支和自由现金流"
+      ],
+      "source_ids": [
+        "macro-src-012"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-027"
+    },
+    {
+      "source_id": "macro-src-013",
+      "title": "Amazon.com Announces Second Quarter 2026 Results",
+      "publisher": "Amazon Investor Relations",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-01",
+      "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
+      "source_type": "company_primary_earnings_release",
+      "claims_supported": [
+        "AWS与AI芯片业务增长、AI资本开支和自由现金流"
+      ],
+      "source_ids": [
+        "macro-src-013"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-028"
+    },
+    {
+      "source_id": "macro-src-014",
+      "title": "2026 State of the Industry Report: Historic Growth Amid Intensifying Global Competition",
+      "publisher": "Semiconductor Industry Association",
+      "published_at": "2026-07-27",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.semiconductors.org/2026-state-of-the-industry-report-historic-growth-amid-intensifying-global-competition/",
+      "source_type": "industry_association_report",
+      "claims_supported": [
+        "WSTS半导体销售预测"
+      ],
+      "source_ids": [
+        "macro-src-014"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-029"
+    },
+    {
+      "source_id": "macro-src-015",
+      "title": "Broadcom Inc. Announces Second Quarter Fiscal Year 2026 Financial Results and Quarterly Dividend",
+      "publisher": "Broadcom / U.S. Securities and Exchange Commission",
+      "published_at": "2026-06-03",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000051/avgo-05032026x8kxex99.htm",
+      "source_type": "company_earnings_release_sec",
+      "claims_supported": [
+        "AI半导体收入增长"
+      ],
+      "source_ids": [
+        "macro-src-015"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-030"
+    },
+    {
+      "source_id": "macro-src-016",
+      "title": "Broadcom Inc. Quarterly Report on Form 10-Q for the Quarter Ended February 1, 2026",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "published_at": "2026-03-11",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000016/avgo-20260201.htm",
+      "source_type": "sec_filing",
+      "claims_supported": [
+        "行业周期、AI上行与客户融资风险"
+      ],
+      "source_ids": [
+        "macro-src-016"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-031"
+    },
+    {
+      "source_id": "macro-src-017",
+      "title": "Financial Stability Report, May 2026 — Overview",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2026-05-28",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.federalreserve.gov/publications/2026-may-financial-stability-report-overview.htm",
+      "source_type": "official_financial_stability_report",
+      "claims_supported": [
+        "估值压力、期限溢价和企业债务脆弱性"
+      ],
+      "source_ids": [
+        "macro-src-017"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-032"
+    },
+    {
+      "source_id": "macro-src-018",
+      "title": "Financial Stability Report, May 2026 — Near-Term Risks to the Financial System",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "published_at": "2026-05-28",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.federalreserve.gov/publications/2026-may-financial-stability-report-near-term-risks.htm",
+      "source_type": "official_financial_stability_report",
+      "claims_supported": [
+        "长期利率对资产价格与脆弱企业的风险"
+      ],
+      "source_ids": [
+        "macro-src-018"
+      ],
+      "research_topics": [
+        "macro-semiconductors-rates"
+      ],
+      "citation_id": "citation-033"
+    },
+    {
+      "source_id": "msft-source-01",
+      "title": "Microsoft Fiscal Year 2026 Fourth Quarter Earnings Conference Call",
+      "publisher": "Microsoft",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.microsoft.com/en-us/Investor/events/fy-2026/earnings-fy-2026-q4",
+      "source_type": "primary_company_earnings_call",
+      "claims_supported": [
+        "Azure增长与基础设施效率",
+        "Copilot指标",
+        "使用寿命和租赁分类变化",
+        "资本开支、毛利率和现金流"
+      ],
+      "source_ids": [
+        "msft-source-01"
+      ],
+      "research_topics": [
+        "microsoft"
+      ],
+      "citation_id": "citation-034"
+    },
+    {
+      "source_id": "msft-source-02",
+      "title": "Microsoft Cloud and AI Strength Fuels Fourth Quarter Results",
+      "publisher": "Microsoft",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+      "source_type": "primary_company_earnings_release",
+      "claims_supported": [
+        "Azure增长43%",
+        "M365 Copilot付费席位超过3000万",
+        "Q4经营结果"
+      ],
+      "source_ids": [
+        "msft-source-02"
+      ],
+      "research_topics": [
+        "microsoft"
+      ],
+      "citation_id": "citation-035"
+    },
+    {
+      "source_id": "msft-source-03",
+      "title": "Microsoft FY2026 Form 10-K, Note 13 — Leases",
+      "publisher": "Microsoft / U.S. Securities and Exchange Commission",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/R23.htm",
+      "source_type": "primary_regulatory_filing",
+      "claims_supported": [
+        "租赁资产负债和现金流",
+        "3291亿美元尚未开始的数据中心租赁承诺"
+      ],
+      "source_ids": [
+        "msft-source-03"
+      ],
+      "research_topics": [
+        "microsoft"
+      ],
+      "citation_id": "citation-036"
+    },
+    {
+      "source_id": "msft-source-04",
+      "title": "Private company ASC 842 adoption: Key considerations",
+      "publisher": "PwC US",
+      "published_at": null,
+      "accessed_at": "2026-08-01",
+      "url": "https://www.pwc.com/us/en/services/audit-assurance/private-company-services/library/asc-842-adoption-considerations.html",
+      "source_type": "professional_accounting_guidance",
+      "claims_supported": [
+        "融资与经营租赁的分类及资产负债确认"
+      ],
+      "source_ids": [
+        "msft-source-04"
+      ],
+      "research_topics": [
+        "microsoft"
+      ],
+      "citation_id": "citation-037"
+    },
+    {
+      "source_id": "msft-source-05",
+      "title": "Microsoft 365 Copilot Experiment: Cross-Government Findings Report",
+      "publisher": "UK Government Digital Service",
+      "published_at": "2025-06-02",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.gov.uk/government/publications/microsoft-365-copilot-experiment-cross-government-findings-report/microsoft-365-copilot-experiment-cross-government-findings-report-html",
+      "source_type": "government_evaluation",
+      "claims_supported": [
+        "Copilot采用、满意度、自报时间节省及局限"
+      ],
+      "source_ids": [
+        "msft-source-05"
+      ],
+      "research_topics": [
+        "microsoft"
+      ],
+      "citation_id": "citation-038"
+    },
+    {
+      "source_id": "msft-source-06",
+      "title": "Early Impacts of M365 Copilot",
+      "publisher": "arXiv; Microsoft and participating firms",
+      "published_at": "2025-04-15",
+      "accessed_at": "2026-08-01",
+      "url": "https://arxiv.org/abs/2504.11443",
+      "source_type": "company_coauthored_randomized_field_experiment",
+      "claims_supported": [
+        "企业随机试验的效率和持续使用比例"
+      ],
+      "source_ids": [
+        "msft-source-06"
+      ],
+      "research_topics": [
+        "microsoft"
+      ],
+      "citation_id": "citation-039"
+    },
+    {
+      "source_id": "msft-source-08",
+      "title": "AI investment boom puts Big Tech's free cash flow under pressure",
+      "publisher": "Reuters",
+      "published_at": "2026-07-22",
+      "accessed_at": "2026-08-01",
+      "url": "https://au.marketscreener.com/news/ai-investment-boom-puts-big-tech-s-free-cash-flow-under-pressure-ce7f51d8d18ff322",
+      "source_type": "independent_financial_analysis",
+      "claims_supported": [
+        "超大规模云厂商资本开支与自由现金流压力"
+      ],
+      "source_ids": [
+        "msft-source-08"
+      ],
+      "research_topics": [
+        "microsoft"
+      ],
+      "citation_id": "citation-040"
+    },
+    {
+      "source_id": "msft-source-09",
+      "title": "Microsoft capital spending jumps, cloud revenue fails to impress, shares drop after hours",
+      "publisher": "Reuters",
+      "published_at": "2026-01-28",
+      "accessed_at": "2026-08-01",
+      "url": "https://www.investing.com/news/stock-market-news/microsoft-edges-past-cloud-growth-expectations-4471218",
+      "source_type": "independent_market_report",
+      "claims_supported": [
+        "AI资本开支与股价负面反应的对照事件"
+      ],
+      "source_ids": [
+        "msft-source-09"
+      ],
+      "research_topics": [
+        "microsoft"
+      ],
+      "citation_id": "citation-041"
+    }
+  ]
+}
