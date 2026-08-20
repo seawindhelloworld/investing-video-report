@@ -78,6 +78,61 @@ class TranscriptPackageTests(unittest.TestCase):
         )
         return package
 
+    def make_current_package(self, root: Path, *, coverage_ratio: float = 0.98) -> Path:
+        package = root / "current-package"
+        package.mkdir()
+        contents = {
+            "transcript_corrected_jsonl": (
+                '{"segment_id":"seg-000001","start":0.0,"end":1.5,'
+                '"text":"第一句话","source":"asr_corrected"}\n'
+            ),
+            "transcript_corrected_markdown": "[00:00:00.000] 第一句话\n",
+            "transcript_corrections": json.dumps(
+                {
+                    "schema_version": 1,
+                    "video_id": "v2",
+                    "reviewed_at": "2026-08-20T00:00:00Z",
+                    "review_summary": "checked",
+                    "unresolved_terms": [],
+                    "corrections": [],
+                },
+                ensure_ascii=False,
+            ),
+        }
+        files = {}
+        for key in contents:
+            filename = FILE_DESTINATIONS[key]
+            path = package / filename
+            path.write_text(contents[key], encoding="utf-8")
+            files[key] = {"path": filename, "sha256": sha256_file(path)}
+        (package / "package.json").write_text(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "package_type": "video_transcript",
+                    "created_at": "2026-08-20T00:00:00Z",
+                    "video": {
+                        "video_id": "v2",
+                        "source_url": "https://example.com/v2",
+                        "title": "Current export",
+                        "creator": "Creator",
+                        "published_at": "2026-08-20",
+                        "duration_seconds": 1.5,
+                    },
+                    "quality": {
+                        "correction_count": 0,
+                        "unresolved_term_count": 0,
+                        "coverage_ratio": coverage_ratio,
+                        "maximum_gap_seconds": 0.1,
+                    },
+                    "files": files,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        return package
+
     def test_imports_valid_package_and_opens_analysis_gate(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -111,6 +166,27 @@ class TranscriptPackageTests(unittest.TestCase):
             root = Path(directory)
             with self.assertRaisesRegex(ValueError, "missing from the correction log"):
                 import_transcript_package(root, self.make_package(root, unlogged_change=True))
+
+    def test_imports_current_four_file_package(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            video_id = import_transcript_package(root, self.make_current_package(root))
+            manifest = ManifestStore(root).load(video_id)
+            self.assertTrue(manifest.is_complete(Stage.INGEST))
+            self.assertEqual(
+                manifest.metadata["transcript_package_contract"],
+                "current-four-file",
+            )
+            self.assertNotIn("transcript_jsonl", manifest.artifacts)
+
+    def test_rejects_current_package_with_failed_quality_summary(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with self.assertRaisesRegex(ValueError, "coverage ratio"):
+                import_transcript_package(
+                    root,
+                    self.make_current_package(root, coverage_ratio=0.90),
+                )
 
     def test_cli_exposes_only_report_workflow_entrypoint(self) -> None:
         command_names = parser()._subparsers._group_actions[0].choices

@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-20T20:11:43.370012+00:00",
+  "citations": [
+    {
+      "source_id": "marvell-8k-google-20260819",
+      "title": "Form 8-K: Current report",
+      "publisher": "Marvell Technology / U.S. SEC",
+      "author": "Marvell Technology, Inc.",
+      "published_at": "2026-08-19",
+      "accessed_at": "2026-08-21",
+      "url": "https://investor.marvell.com/sec-filings/all-sec-filings/content/0001193125-26-356217/d412696d8k.htm",
+      "evidence_summary": "确认Google合作范围、5897万股权证、206.58美元行权价、240档采购归属和2033年到期。",
+      "scope": "交易法律条款",
+      "source_ids": [
+        "marvell-8k-google-20260819"
+      ],
+      "research_topics": [
+        "marvell-google"
+      ],
+      "citation_id": "citation-001"
+    },
+    {
+      "source_id": "marvell-nvidia-20260331",
+      "title": "NVIDIA AI Ecosystem Expands as Marvell Joins Forces Through NVLink Fusion",
+      "publisher": "Marvell Technology",
+      "author": "Marvell Technology and NVIDIA",
+      "published_at": "2026-03-31",
+      "accessed_at": "2026-08-21",
+      "url": "https://investor.marvell.com/news-events/press-releases/detail/1019/nvidia-ai-ecosystem-expands-as-marvell-joins-forces-through-nvlink-fusion",
+      "evidence_summary": "确认Marvell定制XPU和互联产品进入NVIDIA NVLink Fusion生态，并披露NVIDIA投资20亿美元。",
+      "scope": "生态战略支持",
+      "source_ids": [
+        "marvell-nvidia-20260331"
+      ],
+      "research_topics": [
+        "marvell-google"
+      ],
+      "citation_id": "citation-002"
+    },
+    {
+      "source_id": "marvell-10q-20260502",
+      "title": "Marvell Technology Form 10-Q for the quarter ended May 2, 2026",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Marvell Technology, Inc.",
+      "published_at": "2026-05-28",
+      "accessed_at": "2026-08-21",
+      "url": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000019/mrvl-20260502.htm",
+      "evidence_summary": "披露与NVIDIA合作、制造与供应链地域集中、需求预测和执行风险。",
+      "scope": "经营与风险披露",
+      "source_ids": [
+        "marvell-10q-20260502"
+      ],
+      "research_topics": [
+        "marvell-google"
+      ],
+      "citation_id": "citation-003"
+    },
+    {
+      "source_id": "marvell-2026-proxy",
+      "title": "Marvell 2026 Proxy Statement and Annual Report",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Marvell Technology, Inc.",
+      "published_at": "2026-05-18",
+      "accessed_at": "2026-08-21",
+      "url": "https://www.sec.gov/Archives/edgar/data/1835632/000110465926060253/tm261486-1_def14a.htm",
+      "evidence_summary": "披露定制硅约占数据中心收入25%、XPU配套增长预期，以及客户自研和集中风险。",
+      "scope": "业务组合与管理层主张",
+      "source_ids": [
+        "marvell-2026-proxy"
+      ],
+      "research_topics": [
+        "marvell-google"
+      ],
+      "citation_id": "citation-004"
+    },
+    {
+      "source_id": "nasdaq-mrvl-20260820",
+      "title": "Marvell Technology Stock Quote and Market Activity",
+      "publisher": "Nasdaq",
+      "author": "Nasdaq",
+      "published_at": "2026-08-20",
+      "accessed_at": "2026-08-21",
+      "url": "https://www.nasdaq.com/market-activity/stocks/mrvl",
+      "evidence_summary": "用于观察公告后股价和估值已计价程度。",
+      "scope": "市场价格快照",
+      "source_ids": [
+        "nasdaq-mrvl-20260820"
+      ],
+      "research_topics": [
+        "marvell-google"
+      ],
+      "citation_id": "citation-005"
+    },
+    {
+      "source_id": "moderna-merck-phase3-20260819",
+      "title": "Merck and Moderna Announce Phase 3 INTerpath-001 Trial of Intismeran Autogene Plus KEYTRUDA Met Endpoints of RFS and DMFS",
+      "publisher": "Moderna and Merck",
+      "author": "Moderna, Inc. and Merck & Co., Inc.",
+      "published_at": "2026-08-19",
+      "accessed_at": "2026-08-21",
+      "url": "https://news.modernatx.com/merck-and-moderna-announce-phase-3-interpath-001-trial-of-intismeran-plus-keytruda-met-endpoints-of-rfs-and-dmfs-in-melanoma",
+      "evidence_summary": "报告三期达到RFS和DMFS终点，并称其为个体化新抗原疗法和mRNA肿瘤疗法首个阳性三期读出；完整数据待会议公布。",
+      "scope": "公司topline结果，非同行评议完整数据",
+      "source_ids": [
+        "moderna-merck-phase3-20260819"
+      ],
+      "research_topics": [
+        "moderna-ai-science"
+      ],
+      "citation_id": "citation-006"
+    },
+    {
+      "source_id": "clinicaltrials-interpath001",
+      "title": "A Clinical Study of Intismeran Autogene (V940) Plus Pembrolizumab in People With High-Risk Melanoma",
+      "publisher": "ClinicalTrials.gov / U.S. National Library of Medicine",
+      "author": "Merck Sharp & Dohme LLC",
+      "published_at": "2025-09-24",
+      "accessed_at": "2026-08-21",
+      "url": "https://clinicaltrials.gov/study/NCT05933577",
+      "evidence_summary": "确认随机双盲三期设计、比较组、患者范围和试验状态。",
+      "scope": "试验注册与设计",
+      "source_ids": [
+        "clinicaltrials-interpath001"
+      ],
+      "research_topics": [
+        "moderna-ai-science"
+      ],
+      "citation_id": "citation-007"
+    },
+    {
+      "source_id": "merck-intismeran-5y-20260601",
+      "title": "Moderna and Merck Present 5-Year Data for Intismeran Autogene in Combination With KEYTRUDA",
+      "publisher": "Merck",
+      "author": "Moderna and Merck",
+      "published_at": "2026-06-01",
+      "accessed_at": "2026-08-21",
+      "url": "https://www.merck.com/news/moderna-and-merck-present-5-year-data-for-intismeran-autogene-in-combination-with-keytruda-pembrolizumab-in-patients-with-high-risk-stage-iii-iv-melanoma-following-complete-resection-at-the-20/",
+      "evidence_summary": "前期随机二期五年随访显示RFS风险下降49%、DMFS风险下降59%，总体生存仅为探索性趋势。",
+      "scope": "前期临床支持与限制",
+      "source_ids": [
+        "merck-intismeran-5y-20260601"
+      ],
+      "research_topics": [
+        "moderna-ai-science"
+      ],
+      "citation_id": "citation-008"
+    },
+    {
+      "source_id": "nature-ai-drug-discovery-2026",
+      "title": "Artificial intelligence in drug discovery — what it is, where we stand and the path forward",
+      "publisher": "Nature Reviews Drug Discovery",
+      "author": "Mariko Hirano et al.",
+      "published_at": "2026-08-13",
+      "accessed_at": "2026-08-21",
+      "url": "https://www.nature.com/articles/s41573-026-01496-2",
+      "evidence_summary": "综述认为AI药物研发的临床相关影响证据仍有限，并分析转化和验证障碍。",
+      "scope": "行业层反方证据",
+      "source_ids": [
+        "nature-ai-drug-discovery-2026"
+      ],
+      "research_topics": [
+        "moderna-ai-science"
+      ],
+      "citation_id": "citation-009"
+    },
+    {
+      "source_id": "marketbeat-mrna-short-20260715",
+      "title": "Moderna Short Interest",
+      "publisher": "MarketBeat",
+      "author": "MarketBeat",
+      "published_at": "2026-07-24",
+      "accessed_at": "2026-08-21",
+      "url": "https://www.marketbeat.com/stocks/NASDAQ/MRNA/short-interest/",
+      "evidence_summary": "记录7月15日约5240万股卖空、约占流通股14%至15%。",
+      "scope": "聚合的交易所空头数据",
+      "source_ids": [
+        "marketbeat-mrna-short-20260715"
+      ],
+      "research_topics": [
+        "moderna-ai-science"
+      ],
+      "citation_id": "citation-010"
+    },
+    {
+      "source_id": "axios-moderna-20260819",
+      "title": "Moderna and Merck shares soar on mRNA cancer vaccine",
+      "publisher": "Axios",
+      "author": "Tina Reed",
+      "published_at": "2026-08-19",
+      "accessed_at": "2026-08-21",
+      "url": "https://www.axios.com/2026/08/19/moderna-merck-mrna-cancer-vaccine",
+      "evidence_summary": "记录超过1100例试验、首日股价上涨177%、完整结果尚待会议公布以及商业化仍需推进。",
+      "scope": "市场反应与临床披露边界",
+      "source_ids": [
+        "axios-moderna-20260819"
+      ],
+      "research_topics": [
+        "moderna-ai-science"
+      ],
+      "citation_id": "citation-011"
+    },
+    {
+      "source_id": "treasury-20260819-buybacks",
+      "title": "Treasury Announces Increased Sizes of Nominal Long-End Liquidity Support Buybacks Beginning September 9",
+      "publisher": "U.S. Department of the Treasury",
+      "author": "U.S. Department of the Treasury",
+      "published_at": "2026-08-19",
+      "accessed_at": "2026-08-21",
+      "url": "https://home.treasury.gov/news/press-releases/sb0607",
+      "evidence_summary": "确认长端单次回购上限由20亿美元至少增至40亿美元，9月9日至11月4日有效，目标是提供流动性支持。",
+      "scope": "政策原文",
+      "source_ids": [
+        "treasury-20260819-buybacks"
+      ],
+      "research_topics": [
+        "treasury-long-end"
+      ],
+      "citation_id": "citation-012"
+    },
+    {
+      "source_id": "treasury-20260805-qra",
+      "title": "Quarterly Refunding Statement of Deputy Assistant Secretary for Federal Finance Brian Smith",
+      "publisher": "U.S. Department of the Treasury",
+      "author": "Brian Smith",
+      "published_at": "2026-08-05",
+      "accessed_at": "2026-08-21",
+      "url": "https://home.treasury.gov/news/press-releases/sb0590",
+      "evidence_summary": "列示8月至10月季度融资与最高380亿美元流动性支持回购计划。",
+      "scope": "季度融资与回购基线",
+      "source_ids": [
+        "treasury-20260805-qra"
+      ],
+      "research_topics": [
+        "treasury-long-end"
+      ],
+      "citation_id": "citation-013"
+    },
+    {
+      "source_id": "ap-20260819-treasury-market",
+      "title": "US stocks halt their slide after the Treasury Department moves to ease pressure from the bond market",
+      "publisher": "Associated Press",
+      "author": "Associated Press",
+      "published_at": "2026-08-19",
+      "accessed_at": "2026-08-21",
+      "url": "https://apnews.com/article/9e355be634e4a21059fc1d1f20a1239e",
+      "evidence_summary": "记录公告后10年期收益率由4.71%降至约4.64%，并说明长端仍受通胀、赤字与投资者风险补偿影响。",
+      "scope": "即时市场反应",
+      "source_ids": [
+        "ap-20260819-treasury-market"
+      ],
+      "research_topics": [
+        "treasury-long-end"
+      ],
+      "citation_id": "citation-014"
+    },
+    {
+      "source_id": "kc-fed-policy-uncertainty",
+      "title": "The Term Structure of Monetary Policy Uncertainty",
+      "publisher": "Federal Reserve Bank of Kansas City",
+      "author": "Brent Bundick, Trenton Herriford and A. Lee Smith",
+      "published_at": "2022-02-25",
+      "accessed_at": "2026-08-21",
+      "url": "https://www.kansascityfed.org/research/research-working-papers/the-term-structure-of-monetary-policy-uncertainty/",
+      "evidence_summary": "研究FOMC沟通如何通过政策路径不确定性影响国债收益率和远期实际利率。",
+      "scope": "长期机制证据",
+      "source_ids": [
+        "kc-fed-policy-uncertainty"
+      ],
+      "research_topics": [
+        "treasury-long-end"
+      ],
+      "citation_id": "citation-015"
+    },
+    {
+      "source_id": "ny-fed-term-premium",
+      "title": "Disentangling Messages from the Treasury Market",
+      "publisher": "Federal Reserve Bank of New York",
+      "author": "Roberto Perli",
+      "published_at": "2023-11-16",
+      "accessed_at": "2026-08-21",
+      "url": "https://www.newyorkfed.org/newsevents/speeches/2023/per231116",
+      "evidence_summary": "阐明长期收益率由政策路径预期和期限溢价共同构成，并列出财政、通胀与投资者需求等期限溢价来源。",
+      "scope": "收益率分解与反方条件",
+      "source_ids": [
+        "ny-fed-term-premium"
+      ],
+      "research_topics": [
+        "treasury-long-end"
+      ],
+      "citation_id": "citation-016"
+    }
+  ]
+}

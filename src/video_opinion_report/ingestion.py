@@ -25,7 +25,12 @@ FILE_DESTINATIONS = {
     "transcript_validation": "validation.json",
 }
 
-REQUIRED_FILES = set(FILE_DESTINATIONS)
+CURRENT_REQUIRED_FILES = {
+    "transcript_corrected_jsonl",
+    "transcript_corrected_markdown",
+    "transcript_corrections",
+}
+LEGACY_REQUIRED_FILES = set(FILE_DESTINATIONS)
 
 
 def _load_object(path: Path) -> dict[str, Any]:
@@ -112,6 +117,72 @@ def _validate_correction_chain(
     return corrections, unresolved
 
 
+def _validate_exported_correction(
+    video_id: str,
+    corrected_path: Path,
+    corrections_path: Path,
+) -> tuple[dict[str, Any], list[object]]:
+    corrected = read_jsonl(corrected_path)
+    errors = validate_segments(corrected)
+    if errors:
+        raise ValueError(f"Corrected transcript is invalid: {errors[0]}")
+
+    corrections = _load_object(corrections_path)
+    if corrections.get("schema_version") != 1 or corrections.get("video_id") != video_id:
+        raise ValueError("Transcript correction log does not match the package video")
+    entries = corrections.get("corrections")
+    if not isinstance(entries, list):
+        raise ValueError("Transcript correction log needs a corrections list")
+
+    corrected_by_id = {segment.segment_id: segment for segment in corrected}
+    logged: set[str] = set()
+    for entry in entries:
+        if not isinstance(entry, dict):
+            raise ValueError("Invalid transcript correction entry")
+        segment_id = str(entry.get("segment_id") or "")
+        if not segment_id or segment_id in logged or segment_id not in corrected_by_id:
+            raise ValueError(f"Correction log has no unique matching segment: {segment_id}")
+        if entry.get("after") != corrected_by_id[segment_id].text:
+            raise ValueError(f"Correction log text mismatch: {segment_id}")
+        if not str(entry.get("before") or "").strip() or not str(entry.get("reason") or "").strip():
+            raise ValueError(f"Correction log entry is incomplete: {segment_id}")
+        logged.add(segment_id)
+
+    unresolved = corrections.get("unresolved_terms") or []
+    if not isinstance(unresolved, list):
+        raise ValueError("Transcript correction log unresolved_terms must be a list")
+    if any(
+        not isinstance(item, dict)
+        or str(item.get("segment_id") or "") not in corrected_by_id
+        or not str(item.get("term") or "").strip()
+        or not str(item.get("reason") or "").strip()
+        for item in unresolved
+    ):
+        raise ValueError("Invalid unresolved transcript term")
+    return corrections, unresolved
+
+
+def _validate_quality_summary(
+    payload: dict[str, Any],
+    corrections: dict[str, Any],
+    unresolved: list[object],
+) -> dict[str, Any]:
+    quality = payload.get("quality")
+    if not isinstance(quality, dict):
+        raise ValueError("Transcript package is missing quality validation summary")
+    coverage = quality.get("coverage_ratio")
+    maximum_gap = quality.get("maximum_gap_seconds")
+    if not isinstance(coverage, (int, float)) or coverage < 0.95 or coverage > 1:
+        raise ValueError("Transcript package quality validation did not pass: coverage ratio")
+    if not isinstance(maximum_gap, (int, float)) or maximum_gap < 0 or maximum_gap > 5:
+        raise ValueError("Transcript package quality validation did not pass: maximum gap")
+    if quality.get("correction_count") != len(corrections.get("corrections") or []):
+        raise ValueError("Transcript package correction count does not match correction log")
+    if quality.get("unresolved_term_count") != len(unresolved):
+        raise ValueError("Transcript package unresolved term count does not match correction log")
+    return quality
+
+
 def _copy_without_overwriting_different(source: Path, target: Path) -> None:
     if target.exists():
         if not target.is_file() or sha256_file(target) != sha256_file(source):
@@ -139,22 +210,42 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
         raise ValueError("Transcript package is missing source_url")
 
     files = payload.get("files")
-    if not isinstance(files, dict) or not REQUIRED_FILES <= set(files):
-        missing = sorted(REQUIRED_FILES - set(files) if isinstance(files, dict) else REQUIRED_FILES)
+    if not isinstance(files, dict) or not CURRENT_REQUIRED_FILES <= set(files):
+        missing = sorted(
+            CURRENT_REQUIRED_FILES - set(files)
+            if isinstance(files, dict)
+            else CURRENT_REQUIRED_FILES
+        )
         raise ValueError(f"Transcript package is missing files: {', '.join(missing)}")
+    package_files = (
+        LEGACY_REQUIRED_FILES
+        if LEGACY_REQUIRED_FILES <= set(files)
+        else CURRENT_REQUIRED_FILES
+    )
     resolved_files = {
-        key: _package_file(package_root, files[key], key) for key in FILE_DESTINATIONS
+        key: _package_file(package_root, files[key], key) for key in package_files
     }
 
-    corrections, unresolved = _validate_correction_chain(
-        video_id,
-        resolved_files["transcript_jsonl"],
-        resolved_files["transcript_corrected_jsonl"],
-        resolved_files["transcript_corrections"],
-    )
-    validation = _load_object(resolved_files["transcript_validation"])
-    if validation.get("valid") is not True:
-        raise ValueError("Transcript package quality validation did not pass")
+    if package_files == LEGACY_REQUIRED_FILES:
+        corrections, unresolved = _validate_correction_chain(
+            video_id,
+            resolved_files["transcript_jsonl"],
+            resolved_files["transcript_corrected_jsonl"],
+            resolved_files["transcript_corrections"],
+        )
+        validation = _load_object(resolved_files["transcript_validation"])
+        if validation.get("valid") is not True:
+            raise ValueError("Transcript package quality validation did not pass")
+        quality = payload.get("quality") if isinstance(payload.get("quality"), dict) else {}
+        contract = "legacy-eight-file"
+    else:
+        corrections, unresolved = _validate_exported_correction(
+            video_id,
+            resolved_files["transcript_corrected_jsonl"],
+            resolved_files["transcript_corrections"],
+        )
+        quality = _validate_quality_summary(payload, corrections, unresolved)
+        contract = "current-four-file"
 
     store = ManifestStore(project_root)
     if ProcessedReportStore(project_root).contains(video_id):
@@ -176,7 +267,8 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
     try:
         destination = store.run_dir(video_id) / "transcript"
         destination.mkdir(parents=True, exist_ok=True)
-        for key, filename in FILE_DESTINATIONS.items():
+        for key in package_files:
+            filename = FILE_DESTINATIONS[key]
             target = destination / filename
             _copy_without_overwriting_different(resolved_files[key], target)
             manifest.artifacts[key] = store.relative(target)
@@ -193,6 +285,10 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
         manifest.metadata["transcript_unresolved_term_count"] = len(
             unresolved
         )
+        manifest.metadata["transcript_package_contract"] = contract
+        manifest.metadata["transcript_quality"] = quality
+        if isinstance(payload.get("provenance"), dict):
+            manifest.metadata["transcript_provenance"] = payload["provenance"]
         manifest.complete(Stage.INGEST)
         store.save(manifest)
     except Exception as exc:
