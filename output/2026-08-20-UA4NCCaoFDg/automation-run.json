@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "report_type": "video",
+  "video_id": "UA4NCCaoFDg",
+  "source_package": "work/_automation_uploads/783363fd634f4350a22cbd53d130c7dc/files/20260820_UA4NCCaoFDg/package.json",
+  "engine": "codex",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "sandbox": "workspace-write",
+  "engine_invoked": false,
+  "engine_command": [],
+  "engine_final_message": null,
+  "started_at": "2026-08-23T15:36:33.864084+00:00",
+  "finished_at": "2026-08-23T15:36:33.865862+00:00",
+  "stage_statuses": {
+    "ingest": "completed",
+    "analyze": "completed",
+    "research": "completed",
+    "judgment": "completed",
+    "draft": "completed",
+    "fidelity_review": "completed",
+    "render": "completed",
+    "html_validate": "completed",
+    "complete": "completed"
+  }
+}

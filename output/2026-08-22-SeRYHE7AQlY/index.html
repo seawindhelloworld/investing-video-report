@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' data:; script-src 'none'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>达利欧：美债要爆！贬值交易黄金起飞！每周资金流动报告！湖人比美股还贵？</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #152033;
+      --muted: #667085;
+      --line: #e3e8ef;
+      --paper: #ffffff;
+      --canvas: #f2f5f9;
+      --note: #f7f9fc;
+      --accent: #3157d5;
+      --accent-soft: #eef3ff;
+      --warm: #a45f0a;
+      --warm-soft: #fff7e8;
+      --positive: #19734b;
+      --positive-soft: #eaf8f1;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--canvas);
+      font: 17px/1.68 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 28px auto 56px;
+      padding: clamp(28px, 5vw, 68px);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 20px 54px rgba(16, 24, 40, .08);
+    }
+    header { margin-bottom: 2rem; }
+    h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+    h1 { max-width: 18em; margin: .15em 0 .35em; font-size: clamp(2rem, 5vw, 3.55rem); }
+    h2 { margin-top: 2.35em; padding-bottom: .4em; border-bottom: 1px solid var(--line); font-size: clamp(1.55rem, 3vw, 2.15rem); }
+    h3 { margin-top: 1.65em; font-size: 1.28rem; }
+    h4 { margin-bottom: .4em; }
+    p { max-width: 74ch; }
+    li + li { margin-top: .35rem; }
+    a { color: var(--accent); text-underline-offset: .18em; }
+    a:hover { text-decoration-thickness: 2px; }
+    .meta { color: var(--muted); }
+    header > p:last-child { max-width: 72ch; color: #475467; font-size: 1.08rem; }
+    blockquote {
+      margin: 1.5em 0;
+      padding: 1em 1.25em;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      color: #263a72;
+    }
+    table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; }
+    th, td { min-width: 8rem; padding: .75rem .7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: #344054; background: #f8fafc; font-size: .86rem; }
+    code { font-size: .88em; }
+    img { display: block; max-width: 100%; height: auto; border-radius: 14px; }
+    img[src$=".svg"] { width: 100%; margin: 1rem 0 .35rem; border: 1px solid var(--line); background: #fff; box-shadow: 0 12px 30px rgba(16, 24, 40, .06); }
+    .visual-caption { margin: .35rem 0 1.4rem; color: var(--muted); font-size: .86rem; }
+    .layer-intro { margin: 1rem 0 1.6rem; padding: 1rem 1.15rem; border-radius: 12px; color: #344054; background: #f4f7fb; }
+    .layer-intro.creator { border-left: 5px solid var(--accent); }
+    .layer-intro.external { border-left: 5px solid #d8a33a; }
+    .summary-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: .65rem; margin: 1rem 0 1.5rem; }
+    .summary-dashboard article { min-height: 112px; padding: .85rem .9rem; border: 1px solid var(--line); border-top: 4px solid #6b83df; border-radius: 13px; background: #fbfcfe; }
+    .summary-dashboard span { color: var(--muted); font-size: .76rem; font-weight: 750; }
+    .summary-dashboard strong { display: block; margin-top: .28rem; color: #1f3a8a; font-size: .98rem; }
+    .summary-dashboard p { margin: .28rem 0 0; color: #475467; font-size: .8rem; line-height: 1.45; }
+    .signal-grid, .data-grid, .assessment-grid, .judgment-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .75rem; margin: 1rem 0 1.5rem; }
+    .signal-card, .data-card, .assessment-grid article, .judgment-overview article { padding: 1rem; border: 1px solid var(--line); border-radius: 13px; background: #fbfcfe; }
+    .signal-card h4, .assessment-grid h3, .judgment-overview h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    .signal-card p, .assessment-grid p, .judgment-overview p { margin: .32rem 0; font-size: .88rem; line-height: 1.55; }
+    .signal-card.positive { border-top: 4px solid #55a47f; }
+    .signal-card.caution { border-top: 4px solid #d8a33a; }
+    .signal-card.question { border-top: 4px solid #8291ad; }
+    .data-card { border-top: 3px solid #9db0ef; border-radius: 4px; background: #f8faff; }
+    .data-card strong { display: block; color: #1f3a8a; font-size: 1.18rem; font-variant-numeric: tabular-nums; }
+    .data-card span { display: block; margin-top: .2rem; color: var(--muted); font-size: .82rem; }
+    .quick-news-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0 1.4rem; }
+    .quick-news-grid article { padding: .95rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfd; }
+    .quick-news-grid h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    .quick-news-grid p { margin: .3rem 0; font-size: .88rem; }
+    .speaker-opinion-marker { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .65rem; margin: 1.15rem 0 0; padding: .8rem 1rem .72rem; border: 1px solid #e7b85e; border-bottom: 0; border-radius: 14px 14px 0 0; background: #fff4d8; color: #6f3b00; box-shadow: 0 9px 24px rgba(146, 85, 10, .08); }
+    .speaker-opinion-marker::before { content: "◆"; color: #c66a08; font-size: .8rem; }
+    .speaker-opinion-kicker { padding: .18rem .5rem; border-radius: 999px; background: #b45309; color: #fff; font-size: .72rem; font-weight: 800; }
+    .speaker-opinion-marker strong { color: #7a3e00; font-size: 1.08rem; }
+    .speaker-opinion-topic { color: #8a5a20; font-size: .82rem; }
+    .speaker-opinion-marker + blockquote { margin-top: 0; padding: 1rem 1.2rem 1.08rem; border: 1px solid #e7b85e; border-left: 5px solid #d97706; border-radius: 0 0 14px 14px; color: #3f2a12; background: linear-gradient(145deg, #fffdf8, #fff8e8); box-shadow: 0 12px 28px rgba(146, 85, 10, .08); }
+    .editorial-note { margin: .75rem 0 1.2rem; padding: .8rem 1rem; border: 1px dashed #98a2b3; border-left: 4px solid #667085; border-radius: 10px; background: #f8fafc; color: #475467; font-size: .86rem; }
+    .scope-label { color: #7a4b08; font-size: .78rem !important; }
+    .source-row, .annotation-target { color: var(--muted); font-size: .8rem !important; }
+    .status-row, .judgment-meta { display: flex; flex-wrap: wrap; gap: .35rem; margin: .6rem 0; }
+    .status-pill, .judgment-meta span { display: inline-flex; padding: .2rem .55rem; border-radius: 999px; background: #e9efff; color: #3157d5; font-size: .76rem; font-weight: 750; }
+    .status-pill.warn, .judgment-meta span.caution { color: #b54708; background: #fff3e8; }
+    .status-pill.neutral { color: #475467; background: #f2f4f7; }
+    .agent-disclaimer { margin: 1rem 0 1.3rem; padding: 1rem 1.15rem; border: 1px solid #b7c6f8; border-left: 5px solid var(--accent); border-radius: 12px; background: #f5f7ff; color: #263a72; }
+    .judgment-card { margin: 1rem 0 1.35rem; padding: 1rem 1.1rem; border: 1px solid #cdd6f7; border-radius: 15px; background: linear-gradient(145deg, #fff, #f7f9ff); }
+    .judgment-card h3 { margin: 0 0 .55rem; font-size: 1.08rem; }
+    .judgment-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: .65rem 0; }
+    .judgment-facts p { margin: 0; padding: .72rem .78rem; border: 1px solid #e2e7f2; border-radius: 10px; background: #fff; font-size: .84rem; line-height: 1.55; }
+    .judgment-rationale { margin: .7rem 0; padding: .72rem .8rem; border-left: 3px solid #8296df; background: #f7f9ff; color: #344054; font-size: .84rem; line-height: 1.58; }
+    .judgment-checklist { display: grid; grid-template-columns: 68px minmax(0, 1fr) 68px minmax(0, 1fr); gap: .45rem .55rem; margin: .7rem 0 0; font-size: .8rem; }
+    .judgment-checklist dt { margin: 0; padding: .5rem .35rem; border-radius: 8px; background: #e9efff; color: #2344a1; font-weight: 800; text-align: center; }
+    .judgment-checklist dd { margin: 0; padding: .48rem .15rem; color: #475467; line-height: 1.45; }
+    .next-verification { margin: .72rem 0 0; padding-top: .65rem; border-top: 1px dashed #cdd5e7; color: #344054; font-size: .82rem; }
+    .decision-chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; margin: .85rem 0 1.3rem; }
+    .decision-chain div { position: relative; padding: .75rem; border: 1px solid #dfe5f4; border-radius: 10px; background: #fff; font-size: .82rem; }
+    .decision-chain strong { display: block; margin-bottom: .25rem; color: #344054; }
+    .decision-chain div:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -.48rem; z-index: 2; color: #667085; font-weight: 800; }
+    details.source-group { margin: .75rem 0; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 11px; background: #fcfcfd; }
+    details.source-group summary { cursor: pointer; color: #344054; font-weight: 700; }
+    details.source-group[open] summary { margin-bottom: .65rem; }
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      main { width: 100%; margin: 0; padding: 22px 18px 48px; border: 0; border-radius: 0; box-shadow: none; }
+      .quick-news-grid, .judgment-facts, .decision-chain { grid-template-columns: 1fr; }
+      .judgment-checklist { grid-template-columns: 62px minmax(0, 1fr); }
+      .decision-chain div:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.8rem; }
+      p:has(> img[src$=".svg"]) { max-width: 100%; overflow-x: auto; padding-bottom: .35rem; }
+      p > img[src$=".svg"] { width: 760px; max-width: none; }
+    }
+    @page { size: A4; margin: 14mm 13mm 16mm; }
+    @media print {
+      html, body { background: #fff; }
+      body { font-size: 10.5pt; line-height: 1.55; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main { width: auto; max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+      h2, h3 { break-after: avoid-page; page-break-after: avoid; }
+      p, li { orphans: 3; widows: 3; }
+      img[src$=".svg"] { border: .3pt solid #d0d5dd; box-shadow: none; }
+      .judgment-card, .speaker-opinion-marker, .speaker-opinion-marker + blockquote { break-inside: avoid-page; page-break-inside: avoid; }
+    }
+  
+    img { display: block; max-width: 100%; height: auto; border-radius: 14px; }
+    img[src$=".svg"] { width: 100%; margin: 1rem 0 .35rem; border: 1px solid var(--line); background: #fff; box-shadow: 0 12px 30px rgba(16, 24, 40, .06); }
+    .visual-caption { margin: .35rem 0 1.4rem; color: var(--muted); font-size: .86rem; }
+    .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: .75rem; margin: 1.4rem 0 1.8rem; }
+    .metric-card { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(145deg, #fff, #f8faff); }
+    .metric-card strong { display: block; color: #16213e; font-size: 1.55rem; line-height: 1.15; font-variant-numeric: tabular-nums; }
+    .metric-card span { display: block; margin-top: .3rem; color: var(--muted); font-size: .82rem; }
+    .summary-dashboard { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .65rem; margin: 1rem 0 1.5rem; }
+    .summary-dashboard article { min-height: 120px; padding: .85rem .9rem; border: 1px solid var(--line); border-top: 4px solid #6b83df; border-radius: 13px; background: #fbfcfe; }
+    .summary-dashboard span { color: var(--muted); font-size: .76rem; font-weight: 750; text-transform: uppercase; }
+    .summary-dashboard strong { display: block; margin-top: .28rem; color: #1f3a8a; font-size: .98rem; }
+    .summary-dashboard p { margin: .28rem 0 0; color: #475467; font-size: .8rem; line-height: 1.45; }
+    .logic-flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .55rem; margin: 1.1rem 0 1.4rem; }
+    .logic-step { position: relative; min-height: 92px; padding: .8rem .65rem; border: 1px solid #cdd6f7; border-radius: 12px; background: #f7f9ff; text-align: center; font-size: .84rem; line-height: 1.4; }
+    .logic-step strong { display: block; margin-bottom: .25rem; color: #2344a1; font-size: .92rem; }
+    .logic-step:not(:last-child)::after { content: "→"; position: absolute; top: 31px; right: -.62rem; z-index: 2; color: #667085; font-weight: 800; }
+    .reading-paths { position: sticky; top: .55rem; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; margin: 0 0 1.5rem; padding: .65rem .75rem; border: 1px solid #d6deee; border-radius: 12px; background: rgba(255, 255, 255, .96); box-shadow: 0 8px 24px rgba(16, 24, 40, .08); backdrop-filter: blur(10px); }
+    .reading-paths strong { margin-right: .15rem; color: #344054; font-size: .8rem; }
+    .reading-paths a { padding: .32rem .58rem; border-radius: 999px; background: #eef3ff; color: #2344a1; font-size: .78rem; font-weight: 750; text-decoration: none; }
+    .reading-paths a:hover { background: #dfe8ff; }
+    .reading-paths span { margin-left: auto; color: var(--muted); font-size: .75rem; }
+    h2 { scroll-margin-top: 5.2rem; }
+    .topic-brief, .evidence-delta, .decision-brief { margin: .85rem 0 1rem; padding: 1rem 1.05rem; border: 1px solid #dce3ef; border-radius: 14px; background: #fbfcfe; }
+    .topic-brief { border-left: 5px solid #6b83df; }
+    .evidence-delta { border-left: 5px solid #d8a33a; background: #fffdf8; }
+    .decision-brief { border-left: 5px solid #55a47f; background: #f8fcfa; }
+    .topic-brief > :first-child, .evidence-delta > :first-child, .decision-brief > :first-child { margin-top: 0; }
+    .topic-brief > :last-child, .evidence-delta > :last-child, .decision-brief > :last-child { margin-bottom: 0; }
+    .topic-brief p, .evidence-delta p, .decision-brief p { margin: .38rem 0; }
+    .topic-brief ul, .evidence-delta ul, .decision-brief ul { margin: .55rem 0 0; padding-left: 1.15rem; }
+    details.report-detail { margin: .65rem 0 1.3rem; padding: .75rem .9rem; border: 1px solid #e0e5ed; border-radius: 11px; background: #fcfcfd; }
+    details.report-detail summary { cursor: pointer; color: #475467; font-size: .84rem; font-weight: 750; }
+    details.report-detail[open] summary { margin-bottom: .8rem; color: #344054; }
+    details.report-detail > :last-child { margin-bottom: 0; }
+    .reading-note { margin: 1rem 0 1.4rem; padding: 1rem 1.15rem; border-left: 4px solid #d7a12b; border-radius: 10px; background: #fffaf0; }
+    .chapter-lead { margin: 1.1rem 0 1.45rem; padding: 1rem 1.2rem; border-left: 4px solid var(--accent); background: var(--accent-soft); font-size: 1.02rem; }
+    .chapter-lead strong { color: #2344a1; }
+    .video-data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: .7rem; margin: 1rem 0 1.45rem; }
+    .data-card { padding: .9rem 1rem; border-top: 3px solid #9db0ef; background: #f8faff; }
+    .data-card strong { display: block; color: #1f3a8a; font-size: 1.22rem; font-variant-numeric: tabular-nums; }
+    .data-card span { display: block; margin-top: .2rem; color: var(--muted); font-size: .82rem; }
+    .signal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0 1.5rem; }
+    .signal-card { padding: 1rem; border: 1px solid var(--line); border-radius: 13px; background: #fbfcfe; }
+    .signal-card h4 { margin: 0 0 .35rem; font-size: 1rem; }
+    .signal-card p { margin: .25rem 0; font-size: .9rem; }
+    .signal-card.positive { border-top: 4px solid #55a47f; }
+    .signal-card.caution { border-top: 4px solid #d8a33a; }
+    .signal-card.question { border-top: 4px solid #8291ad; }
+    .quote-pull { margin: 1.3rem 0 1.6rem; padding: 1.2rem 1.35rem; border-radius: 14px; background: #172447; color: #fff; font-size: 1.1rem; }
+    .quote-pull p { margin: 0; max-width: none; }
+    .quote-pull a { color: #cfdbff; }
+    .number-ribbon { display: flex; flex-wrap: wrap; gap: .55rem; margin: .9rem 0 1.35rem; }
+    .number-ribbon span { padding: .42rem .65rem; border-radius: 999px; background: #eef2f7; color: #344054; font-size: .82rem; font-variant-numeric: tabular-nums; }
+    .quick-news-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0 1.4rem; }
+    .quick-news-grid article { padding: .95rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfd; }
+    .quick-news-grid h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    .quick-news-grid p { margin: .3rem 0; font-size: .88rem; }
+    .quick-news-grid article:first-child { grid-column: 1 / -1; }
+    .coverage-note { margin: 1rem 0; padding: .85rem 1rem; border: 1px dashed #98a2b3; border-radius: 11px; color: #475467; background: #fcfcfd; font-size: .88rem; }
+    details.source-group { margin: .75rem 0; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 11px; background: #fcfcfd; }
+    details.source-group summary { cursor: pointer; color: #344054; font-weight: 700; }
+    details.source-group[open] summary { margin-bottom: .65rem; }
+    .company-takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; margin: 1rem 0 1.4rem; }
+    .company-takeaways article { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: #fbfcfe; font-size: .9rem; }
+    .company-takeaways h3 { margin: 0 0 .45rem; }
+    .company-takeaways p { margin: .35rem 0; }
+    .assessment-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin: 1rem 0 1.4rem; }
+    .assessment-grid .assessment { margin: 0; }
+    .assessment-grid .assessment p { margin: .45rem 0; }
+    .scope-label { color: #7a4b08; font-size: .78rem; line-height: 1.45; }
+    .source-row { color: var(--muted); font-size: .8rem; }
+    .assessment-depth { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin: 1rem 0 1.6rem; }
+    .assessment-depth article { padding: 1rem 1.05rem; border: 1px solid var(--line); border-radius: 14px; background: #fcfcfd; }
+    .assessment-depth h3 { margin: 0 0 .55rem; font-size: 1.02rem; }
+    .assessment-depth p { margin: .5rem 0; font-size: .86rem; line-height: 1.62; }
+    .status-row { display: flex; flex-wrap: wrap; gap: .35rem; margin: .65rem 0; }
+    .status-pill { display: inline-flex; padding: .2rem .55rem; border-radius: 999px; background: #eef2ff; color: #3157d5; font-size: .76rem; font-weight: 750; }
+    .status-pill.warn { background: #fff3e8; color: #b54708; }
+    .status-pill.neutral { background: #f2f4f7; color: #475467; }
+    .audit-links { padding: 1rem 1.15rem; border: 1px dashed #98a2b3; border-radius: 12px; background: #fcfcfd; }
+    .audit-links ul { margin-bottom: 0; }
+    .assessment h3 { margin-top: 0; color: var(--ink); }
+    .assessment ul { margin-bottom: .4rem; }
+    .layer-intro { margin: 1rem 0 1.6rem; padding: 1rem 1.15rem; border-radius: 12px; background: #f4f7fb; color: #344054; }
+    .layer-intro.creator { border-left: 5px solid #3157d5; }
+    .layer-intro.external { border-left: 5px solid #d8a33a; }
+    .speaker-opinion-marker { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .65rem; margin: 1.15rem 0 0; padding: .8rem 1rem .72rem; border: 1px solid #e7b85e; border-bottom: 0; border-radius: 14px 14px 0 0; background: #fff4d8; color: #6f3b00; box-shadow: 0 9px 24px rgba(146, 85, 10, .08); }
+    .speaker-opinion-marker::before { content: "◆"; color: #c66a08; font-size: .8rem; }
+    .speaker-opinion-kicker { padding: .18rem .5rem; border-radius: 999px; background: #b45309; color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: .02em; }
+    .speaker-opinion-marker strong { color: #7a3e00; font-size: 1.08rem; }
+    .speaker-opinion-topic { color: #8a5a20; font-size: .82rem; }
+    .speaker-opinion-marker + blockquote { margin-top: 0; padding: 1rem 1.2rem 1.08rem; border: 1px solid #e7b85e; border-left: 5px solid #d97706; border-radius: 0 0 14px 14px; background: linear-gradient(145deg, #fffdf8, #fff8e8); color: #3f2a12; box-shadow: 0 12px 28px rgba(146, 85, 10, .08); }
+    .speaker-opinion-marker + blockquote p { max-width: none; }
+    .speaker-opinion-marker + blockquote p:first-child { margin-top: 0; }
+    .speaker-opinion-marker + blockquote p:last-child { margin-bottom: 0; }
+    .editorial-note { margin: .75rem 0 1.2rem; padding: .8rem 1rem; border: 1px dashed #98a2b3; border-left: 4px solid #667085; border-radius: 10px; background: #f8fafc; color: #475467; font-size: .86rem; }
+    .editorial-note strong { color: #344054; }
+    .editorial-note.compact { margin: .5rem 0; padding: .65rem .75rem; font-size: .8rem; }
+    .annotation-target { margin: -.15rem 0 .85rem; color: #475467; font-size: .88rem; }
+    .annotation-target a { font-weight: 700; }
+    .status { display: inline-flex; padding: .2rem .55rem; border-radius: 999px; background: #e9efff; color: #2344a1; font-size: .8rem; font-weight: 700; }
+    .agent-disclaimer { margin: 1rem 0 1.3rem; padding: 1rem 1.15rem; border: 1px solid #b7c6f8; border-left: 5px solid #3157d5; border-radius: 12px; background: #f5f7ff; color: #263a72; }
+    .judgment-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: .7rem; margin: 1rem 0 1.5rem; }
+    .judgment-overview article { padding: .95rem; border: 1px solid var(--line); border-radius: 14px; background: #fbfcfe; }
+    .judgment-overview h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    .judgment-overview p { margin: .3rem 0; font-size: .86rem; }
+    .judgment-overview .verdict { color: #1f3a8a; font-weight: 750; }
+    .judgment-card { margin: 1rem 0 1.35rem; padding: 1.15rem 1.25rem; border: 1px solid #cdd6f7; border-radius: 15px; background: linear-gradient(145deg, #fff, #f7f9ff); }
+    .judgment-card h3 { margin: 0 0 .55rem; }
+    .judgment-card.compact { padding: 1rem 1.1rem; }
+    .judgment-card.compact h3 { font-size: 1.08rem; }
+    .judgment-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: .65rem 0; }
+    .judgment-facts p { margin: 0; padding: .72rem .78rem; border-radius: 10px; background: #fff; border: 1px solid #e2e7f2; font-size: .84rem; line-height: 1.55; }
+    .judgment-rationale { margin: .7rem 0; padding: .72rem .8rem; border-left: 3px solid #8296df; background: #f7f9ff; color: #344054; font-size: .84rem; line-height: 1.58; }
+    .next-verification { margin: .72rem 0 0; padding-top: .65rem; border-top: 1px dashed #cdd5e7; color: #344054; font-size: .82rem; }
+    .judgment-checklist { display: grid; grid-template-columns: 68px minmax(0, 1fr) 68px minmax(0, 1fr); gap: .45rem .55rem; margin: .7rem 0 0; font-size: .8rem; }
+    .judgment-checklist dt { margin: 0; padding: .5rem .35rem; border-radius: 8px; background: #e9efff; color: #2344a1; font-weight: 800; text-align: center; }
+    .judgment-checklist dd { margin: 0; padding: .48rem .15rem; color: #475467; line-height: 1.45; }
+    .judgment-meta { display: flex; flex-wrap: wrap; gap: .4rem; margin: .55rem 0 .8rem; }
+    .judgment-meta span { padding: .22rem .56rem; border-radius: 999px; background: #e9efff; color: #2344a1; font-size: .76rem; font-weight: 700; }
+    .judgment-meta span.caution { background: #fff3e8; color: #b54708; }
+    .decision-chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; margin: .85rem 0; }
+    .decision-chain div { position: relative; padding: .75rem; border-radius: 10px; background: #fff; border: 1px solid #dfe5f4; font-size: .82rem; }
+    .decision-chain strong { display: block; margin-bottom: .25rem; color: #344054; }
+    .decision-chain div:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -.48rem; z-index: 2; color: #667085; font-weight: 800; }
+    nav.toc { margin: 2rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfe; }
+    @media screen and (min-width: 900px) {
+      main { width: min(1080px, calc(100% - 48px)); padding: 56px 64px; }
+    }
+    @media (max-width: 760px) {
+      .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .logic-flow { grid-template-columns: 1fr; }
+      .logic-step { min-height: auto; text-align: left; }
+      .logic-step:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.95rem; }
+      .summary-dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .company-takeaways, .assessment-grid, .assessment-depth, .signal-grid, .quick-news-grid, .judgment-overview, .decision-chain, .judgment-facts { grid-template-columns: 1fr; }
+      .judgment-checklist { grid-template-columns: 62px minmax(0, 1fr); }
+      .speaker-opinion-marker { align-items: flex-start; }
+      .reading-paths { top: 0; margin-right: -8px; margin-left: -8px; border-radius: 0 0 12px 12px; overflow-x: auto; flex-wrap: nowrap; }
+      .reading-paths strong, .reading-paths a { flex: 0 0 auto; }
+      .reading-paths span { display: none; }
+      .decision-chain div:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.8rem; }
+      .quick-news-grid article:first-child { grid-column: auto; }
+      p:has(> img[src$=".svg"]) { max-width: 100%; overflow-x: auto; padding-bottom: .35rem; }
+      p > img[src$=".svg"] { width: 700px; max-width: none; }
+    }
+    @page { size: A4; margin: 14mm 13mm 16mm; }
+    @media print {
+      html, body { background: #fff; }
+      body {
+        color: #172033;
+        font-size: 10.5pt;
+        line-height: 1.55;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      main {
+        width: auto !important;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      header { margin-bottom: 8mm; }
+      h1 { margin: .2em 0 .45em; font-size: 25pt; }
+      h2 { margin-top: 10mm; font-size: 17pt; break-after: avoid-page; page-break-after: avoid; }
+      h3 { font-size: 13pt; break-after: avoid-page; page-break-after: avoid; }
+      p, li { orphans: 3; widows: 3; }
+      a { color: inherit; text-decoration-color: #98a2b3; }
+      img { max-height: 240mm; object-fit: contain; }
+      img[src$=".svg"] { border: .3pt solid #d0d5dd; box-shadow: none; }
+      table { display: table; overflow: visible; font-size: 9pt; }
+      thead { display: table-header-group; }
+      tr, img, blockquote, nav.toc, .metric-grid, .logic-flow, .logic-step,
+      .reading-note, .chapter-lead, .data-card, .signal-card, .quote-pull,
+      .quick-news-grid article, .company-takeaways article, .assessment, .audit-links,
+      .summary-dashboard article, .judgment-overview article, .judgment-card, .decision-chain,
+      .speaker-opinion-marker, .speaker-opinion-marker + blockquote {
+        break-inside: avoid-page;
+        page-break-inside: avoid;
+      }
+      .reading-paths { display: none; }
+      details.report-detail > :not(summary) { display: block !important; }
+      details.report-detail summary { display: none; }
+      .speaker-opinion-marker { break-after: avoid-page; page-break-after: avoid; }
+      .assessment-grid { display: block; }
+      .assessment-grid .assessment { margin: 0 0 5mm; }
+      .visual-caption { margin-bottom: 5mm; }
+    }
+    
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="meta">美投侃新闻 · 2026-08-22 · 报告日期 2026-08-24</p>
+      <h1>达利欧：美债要爆！贬值交易黄金起飞！每周资金流动报告！湖人比美股还贵？</h1>
+      
+    </header>
+    <nav class="reading-paths video" aria-label="阅读路径"><strong>阅读路径</strong><a href="#creator-content">视频内容</a><a href="#external-evidence">外部证据</a><a href="#agent-judgment">直接看 Agent 判断</a><span>详细依据可在各主题内展开</span></nav>
+<h2 id="creator-content">第一部分｜视频 / 作者内容</h2>
+<div class="layer-intro creator">
+<p><strong>报告说明（非原内容）：</strong>本部分直接整理字幕中的数据、推理、判断与限定。达利欧的受访观点与 Jason 的个人判断按实际说话人区分；未经外部核验的数字仍属于视频内容。持仓与行动仅作记录，不构成本报告的投资建议。时间用于回溯字幕上下文。</p>
+</div>
+<p>开场市场扫描把焦点放在长端美债收益率、财政部回购、美元走弱与贵金属上涨的同向变化：风险资产在高利率、能源价格与 AI 拥挤交易降温之间分化，后续五个主题都围绕“更贵的长期资本如何被吸收”展开。</p>
+<h3 id="_2">一页看懂</h3>
+<section class="summary-dashboard">
+<article><span>核心命题</span><strong>长期资本正在变贵</strong><p>财政融资、AI数据中心与稀缺私人资产都在竞争久期资金。</p></article>
+<article><span>债务</span><strong>趋势比时点可靠</strong><p>风险向坏，但高收益率也会吸引新增需求并延后压力。</p></article>
+<article><span>黄金</span><strong>短空与长多并存</strong><p>实际利率压制短期，财政与信用问题支撑长期配置。</p></article>
+<article><span>AI</span><strong>收入改善仍待回报</strong><p>需求增长削弱极端空头，利润质量才是下一道门。</p></article>
+<article><span>私人资产与单周风险</span><strong>先看结构，再看价格</strong><p>球队税盾与事件日历都需要条件，不能直接推出收益。</p></article>
+</section>
+<h3 id="us-fiscal">美国财政、国债供需与债务周期</h3>
+<section class="topic-brief" data-claim-id="claim-us-fiscal">
+<p><strong>结论：</strong>达利欧把美国置于大债务周期后段；Jason 接受风险方向，却认为更高收益率会吸引养老金、保险等资金，从而延后而非消除危机。</p>
+<ul>
+<li><strong>关键依据：</strong>供给增加、边际需求转弱、长端利率上升、货币走弱与官方买债形成组合。</li>
+<li><strong>核心限定：</strong>约三年、前后两年的时点只是猜测；赤字降至约 GDP 的3%会改变路径。</li>
+<li><strong>下一验证：</strong>财政政策能否持续改变债务供需，而非一次性托住交易。</li>
+</ul>
+</section>
+<div class="speaker-opinion-marker" data-speaker="Ray Dalio"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Ray Dalio</strong><span class="speaker-opinion-topic">债务周期与危机窗口</span></div>
+
+<blockquote>
+<p>债务供给扩大、需求转弱、长端利率上升、货币走弱与官方买债被视为周期后段组合；若政策不变，危机或在约三年出现，但时点预测很可能不准。</p>
+</blockquote>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">高收益率的需求缓冲</span></div>
+
+<blockquote>
+<p>收益率上升既会抬高利息负担，也会提高美债吸引力；新增机构需求可能把危机向后推，因此不无限看空美国经济或美债。</p>
+</blockquote>
+<details class="report-detail" data-claim-id="claim-us-fiscal">
+<summary>展开债务周期推理、四条观点与原话定位</summary>
+<p>达利欧先用现金流与资产负债表说明主权债务的特殊性：本币债务很少以名义违约结束，更常通过利率、货币贬值、金融压抑或央行资产负债表调整重新分配损失。美国与1990年代及日本的比较用于说明，方向可以相似，速度却会被国内储蓄、货币主权、外部冲击与政策反应改变。</p>
+<p>四条可追溯判断分别是：</p>
+<ol>
+<li><code>02:02–02:14</code>：美国已出现周期后段的典型组合。</li>
+<li><code>09:59–10:09</code>：赤字由接近 GDP 的7%降至约3%会明显降风险，外部冲击会提前风险。</li>
+<li><code>10:09–10:23</code>：约三年、前后两年只是带明确自我否定的猜测。</li>
+<li><code>12:06–12:41</code>：高收益率会吸引新的长期买方，使恶性循环并非畅通无阻。</li>
+</ol>
+<blockquote>
+<p><strong>关键原话</strong>
+“真正需要判断的是政策有没有改变债务供需的方向。”</p>
+</blockquote>
+</details>
+<h3 id="gold-debasement">黄金、货币贬值与实际利率</h3>
+<section class="topic-brief" data-claim-id="claim-gold">
+<p><strong>结论：</strong>达利欧把黄金与少量比特币放进债务和货币贬值调整框架；Jason 认为黄金短期受实际利率与财政纪律压制，中长期仍受债务、地缘和信用问题支撑。</p>
+<ul>
+<li><strong>关键依据：</strong>实际利率、财政纪律是两项核心变量。</li>
+<li><strong>核心分歧：</strong>短期可能暂告一段落，长期仓位逻辑并未改变。</li>
+<li><strong>下一验证：</strong>财政纪律信号能否转为持续行动，以及实际利率是否回落。</li>
+</ul>
+</section>
+<div class="speaker-opinion-marker" data-speaker="Ray Dalio"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Ray Dalio</strong><span class="speaker-opinion-topic">货币贬值配置</span></div>
+
+<blockquote>
+<p>多数主要经济体可能经历某种债务和货币贬值调整，因此偏好黄金并少量配置比特币。</p>
+</blockquote>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">黄金期限分层与持仓</span></div>
+
+<blockquote>
+<p>黄金可能是债务风险过程中的优先对冲；短期或有压力，但中长期支撑未解，个人黄金仓位不轻易削减。</p>
+</blockquote>
+<details class="report-detail" data-claim-id="claim-gold">
+<summary>展开资金流、短长期框架与四条观点</summary>
+<p>黄金段先回到当周价格与资金流：长端收益率回升时，贵金属并未同步走弱，说明交易者同时关注财政与货币政策公信力。Jason 随后把看法分成两个期限：短期由实际利率上行、财政纪律信号和美联储按兵不动决定；中长期由债务、货币、地缘与信用问题是否解决决定。</p>
+<ul>
+<li><code>11:19–11:27</code>：达利欧偏好黄金与少量比特币。</li>
+<li><code>12:41–12:45</code>：Jason 称黄金“可能”是最佳选择，保留不确定词。</li>
+<li><code>16:00–16:29</code>：短期判断偏谨慎，变量是实际利率与财政纪律。</li>
+<li><code>16:29–16:45</code>：中长期支撑与个人不减仓行动。</li>
+</ul>
+<blockquote>
+<p><strong>关键原话</strong>
+“但从中长期看，债务、货币、地缘与信用问题都是黄金的长期支撑力。”</p>
+</blockquote>
+</details>
+<h3 id="ai-returns">AI资本开支、收入质量与回报兑现</h3>
+<section class="topic-brief" data-claim-id="claim-ai-returns">
+<p><strong>结论：</strong>小摩的框架把 AI 累计资本开支与产业收入、企业预算对照；Jason 认为二季度后资产回报较年初改善，但高利润、可持续的企业需求仍是兑现门槛。</p>
+<ul>
+<li><strong>关键依据：</strong>产业收入继续两位数增长，会削弱“基础设施没有回报”的空头逻辑。</li>
+<li><strong>核心限定：</strong>收入定义、重复计算与企业预算透明度不足。</li>
+<li><strong>下一验证：</strong>企业需求能否转成利润和可持续现金流。</li>
+</ul>
+</section>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">AI投资回报与长期买点</span></div>
+
+<blockquote>
+<p>AI回报较去年末和年初有所改善；回报不足的担忧减弱，但估值回落能否成为买点，仍依赖收入质量和利润兑现。</p>
+</blockquote>
+<details class="report-detail" data-claim-id="claim-ai-returns">
+<summary>展开小摩口径、三条判断与关键限定</summary>
+<p>小摩以未来累计约7.5万亿美元投入为量级锚，分别从AI产业累计收入和企业AI预算讨论回收。内容同时指出两个口径问题：产业收入可能在芯片、云和应用之间重复计算，企业预算也难以从公开披露中完整观察；中小企业采用还受隐私、人才与技术成熟度约束。</p>
+<p>三条判断构成递进：</p>
+<ol>
+<li><code>19:38–19:45</code>：二季度后AI资产回报率“至少”较去年末和年初改善。</li>
+<li><code>20:07–20:28</code>：空头核心担忧减弱，但必须有两位数产业增长和高利润、可持续企业需求。</li>
+<li><code>20:53–21:07</code>：Jason 相信长期回报会来、云平台会受益，并把质疑增加和估值下降视为更好买点。</li>
+</ol>
+<blockquote>
+<p><strong>关键原话</strong>
+“只要AI产业收入继续保持两位数增长，并且企业需求能够转化成高利润、可持续的收入，今天的投资就会是明天的基本面。”</p>
+</blockquote>
+</details>
+<h3 id="nba-assets">NBA球队估值、税盾与关联资产风险</h3>
+<section class="topic-brief" data-claim-id="claim-nba-assets">
+<p><strong>结论：</strong>湖人估值不到一年由100亿升至125亿美元，并被换算为约20倍赛季收入；Jason 把稀缺品牌、无形资产税盾与高倍数风险放在同一交易框架。</p>
+<ul>
+<li><strong>关键依据：</strong>球队控制权稀缺、媒体与品牌无形资产可影响税后回报。</li>
+<li><strong>核心限定：</strong>洛杉矶和传奇历史能解释溢价，却不足以解释任何价格。</li>
+<li><strong>下一验证：</strong>下一笔可比球队交易及最终成交结构。</li>
+</ul>
+</section>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">Ubiquiti流通风险、球队税盾与湖人估值</span></div>
+
+<blockquote>
+<p>喜欢Ubiquiti产品，但约93%控制权与低流通盘提高投资风险；球队税盾可能影响回报，湖人约20倍收入估值则超出个人认知。</p>
+</blockquote>
+<details class="report-detail" data-claim-id="claim-nba-assets">
+<summary>展开球队所有者、税盾推理、三条判断与转录风险</summary>
+<p>NBA老板被归为科技、金融、消费及传统实业等财富路径。科技组包括前微软CEO Steve Ballmer、阿里巴巴联合创始人蔡崇信、TIBCO创办人Vivek Ranadivé、Qualtrics创办人Ryan Smith与Ubiquiti创办人Robert Pera；金融、餐饮赌场、邮轮、媒体电信、地产与商业中心也构成球队资本来源。</p>
+<p>税盾推理是：收购价可能分配给特许经营权、商誉、转播权和球员合同等无形资产，再按约15年摊销，形成非现金费用并降低应税利润。无形资产可能在经济上升值，因此会出现账面摊销与经济价值方向不同的情况。</p>
+<ul>
+<li><code>23:36–23:45</code>：产品偏好与约93%控制权、低流通盘风险分开。</li>
+<li><code>25:42–25:50</code>：更高效的税盾被列为球队回报考量。</li>
+<li><code>26:01–26:20</code>：认可城市与品牌溢价，但约20倍收入估值超出认知，等待76人估值作参照。</li>
+</ul>
+<blockquote>
+<p><strong>转录提示（非原内容）：</strong>字幕把“税盾”多次识别为“税顿”，把“湖人”多次识别为“胡人”，并把相邻已明确出现的“约20倍收入”在结论处识别为“20BPS”；本段按上下文作正常语义规范，未修改上游字幕，也未回听确认。公司和人名密集处仍可能有未解决词项。</p>
+</blockquote>
+</details>
+<h3 id="_3">科技五大新闻</h3>
+<section class="quick-news-grid">
+<ol>
+<li><strong>Apollo Global Management 数据事件：</strong>7月遭社会工程攻击，员工姓名、出生日期、联系方式、社保号与地址等被获取；公司称当时暂无公开或欺诈证据，多家对冲基金也曾遭攻击尝试。</li>
+<li><strong>York Space Systems 业绩与指引：</strong>IPO后股价大幅回落，二季度不及预期并下调全年营收指引；供应链与政府订单节奏被列为原因。</li>
+<li><strong>苹果组织调整：</strong>Siri、Vision Pro及系统体验团队合计约200个岗位调整，与Siri新AI架构和Vision Pro内容、游戏业务收缩有关；产品线仍被保留。</li>
+<li><strong>存储股分歧：</strong>SanDisk、美光、西部数据与希捷在上半年上涨后回撤，强基本面和偏低估值与利率、AI资本开支循环融资风险相互拉扯。</li>
+<li><strong>英伟达与Poolside：</strong>以许可费、招聘和额外投资获取模型技术与人才；类似交易结构引发对并购审查边界的质疑。</li>
+</ol>
+</section>
+<blockquote>
+<p><strong>转录提示（非原内容）：</strong>本章来自密集公司名与数字字幕，York Space Systems、Poolside及对冲基金名称等存在识别不确定性；仅按字幕整理，未用音视频确认。页面按项目约定不显示本章视频时间。</p>
+</blockquote>
+<h3 id="weekly-risk">一周市场回顾与下一周事件风险</h3>
+<section class="topic-brief" data-claim-id="claim-weekly-risk">
+<p><strong>结论：</strong>当周美股主要指数结束三周连涨，长端收益率、油价与 AI 拥挤交易压制风险偏好；下一周宏观与科技财报集中，Jason 预计波动率不会低。</p>
+<ul>
+<li><strong>关键依据：</strong>英伟达和多家软件公司密集财报，PCE、GDP修正与政策会议同周出现。</li>
+<li><strong>核心限定：</strong>这是事件风险提醒，不是涨跌方向预测。</li>
+<li><strong>下一验证：</strong>实际结果相对预期的偏离与跨资产反应。</li>
+</ul>
+</section>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">下一周波动率</span></div>
+
+<blockquote>
+<p>英伟达与一组软件公司密集发布财报，波动率恐怕不低，需要管理预期。</p>
+</blockquote>
+<details class="report-detail" data-claim-id="claim-weekly-risk">
+<summary>展开当周资产表现、驱动、公司事件与下周日历</summary>
+<p>标普、纳指与罗素2000结束三周连涨。半导体走弱、存储略稳、软件近乎持平，大型科技多数下跌；能源、制药、IT服务与农业相对较强。美债收益率走高并基本抹去财政部回购公告后的价格反弹；美元指数跌约0.8%，黄金涨约5.5%，白银涨约6.8%，比特币期货和WTI原油也上涨。</p>
+<p>主要解释链包括：长端收益率接近多年高位、市场怀疑回购能否抵消结构性赤字、AI资本开支与融资风险持续演变，以及中东冲突与能源通胀风险。零售财报分化，英伟达、Meta、沃尔玛、Home Depot、Target、阿里巴巴与Moderna等个股事件被逐一列举。</p>
+<p>下周关注PCE、GDP第二次修正、消费者信心与政策会议，并关注Intuit、英伟达、CrowdStrike、Salesforce、Synopsys、惠普、Marvell、Workday与Best Buy等财报。</p>
+<blockquote>
+<p><strong>关键原话</strong>
+“英伟达财报，以及一票软件股的密集财报，我估计波动率恐怕不低。”</p>
+</blockquote>
+</details>
+<h2 id="external-evidence">第二部分｜外部证据研判</h2>
+<div class="layer-intro external">
+<p>第二层只说明外部材料给第一层命题带来的支持、收窄、冲突与适用条件。研究截至2026年8月24日，共覆盖5个主题、15条观点与20个来源。</p>
+</div>
+<p>本注为基于外部信源形成的独立研判，不代表视频作者观点。</p>
+<h3 id="_5">外部研判总览</h3>
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>主要支持</th>
+<th>关键收窄 / 冲突</th>
+<th>适用条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>美国财政</td>
+<td>债务率、赤字和净利息路径恶化</td>
+<td>市场仍有序，精确危机时点无证据</td>
+<td>实际利率、增长、拍卖与中介同时观察</td>
+</tr>
+<tr>
+<td>黄金</td>
+<td>央行需求与ETF回流提供结构支撑</td>
+<td>高实际利率、美元与仓位可压制价格</td>
+<td>作为组合分散而非单周方向工具</td>
+</tr>
+<tr>
+<td>AI回报</td>
+<td>Azure与AWS增长、利润和订单强</td>
+<td>AI回报率未单列，折旧与资本承诺巨大</td>
+<td>利润率、利用率、客户质量同步兑现</td>
+</tr>
+<tr>
+<td>NBA资产</td>
+<td>93%持股与15年无形资产规则可核对</td>
+<td>税盾不自动适用于股权交易，收入倍数口径不足</td>
+<td>需要税基提升、购买价分配与税后现金流</td>
+</tr>
+<tr>
+<td>单周风险</td>
+<td>财报、宏观数据与政策会议确实集中</td>
+<td>日历已公开，结果贴近预期时波动可回落</td>
+<td>用偏离共识和跨资产反应验证</td>
+</tr>
+</tbody>
+</table>
+<h3 id="01">观点研判注 01｜美国财政、国债供需与债务周期 · 部分支持 / 时点不支持</h3>
+<p>对应第一部分：<a href="#us-fiscal">美国财政、国债供需与债务周期</a></p>
+<section class="evidence-delta" data-claim-id="claim-us-fiscal">
+<p><strong>证据结论：</strong>CBO支持财政轨迹和利息负担恶化，却不支持未来一至五年的精确危机倒计时；财政部融资与美联储稳定报告显示高收益率仍能吸引部分需求。</p>
+<ul>
+<li><strong>一致：</strong>2026年赤字约5.8% GDP、公众持有债务约101% GDP。</li>
+<li><strong>反方：</strong>市场仍有序，私人国库券需求增长。</li>
+<li><strong>条件：</strong>长期实际利率、增长、拍卖需求与回购中介需同时失稳。</li>
+</ul>
+</section>
+<details class="report-detail" data-claim-id="claim-us-fiscal">
+<summary>展开四条研判、数据边界与关键来源</summary>
+<p><code>opinion-001</code> 为部分支持：CBO预计债务到2036年升至GDP的120%、净利息占比升至4.6%，但周期组合不等于危机已启动。<code>opinion-002</code> 为条件成立：赤字由5.8%附近持续降至约3%会改善算术，但3%并非单一危机阈值。<code>opinion-003</code> 为不支持：官方十年基线和当前市场运行不能验证约三年的时点。<code>opinion-004</code> 为部分支持：收益率能调节需求，却可能把短券需求、长期负债匹配资金和杠杆相对价值交易混在一起。</p>
+<p>关键来源：<a href="https://www.cbo.gov/publication/62105">CBO 2026–2036预算展望</a>、<a href="https://www.cbo.gov/publication/61983">CBO 2026年8月月度预算回顾</a>、<a href="https://home.treasury.gov/news/press-releases/sb0590">美国财政部2026年8月再融资声明</a>、<a href="https://www.federalreserve.gov/publications/2026-may-financial-stability-report-overview.htm">美联储2026年5月金融稳定报告</a>。</p>
+</details>
+<h3 id="02">观点研判注 02｜黄金、货币贬值与实际利率 · 分歧 / 条件成立</h3>
+<p>对应第一部分：<a href="#gold-debasement">黄金、货币贬值与实际利率</a></p>
+<section class="evidence-delta" data-claim-id="claim-gold">
+<p><strong>证据结论：</strong>结构性需求支持黄金分散价值，但高实际利率与历史高价收窄短期上行空间；比特币与股票风险周期相关，不能自动取得黄金式防御属性。</p>
+<ul>
+<li><strong>一致：</strong>7月黄金ETF净流入约30亿美元，央行需求仍是支撑。</li>
+<li><strong>反方：</strong>10年期实际收益率约2.40%，黄金曾较年初高点大幅回撤。</li>
+<li><strong>条件：</strong>冲击类型、持有期与组合负债决定何为“最佳”。</li>
+</ul>
+</section>
+<details class="report-detail" data-claim-id="claim-gold">
+<summary>展开四条研判、定价状态与关键来源</summary>
+<p><code>opinion-005</code> 为分歧：黄金配置前提较强，比特币稳定对冲前提较弱。<code>opinion-006</code> 为条件成立：“最佳”必须限定在制度信用冲击与长期分散。<code>opinion-007</code> 为部分支持：高实际利率是短期逆风，但ETF流入与地缘风险构成反证。<code>opinion-008</code> 为条件成立：中长期支撑不能替代对具体仓位、成本和最大回撤的评估。</p>
+<p>黄金在2026年1月曾突破5500美元/盎司，6月跌破4000美元；这说明风险已被显著计价并经历重估。关键来源：<a href="https://www.gold.org/goldhub/research/gold-mid-year-outlook-2026">世界黄金协会2026年中展望</a>、<a href="https://www.gold.org/goldhub/research/gold-etfs-holdings-and-flows/2026/08">2026年7月黄金ETF流量</a>、<a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&amp;type=daily_treasury_real_yield_curve">美国财政部实际收益率曲线</a>、<a href="https://www.imf.org/en/-/media/files/publications/wp/2023/english/wpiea2023163-print-pdf.pdf">IMF加密周期工作论文</a>。</p>
+</details>
+<h3 id="03ai">观点研判注 03｜AI资本开支、收入质量与回报兑现 · 部分支持 / 等待单位经济性</h3>
+<p>对应第一部分：<a href="#ai-returns">AI资本开支、收入质量与回报兑现</a></p>
+<section class="evidence-delta" data-claim-id="claim-ai-returns">
+<p><strong>证据结论：</strong>Azure与AWS的增长和利润证明云端变现不是零，但超大规模资本开支、折旧和利润率压力使“AI资产回报率改善”只能得到方向性支持。</p>
+<ul>
+<li><strong>一致：</strong>Azure季度增43%，AWS季度营业利润约166亿美元。</li>
+<li><strong>反方：</strong>微软季度资本开支约410亿美元，Meta利润与自由现金流承压。</li>
+<li><strong>条件：</strong>企业客户、利用率、毛利率与自由现金流需共同改善。</li>
+</ul>
+</section>
+<details class="report-detail" data-claim-id="claim-ai-returns">
+<summary>展开三条研判、收入与资本口径边界</summary>
+<p><code>opinion-009</code> 为部分支持：合并报表支持云业务改善，却没有单列AI资产回报率。<code>opinion-010</code> 为条件成立：收入和订单削弱“完全没有回报”的论点，但Alphabet约806亿美元半年资本开支与约852亿美元未开始数据中心租赁承诺显示固定成本仍在前置。<code>opinion-011</code> 为部分支持：云平台已受益，经营事实却不能直接推出“回报必然”或“任何估值回落都是买点”。</p>
+<p>关键来源：<a href="https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4">微软FY2026第四季度电话会</a>、<a href="https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx">Meta 2026年第二季度结果</a>、<a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm">Amazon 2026年第二季度10-Q</a>、<a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm">Alphabet 2026年第二季度10-Q</a>。</p>
+</details>
+<h3 id="04nba">观点研判注 04｜NBA球队估值、税盾与关联资产风险 · 事实支持 / 估值条件化</h3>
+<p>对应第一部分：<a href="#nba-assets">NBA球队估值、税盾与关联资产风险</a></p>
+<section class="evidence-delta" data-claim-id="claim-nba-assets">
+<p><strong>证据结论：</strong>SEC文件确认Ubiquiti约93%控制权；税法确认合格收购无形资产可按15年摊销，但具体球队交易必须有税基提升和购买价分配，不能把税盾当作自动收益。</p>
+<ul>
+<li><strong>一致：</strong>集中控制风险与一般税法机制可核对。</li>
+<li><strong>反方：</strong>股权购买未必生成相同税基，125亿美元交易仍待批准。</li>
+<li><strong>条件：</strong>需看实体结构、税后现金流与相同口径可比交易。</li>
+</ul>
+</section>
+<details class="report-detail" data-claim-id="claim-nba-assets">
+<summary>展开三条研判、法律适用边界与估值缺口</summary>
+<p><code>opinion-012</code> 得到支持：公司文件不仅确认Robert Pera持有约93%，还主动列示控制权、投资者意愿和未来大额售股风险。<code>opinion-013</code> 为条件成立：第197条与2004年立法确立一般机制，但股票或合伙权益交易本身不自动产生资产收购式税盾。<code>opinion-014</code> 为部分支持：约125亿美元纪录价格真实，约20倍收入与高估判断却缺少可复核的完整收入、债务、媒体权和税后自由现金流。</p>
+<p>关键来源：<a href="https://www.sec.gov/Archives/edgar/data/1511737/000151173725000063/ubnt-20251024.htm">Ubiquiti 2025代理文件</a>、<a href="https://www.sec.gov/Archives/edgar/data/1511737/000151173726000014/ubnt-20251231.htm">Ubiquiti 2025年末10-Q</a>、<a href="https://uscode.house.gov/view.xhtml?req=%28title%3A26+section%3A197+edition%3Aprelim%29">美国税法第197条</a>、<a href="https://www.congress.gov/bill/108th-congress/house-bill/4520">2004年美国就业创造法</a>、<a href="https://apnews.com/article/lakers-sale-kushner-iger-12-billion-d5058bb845d87873e23e270a6bb9be9f">美联社湖人交易报道</a>。</p>
+</details>
+<h3 id="05">观点研判注 05｜下一周事件密度与市场波动风险 · 条件成立</h3>
+<p>对应第一部分：<a href="#weekly-risk">一周市场回顾与下一周事件风险</a></p>
+<section class="evidence-delta" data-claim-id="claim-weekly-risk">
+<p><strong>证据结论：</strong>英伟达财报、GDP与个人收入支出、杰克逊霍尔会议确实集中在同一周；公开日历提高事件风险，却不能保证实现波动率上升。</p>
+<ul>
+<li><strong>一致：</strong>8月26日公司与宏观信息高度集中，政策会议紧随其后。</li>
+<li><strong>反方：</strong>事件已知，结果贴近共识时隐含波动可能回落。</li>
+<li><strong>条件：</strong>至少一个结果显著偏离预期并触发跨资产重定价。</li>
+</ul>
+</section>
+<details class="report-detail" data-claim-id="claim-weekly-risk">
+<summary>展开事件核验、已计价判断与来源</summary>
+<p><code>opinion-015</code> 为条件成立。英伟达确认8月26日盘后发布FY2027第二季度业绩；BEA同日上午发布GDP第二次估计、企业利润和7月个人收入支出；堪萨斯城联储确认杰克逊霍尔会议于8月27至29日举行。日历本身已公开，真正决定波动的是业绩指引、通胀数据和政策沟通相对市场预期的偏离。</p>
+<p>密集软件财报未逐一取得同等级的官方时间核验，且研究未取得实时期权曲面和机构仓位，因此不能量化“已计价多少”。关键来源：<a href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Second-Quarter-Financial-Results/default.aspx">英伟达官方财报日历</a>、<a href="https://www.bea.gov/index.php/news/schedule/full">BEA发布日历</a>、<a href="https://www.kansascityfed.org/research/jackson-hole-economic-symposium/jackson-hole-faqs/">堪萨斯城联储杰克逊霍尔说明</a>。</p>
+</details>
+<h2 id="agent-judgment">第三部分｜Agent 综合判断</h2>
+<blockquote>
+<p>本节为 Agent 基于视频内容、既有外部研判和注明日期的公开资料形成的综合判断，不代表视频作者观点，也不构成投资建议。</p>
+</blockquote>
+<h3 id="_6">本期总判断</h3>
+<table>
+<thead>
+<tr>
+<th>压力源</th>
+<th>现有缓冲</th>
+<th>最重要的反证</th>
+<th>观察姿态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>财政供给与利息复利</td>
+<td>收益率吸引机构资金、市场工具改善中介</td>
+<td>赤字持续收窄且实际利率下降</td>
+<td>watchlist</td>
+</tr>
+<tr>
+<td>黄金机会成本</td>
+<td>央行与长期分散需求</td>
+<td>实际利率高企同时ETF持续流出</td>
+<td>re_underwrite</td>
+</tr>
+<tr>
+<td>AI前置资本开支</td>
+<td>云收入、订单与现有利润</td>
+<td>增速掉档同时资本开支不降</td>
+<td>wait_for_proof</td>
+</tr>
+<tr>
+<td>私人资产高溢价</td>
+<td>稀缺品牌与潜在税后现金流</td>
+<td>无税基提升或收益率低于无风险利率</td>
+<td>research_only</td>
+</tr>
+<tr>
+<td>单周事件密度</td>
+<td>事件已知、预期可提前消化</td>
+<td>实现振幅与跨资产反应都低</td>
+<td>watchlist</td>
+</tr>
+</tbody>
+</table>
+<p>跨主题取舍是：债务、AI与球队都不是“有没有价值”的二元问题，而是现金流要用多高的久期成本来买。黄金分散了部分制度风险，却也受同一实际利率约束。当前没有一个主题支持无条件追涨或单点倒计时，最优动作是把条件和反证提前写进观察表。</p>
+<h3 id="01_1">判断 01｜美国财政：看趋势，不押倒计时</h3>
+<section class="decision-brief" data-claim-id="claim-us-fiscal">
+<ul>
+<li><strong>Agent判断：</strong>长期财政压力置信度约75%，未来一至五年精确危机窗口低于35%。</li>
+<li><strong>已计价与缺口：</strong>长端收益率已部分计入供给风险，拍卖与杠杆中介的边际质量仍不可见。</li>
+<li><strong>反证 / 下一验证：</strong>若赤字连续8季低于GDP的3.5%，重估风险；先看未来3次长债拍卖。</li>
+</ul>
+</section>
+<details class="report-detail" data-claim-id="claim-us-fiscal">
+<summary>展开事实、推断、成立条件、量化反证与下行机制</summary>
+<ul>
+<li><strong>可核对事实：</strong>CBO基线为2026年赤字5.8% GDP、债务101% GDP；财政部8月仍能按计划再融资。</li>
+<li><strong>机构主张：</strong>财政部称私人短券需求增长；美联储称体系总体可控，但对冲基金杠杆偏高。</li>
+<li><strong>Agent推断：</strong>价格、期限迁移和工具能延后压力，却会把高利息留给未来预算。</li>
+<li><strong>Agent判断：</strong>趋势恶化与危机时点必须拆开，只有拍卖、回购和通胀预期共振时才上调短期概率。</li>
+<li><strong>已计价与缺口：</strong>期限溢价已部分体现财政供给；缺少按买方、期限和杠杆拆分的边际需求。</li>
+<li><strong>成立条件：</strong>未来3年初级赤字不持续收窄；长期需求不能随收益率等比例增加；政策缺少可信多年路径。</li>
+<li><strong>量化反证：</strong>赤字连续8季低于GDP的3.5%；或10年期实际收益率连续6个月低于1.0%且长期通胀预期低于2.5%；或未来12个月拍卖与回购指标无趋势恶化。</li>
+<li><strong>下行机制：</strong>长端收益率快速上行100个基点以上 → 久期损失和保证金上升 → 通胀约束限制央行吸收 → 流动性折价、信用利差与财政成本互相强化。</li>
+<li><strong>观察姿态：</strong><code>watchlist</code>。</li>
+<li><strong>缺失证据 / 下一验证：</strong>未来3次10年与30年拍卖的尾差、投标倍数和间接投标占比，与回购利差联读。</li>
+</ul>
+</details>
+<h3 id="02_1">判断 02｜黄金：保险有价格，不与比特币等同</h3>
+<section class="decision-brief" data-claim-id="claim-gold">
+<ul>
+<li><strong>Agent判断：</strong>黄金适合有限比例的制度风险分散，不能脱离实际利率和买入价格当作必胜交易。</li>
+<li><strong>已计价与缺口：</strong>历史高点、急跌与ETF回流显示风险已部分计价，未来央行购金尚不可见。</li>
+<li><strong>反证 / 下一验证：</strong>10年实际利率连续6月高于3.0%且ETF累计流出10%时重审。</li>
+</ul>
+</section>
+<details class="report-detail" data-claim-id="claim-gold">
+<summary>展开事实、期限、量化反证与下行机制</summary>
+<ul>
+<li><strong>可核对事实：</strong>黄金年内经历5500美元上方至4000美元下方的大幅波动；7月ETF净流入约30亿美元；10年实际收益率约2.40%。</li>
+<li><strong>机构主张：</strong>世界黄金协会同时列出央行需求的结构支撑与高利率、强美元的周期逆风。</li>
+<li><strong>Agent推断：</strong>制度风险与机会成本并存，长期分散价值高于短期方向胜率；比特币的风险周期属性不同。</li>
+<li><strong>Agent判断：</strong>按组合最大回撤配置黄金，把比特币视为高波动风险资产，而非黄金替代品。</li>
+<li><strong>已计价与缺口：</strong>财政与地缘风险已进入价格；缺少三季度央行购金、期权仓位与具体组合负债。</li>
+<li><strong>成立条件：</strong>央行仍需储备分散；实际利率不持续压倒风险溢价；组合能承受20%以上阶段回撤。</li>
+<li><strong>量化反证：</strong>10年实际利率连续6个月高于3.0%且ETF总持仓流出10%；或主要央行连续4季净卖出；或黄金在美元走弱、财政风险恶化时仍连续12月跑输短债10个百分点。</li>
+<li><strong>下行机制：</strong>实际利率再升75个基点 → 美元和机会成本上升 → ETF与趋势资金流出 → 无现金流估值缺锚并放大价格下跌。</li>
+<li><strong>观察姿态：</strong><code>re_underwrite</code>。</li>
+<li><strong>缺失证据 / 下一验证：</strong>实际收益率跨越2.5%或ETF月流量转负时，重算组合边际贡献。</li>
+</ul>
+</details>
+<h3 id="03ai_1">判断 03｜AI：从“有无需求”转向“每美元资本赚多少”</h3>
+<section class="decision-brief" data-claim-id="claim-ai-returns">
+<ul>
+<li><strong>Agent判断：</strong>云端变现改善约70%可信，行业资本回报已达标低于50%；收入增长不能直接推出股票回报。</li>
+<li><strong>已计价与缺口：</strong>需求和订单均已公开，AI收入、利用率与增量回报仍未单列。</li>
+<li><strong>反证 / 下一验证：</strong>增速低于15%而资本开支仍增30%时否定；连续2季做同口径跟踪。</li>
+</ul>
+</section>
+<details class="report-detail" data-claim-id="claim-ai-returns">
+<summary>展开事实与管理层主张、成立条件、量化反证和下行机制</summary>
+<ul>
+<li><strong>可核对事实：</strong>Azure季度增长43%、AWS营业利润约166亿美元；Microsoft、Amazon、Meta与Alphabet资本开支和租赁承诺同时大幅上升。</li>
+<li><strong>管理层主张：</strong>微软称需求高于产能且非OpenAI客户订单仍增长；Meta称AI正在加速核心业务。</li>
+<li><strong>Agent推断：</strong>真实需求削弱极端空头，却可能被折旧、能源、融资与技术迭代消耗。</li>
+<li><strong>Agent判断：</strong>优先观察现金流强、客户分散并有估值余量的平台，在单位经济性披露前等待证明。</li>
+<li><strong>已计价与缺口：</strong>经营加速属于公开信息；缺少购买时估值、共识和AI单列披露。</li>
+<li><strong>成立条件：</strong>AI与云收入未来8季复合增长至少15%；折旧后毛利率和自由现金流稳定；企业客户占比上升。</li>
+<li><strong>量化反证：</strong>任一主要云平台连续2季增速低于15%且资本开支仍增30%以上；或4季云毛利率降逾500基点且自由现金流转负；或利用率连续2季低于70%。</li>
+<li><strong>下行机制：</strong>企业预算放缓 → 利用率下降而固定成本刚性 → 毛利率与现金流压缩 → 估值和资本开支链订单同时下修。</li>
+<li><strong>观察姿态：</strong><code>wait_for_proof</code>。</li>
+<li><strong>缺失证据 / 下一验证：</strong>下一轮财报统一记录云增速、毛利率、资本开支、折旧与自由现金流，至少连续2季。</li>
+</ul>
+</details>
+<h3 id="04nba_1">判断 04｜NBA与关联资产：税盾不是免费午餐</h3>
+<section class="decision-brief" data-claim-id="claim-nba-assets">
+<ul>
+<li><strong>Agent判断：</strong>Ubiquiti集中度事实置信度约90%；一般税盾机制约65%；仅凭现有信息判断湖人高估低于45%。</li>
+<li><strong>已计价与缺口：</strong>稀缺品牌与潜在税盾都可能进了125亿美元价格，最终税基与现金流未知。</li>
+<li><strong>反证 / 下一验证：</strong>若可摊销税基低于购买价20%，税盾论点显著弱化；等待交割文件。</li>
+</ul>
+</section>
+<details class="report-detail" data-claim-id="claim-nba-assets">
+<summary>展开三类事实、成立条件、量化反证与退出机制</summary>
+<ul>
+<li><strong>可核对事实：</strong>Pera约93%持股；第197条一般允许合格无形资产15年摊销；湖人交易报道估值约125亿美元且待批准。</li>
+<li><strong>公司主张：</strong>Ubiquiti法定文件承认集中控制可能降低投资者意愿并伤害股价。</li>
+<li><strong>Agent推断：</strong>税后价值取决于税基提升与购买价分配，竞价也会让卖方分享税盾现值。</li>
+<li><strong>Agent判断：</strong>Ubiquiti治理、球队税务与湖人估值必须分开；最后一项需要完整现金流。</li>
+<li><strong>已计价与缺口：</strong>集中度长期公开；交易价格已包含品牌与媒体权预期；缺少债务、税基和税后自由现金流。</li>
+<li><strong>成立条件：</strong>形成可摊销税基；长期媒体权现金流覆盖溢价；买方可在15年内利用扣除并管理退出收回。</li>
+<li><strong>量化反证：</strong>可摊销税基低于购买价20%；或长期税后收益率低于10年国债超过200基点；或未来3笔可比控股交易倍数均低于湖人的50%。</li>
+<li><strong>下行机制：</strong>媒体权或税基不及预期 → 税后现金流下修 → 私人资产缺少价格发现且退出受审批 → 长期停滞与退出折价扩大。</li>
+<li><strong>观察姿态：</strong><code>research_only</code>。</li>
+<li><strong>缺失证据 / 下一验证：</strong>交割后核对交易实体、税基提升、购买价分配与债务；只与相同控制权和配套资产口径比较。</li>
+</ul>
+</details>
+<h3 id="05_1">判断 05｜单周事件风险：准备跳空，不预言方向</h3>
+<section class="decision-brief" data-claim-id="claim-weekly-risk">
+<ul>
+<li><strong>Agent判断：</strong>事件风险偏高约70%可信，实现波动一定高于前周低于50%。</li>
+<li><strong>已计价与缺口：</strong>日期已公开并部分进入隐含波动，实时期权曲面和仓位不可见。</li>
+<li><strong>反证 / 下一验证：</strong>若5日指数振幅低于2.0%且英伟达次日波动低于3.0%，判断失效；8月31日复盘。</li>
+</ul>
+</section>
+<details class="report-detail" data-claim-id="claim-weekly-risk">
+<summary>展开事件链、条件、量化反证和传导机制</summary>
+<ul>
+<li><strong>可核对事实：</strong>8月26日英伟达财报与BEA宏观数据集中，8月27至29日举行杰克逊霍尔会议。</li>
+<li><strong>机构主张：</strong>英伟达只确认时间；堪萨斯城联储只确认会议主题与日期，不构成结果或政策承诺。</li>
+<li><strong>Agent推断：</strong>催化剂集中提高非线性重定价机会，但已知事件也可能在结果后带来隐含波动回落。</li>
+<li><strong>Agent判断：</strong>用情景和仓位管理替代方向下注，没有期权数据时不判断市场错价幅度。</li>
+<li><strong>已计价与缺口：</strong>基础日历已知；缺少事件方差、机构仓位与共识分布。</li>
+<li><strong>成立条件：</strong>至少1个结果显著偏离共识；科技与利率相关性同向放大；流动性不足以吸收调整。</li>
+<li><strong>量化反证：</strong>未来5日指数最高最低振幅低于2.0%且VIX周末不升；英伟达次日绝对涨跌低于3.0%且10年收益率日变动低于10基点；宏观与政策均在共识1个标准差内。</li>
+<li><strong>下行机制：</strong>负面意外 → 科技估值和利率预期同向重定价 → 期权对冲与止损放大 → 指数、软件与短波动仓位出现凸性损失。</li>
+<li><strong>观察姿态：</strong><code>watchlist</code>。</li>
+<li><strong>缺失证据 / 下一验证：</strong>8月26日前记录隐含波动与共识，8月31日按实现振幅、财报缺口和收益率变化复盘。</li>
+</ul>
+</details>
+<h2 id="_7">信源</h2>
+<p>完整的20个来源及其发布者、作者、发布日期、访问日期、直接URL、证据摘要与适用范围写入同目录的 <code>citations.json</code>。以下按主题保留关键一级入口。</p>
+<details class="source-group">
+<summary>美国财政与国债市场</summary>
+<ul>
+<li>Congressional Budget Office, <a href="https://www.cbo.gov/publication/62105">The Budget and Economic Outlook: 2026 to 2036</a>, 2026年2月。</li>
+<li>Congressional Budget Office, <a href="https://www.cbo.gov/publication/61983">Monthly Budget Review: August 2026</a>, 2026-08-10。</li>
+<li>U.S. Treasury, <a href="https://home.treasury.gov/news/press-releases/sb0590">Quarterly Refunding Statement</a>, 2026-08-05。</li>
+<li>Federal Reserve, <a href="https://www.federalreserve.gov/publications/2026-may-financial-stability-report-overview.htm">Financial Stability Report — May 2026</a>, 2026年5月。</li>
+</ul>
+</details>
+<details class="source-group">
+<summary>黄金、实际利率与加密周期</summary>
+<ul>
+<li>World Gold Council, <a href="https://www.gold.org/goldhub/research/gold-mid-year-outlook-2026">Gold Mid-Year Outlook 2026</a>, 2026-07-01。</li>
+<li>World Gold Council, <a href="https://www.gold.org/goldhub/research/gold-etfs-holdings-and-flows/2026/08">Gold ETF Flows: July 2026</a>, 2026-08-06。</li>
+<li>U.S. Treasury, <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&amp;type=daily_treasury_real_yield_curve">Daily Treasury Par Real Yield Curve Rates</a>, 数据截至2026-08-21。</li>
+<li>IMF, <a href="https://www.imf.org/en/-/media/files/publications/wp/2023/english/wpiea2023163-print-pdf.pdf">The Crypto Cycle and US Monetary Policy</a>, 2023-08-04。</li>
+</ul>
+</details>
+<details class="source-group">
+<summary>AI资本开支与云业务</summary>
+<ul>
+<li>Microsoft, <a href="https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4">FY 2026 Fourth Quarter Earnings</a>, 2026-07-29。</li>
+<li>Meta, <a href="https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx">Second Quarter 2026 Results</a>, 2026-07-29。</li>
+<li>Amazon, <a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm">Form 10-Q, quarter ended June 30, 2026</a>, 2026-07-31。</li>
+<li>Alphabet, <a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm">Form 10-Q, quarter ended June 30, 2026</a>, 2026-07-30。</li>
+</ul>
+</details>
+<details class="source-group">
+<summary>NBA、税法与下一周事件</summary>
+<ul>
+<li>Ubiquiti, <a href="https://www.sec.gov/Archives/edgar/data/1511737/000151173725000063/ubnt-20251024.htm">2025 Proxy Statement</a>, 2025-10-24；<a href="https://www.sec.gov/Archives/edgar/data/1511737/000151173726000014/ubnt-20251231.htm">2025年末10-Q</a>, 2026-02-06。</li>
+<li>U.S. House, <a href="https://uscode.house.gov/view.xhtml?req=%28title%3A26+section%3A197+edition%3Aprelim%29">26 U.S.C. § 197</a>；Congress.gov, <a href="https://www.congress.gov/bill/108th-congress/house-bill/4520">American Jobs Creation Act of 2004</a>。</li>
+<li>Associated Press, <a href="https://apnews.com/article/lakers-sale-kushner-iger-12-billion-d5058bb845d87873e23e270a6bb9be9f">Lakers sale report</a>, 2026-08-12。</li>
+<li>NVIDIA, <a href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Second-Quarter-Financial-Results/default.aspx">Q2 FY2027 earnings call date</a>；BEA, <a href="https://www.bea.gov/index.php/news/schedule/full">Release Schedule</a>；Kansas City Fed, <a href="https://www.kansascityfed.org/research/jackson-hole-economic-symposium/jackson-hole-faqs/">Jackson Hole FAQs</a>。</li>
+</ul>
+</details>
+<h2 id="_8">方法与限制</h2>
+<ul>
+<li>第一部分仅依据不可变的 <code>transcript.corrected.jsonl</code> 及程序生成的 <code>transcript.report.jsonl</code>。没有下载视频、运行转录或声称回听确认；明显错词只在正常语义整理中按上下文规范。</li>
+<li>已登记内容边界共排除7个片头或片尾片段；中段2个商业区间仍保留在筛选字幕中，但未进入观点、研究和正文。明显内容与不确定内容没有因追求简洁而整段删除。</li>
+<li>上游质量包报告语音覆盖率约99.88%、时间线覆盖率约98.09%，最长间隙约3.8秒，未解决词项10个。上游自动校订模型未返回文本，转而使用规则回退，校订数为0；这增加了密集公司名、专有名词与数字处的不确定性。</li>
+<li>已标记的高风险词项集中在“企业快乐”“A,科技”“商誉”“摊销”“ARM和Cloudstrike”“Point-72”“千禧”“Two Sigma”“Crowdstrike”“注意”等片段；其中部分可能本身正确，风险表示未被音视频确认，而不是认定错误。</li>
+<li>外部研究截至2026-08-24。官方页面只标注月份而无日的来源在结构化元数据中按月初标准化，并在证据摘要注明；实时估值、期权曲面、机构仓位、球队完整财务与交易税务结构仍缺失。</li>
+<li>第二、三部分分别是独立证据研判与Agent判断，不改变第一部分所保留的原意；所有阈值都是可复盘的观察规则，不是收益承诺。</li>
+</ul>
+  </main>
+</body>
+</html>
