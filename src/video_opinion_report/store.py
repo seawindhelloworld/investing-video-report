@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
 from pathlib import Path
 
+from .integrity import sha256_file
 from .models import RunManifest
 
 
@@ -17,6 +19,28 @@ def validate_video_id(video_id: str) -> str:
             "Invalid video ID; expected 1-128 ASCII letters, digits, underscores, or hyphens"
         )
     return video_id
+
+
+def sha256_artifact(path: Path) -> str:
+    if path.is_symlink():
+        raise ValueError(f"Artifact symlinks are not allowed: {path}")
+    resolved = path.resolve()
+    if resolved.is_file():
+        return sha256_file(resolved)
+    if not resolved.is_dir():
+        raise FileNotFoundError(resolved)
+    digest = hashlib.sha256()
+    children = list(resolved.rglob("*"))
+    symlinks = [child for child in children if child.is_symlink()]
+    if symlinks:
+        raise ValueError(f"Artifact symlinks are not allowed: {symlinks[0]}")
+    for child in sorted(item for item in children if item.is_file()):
+        relative = child.relative_to(resolved).as_posix().encode("utf-8")
+        digest.update(len(relative).to_bytes(8, "big"))
+        digest.update(relative)
+        file_hash = sha256_file(child).encode("ascii")
+        digest.update(file_hash)
+    return digest.hexdigest()
 
 
 class ManifestStore:
@@ -56,6 +80,24 @@ class ManifestStore:
 
     def relative(self, path: Path) -> str:
         return str(path.resolve().relative_to(self.project_root))
+
+    def set_artifact(self, manifest: RunManifest, key: str, path: Path) -> None:
+        resolved = path.resolve()
+        manifest.artifacts[key] = self.relative(resolved)
+        manifest.artifact_hashes[key] = sha256_artifact(resolved)
+
+    def artifact_path(self, manifest: RunManifest, key: str) -> Path:
+        relative = manifest.artifacts.get(key)
+        if not relative:
+            raise FileNotFoundError(f"Manifest artifact is missing: {key}")
+        path = (self.project_root / relative).resolve()
+        path.relative_to(self.project_root)
+        if not path.exists():
+            raise FileNotFoundError(path)
+        expected_hash = manifest.artifact_hashes.get(key)
+        if expected_hash and sha256_artifact(path) != expected_hash:
+            raise RuntimeError(f"Manifest artifact changed after validation: {key}")
+        return path
 
 
 class ProcessedReportStore:

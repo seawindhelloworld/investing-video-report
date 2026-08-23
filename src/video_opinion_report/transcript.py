@@ -33,7 +33,11 @@ class TranscriptSegment:
         )
 
 
-def validate_segments(segments: Iterable[TranscriptSegment]) -> list[str]:
+def validate_segments(
+    segments: Iterable[TranscriptSegment],
+    *,
+    allow_blank_text: bool = False,
+) -> list[str]:
     items = list(segments)
     errors: list[str] = []
     if not items:
@@ -55,7 +59,7 @@ def validate_segments(segments: Iterable[TranscriptSegment]) -> list[str]:
             errors.append(f"{label}: end must be greater than start")
         if segment.start < previous_start:
             errors.append(f"{label}: timestamps are not monotonic")
-        if not segment.text.strip():
+        if not allow_blank_text and not segment.text.strip():
             errors.append(f"{label}: text is empty")
         if segment.confidence is not None and (
             not math.isfinite(segment.confidence) or not 0 <= segment.confidence <= 1
@@ -75,13 +79,14 @@ def transcript_metrics(
     segments: Iterable[TranscriptSegment],
     *,
     media_duration: float,
+    allow_blank_text: bool = False,
     min_coverage_ratio: float = 0.95,
     max_gap_seconds: float = 5.0,
     max_repeated_segments: int = 2,
     low_confidence_threshold: float = 0.75,
 ) -> dict[str, Any]:
     items = list(segments)
-    errors = validate_segments(items)
+    errors = validate_segments(items, allow_blank_text=allow_blank_text)
     warnings: list[str] = []
     if media_duration <= 0 or not math.isfinite(media_duration):
         errors.append("Media duration must be a positive finite number")

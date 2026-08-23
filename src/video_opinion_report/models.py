@@ -37,7 +37,7 @@ STAGE_PREREQUISITES: dict[Stage, tuple[Stage, ...]] = {
     Stage.ANALYZE: (Stage.INGEST,),
     Stage.RESEARCH: (Stage.ANALYZE,),
     Stage.JUDGMENT: (Stage.RESEARCH,),
-    Stage.DRAFT: (Stage.RESEARCH,),
+    Stage.DRAFT: (Stage.JUDGMENT,),
     Stage.FIDELITY_REVIEW: (Stage.DRAFT,),
     Stage.RENDER: (Stage.DRAFT, Stage.FIDELITY_REVIEW, Stage.JUDGMENT),
     Stage.HTML_VALIDATE: (Stage.RENDER,),
@@ -67,6 +67,7 @@ class RunManifest:
     updated_at: str
     stages: dict[str, StageRecord] = field(default_factory=dict)
     artifacts: dict[str, str] = field(default_factory=dict)
+    artifact_hashes: dict[str, str] = field(default_factory=dict)
     metadata: dict[str, Any] = field(default_factory=dict)
 
     @classmethod
@@ -93,6 +94,7 @@ class RunManifest:
             updated_at=value["updated_at"],
             stages=stages,
             artifacts=dict(value.get("artifacts", {})),
+            artifact_hashes=dict(value.get("artifact_hashes", {})),
             metadata=dict(value.get("metadata", {})),
         )
 

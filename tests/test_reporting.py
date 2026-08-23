@@ -8,10 +8,62 @@ from video_opinion_report.reporting import (
     render_markdown_report,
     validate_rendered_report,
     validate_report_layers,
+    validate_report_readability,
 )
 
 
 class ReportingTests(unittest.TestCase):
+    def _progressive_report(self) -> str:
+        creator = []
+        evidence = []
+        decisions = []
+        for index in (1, 2):
+            claim = f"claim-{index:03d}"
+            creator.append(
+                f'<section class="topic-brief" data-claim-id="{claim}" markdown="1">\n\n'
+                f"**结论：**主题 {index} 的方向成立，但仍有明确限定。\n\n"
+                "- **关键依据：**一项可回溯事实。\n"
+                "- **核心限定：**下一期数据可能改变判断。\n\n"
+                "</section>\n\n"
+                f'<details class="report-detail" data-claim-id="{claim}" markdown="1">\n'
+                "<summary>展开作者依据与原话</summary>\n\n"
+                + ("完整背景、推理、限定和时间戳仍保留。" * 45)
+                + "\n\n</details>"
+            )
+            evidence.append(
+                f'<section class="evidence-delta" data-claim-id="{claim}" markdown="1">\n\n'
+                "**证据结论：**外部证据只部分支持。\n\n"
+                "- **一致视角：**方向一致。\n"
+                "- **不同视角：**样本有限。\n"
+                "- **关键条件：**数据延续。\n\n"
+                "</section>\n\n"
+                f'<details class="report-detail" data-claim-id="{claim}" markdown="1">\n'
+                "<summary>展开证据边界</summary>\n\n完整来源说明。\n\n</details>"
+            )
+            decisions.append(
+                f'<section class="decision-brief" data-claim-id="{claim}" markdown="1">\n\n'
+                "- **Agent 判断：**等待证明。\n"
+                "- **反证 / 下一验证：**下一期官方数据。\n\n"
+                "</section>\n\n"
+                f'<details class="report-detail" data-claim-id="{claim}" markdown="1">\n'
+                "<summary>展开完整判断</summary>\n\n成立条件、反证和下行机制。\n\n</details>"
+            )
+        return "\n\n".join(
+            [
+                "# R",
+                "## 第一部分｜视频 / 作者内容",
+                '<div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>以下为忠实整理。</div>',
+                '<section class="summary-dashboard"><article>主题一</article><article>主题二</article></section>',
+                *creator,
+                "## 第二部分｜外部证据研判",
+                "本注为基于外部信源形成的独立研判，不代表视频作者观点。",
+                *evidence,
+                "## 第三部分｜Agent 综合判断",
+                "本节为 Agent 基于视频、研判和注明日期的资料形成，不代表视频作者观点，也不构成投资建议。",
+                *decisions,
+            ]
+        )
+
     def test_render_markdown_report_parses_markdown_in_opted_in_html_container(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -56,7 +108,8 @@ class ReportingTests(unittest.TestCase):
                 encoding="utf-8",
             )
             template.write_text(
-                "<html><style></style><title>{{TITLE}}</title><body>{{REPORT_META}}|{{SUMMARY}}|{{REPORT_BODY}}</body></html>",
+                "<html><head><style></style><title>{{TITLE}}</title></head>"
+                "<body>{{REPORT_META}}|{{SUMMARY}}|{{REPORT_BODY}}</body></html>",
                 encoding="utf-8",
             )
             render_markdown_report(source, template, output)
@@ -79,7 +132,8 @@ class ReportingTests(unittest.TestCase):
                 encoding="utf-8",
             )
             template.write_text(
-                "<html><style></style><body><h1>{{TITLE}}</h1><p>{{SUMMARY}}</p>{{REPORT_BODY}}<span>{{REPORT_META}}</span></body></html>",
+                "<html><head><style></style></head><body><h1>{{TITLE}}</h1>"
+                "<p>{{SUMMARY}}</p>{{REPORT_BODY}}<span>{{REPORT_META}}</span></body></html>",
                 encoding="utf-8",
             )
 
@@ -89,6 +143,103 @@ class ReportingTests(unittest.TestCase):
             self.assertNotIn("<p></p>", document)
             self.assertIn(">Executive Summary</h2>", document)
 
+    def test_render_report_injects_script_free_reading_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / "report.md"
+            template = root / "template.html"
+            output = root / "index.html"
+            source.write_text(self._progressive_report(), encoding="utf-8")
+            template.write_text(
+                "<html><head><style></style><title>{{TITLE}}</title></head>"
+                "<body><main>{{REPORT_META}}{{SUMMARY}}{{REPORT_BODY}}</main></body></html>",
+                encoding="utf-8",
+            )
+
+            render_markdown_report(source, template, output)
+
+            document = output.read_text(encoding="utf-8")
+            self.assertIn('class="reading-paths video"', document)
+            self.assertIn('href="#agent-judgment"', document)
+            self.assertIn('<h2 id="creator-content">', document)
+            self.assertIn('class="report-detail"', document)
+            self.assertNotIn("<script", document)
+            counts = validate_rendered_report(output, root)
+            self.assertEqual(counts["reading_path_count"], 1)
+            self.assertEqual(counts["rendered_report_detail_count"], 6)
+            self.assertEqual(counts["rendered_claim_component_count"], 6)
+
+    def test_readability_gate_counts_only_default_visible_content(self) -> None:
+        report = self._progressive_report()
+        metrics = validate_report_readability(
+            report,
+            transcript_text="市场可能改善但仍需验证" * 420,
+            topic_count=2,
+        )
+
+        self.assertEqual(metrics["claim_map_count"], 2)
+        self.assertEqual(metrics["report_detail_count"], 6)
+        self.assertEqual(metrics["open_report_detail_count"], 0)
+        self.assertEqual(metrics["collapsed_report_detail_count"], 6)
+        self.assertLess(metrics["max_claim_brief_cjk_count"], 260)
+        self.assertLess(metrics["creator_visible_compression_ratio"], 0.42)
+        self.assertEqual(metrics["cross_layer_duplicate_block_count"], 0)
+
+    def test_readability_gate_rejects_missing_claim_mapping_on_long_reports(self) -> None:
+        report = self._progressive_report().replace(
+            'class="topic-brief" data-claim-id="claim-001"',
+            'class="plain-topic" data-claim-id="claim-001"',
+        )
+        with self.assertRaisesRegex(ValueError, "claim IDs do not map one-to-one"):
+            validate_report_readability(
+                report,
+                transcript_text="市场可能改善但仍需验证" * 420,
+                topic_count=2,
+            )
+
+    def test_readability_gate_rejects_verbose_default_layer(self) -> None:
+        report = self._progressive_report().replace(
+            "**结论：**主题 1 的方向成立，但仍有明确限定。",
+            "默认可见的长篇转述。" * 420,
+        )
+        with self.assertRaisesRegex(ValueError, "compression ratio|default-visible"):
+            validate_report_readability(
+                report,
+                transcript_text="市场可能改善但仍需验证" * 420,
+                topic_count=2,
+            )
+
+    def test_readability_gate_requires_details_to_be_closed_by_default(self) -> None:
+        report = self._progressive_report().replace(
+            '<details class="report-detail"',
+            '<details open class="report-detail"',
+            1,
+        )
+        with self.assertRaisesRegex(ValueError, "closed by default"):
+            validate_report_readability(
+                report,
+                transcript_text="市场可能改善但仍需验证" * 420,
+                topic_count=2,
+            )
+
+    def test_render_report_rejects_executable_raw_html(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / "report.md"
+            template = root / "template.html"
+            output = root / "index.html"
+            source.write_text(
+                "# Unsafe\n\n<script src=\"https://example.com/payload.js\"></script>\n",
+                encoding="utf-8",
+            )
+            template.write_text(
+                "<html><head><style></style><title>{{TITLE}}</title></head>"
+                "<body><main>{{REPORT_META}}{{SUMMARY}}{{REPORT_BODY}}</main></body></html>",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "forbidden HTML elements"):
+                render_markdown_report(source, template, output)
+
     def test_validate_rendered_report_checks_local_assets_and_anchors(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -97,7 +248,10 @@ class ReportingTests(unittest.TestCase):
             (report_dir / "chart.svg").write_text("<svg/>", encoding="utf-8")
             report = report_dir / "index.html"
             report.write_text(
-                "<html><head><title>R</title></head><body><main>"
+                "<html><head><title>R</title>"
+                '<meta http-equiv="Content-Security-Policy" '
+                'content="default-src \'none\'; script-src \'none\'">'
+                "</head><body><main>"
                 '<a href="#topic">Topic</a><h2 id="topic">Topic</h2>'
                 '<img src="chart.svg" alt="Chart">'
                 + ("content " * 40)
@@ -328,7 +482,13 @@ class ReportingTests(unittest.TestCase):
             )
             (root / "review.json").write_text('{"post_revision_verdict":"passed"}', encoding="utf-8")
             (root / "judgment.json").write_text(
-                '{"video_id":"v1","source_as_of":"2026-08-01","topics":[{"topic_id":"j1"}]}',
+                '{"video_id":"v1","source_as_of":"2026-08-01",'
+                '"sources":[{"source_id":"agent-s1","title":"Agent source",'
+                '"publisher":"Official","author":"Issuer",'
+                '"published_at":"2026-08-01","accessed_at":"2026-08-02",'
+                '"url":"https://agent-source","evidence_summary":"e",'
+                '"scope":"agent"}],'
+                '"topics":[{"topic_id":"j1","source_urls":["https://agent-source"]}]}',
                 encoding="utf-8",
             )
             (research / "topic.json").write_text(
@@ -349,7 +509,7 @@ class ReportingTests(unittest.TestCase):
                 {
                     "opinion_count": 1,
                     "topic_count": 1,
-                    "citation_count": 1,
+                    "citation_count": 2,
                     "agent_judgment_topic_count": 1,
                 },
             )
@@ -357,6 +517,12 @@ class ReportingTests(unittest.TestCase):
             self.assertEqual(report_data["opinions"][0]["research_status"], "supported")
             self.assertEqual(report_data["schema_version"], 2)
             self.assertEqual(report_data["agent_judgment"]["topics"][0]["topic_id"], "j1")
+            citations = __import__("json").loads(
+                (root / "citations.json").read_text(encoding="utf-8")
+            )["citations"]
+            self.assertIn(
+                "https://agent-source", {item["url"] for item in citations}
+            )
 
 
 if __name__ == "__main__":

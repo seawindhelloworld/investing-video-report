@@ -1,18 +1,21 @@
 from __future__ import annotations
 
 import json
+import math
 import shutil
+from datetime import datetime
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
 
 from .integrity import sha256_file
 from .models import Stage
 from .store import ManifestStore, ProcessedReportStore, validate_video_id
-from .transcript import read_jsonl, validate_segments
+from .transcript import read_jsonl, transcript_metrics, validate_segments
 
 
 PACKAGE_TYPE = "video_transcript"
-PACKAGE_SCHEMA_VERSION = 1
+SUPPORTED_PACKAGE_SCHEMA_VERSIONS = {1, 2}
 
 FILE_DESTINATIONS = {
     "transcript_jsonl": "transcript.jsonl",
@@ -64,8 +67,8 @@ def _validate_correction_chain(
 ) -> tuple[dict[str, Any], list[object]]:
     original = read_jsonl(original_path)
     corrected = read_jsonl(corrected_path)
-    original_errors = validate_segments(original)
-    corrected_errors = validate_segments(corrected)
+    original_errors = validate_segments(original, allow_blank_text=True)
+    corrected_errors = validate_segments(corrected, allow_blank_text=True)
     if original_errors:
         raise ValueError(f"Original transcript is invalid: {original_errors[0]}")
     if corrected_errors:
@@ -123,13 +126,30 @@ def _validate_exported_correction(
     corrections_path: Path,
 ) -> tuple[dict[str, Any], list[object]]:
     corrected = read_jsonl(corrected_path)
-    errors = validate_segments(corrected)
+    errors = validate_segments(corrected, allow_blank_text=True)
     if errors:
         raise ValueError(f"Corrected transcript is invalid: {errors[0]}")
 
     corrections = _load_object(corrections_path)
     if corrections.get("schema_version") != 1 or corrections.get("video_id") != video_id:
         raise ValueError("Transcript correction log does not match the package video")
+    model_review = corrections.get("model_review")
+    response_sha256 = str(corrections.get("response_sha256") or "")
+    if model_review is not None and not isinstance(model_review, dict):
+        raise ValueError("Transcript correction model_review must be an object")
+    if isinstance(model_review, dict) and model_review.get("status") == "completed":
+        if (
+            model_review.get("scope") != "full_transcript"
+            or model_review.get("segment_count") != len(corrected)
+        ):
+            raise ValueError(
+                "Completed transcript model review does not cover the full transcript"
+            )
+    if response_sha256 and (
+        len(response_sha256) != 64
+        or any(character not in "0123456789abcdefABCDEF" for character in response_sha256)
+    ):
+        raise ValueError("Transcript correction response hash is invalid")
     entries = corrections.get("corrections")
     if not isinstance(entries, list):
         raise ValueError("Transcript correction log needs a corrections list")
@@ -166,20 +186,149 @@ def _validate_quality_summary(
     payload: dict[str, Any],
     corrections: dict[str, Any],
     unresolved: list[object],
+    corrected_path: Path,
+    duration_seconds: float,
 ) -> dict[str, Any]:
     quality = payload.get("quality")
     if not isinstance(quality, dict):
         raise ValueError("Transcript package is missing quality validation summary")
     coverage = quality.get("coverage_ratio")
     maximum_gap = quality.get("maximum_gap_seconds")
-    if not isinstance(coverage, (int, float)) or coverage < 0.95 or coverage > 1:
+    coverage_mode = quality.get("coverage_mode")
+    if coverage_mode not in {None, "media_timeline", "voice_activity"}:
+        raise ValueError(
+            "Transcript package quality validation did not pass: coverage mode"
+        )
+    if (
+        isinstance(coverage, bool)
+        or not isinstance(coverage, (int, float))
+        or not math.isfinite(coverage)
+        or coverage < 0.95
+        or coverage > 1
+    ):
         raise ValueError("Transcript package quality validation did not pass: coverage ratio")
-    if not isinstance(maximum_gap, (int, float)) or maximum_gap < 0 or maximum_gap > 5:
+    if (
+        isinstance(maximum_gap, bool)
+        or not isinstance(maximum_gap, (int, float))
+        or not math.isfinite(maximum_gap)
+        or maximum_gap < 0
+    ):
         raise ValueError("Transcript package quality validation did not pass: maximum gap")
+    maximum_uncovered_speech = quality.get("maximum_uncovered_speech_seconds")
+    evaluated_gap = maximum_gap
+    evaluated_gap_label = "maximum gap"
+    if maximum_uncovered_speech is not None:
+        if (
+            isinstance(maximum_uncovered_speech, bool)
+            or not isinstance(maximum_uncovered_speech, (int, float))
+            or not math.isfinite(maximum_uncovered_speech)
+            or maximum_uncovered_speech < 0
+            or maximum_uncovered_speech > maximum_gap
+        ):
+            raise ValueError(
+                "Transcript package quality validation did not pass: "
+                "maximum uncovered speech"
+            )
+        evaluated_gap = maximum_uncovered_speech
+        evaluated_gap_label = "maximum uncovered speech"
+    if evaluated_gap > 5:
+        raise ValueError(
+            "Transcript package quality validation did not pass: "
+            f"{evaluated_gap_label} {evaluated_gap:.2f}s exceeds 5.00s"
+        )
     if quality.get("correction_count") != len(corrections.get("corrections") or []):
         raise ValueError("Transcript package correction count does not match correction log")
     if quality.get("unresolved_term_count") != len(unresolved):
         raise ValueError("Transcript package unresolved term count does not match correction log")
+    return _validate_timeline_quality(
+        corrected_path,
+        duration_seconds,
+        quality,
+        allow_voice_activity_gap=maximum_uncovered_speech is not None,
+    )
+
+
+def _validate_timeline_quality(
+    corrected_path: Path,
+    duration_seconds: float,
+    declared_quality: dict[str, Any],
+    *,
+    allow_voice_activity_gap: bool,
+) -> dict[str, Any]:
+    segments = read_jsonl(corrected_path)
+    coverage_mode = declared_quality.get("coverage_mode")
+    voice_activity_coverage = coverage_mode == "voice_activity"
+    metrics = transcript_metrics(
+        segments,
+        media_duration=duration_seconds,
+        allow_blank_text=True,
+        # Voice-activity packages intentionally measure the quality gate over
+        # detected speech. Their raw timeline coverage can be lower because
+        # silence and music are not expected to have transcript segments.
+        min_coverage_ratio=0.0 if voice_activity_coverage else 0.95,
+        max_gap_seconds=float("inf"),
+    )
+    if metrics["errors"]:
+        raise ValueError(
+            "Transcript package quality validation did not pass: "
+            f"{metrics['errors'][0]}"
+        )
+    computed_coverage = float(metrics["coverage_ratio"])
+    computed_gap = float(metrics["maximum_gap_seconds"])
+    declared_coverage = declared_quality.get("coverage_ratio")
+    declared_timeline_coverage = declared_quality.get("timeline_coverage_ratio")
+    declared_gap = declared_quality.get("maximum_gap_seconds")
+
+    coverage_declarations: list[tuple[str, float]] = []
+    if declared_timeline_coverage is not None:
+        if (
+            isinstance(declared_timeline_coverage, bool)
+            or not isinstance(declared_timeline_coverage, (int, float))
+            or not math.isfinite(declared_timeline_coverage)
+            or not 0 <= declared_timeline_coverage <= 1
+        ):
+            raise ValueError(
+                "Transcript package quality validation did not pass: declared "
+                "timeline coverage ratio"
+            )
+        coverage_declarations.append(
+            ("timeline_coverage_ratio", float(declared_timeline_coverage))
+        )
+    # In older/media-timeline packages coverage_ratio itself is the timeline
+    # declaration. In voice-activity packages it has different semantics and
+    # must never be compared with the raw transcript timeline.
+    if (
+        not voice_activity_coverage
+        and isinstance(declared_coverage, (int, float))
+        and not isinstance(declared_coverage, bool)
+    ):
+        coverage_declarations.append(("coverage_ratio", float(declared_coverage)))
+    for field, value in coverage_declarations:
+        if abs(value - computed_coverage) > 0.005:
+            raise ValueError(
+                "Transcript package quality validation did not pass: declared "
+                "coverage does not match transcript timeline "
+                f"({field}={value:.6f}, computed={computed_coverage:.6f})"
+            )
+    if isinstance(declared_gap, (int, float)) and not isinstance(declared_gap, bool):
+        if abs(float(declared_gap) - computed_gap) > 0.1:
+            raise ValueError(
+                "Transcript package quality validation did not pass: declared "
+                "maximum gap does not match transcript timeline"
+            )
+    if not allow_voice_activity_gap and computed_gap > 5:
+        raise ValueError(
+            "Transcript package quality validation did not pass: maximum gap "
+            f"{computed_gap:.2f}s exceeds 5.00s"
+        )
+    if segments[-1].end > duration_seconds + 1.0:
+        raise ValueError(
+            "Transcript package quality validation did not pass: transcript extends "
+            "beyond video duration"
+        )
+    quality = dict(declared_quality)
+    quality["computed_timeline_coverage_ratio"] = computed_coverage
+    quality["computed_timeline_maximum_gap_seconds"] = computed_gap
     return quality
 
 
@@ -198,8 +347,13 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
     payload = _load_object(package_manifest)
     if payload.get("package_type") != PACKAGE_TYPE:
         raise ValueError(f"Unsupported package_type: {payload.get('package_type')}")
-    if payload.get("schema_version") != PACKAGE_SCHEMA_VERSION:
-        raise ValueError("Transcript package must use schema_version 1")
+    package_schema_version = payload.get("schema_version")
+    if (
+        isinstance(package_schema_version, bool)
+        or not isinstance(package_schema_version, int)
+        or package_schema_version not in SUPPORTED_PACKAGE_SCHEMA_VERSIONS
+    ):
+        raise ValueError("Transcript package must use schema_version 1 or 2")
 
     video = payload.get("video")
     if not isinstance(video, dict):
@@ -208,6 +362,28 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
     source_url = str(video.get("source_url") or "").strip()
     if not source_url:
         raise ValueError("Transcript package is missing source_url")
+    parsed_source_url = urlsplit(source_url)
+    if parsed_source_url.scheme not in {"http", "https"} or not parsed_source_url.netloc:
+        raise ValueError("Transcript package source_url must be HTTP(S)")
+    for field in ("title", "creator", "published_at"):
+        if not str(video.get(field) or "").strip():
+            raise ValueError(f"Transcript package is missing {field}")
+    published_at = str(video["published_at"]).strip()
+    try:
+        if len(published_at) == 8 and published_at.isdigit():
+            datetime.strptime(published_at, "%Y%m%d")
+        else:
+            datetime.fromisoformat(published_at.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError("Transcript package published_at must be an ISO date") from exc
+    duration_seconds = video.get("duration_seconds")
+    if (
+        isinstance(duration_seconds, bool)
+        or not isinstance(duration_seconds, (int, float))
+        or not math.isfinite(duration_seconds)
+        or duration_seconds <= 0
+    ):
+        raise ValueError("Transcript package has an invalid video duration")
 
     files = payload.get("files")
     if not isinstance(files, dict) or not CURRENT_REQUIRED_FILES <= set(files):
@@ -217,9 +393,13 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
             else CURRENT_REQUIRED_FILES
         )
         raise ValueError(f"Transcript package is missing files: {', '.join(missing)}")
+    if package_schema_version == 2 and set(files) != CURRENT_REQUIRED_FILES:
+        raise ValueError(
+            "Transcript package schema_version 2 must list exactly the standard files"
+        )
     package_files = (
         LEGACY_REQUIRED_FILES
-        if LEGACY_REQUIRED_FILES <= set(files)
+        if package_schema_version == 1 and LEGACY_REQUIRED_FILES <= set(files)
         else CURRENT_REQUIRED_FILES
     )
     resolved_files = {
@@ -236,7 +416,15 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
         validation = _load_object(resolved_files["transcript_validation"])
         if validation.get("valid") is not True:
             raise ValueError("Transcript package quality validation did not pass")
-        quality = payload.get("quality") if isinstance(payload.get("quality"), dict) else {}
+        declared_quality = (
+            payload.get("quality") if isinstance(payload.get("quality"), dict) else {}
+        )
+        quality = _validate_timeline_quality(
+            resolved_files["transcript_corrected_jsonl"],
+            float(duration_seconds),
+            declared_quality,
+            allow_voice_activity_gap=False,
+        )
         contract = "legacy-eight-file"
     else:
         corrections, unresolved = _validate_exported_correction(
@@ -244,9 +432,14 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
             resolved_files["transcript_corrected_jsonl"],
             resolved_files["transcript_corrections"],
         )
-        quality = _validate_quality_summary(payload, corrections, unresolved)
+        quality = _validate_quality_summary(
+            payload,
+            corrections,
+            unresolved,
+            resolved_files["transcript_corrected_jsonl"],
+            float(duration_seconds),
+        )
         contract = "current-four-file"
-
     store = ManifestStore(project_root)
     if ProcessedReportStore(project_root).contains(video_id):
         raise RuntimeError(f"Report is already processed: {video_id}")
@@ -255,10 +448,11 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
         if manifest.source_url != source_url:
             raise RuntimeError("Existing report run belongs to a different source URL")
         if manifest.is_complete(Stage.INGEST):
-            imported = (project_root / manifest.artifacts["transcript_package"]).resolve()
-            imported.relative_to(project_root.resolve())
-            if not imported.is_file():
-                raise FileNotFoundError(imported)
+            imported = store.artifact_path(manifest, "transcript_package")
+            if sha256_file(imported) != sha256_file(package_manifest):
+                raise RuntimeError(
+                    "Existing report run was imported from a different transcript package"
+                )
             return video_id
     except FileNotFoundError:
         manifest = store.create(video_id, source_url)
@@ -271,10 +465,10 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
             filename = FILE_DESTINATIONS[key]
             target = destination / filename
             _copy_without_overwriting_different(resolved_files[key], target)
-            manifest.artifacts[key] = store.relative(target)
+            store.set_artifact(manifest, key, target)
         package_copy = destination / "package.json"
         _copy_without_overwriting_different(package_manifest, package_copy)
-        manifest.artifacts["transcript_package"] = store.relative(package_copy)
+        store.set_artifact(manifest, "transcript_package", package_copy)
         manifest.metadata.update(
             {key: value for key, value in video.items() if key not in {"video_id", "source_url"}}
         )
@@ -286,6 +480,7 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
             unresolved
         )
         manifest.metadata["transcript_package_contract"] = contract
+        manifest.metadata["transcript_package_schema_version"] = package_schema_version
         manifest.metadata["transcript_quality"] = quality
         if isinstance(payload.get("provenance"), dict):
             manifest.metadata["transcript_provenance"] = payload["provenance"]

@@ -1,3 +1,3 @@
-"""Opinion-report pipeline driven by validated timestamped transcripts."""
+"""Traceable reports from validated video transcripts or packaged materials."""
 
 __version__ = "0.1.0"

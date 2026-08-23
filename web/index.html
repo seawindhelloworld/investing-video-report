@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="从视频字幕包或文字素材 ZIP，调用本机 Codex/OpenCode 生成可追溯报告。">
+    <title>内容报告控制台</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div class="brand-row">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span class="eyebrow">LOCAL REPORT STUDIO</span>
+          <span class="local-chip"><i></i> Codex / OpenCode 本机运行</span>
+        </div>
+        <h1>从视频与素材，生成<span>可追溯的深度报告</span></h1>
+        <p class="hero-copy">选择视频报告或素材报告，再指定模型与推理强度。两种模式使用各自独立的内容边界、分析结构和质量验收。</p>
+      </header>
+
+      <section class="workspace" aria-label="报告生成工作区">
+        <form id="report-form" class="panel form-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="step-label">01 / INPUT</p>
+              <h2 id="input-title">导入视频字幕包</h2>
+            </div>
+            <span class="format-note"><span id="format-label">标准字幕包</span> · 最大 <b id="max-upload">100 MB</b></span>
+          </div>
+
+          <label class="report-type-field" for="report-type">
+            <span>
+              <b>报告类型</b>
+              <small id="report-type-description">忠实整理单个视频的作者内容，并进行外部研判与 Agent 综合判断。</small>
+            </span>
+            <select id="report-type" class="text-field" name="report_type">
+              <option value="video" selected>视频报告</option>
+              <option value="material">素材报告</option>
+            </select>
+          </label>
+
+          <div id="material-mode-note" class="mode-note" hidden>
+            一个 ZIP 可以包含多份 TXT、Markdown、HTML、DOC/DOCX、RTF 和文字图片；全部素材共同生成一份报告。图片需要选择支持视觉理解的模型。
+          </div>
+
+          <div id="import-tabs" class="import-tabs" role="tablist" aria-label="字幕包导入方式">
+            <button class="import-tab active" type="button" data-mode="zip" role="tab" aria-selected="true">ZIP 文件</button>
+            <button class="import-tab" type="button" data-mode="folder" role="tab" aria-selected="false">字幕目录</button>
+            <button class="import-tab" type="button" data-mode="path" role="tab" aria-selected="false">本机路径</button>
+          </div>
+
+          <div class="import-pane active" data-pane="zip">
+            <label class="drop-zone" for="package-archive">
+              <input id="package-archive" name="package_archive" type="file" accept=".zip,application/zip">
+              <span class="upload-icon" aria-hidden="true">↑</span>
+              <strong id="archive-title">选择字幕包 ZIP</strong>
+              <span id="archive-help">压缩包内需包含唯一的 package.json 及其引用文件</span>
+              <em id="archive-name">尚未选择文件</em>
+            </label>
+          </div>
+
+          <div class="import-pane" data-pane="folder" hidden>
+            <label class="drop-zone" for="package-folder">
+              <input id="package-folder" name="package_folder" type="file" webkitdirectory multiple>
+              <span class="upload-icon" aria-hidden="true">⌁</span>
+              <strong>选择完整字幕目录</strong>
+              <span>浏览器会上传目录内的 package.json、校订字幕和勘误记录</span>
+              <em id="folder-name">尚未选择目录</em>
+            </label>
+          </div>
+
+          <div class="import-pane" data-pane="path" hidden>
+            <label class="field-label" for="package-path">服务器上的字幕包目录或 package.json</label>
+            <input id="package-path" class="text-field mono" type="text" autocomplete="off" placeholder="/absolute/path/to/transcripts/VIDEO_ID">
+            <p class="field-help">仅适用于网页服务与字幕文件位于同一台电脑的情况。</p>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="panel-heading compact">
+            <div>
+              <p class="step-label">02 / MODEL</p>
+              <h2>设置分析参数</h2>
+            </div>
+          </div>
+
+          <fieldset class="engine-choice">
+            <legend class="field-label">执行引擎</legend>
+            <label class="engine-card active" data-engine-card="codex">
+              <input type="radio" name="engine" value="codex" checked>
+              <span><b>Codex CLI</b><small>OpenAI Codex 本机登录与模型</small></span>
+              <i>推荐</i>
+            </label>
+            <label class="engine-card" data-engine-card="opencode">
+              <input type="radio" name="engine" value="opencode">
+              <span><b>OpenCode</b><small>复用本机 TUI 的供应商和模型配置</small></span>
+              <i>本机模型</i>
+            </label>
+          </fieldset>
+
+          <div class="field-grid model-grid">
+            <label>
+              <span id="model-label" class="field-label">Codex 模型</span>
+              <select id="model" class="text-field mono" name="model" required>
+                <option value="">正在读取本机模型…</option>
+              </select>
+              <small id="model-note" class="inline-note">从当前 Codex 账号可用的模型中选择。</small>
+            </label>
+            <label>
+              <span id="effort-label" class="field-label">推理强度</span>
+              <select id="reasoning-effort" class="text-field" name="reasoning_effort" required>
+                <option value="low">low</option>
+                <option value="medium">medium</option>
+                <option value="high" selected>high</option>
+                <option value="xhigh">xhigh</option>
+                <option value="max">max</option>
+              </select>
+              <small id="effort-note" class="inline-note">仅显示 Codex 支持的标准强度。</small>
+            </label>
+          </div>
+
+          <label id="fast-mode-row" class="fast-mode-row">
+            <input id="codex-fast-mode" type="checkbox" checked>
+            <span>
+              <b>Codex Fast 模式</b>
+              <small>同一个 Sol 模型走低延迟服务层；通常更快，但可能消耗更多额度。</small>
+            </span>
+            <i>加速</i>
+          </label>
+
+          <div id="engine-warning" class="engine-warning" hidden>OpenCode 将以无人值守模式复用本机权限配置。当前列出的 DeepSeek V4 Flash / Pro 均为文字模型；含图片素材时请改用支持图片的 Codex 模型。</div>
+
+          <div id="form-error" class="message error" role="alert" hidden></div>
+          <button id="generate-button" class="primary-button" type="submit">
+            <span>开始生成报告</span>
+            <b aria-hidden="true">→</b>
+          </button>
+          <p class="privacy-note">Codex 凭据只保留在运行本页面的电脑上；浏览器不会接触登录信息。</p>
+        </form>
+
+        <section class="panel progress-panel" aria-labelledby="progress-title">
+          <div class="panel-heading">
+            <div>
+              <p class="step-label">03 / RUN</p>
+              <h2 id="progress-title">生成进度</h2>
+            </div>
+            <span id="job-status" class="status-chip idle">等待任务</span>
+          </div>
+
+          <div id="empty-state" class="empty-state">
+            <div class="orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+            <h3>报告流水线尚未启动</h3>
+            <p>提交输入包后，这里会显示当前模式的质量阶段和运行日志。</p>
+          </div>
+
+          <div id="job-view" hidden>
+            <h3 id="job-title" class="selected-job-title">—</h3>
+            <div class="job-summary">
+              <div><span>报告类型</span><strong id="detail-report-type">—</strong></div>
+              <div><span id="content-id-label">视频 ID</span><strong id="content-id">—</strong></div>
+              <div><span>执行引擎</span><strong id="detail-engine">—</strong></div>
+              <div><span>模型</span><strong id="detail-model">—</strong></div>
+              <div><span>推理强度</span><strong id="detail-effort">—</strong></div>
+              <div><span>服务层</span><strong id="detail-service-tier">—</strong></div>
+              <div><span>创建时间</span><strong id="detail-created-at">—</strong></div>
+            </div>
+
+            <details class="parameter-panel">
+              <summary>完整任务参数</summary>
+              <dl>
+                <div><dt>任务 ID</dt><dd id="detail-job-id">—</dd></div>
+                <div><dt>开始时间</dt><dd id="detail-started-at">—</dd></div>
+                <div><dt>结束时间</dt><dd id="detail-finished-at">—</dd></div>
+                <div><dt>输入清单</dt><dd id="detail-package">—</dd></div>
+              </dl>
+            </details>
+
+            <section id="runtime-monitor" class="runtime-monitor" aria-live="polite">
+              <div class="activity-head">
+                <span id="activity-pulse" class="activity-pulse" aria-hidden="true"></span>
+                <div>
+                  <small>当前动作</small>
+                  <strong id="job-activity">正在准备报告流水线…</strong>
+                </div>
+                <b id="job-progress-value">0%</b>
+              </div>
+              <div class="progress-track" aria-hidden="true"><i id="job-progress-bar"></i></div>
+              <dl class="runtime-metrics">
+                <div><dt>当前阶段</dt><dd id="job-current-stage">准备中</dd></div>
+                <div><dt>阶段耗时</dt><dd id="job-stage-elapsed">0 秒</dd></div>
+                <div><dt>最近事件</dt><dd id="job-last-event">刚刚</dd></div>
+                <div><dt>进程心跳</dt><dd id="job-heartbeat">正常</dd></div>
+              </dl>
+            </section>
+
+            <ol id="stage-list" class="stage-list" aria-label="报告阶段"></ol>
+
+            <details class="log-panel" open>
+              <summary>运行日志 <span>实时更新</span></summary>
+              <pre id="job-log">准备启动…</pre>
+              <a id="raw-log-link" class="raw-log-link" target="_blank" rel="noopener" hidden>查看原始 JSONL 日志 ↗</a>
+            </details>
+
+            <button id="cancel-job" class="secondary-button cancel-button" type="button" hidden>停止当前任务</button>
+
+            <div id="result-actions" class="result-actions" hidden>
+              <a id="open-report" class="primary-button" target="_blank" rel="noopener">打开完整报告 <b>↗</b></a>
+              <a id="download-markdown" class="secondary-button" download>下载 Markdown</a>
+            </div>
+            <div id="job-error" class="message error" role="alert" hidden></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel tasks-panel" aria-labelledby="tasks-title">
+        <div class="panel-heading tasks-heading">
+          <div>
+            <p class="step-label">04 / TASKS</p>
+            <h2 id="tasks-title">报告任务</h2>
+            <p class="tasks-note">仅显示本次服务启动后提交的任务。点击任务可查看模型、引擎、阶段与结果。</p>
+          </div>
+          <div class="tasks-toolbar">
+            <span id="job-count" class="task-count">0 个任务</span>
+            <button id="refresh-jobs" class="refresh-button" type="button">刷新</button>
+          </div>
+        </div>
+        <div id="job-list" class="job-list" aria-live="polite">
+          <div class="task-empty">本次运行尚无报告任务。</div>
+        </div>
+      </section>
+
+      <footer>
+        <p>视频模式验证标准字幕包；素材模式验证 ZIP 内每个来源文件。</p>
+        <p>上传内容只作为待分析素材 · 文件内指令不会被执行</p>
+      </footer>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

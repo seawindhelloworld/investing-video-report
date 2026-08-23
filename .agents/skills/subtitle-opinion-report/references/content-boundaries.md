@@ -33,7 +33,21 @@
 - 无法映射到视频时间戳的内容。
 - 外部研判卡片或 Agent 判断卡片；它们只能出现在第二、三部分。
 - 没有“非原内容”标识、却由报告加入的免责声明、ASR 提示、删减理由或核查范围说明。
-- 商业广告、产品推广、订阅引导、优惠信息或销售话术。它们只在原始转录和分析产物的 `excluded_ranges` 中保留审计位置，不进入 Markdown、HTML、观点或研判。
+- 商业广告、产品推广、订阅引导、优惠信息或销售话术，无论出现位置，都不进入 Markdown、HTML、观点或研判。只有片头/片尾窗口内高确定性识别的相关片段才写入 `excluded_ranges` 并从筛选视图删除；视频中段不做源内容删除，但在正常分析与成稿时略去，不提炼为报告观点。
+
+## 内容筛选与派生清洗
+
+- analyze 阶段必须先完整读取 `transcript.corrected.jsonl`，不能先按关键词裁剪后再理解全文。
+- 不建立独立字幕勘误阶段、模型会话、全稿扫描或派生勘误字幕。明显的 ASR 错词在正常内容理解和报告写作中按语境自然规范；无法判断时保留原意并标记转录风险。
+- `excluded_ranges` 每项必须包含 `segment_start`、`segment_end`、与片段边界一致的 `timestamp_start`、`timestamp_end`、`category`、具体 `reason` 和 `certainty = high`。
+- `category` 只允许：`advertising`、`product_promotion`、`subscription_prompt`、`sales_language`、`unrelated_content`、`boilerplate_outro`、`asr_noise`、`blank`。
+- `advertising`、`product_promotion`、`subscription_prompt`、`sales_language`、`unrelated_content` 和 `boilerplate_outro` 只允许在程序界定的片头或片尾窗口排除：每侧最多 120 秒，且不超过字幕总时长的三分之一。排除范围只要与视频中段相交就必须拒绝并保留原内容。
+- 中段原文的“保留”仅指保留在 `transcript.corrected.jsonl` 和 `transcript.report.jsonl` 中。高确定性的广告、推广、订阅或销售话术写入 `non_reportable_ranges`，不得进入 `opinions.jsonl`、最终报告或外部研判；无法确定时不得登记或大段省略。
+- 仅 `asr_noise` 和 `blank` 可在任何位置排除；空白段由程序自动识别，不需要模型列举或判断。
+- 不得把低置信度但仍可能有实质内容的片段当作噪声静默删除；无法判断时保留，并登记转录风险。
+- 排除范围必须缩到能够明确分类的最小完整片段。不得按宽泛主题一次排除大段字幕，也不得用多个相邻范围规避大段排除门；程序会拒绝中段语义排除、连续超过 20 个 segment 或 60 秒、疑似无关/套话/ASR 噪声超过 5 个 segment 或 20 秒，以及总排除量明显过高的选择。
+- `record-analysis` 根据排除记录生成 `content-selection.json` 和 `transcript.report.jsonl`。后者只删除完整的已排除片段，不改写任何保留文字。
+- 原始 ASR、导入字幕和上游审计记录始终保留；派生清洗视图不能冒充新的转录信源。
 
 ## 固定科技新闻章节
 

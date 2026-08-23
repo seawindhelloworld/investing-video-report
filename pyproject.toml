@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "video-subtitle-opinion-report"
 version = "0.1.0"
-description = "Build traceable opinion reports from validated timestamped transcript packages."
+description = "Build traceable reports from validated video transcripts or packaged text materials."
 requires-python = ">=3.10"
 dependencies = [
   "Markdown>=3.8,<4",
@@ -13,6 +13,8 @@ dependencies = [
 
 [project.scripts]
 video-opinion-report = "video_opinion_report.cli:main"
+video-opinion-report-automate = "video_opinion_report.automation:main"
+video-opinion-report-web = "video_opinion_report.web_server:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
