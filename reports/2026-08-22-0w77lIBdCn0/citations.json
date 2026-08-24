@@ -1,0 +1,427 @@
+{
+  "schema_version": 1,
+  "video_id": "0w77lIBdCn0",
+  "generated_at": "2026-08-24T08:32:07.282418+00:00",
+  "citations": [
+    {
+      "source_id": "src-avgo-sec-10q-20260503",
+      "title": "Broadcom Inc. Form 10-Q for the quarter ended May 3, 2026",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Broadcom Inc.",
+      "published_at": "2026-06-09",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000054/avgo-20260503.htm",
+      "evidence_summary": "披露AI机架与客户租赁安排、五年回保以及290亿美元最大敞口，并列出违约时接管租约或出售机架等补救。",
+      "scope": "博通法定披露的既有安排；不覆盖8月媒体所述拟议新融资的最终条款。",
+      "source_ids": [
+        "src-avgo-sec-10q-20260503"
+      ],
+      "research_topics": [
+        "topic-ai-credit-broadcom"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-001"
+    },
+    {
+      "source_id": "src-avgo-platform-20260609",
+      "title": "Broadcom, Apollo, and Blackstone Establish Landmark Strategic Platform to Accelerate More Than 20 Gigawatts of Global AI Deployments",
+      "publisher": "Broadcom Investor Relations",
+      "author": "Broadcom Inc.; Apollo Global Management; Blackstone",
+      "published_at": "2026-06-09",
+      "accessed_at": "2026-08-24",
+      "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-apollo-and-blackstone-establish-landmark-strategic",
+      "evidence_summary": "宣布面向超过20GW计算容量的AI平台及首期资本方案，说明融资、机架部署和客户租赁的产业背景。",
+      "scope": "参与方公告和前瞻性陈述；不等于实际客户付款或最终损失率。",
+      "source_ids": [
+        "src-avgo-platform-20260609"
+      ],
+      "research_topics": [
+        "topic-ai-credit-broadcom"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-002"
+    },
+    {
+      "source_id": "src-avgo-q2-2026-results",
+      "title": "Broadcom Inc. Announces Second Quarter Fiscal Year 2026 Financial Results and Quarterly Dividend",
+      "publisher": "Broadcom Investor Relations",
+      "author": "Broadcom Inc.",
+      "published_at": "2026-06-03",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.broadcom.com/company/news/financial-releases/64371",
+      "evidence_summary": "披露季度收入221.87亿美元、AI半导体收入108亿美元、自由现金流102.62亿美元及第三财季收入展望。",
+      "scope": "公司季度业绩和管理层展望；不单独证明股票估值或未来客户信用。",
+      "source_ids": [
+        "src-avgo-q2-2026-results"
+      ],
+      "research_topics": [
+        "topic-ai-credit-broadcom"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-003"
+    },
+    {
+      "source_id": "src-avgo-financing-report-20260820",
+      "title": "Broadcom reportedly seeking up to $100B in debt financing for AI chip deal",
+      "publisher": "SiliconANGLE",
+      "author": "Maria Deutscher",
+      "published_at": "2026-08-20",
+      "accessed_at": "2026-08-24",
+      "url": "https://siliconangle.com/2026/08/20/broadcom-reportedly-seeking-up-to-100b-in-debt-financing-for-ai-chip-deal/",
+      "evidence_summary": "二级报道拟议融资总包最高1000亿美元，包含优先与次级债，并称博通可能担保其中一部分。",
+      "scope": "未完成交易的媒体报道；总融资规模不等于博通担保额。",
+      "source_ids": [
+        "src-avgo-financing-report-20260820"
+      ],
+      "research_topics": [
+        "topic-ai-credit-broadcom"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-004"
+    },
+    {
+      "source_id": "src-alphabet-q2-2026-sec",
+      "title": "Alphabet Announces Second Quarter 2026 Results",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Alphabet Inc.",
+      "published_at": "2026-07-22",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm",
+      "evidence_summary": "披露收入1198亿美元增24%，Google Cloud收入247.68亿美元增82%，由企业AI基础设施和解决方案推动。",
+      "scope": "Alphabet季度合并和分部数据，未单列可比AI资产回报率。",
+      "source_ids": [
+        "src-alphabet-q2-2026-sec"
+      ],
+      "research_topics": [
+        "topic-ai-credit-broadcom"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-005"
+    },
+    {
+      "source_id": "src-amazon-q2-2026",
+      "title": "Amazon.com Announces Second Quarter Results",
+      "publisher": "Amazon Investor Relations",
+      "author": "Amazon.com, Inc.",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-24",
+      "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
+      "evidence_summary": "披露AWS季度销售422亿美元增37%、营业利润166亿美元，并说明AI投入推高固定资产购买和自由现金流压力。",
+      "scope": "Amazon季度业绩；AWS增长不能全部归因于生成式AI。",
+      "source_ids": [
+        "src-amazon-q2-2026"
+      ],
+      "research_topics": [
+        "topic-ai-credit-broadcom"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-006"
+    },
+    {
+      "source_id": "src-msft-fy26-q3",
+      "title": "Microsoft Fiscal Year 2026 Third Quarter Earnings Conference Call",
+      "publisher": "Microsoft Investor Relations",
+      "author": "Satya Nadella; Amy Hood; Microsoft Corporation",
+      "published_at": "2026-04-29",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3",
+      "evidence_summary": "披露AI业务年化收入运行率超过370亿美元、同比增123%，Azure增40%，同时云毛利率受AI投入压制。",
+      "scope": "微软截至2026年3月季度；包含管理层口径和前瞻性判断。",
+      "source_ids": [
+        "src-msft-fy26-q3"
+      ],
+      "research_topics": [
+        "topic-ai-credit-broadcom"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-007"
+    },
+    {
+      "source_id": "src-us-debt-gdp-fred-2025",
+      "title": "Federal Debt: Total Public Debt as Percent of Gross Domestic Product",
+      "publisher": "Federal Reserve Bank of St. Louis",
+      "author": "U.S. Office of Management and Budget; FRED",
+      "published_at": "2026-06-25",
+      "accessed_at": "2026-08-24",
+      "url": "https://fred.stlouisfed.org/graph/?g=Sa8D",
+      "evidence_summary": "列示2025年美国联邦总债务约占GDP的120.73%，用于确认高公共债务背景。",
+      "scope": "美国政府债务宏观序列，不代表企业AI融资违约率或系统性损失。",
+      "source_ids": [
+        "src-us-debt-gdp-fred-2025"
+      ],
+      "research_topics": [
+        "topic-ai-credit-broadcom"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-008"
+    },
+    {
+      "source_id": "src-avgo-price-20260821",
+      "title": "Broadcom Stock Price History Charts",
+      "publisher": "FinanceCharts",
+      "author": "FinanceCharts Market Data",
+      "published_at": "2026-08-21",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.financecharts.com/stocks/AVGO/summary/price",
+      "evidence_summary": "列示博通2026年8月21日收盘价368.45美元，用于核对讲者324至365美元区间。",
+      "scope": "二级行情历史，不构成估值或投资建议。",
+      "source_ids": [
+        "src-avgo-price-20260821"
+      ],
+      "research_topics": [
+        "topic-ai-credit-broadcom"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-009"
+    },
+    {
+      "source_id": "src-igv-ishares-20260821",
+      "title": "iShares Expanded Tech-Software Sector ETF",
+      "publisher": "BlackRock iShares",
+      "author": "BlackRock Fund Advisors",
+      "published_at": "2026-08-21",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.ishares.com/us/products/239771/IGV",
+      "evidence_summary": "官方页面列示NAV 103.40美元、收盘103.37美元、106只持仓、36.81倍市盈率、主要权重和跟踪指数。",
+      "scope": "基金结构、持仓和截至日期数据；不预测107美元突破后的表现。",
+      "source_ids": [
+        "src-igv-ishares-20260821"
+      ],
+      "research_topics": [
+        "topic-igv-software"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-010"
+    },
+    {
+      "source_id": "src-igv-sp-index-methodology-202603",
+      "title": "S&P North American Sector Indices Methodology",
+      "publisher": "S&P Dow Jones Indices",
+      "author": "S&P Dow Jones Indices",
+      "published_at": "2026-03-01",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.spglobal.com/spdji/en/documents/methodologies/methodology-sp-na-sector-index.pdf",
+      "evidence_summary": "说明相关指数采用自由流通市值和权重上限规则并定期再平衡，不以ETF价格突破作为成分调整条件。",
+      "scope": "指数编制与再平衡方法，不覆盖ETF二级市场净申购。",
+      "source_ids": [
+        "src-igv-sp-index-methodology-202603"
+      ],
+      "research_topics": [
+        "topic-igv-software"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-011"
+    },
+    {
+      "source_id": "src-igv-sec-prospectus-20260731",
+      "title": "iShares Expanded Tech-Software Sector ETF Summary Prospectus",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "iShares Trust",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526327903/0001193125-26-327903-index.htm",
+      "evidence_summary": "提供IGV跟踪指数、费用与ETF份额交易机制的法定披露背景。",
+      "scope": "基金法定概要；不提供实时资金流或个股涨跌预测。",
+      "source_ids": [
+        "src-igv-sec-prospectus-20260731"
+      ],
+      "research_topics": [
+        "topic-igv-software"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-012"
+    },
+    {
+      "source_id": "src-positioning-bofa-trustnet-20260818",
+      "title": "Investors shrug off AI fears and turn bullish in August, finds BofA survey",
+      "publisher": "Trustnet",
+      "author": "Jonathan Jones",
+      "published_at": "2026-08-18",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.trustnet.com/News/13482854/investors-shrug-off-ai-fears-and-turn-bullish-in-august-finds-bofa-survey/",
+      "evidence_summary": "报道美银8月全球基金经理调查：现金3.5%、为1998年以来第六低，全球股票配置净56%超配。",
+      "scope": "二级报道；用于核对调查核心数字，不替代未公开的美银完整原始报告。",
+      "source_ids": [
+        "src-positioning-bofa-trustnet-20260818"
+      ],
+      "research_topics": [
+        "topic-institutional-positioning"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-013"
+    },
+    {
+      "source_id": "src-positioning-cboe-vix-faq",
+      "title": "VIX Frequently Asked Questions",
+      "publisher": "Cboe Global Markets",
+      "author": "Cboe Exchange, Inc.",
+      "published_at": "2019-10-08",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.cboe.com/tradable_products/vix/faqs",
+      "evidence_summary": "官方解释VIX由SPX期权报价推导，衡量未来30天预期波动率，指标本身不预测方向。",
+      "scope": "VIX方法与解释，不为任何具体点位提供交易结论。",
+      "source_ids": [
+        "src-positioning-cboe-vix-faq"
+      ],
+      "research_topics": [
+        "topic-institutional-positioning"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-014"
+    },
+    {
+      "source_id": "src-positioning-spy-price-20260821",
+      "title": "SPDR S&P 500 ETF Trust Stock Price History",
+      "publisher": "FinanceCharts",
+      "author": "FinanceCharts Market Data",
+      "published_at": "2026-08-21",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.financecharts.com/compare/SPY%2CJPM/summary/price",
+      "evidence_summary": "列示SPY在2026年8月21日收于765.72美元，以及7月29日盘中低点729.10美元等近期价格。",
+      "scope": "二级行情历史，用于核对价格距离；不验证技术线的预测能力。",
+      "source_ids": [
+        "src-positioning-spy-price-20260821"
+      ],
+      "research_topics": [
+        "topic-institutional-positioning"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-015"
+    },
+    {
+      "source_id": "src-nvda-price-20260821",
+      "title": "NVIDIA Stock Price History Charts",
+      "publisher": "FinanceCharts",
+      "author": "FinanceCharts Market Data",
+      "published_at": "2026-08-21",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.financecharts.com/stocks/NVDA/summary/price",
+      "evidence_summary": "列示8月21日收214.72美元及此前一周217至225美元附近的收盘历史。",
+      "scope": "二级行情历史，用于复核价格区间，不验证技术预测能力。",
+      "source_ids": [
+        "src-nvda-price-20260821"
+      ],
+      "research_topics": [
+        "topic-nvidia-semiconductors"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-016"
+    },
+    {
+      "source_id": "src-nvda-q2-date-20260729",
+      "title": "NVIDIA Sets Conference Call for Second-Quarter Financial Results",
+      "publisher": "NVIDIA Investor Relations",
+      "author": "NVIDIA Corporation",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-24",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Second-Quarter-Financial-Results/default.aspx",
+      "evidence_summary": "确认2026年8月26日盘后公布FY2027第二季度业绩并召开电话会。",
+      "scope": "财报时间，不包含结果、指引或市场反应。",
+      "source_ids": [
+        "src-nvda-q2-date-20260729"
+      ],
+      "research_topics": [
+        "topic-nvidia-semiconductors"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-017"
+    },
+    {
+      "source_id": "src-nvda-q1-fy27-20260520",
+      "title": "NVIDIA Announces Financial Results for First Quarter Fiscal 2027",
+      "publisher": "NVIDIA Investor Relations",
+      "author": "NVIDIA Corporation",
+      "published_at": "2026-05-20",
+      "accessed_at": "2026-08-24",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-First-Quarter-Fiscal-2027/default.aspx",
+      "evidence_summary": "披露Q1收入816亿美元增85%、数据中心收入752亿美元增92%、GAAP毛利率74.9%。",
+      "scope": "截至2026年4月26日季度业绩；不保证下一季度结果或价格反应。",
+      "source_ids": [
+        "src-nvda-q1-fy27-20260520"
+      ],
+      "research_topics": [
+        "topic-nvidia-semiconductors"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-018"
+    },
+    {
+      "source_id": "src-tsla-price-20260821",
+      "title": "Tesla Stock Price History Charts",
+      "publisher": "FinanceCharts",
+      "author": "FinanceCharts Market Data",
+      "published_at": "2026-08-21",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.financecharts.com/stocks/TSLA/summary/price",
+      "evidence_summary": "列示8月21日开349.88、最高366.50、最低346.90、收362.86美元及约5855万股成交量。",
+      "scope": "二级行情历史，用于判断是否满足技术触发，不代表未来区间。",
+      "source_ids": [
+        "src-tsla-price-20260821"
+      ],
+      "research_topics": [
+        "topic-tesla-technical"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-019"
+    },
+    {
+      "source_id": "src-tsla-q2-2026-sec",
+      "title": "Tesla Q2 2026 Update",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Tesla, Inc.",
+      "published_at": "2026-07-22",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049213/exhibit991.htm",
+      "evidence_summary": "披露季度收入282.36亿美元、营业利润率1.4%、资本开支57.89亿美元和自由现金流负10.92亿美元。",
+      "scope": "Tesla季度经营数据；不直接验证短期技术图形或目标价。",
+      "source_ids": [
+        "src-tsla-q2-2026-sec"
+      ],
+      "research_topics": [
+        "topic-tesla-technical"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-020"
+    }
+  ]
+}
