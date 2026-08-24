@@ -1,0 +1,1865 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-08-24T08:32:07.282418+00:00",
+  "video": {
+    "video_id": "0w77lIBdCn0",
+    "title": "美股 机构弹药见底！下一步，暴风雨？平静？TSLA、IGV、AVGO！",
+    "source_url": "https://www.youtube.com/watch?v=0w77lIBdCn0",
+    "creator": "视野环球财经",
+    "published_at": "20260822",
+    "duration_seconds": 1387.381
+  },
+  "analysis": {
+    "schema_version": 1,
+    "video_id": "0w77lIBdCn0",
+    "title": "美股 机构弹药见底！下一步，暴风雨？平静？TSLA、IGV、AVGO！",
+    "creator": "视野环球财经",
+    "source_url": "https://www.youtube.com/watch?v=0w77lIBdCn0",
+    "published_at": "20260822",
+    "duration_seconds": 1387.381,
+    "summary": "节目先用美银全球基金经理调查、共同基金现金余额和对冲基金杠杆解释美股为何处于低波动僵局，并以VIX和标普关键位给出风险观察框架；随后讨论博通拟为AI芯片融资提供担保所暴露的信用风险、AI基础设施必须兑现收入的约束及下一次重估节点，再依次分析博通、特斯拉、IGV与英伟达的价格结构和条件式风险信号。",
+    "sections": [
+      {
+        "section_id": "section-001",
+        "title": "市场开场与主题预告",
+        "segment_start": "seg-000001",
+        "segment_end": "seg-000042",
+        "timestamp_start": 0.0,
+        "timestamp_end": 139.48,
+        "summary": "回顾美股普涨、半导体与其余市场的跷跷板表现、PMI数据，并引出全球基金经理仓位与个股跟踪。"
+      },
+      {
+        "section_id": "section-002",
+        "title": "机构仓位、低波动僵局与风险阈值",
+        "segment_start": "seg-000043",
+        "segment_end": "seg-000280",
+        "timestamp_start": 143.08,
+        "timestamp_end": 531.7,
+        "summary": "以基金现金、共同基金余额和对冲基金杠杆说明机构仓位已重，判断市场缺少继续上推的主动资金，但在标普结构未破坏前也缺少甩卖理由；VIX与标普关键位被用作下行保护和风险升级的观察信号。"
+      },
+      {
+        "section_id": "section-003",
+        "title": "博通融资、AI信用链与股价条件",
+        "segment_start": "seg-000281",
+        "segment_end": "seg-000538",
+        "timestamp_start": 531.7,
+        "timestamp_end": 964.5,
+        "summary": "从博通可能参与大额AI芯片融资担保和CDS上升，延伸到供应商融资、AI基础设施收入兑现与高债务环境下的系统风险；讲者认为当前尚未出现失败信号，但把四季度财报和中期选举后视为下一重估节点，并给出博通股价的条件式风险区间。"
+      },
+      {
+        "section_id": "section-004",
+        "title": "特斯拉：突破368后的新区间假设",
+        "segment_start": "seg-000539",
+        "segment_end": "seg-000591",
+        "timestamp_start": 965.02,
+        "timestamp_end": 1052.3,
+        "summary": "特斯拉放量接近震荡上沿；讲者把368视为是否进入315至465美元新区间的确认线，并强调未突破前不能提前确认。"
+      },
+      {
+        "section_id": "section-005",
+        "title": "IGV与软件股：指数突破不等于普涨",
+        "segment_start": "seg-000592",
+        "segment_end": "seg-000673",
+        "timestamp_start": 1052.56,
+        "timestamp_end": 1175.18,
+        "summary": "IGV被判断已通过下跌横盘修复日线背离并重新放量测试压力；若突破将利好软件板块被动资金，但个股仍会因位置和上方套牢压力而分化。"
+      },
+      {
+        "section_id": "section-006",
+        "title": "半导体与英伟达财报观察",
+        "segment_start": "seg-000674",
+        "segment_end": "seg-000696",
+        "timestamp_start": 1175.44,
+        "timestamp_end": 1259.64,
+        "summary": "半导体相对位置较低，下一步是止跌回测压力还是下探长期均线仍待英伟达财报确认；英伟达关键位置未破前，讲者继续按横盘处理。末段开始转入会员内容预告，不进入报告。"
+      },
+      {
+        "section_id": "section-007",
+        "title": "会员预告、互动引导与片尾",
+        "segment_start": "seg-000697",
+        "segment_end": "seg-000750",
+        "timestamp_start": 1259.64,
+        "timestamp_end": 1386.34,
+        "summary": "预告会员零售数据节目和问答帖，随后请求点赞评论转发、讨论YouTube评论显示问题并道别；这些内容不构成报告观点。"
+      }
+    ],
+    "topic_clusters": [
+      {
+        "topic_id": "topic-institutional-positioning",
+        "theme": "机构仓位、VIX与美股风险不对称",
+        "section_ids": [
+          "section-002"
+        ],
+        "opinion_ids": [
+          "opinion-001",
+          "opinion-002",
+          "opinion-003",
+          "opinion-004"
+        ],
+        "research_priority": "high",
+        "reason": "现金低位能否推导出上行动能不足与下行加速，需要区分仓位调查、资金流、VIX含义和技术位的适用期限。"
+      },
+      {
+        "topic_id": "topic-ai-credit-broadcom",
+        "theme": "博通融资担保、AI信用链与收入兑现",
+        "section_ids": [
+          "section-003"
+        ],
+        "opinion_ids": [
+          "opinion-005",
+          "opinion-006",
+          "opinion-007",
+          "opinion-008",
+          "opinion-009"
+        ],
+        "research_priority": "high",
+        "reason": "大额融资规模、担保结构、信用风险与AI货币化结论都会直接改变博通和AI基础设施风险判断。"
+      },
+      {
+        "topic_id": "topic-tesla-technical",
+        "theme": "特斯拉突破条件与震荡区间",
+        "section_ids": [
+          "section-004"
+        ],
+        "opinion_ids": [
+          "opinion-010"
+        ],
+        "research_priority": "medium",
+        "reason": "明确价位属于时点敏感的技术判断，需要用截至视频日期的价格与波动事实限定，不能当作长期基本面结论。"
+      },
+      {
+        "topic_id": "topic-igv-software",
+        "theme": "IGV突破、被动资金与软件股分化",
+        "section_ids": [
+          "section-005"
+        ],
+        "opinion_ids": [
+          "opinion-011"
+        ],
+        "research_priority": "medium",
+        "reason": "指数层面的资金流支持与成分股分化可以并存，需要核对ETF结构和被动资金机制。"
+      },
+      {
+        "topic_id": "topic-nvidia-semiconductors",
+        "theme": "英伟达财报前的半导体与横盘判断",
+        "section_ids": [
+          "section-006"
+        ],
+        "opinion_ids": [
+          "opinion-012"
+        ],
+        "research_priority": "medium",
+        "reason": "短期技术位和财报事件高度时点化，需与公司披露日历和截至视频日期的价格区分。"
+      }
+    ],
+    "excluded_ranges": [
+      {
+        "segment_start": "seg-000709",
+        "segment_end": "seg-000715",
+        "timestamp_start": 1307.0,
+        "timestamp_end": 1328.3,
+        "category": "product_promotion",
+        "reason": "片尾明确引导已付费会员进入频道社区问答帖并介绍回复服务，属于产品使用与会员服务推广。",
+        "certainty": "high"
+      },
+      {
+        "segment_start": "seg-000723",
+        "segment_end": "seg-000728",
+        "timestamp_start": 1340.76,
+        "timestamp_end": 1347.94,
+        "category": "subscription_prompt",
+        "reason": "片尾请求观众点赞、评论和转发，属于明确互动引导。",
+        "certainty": "high"
+      },
+      {
+        "segment_start": "seg-000746",
+        "segment_end": "seg-000750",
+        "timestamp_start": 1380.04,
+        "timestamp_end": 1386.34,
+        "category": "boilerplate_outro",
+        "reason": "片尾仅有节目结束、周末祝福和固定道别，不承载实质内容。",
+        "certainty": "high"
+      }
+    ],
+    "non_reportable_ranges": [
+      {
+        "segment_start": "seg-000697",
+        "segment_end": "seg-000708",
+        "timestamp_start": 1259.64,
+        "timestamp_end": 1307.0,
+        "category": "product_promotion",
+        "reason": "中段开始预告会员节目将讲解零售数据和零售股，实质目的为推广付费内容；源字幕保留，但不得形成观点、研究主题或报告正文。",
+        "certainty": "high"
+      }
+    ],
+    "transcript_risks": [
+      {
+        "risk_id": "risk-001",
+        "type": "upstream_correction_fallback",
+        "severity": "high",
+        "scope": "full_transcript",
+        "description": "上游模型勘误未返回有效JSON，已回退到确定性规则；共登记27个未解决词项且未应用片段修改。",
+        "handling": "本报告只使用不可变的上游校订字幕，不启动独立勘误，也不声称通过音视频回听确认。"
+      },
+      {
+        "risk_id": "risk-002",
+        "type": "unresolved_term",
+        "severity": "medium",
+        "segment_id": "seg-000146",
+        "timestamp_start": 324.06,
+        "timestamp_end": 324.32,
+        "term": "Wix",
+        "description": "上下文明确讨论标普30天隐含波动与下行保护，词形疑为VIX。",
+        "handling": "在正常内容理解中按VIX整理，但不声称经过回听确认。"
+      },
+      {
+        "risk_id": "risk-003",
+        "type": "dense_numeric_asr",
+        "severity": "medium",
+        "scope": "institutional_positioning_and_spy_levels",
+        "description": "基金现金历史排名、VIX阈值和标普ETF价位为密集数字口播，个别词形如“第6D”“中仓”“连756”不稳定。",
+        "handling": "第一部分保留可确认的方向与明确阈值；外部研判核对调查口径，不把不稳定词形扩展为事实。"
+      },
+      {
+        "risk_id": "risk-004",
+        "type": "entity_and_attribution_ambiguity",
+        "severity": "high",
+        "scope": "broadcom_cds_passage",
+        "description": "博通CDS比较段中的“CoV”无法仅凭字幕确认，且seg-000367在连续讨论博通时出现“甲骨文的CDS”，存在实体错配风险。",
+        "handling": "报告只采用可核验的博通融资与信用风险主线；公司排序和精确CDS数字仅在一手或可靠市场资料支持时使用。"
+      },
+      {
+        "risk_id": "risk-005",
+        "type": "technical_term_asr",
+        "severity": "medium",
+        "scope": "tesla_and_igv",
+        "description": "“震荡上野”与“ISI顶背离”在上下文中分别疑为震荡上沿与RSI顶背离，另有个股筹码语句不完整。",
+        "handling": "按图表语境自然规范明显词形，但技术结论保持为讲者条件式判断，不补造图中未能确认的信息。"
+      },
+      {
+        "risk_id": "risk-006",
+        "type": "merged_long_segments",
+        "severity": "medium",
+        "scope": "seg-000695_to_seg-000696",
+        "description": "两段各约30秒且含多句半导体、英伟达技术位及会员预告，句界和局部数字较不稳定。",
+        "handling": "报告只使用能够从连续上下文确认的英伟达横盘与财报观察，不引用该处不稳定半导体区间或商业预告。"
+      }
+    ]
+  },
+  "opinions": [
+    {
+      "opinion_id": "opinion-001",
+      "segment_start": "seg-000225",
+      "segment_end": "seg-000236",
+      "timestamp_start": 462.56,
+      "timestamp_end": 479.2,
+      "exact_quote": "所以现在这个行情呢无聊就无聊到这儿了机构的仓位比较的重他没有什么很多钱呢继续买上去但是标普的结构呢又很完整又没有必须要甩卖的理由所以呢市场就走成了这种懒洋洋的样子",
+      "faithful_paraphrase": "讲者判断机构仓位已重、继续买入的现金有限，但标普结构仍完整且缺少被迫卖出理由，因此市场进入低波动僵局。",
+      "opinion_type": "market_regime_judgment",
+      "target": "美国股票市场",
+      "time_horizon": "当前",
+      "stated_basis": [
+        "机构仓位较重",
+        "继续买入的现金有限",
+        "标普结构完整",
+        "尚无必须甩卖的理由"
+      ],
+      "qualifiers": [
+        "所以",
+        "比较",
+        "没有很多钱",
+        "懒洋洋"
+      ],
+      "context_before": "节目以美银全球基金经理调查、共同基金现金余额和对冲基金杠杆说明机构可用现金有限。",
+      "context_after": "讲者建议在缺少事件催化时耐心等待。",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-001",
+        "status": "partially_supported",
+        "conclusion": "机构低现金和高权益配置支持‘增量购买缓冲较薄’的方向，但不能据此证明市场只能横盘，或断言所有机构都没有继续买入能力。",
+        "supporting_evidence": [
+          "美银8月全球基金经理调查的公开报道显示平均现金降至3.5%，为1998年调查以来第六低，全球股票配置升至净56%超配。",
+          "截至2026年8月21日，SPY仍位于765.72美元附近，显示仓位偏重与指数结构尚未破坏可以同时存在。"
+        ],
+        "counterevidence": [
+          "调查覆盖的是特定基金经理样本，不等于全部机构、养老金、被动基金或企业回购资金。",
+          "低现金既可能限制逢低买入，也可能反映持续风险偏好，不能单独决定短期波动方向。"
+        ],
+        "applicable_conditions": [
+          "把调查当作拥挤度和缓冲指标，而不是立即卖出或横盘的时间信号。",
+          "同时观察资金流、回购、盈利预期和市场宽度是否继续支撑指数。"
+        ],
+        "time_horizon": "未来数周至一个季度的仓位环境。",
+        "priced_in": "低现金与权益超配已经公开，拥挤信息至少部分被市场参与者知悉；缺少实时资金流和衍生品仓位，无法量化已计价程度。",
+        "uncertainties": [
+          "未取得美银完整原始调查报告，只能以有署名的二级报道交叉核对。",
+          "公开资料无法把调查样本映射为SPY的边际买卖盘。"
+        ],
+        "topic_id": "topic-institutional-positioning"
+      }
+    },
+    {
+      "opinion_id": "opinion-002",
+      "segment_start": "seg-000110",
+      "segment_end": "seg-000128",
+      "timestamp_start": 270.56,
+      "timestamp_end": 301.02,
+      "exact_quote": "有一种情况会加速就是行情波动什么情况呢就是当风险出现的时候老德人会很多因为现在大家都已经中仓了而且标普之前是已经打了一个高点出来那么打完之后呢最近这个星期的回撤其实大家说这个回撤不是跌了一个星期吗等会会讲这个回撤其实没什么用因为它这个回撤太少了",
+      "faithful_paraphrase": "讲者判断若风险催化出现，偏重的机构仓位与此前高点可能使抛压和波动加速，而当周的小幅回撤不足以释放这一风险。",
+      "opinion_type": "conditional_risk_forecast",
+      "target": "标普500下行波动",
+      "time_horizon": "风险催化出现时",
+      "stated_basis": [
+        "机构仓位已偏重",
+        "标普此前创出高点",
+        "当周回撤幅度较小"
+      ],
+      "qualifiers": [
+        "有一种情况",
+        "当风险出现的时候",
+        "回撤太少"
+      ],
+      "context_before": "前文认为满仓状态下市场可继续横盘或随季节性ETF资金缓慢上涨。",
+      "context_after": "节目转向如何用VIX和标普关键位置追踪风险。",
+      "research_status": "conditional",
+      "assessment": {
+        "opinion_id": "opinion-002",
+        "status": "conditional",
+        "conclusion": "偏重仓位在真实风险冲击、杠杆收缩和流动性变差同时出现时会放大抛压，但低现金本身不足以证明波动必然加速。",
+        "supporting_evidence": [
+          "基金经理现金处于历史低位、全球股票配置处于多年高位，意味着同一方向的仓位较拥挤。",
+          "Cboe将VIX定义为由SPX期权价格推导的30天预期波动率，风险重新定价时可直接反映保护需求和不确定性上升。"
+        ],
+        "counterevidence": [
+          "拥挤可以维持很久，且高仓位在盈利兑现或流动性充足时不必转化为被迫卖出。",
+          "没有公开的实时机构杠杆、保证金和赎回数据证明市场已进入去杠杆。"
+        ],
+        "applicable_conditions": [
+          "风险事件需造成盈利、信用或政策预期的显著负向偏离。",
+          "同时出现基金赎回、波动率跳升、市场宽度恶化或融资条件收紧。"
+        ],
+        "time_horizon": "风险催化出现后的数日到数周。",
+        "priced_in": "仓位偏重属于公开信息，具体催化的方向、幅度和杠杆反馈尚未计价或无法观察。",
+        "uncertainties": [
+          "缺少对冲基金净杠杆和期权做市商伽马的可靠实时数据。",
+          "风险催化的类型会决定冲击是否集中在大型股、信用市场或整个指数。"
+        ],
+        "topic_id": "topic-institutional-positioning"
+      }
+    },
+    {
+      "opinion_id": "opinion-003",
+      "segment_start": "seg-000153",
+      "segment_end": "seg-000159",
+      "timestamp_start": 343.52,
+      "timestamp_end": 360.66,
+      "exact_quote": "只要这个东西大涨特别是涨到了18到20的预备位置那么就代表对标普的保护的倾向会加强如果涨到22以上代表下行风险的概率就非常大了",
+      "faithful_paraphrase": "讲者把VIX升至18至20视为标普保护需求增强的预备信号，并把22以上视为下行风险概率显著上升。",
+      "opinion_type": "risk_indicator_judgment",
+      "target": "标普500与VIX",
+      "time_horizon": "短期",
+      "stated_basis": [
+        "VIX反映标普30天隐含波动",
+        "期权保护需要真实资金投入"
+      ],
+      "qualifiers": [
+        "特别是",
+        "代表",
+        "如果",
+        "概率"
+      ],
+      "context_before": "讲者把VIX视为标普下行保护的情绪指标。",
+      "context_after": "当天VIX回落至15附近被解释为保护需求不积极。",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-003",
+        "status": "partially_supported",
+        "conclusion": "VIX上升确实表示市场定价的未来波动扩大，但官方定义不支持把18至20和22机械转换为标普下跌概率；阈值只能作为条件化警报。",
+        "supporting_evidence": [
+          "Cboe说明VIX以SPX期权买卖报价计算未来30天预期波动率，因此保护需求和不确定性上升通常会推高指数。",
+          "VIX可与价格结构共同用于监控风险状态，而不是只看现货跌幅。"
+        ],
+        "counterevidence": [
+          "VIX是非方向性的预期波动指标，既可能因下跌保护，也可能因事件前双向波动需求上升。",
+          "Cboe并未把18、20或22规定为标准化的风险概率分界线。"
+        ],
+        "applicable_conditions": [
+          "阈值必须与SPY价格、期限结构、成交量和信用利差同步验证。",
+          "关注VIX在阈值上方能否持续，而非单日盘中触及。"
+        ],
+        "time_horizon": "未来30天的风险监控窗口。",
+        "priced_in": "VIX本身就是市场价格形成的预期波动读数，但不能由一个点位判断保护是否充分或方向是否计价。",
+        "uncertainties": [
+          "研究未取得2026年8月21日的完整VIX期限结构和偏度数据。",
+          "讲者阈值可能来自个人历史回测，公开材料不足以复现。"
+        ],
+        "topic_id": "topic-institutional-positioning"
+      }
+    },
+    {
+      "opinion_id": "opinion-004",
+      "segment_start": "seg-000203",
+      "segment_end": "seg-000207",
+      "timestamp_start": 429.8,
+      "timestamp_end": 442.08,
+      "exact_quote": "所以至少要跌破745我们才会看到风险在上升要跌破729风险才会真正的爆发",
+      "faithful_paraphrase": "讲者把标普ETF跌破745视为风险上升信号，把跌破729视为风险真正爆发的确认线。",
+      "opinion_type": "technical_risk_threshold",
+      "target": "标普500 ETF",
+      "time_horizon": "视频发布后的短期",
+      "stated_basis": [
+        "下方支撑力度强",
+        "当周1.37%的回撤未触及关键支撑"
+      ],
+      "qualifiers": [
+        "至少",
+        "才会",
+        "真正"
+      ],
+      "context_before": "讲者认为当周跌幅完全不足以破坏标普结构。",
+      "context_after": "中间悬浮价位不构成机构必须卖出的触发线。",
+      "research_status": "conditional",
+      "assessment": {
+        "opinion_id": "opinion-004",
+        "status": "conditional",
+        "conclusion": "SPY 745和729可作为讲者图表中的观察位，但没有外部证据证明它们分别是普适的风险上升和爆发线。",
+        "supporting_evidence": [
+          "2026年8月21日SPY收于765.72美元，745和729分别比该收盘低约2.7%和4.8%，处于可被短期回撤测试的范围。",
+          "7月29日SPY盘中低点约729.10美元，说明729附近对应近期真实成交与反弹起点。"
+        ],
+        "counterevidence": [
+          "技术支撑会随时间、缺口、成交量和新高移动，历史反弹点不构成因果性风险阈值。",
+          "同一价格跌破可能是短暂假突破，也可能在宏观冲击下直接跳空，不能仅靠点位区分。"
+        ],
+        "applicable_conditions": [
+          "以日线或周线收盘、成交量和市场宽度确认跌破。",
+          "同时观察VIX、信用利差和高权重科技股是否共同恶化。"
+        ],
+        "time_horizon": "视频发布后数日至数周。",
+        "priced_in": "这些点位源自公开价格历史，市场可以观察；但触发后的资金反应和宏观原因无法预先计价。",
+        "uncertainties": [
+          "没有讲者完整图表参数和回测规则，无法复核线位生成方法。",
+          "最新可核验收盘为2026年8月21日，后续价格会改变相对距离。"
+        ],
+        "topic_id": "topic-institutional-positioning"
+      }
+    },
+    {
+      "opinion_id": "opinion-005",
+      "segment_start": "seg-000390",
+      "segment_end": "seg-000397",
+      "timestamp_start": 686.94,
+      "timestamp_end": 699.48,
+      "exact_quote": "但他如果去融资债务上担保1000亿其实这个从资源负贷表上从他整体的这个目前的经营状况上是确实挺令人担忧的",
+      "faithful_paraphrase": "讲者认为若博通为相关债务提供的担保规模达到1000亿美元，结合其资产负债表和经营体量将令人担忧。",
+      "opinion_type": "company_credit_risk_judgment",
+      "target": "博通",
+      "time_horizon": "拟议融资落地后",
+      "stated_basis": [
+        "潜在担保规模可能达到1000亿美元",
+        "博通上一财年营收约638亿美元",
+        "新财年营收预期约1000亿美元"
+      ],
+      "qualifiers": [
+        "如果",
+        "1000亿",
+        "确实挺令人担忧"
+      ],
+      "context_before": "节目称不同消息源给出的融资规模从600至800亿美元到可能1000亿美元不等。",
+      "context_after": "讲者把这一事件放进芯片供应商为客户提供融资或担保的更大趋势。",
+      "research_status": "not_supported",
+      "assessment": {
+        "opinion_id": "opinion-005",
+        "status": "not_supported",
+        "conclusion": "‘博通担保1000亿美元’这一关键前提尚未被可靠披露支持；现有SEC文件确认的五年回保最大敞口是290亿美元，1000亿美元报道指融资总包且担保部分不明。",
+        "supporting_evidence": [
+          "博通10-Q确认其为客户五年租赁义务向投资伙伴提供回保，最大敞口290亿美元，信用风险确实进入资产负债表外延。",
+          "媒体报道另一拟议AI芯片交易可能包含600至700亿美元优先债和约300亿美元次级债，并称博通或担保其中一部分。"
+        ],
+        "counterevidence": [
+          "SEC披露的最大回保敞口为290亿美元，不是1000亿美元。",
+          "公开报道没有给出新交易中博通担保的确定比例、合同文本、借款主体或最终成交规模。"
+        ],
+        "applicable_conditions": [
+          "只有后续SEC文件确认新增担保责任及最大净敞口，才能按公司资产负债表风险评估。",
+          "需扣除机架转售、接管租约和客户付款等补救或敞口递减机制。"
+        ],
+        "time_horizon": "拟议融资签约、披露并逐步部署后的五年租赁期。",
+        "priced_in": "290亿美元回保和平台结构已公开；1000亿美元总融资报道也已传播，但实际担保责任不清，市场难以精确定价。",
+        "uncertainties": [
+          "拟议交易可能调整、分期或不落地。",
+          "客户身份、资产回收率、担保优先级和风险分担未公开。"
+        ],
+        "topic_id": "topic-ai-credit-broadcom"
+      }
+    },
+    {
+      "opinion_id": "opinion-006",
+      "segment_start": "seg-000415",
+      "segment_end": "seg-000427",
+      "timestamp_start": 729.48,
+      "timestamp_end": 754.82,
+      "exact_quote": "这一波的AI的浪潮呢它只能成功大量的基础设施的投入之后它后面必须要产生跟得上的收入水平它只能成功它不能失败对吧你要失败了那都变成非同烂铁了那些东西市场根本就承受不了失败的后果",
+      "faithful_paraphrase": "讲者判断巨额AI基础设施投入必须由足够收入承接；若货币化失败，闲置基础设施和信用损失将使市场难以承受。",
+      "opinion_type": "systemic_risk_judgment",
+      "target": "AI基础设施投资与金融市场",
+      "time_horizon": "AI资本开支兑现期",
+      "stated_basis": [
+        "大量AI基础设施投入",
+        "供应商融资和担保规模很大",
+        "后续收入必须跟上"
+      ],
+      "qualifiers": [
+        "必须",
+        "只能成功",
+        "不能失败"
+      ],
+      "context_before": "讲者认为供应商融资链总规模很大且市场估算差异显著。",
+      "context_after": "随后把AI失败风险与高债务背景联系起来。",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-006",
+        "status": "partially_supported",
+        "conclusion": "AI基础设施必须形成足够现金收入来覆盖折旧、能源和融资成本，这一机制成立；‘市场根本承受不了失败’则缺少损失规模和传染路径的量化支持。",
+        "supporting_evidence": [
+          "博通平台以客户租赁付款支撑大规模AI机架资本，且公司提供回保，说明终端货币化和客户信用是融资链的核心。",
+          "Amazon、Alphabet和Microsoft均报告云与AI收入快速增长，证明基础设施正在产生现实需求。"
+        ],
+        "counterevidence": [
+          "博通拥有接管租约或出售机架等补救措施，最大敞口也会随客户付款下降，失败损失不等于融资名义额。",
+          "AI基础设施风险分散在供应商、SPV、银行、私募信贷、云厂商和客户之间，尚无资料量化系统性集中度。"
+        ],
+        "applicable_conditions": [
+          "客户收入增长持续落后于租赁和计算成本，且机架二手回收价值显著下降。",
+          "同类融资在多家供应商和贷款人中高度集中，并触发再融资或保证金压力。"
+        ],
+        "time_horizon": "未来2至5年的产能爬坡与租赁偿付周期。",
+        "priced_in": "强劲AI需求与融资平台均已公开，信用损失率和资产残值没有透明市场价格，无法判断尾部风险是否充分计价。",
+        "uncertainties": [
+          "缺少客户级收入、租赁覆盖倍数和机架残值数据。",
+          "芯片迭代既可能提高新需求，也可能缩短旧资产经济寿命。"
+        ],
+        "topic_id": "topic-ai-credit-broadcom"
+      }
+    },
+    {
+      "opinion_id": "opinion-007",
+      "segment_start": "seg-000435",
+      "segment_end": "seg-000441",
+      "timestamp_start": 766.32,
+      "timestamp_end": 780.92,
+      "exact_quote": "所以这一波如果一旦失败我个人的判断呢是整个金融市场啊它的结果应该会比2000年的互联网泡沫要更加糟糕因为今年还有一个高的债务背景在这里",
+      "faithful_paraphrase": "讲者个人判断，若本轮AI浪潮失败，高债务背景可能使金融市场后果比2000年互联网泡沫更严重。",
+      "opinion_type": "tail_risk_forecast",
+      "target": "全球金融市场与AI投资周期",
+      "time_horizon": "AI浪潮失败时",
+      "stated_basis": [
+        "AI基础设施投入和融资规模巨大",
+        "当前总体债务水平高于2000年前后"
+      ],
+      "qualifiers": [
+        "如果",
+        "一旦",
+        "我个人的判断",
+        "应该会"
+      ],
+      "context_before": "前文认为AI基础设施必须产生足够收入才能承接投入。",
+      "context_after": "讲者说明若失败风险明显升高会在节目标题使用“摔杯”作为行动信号。",
+      "research_status": "insufficient",
+      "assessment": {
+        "opinion_id": "opinion-007",
+        "status": "insufficient",
+        "conclusion": "当前美国政府债务占GDP显著高于互联网泡沫时期，使宏观缓冲更复杂；但现有证据不足以证明AI失败的金融后果必然比2000年更糟。",
+        "supporting_evidence": [
+          "FRED/OMB数据显示2025年美国联邦总债务约占GDP的120.73%，高债务背景客观存在。",
+          "本轮AI建设同时使用企业资本开支、租赁、SPV和债务融资，潜在传导不仅限于股票估值。"
+        ],
+        "counterevidence": [
+          "政府债务与AI项目融资主体不同，不能把宏观债务比率直接转化为科技股泡沫损失。",
+          "当前云厂商已拥有可观收入、利润和现金流，产业基本面与2000年新上市互联网公司并不等同。"
+        ],
+        "applicable_conditions": [
+          "需要同时出现AI收入失速、融资违约、资产残值下跌和核心金融机构损失。",
+          "比较应统一通胀、市场市值、银行资本和政策反应口径。"
+        ],
+        "time_horizon": "未来数年的AI投资周期尾部情景。",
+        "priced_in": "高债务和AI资本开支是公开事实，但跨市场损失分布、政策响应和违约率未知，无法判断极端情景定价。",
+        "uncertainties": [
+          "没有可审计的2000年与2026年同口径压力测试。",
+          "未来AI收入、资产使用率、货币政策和财政空间均高度不确定。"
+        ],
+        "topic_id": "topic-ai-credit-broadcom"
+      }
+    },
+    {
+      "opinion_id": "opinion-008",
+      "segment_start": "seg-000453",
+      "segment_end": "seg-000472",
+      "timestamp_start": 809.6,
+      "timestamp_end": 847.24,
+      "exact_quote": "说实话现在呢还不到那个时候因为刚刚过去的二季度的财报咱们已经得到了在斯大科技上有三个得到了验证亚马逊谷歌和微软他们目前的AI货币化呢是已经算是顺利在做没有说滞后太多然后呢也没有说和市场预期的差太远除了meta稍微滞后一些所以通过二季度的这个财报的验证至少现在可以把之前比较担心的二季度的这个时间点呢可以往后放但是二季度的这个财报看完了以后四季度又很重要了",
+      "faithful_paraphrase": "讲者认为当前尚未到AI失败警报阶段，因为亚马逊、谷歌和微软的二季度AI货币化进展大体符合预期；风险重估节点可后移，但四季度财报将再次重要。",
+      "opinion_type": "fundamental_progress_judgment",
+      "target": "大型科技公司的AI货币化",
+      "time_horizon": "二季度财报后至四季度财报",
+      "stated_basis": [
+        "亚马逊、谷歌和微软的AI货币化在推进",
+        "进展未明显滞后或偏离市场预期",
+        "Meta相对滞后"
+      ],
+      "qualifiers": [
+        "现在还不到",
+        "算是顺利",
+        "没有滞后太多",
+        "至少现在",
+        "又很重要"
+      ],
+      "context_before": "讲者描述AI失败可能带来的系统性尾部风险。",
+      "context_after": "下一次全面评估将结合四季度财报、供应链融资和中期选举后的政策变化。",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-008",
+        "status": "partially_supported",
+        "conclusion": "Alphabet、Amazon和Microsoft的最新数据支持AI货币化正在推进，因此立即判定失败为时过早；高资本开支和利润率压力说明回报质量仍需以后续季度验证。",
+        "supporting_evidence": [
+          "Alphabet二季度Google Cloud收入增长82%至247.68亿美元，明确称增长由企业AI基础设施和AI解决方案带动。",
+          "Amazon二季度AWS销售增长37%至422亿美元、营业利润升至166亿美元。",
+          "Microsoft FY2026第三季度AI业务年化收入运行率超过370亿美元、同比增123%，Azure增40%。"
+        ],
+        "counterevidence": [
+          "Microsoft云毛利率同比下降，管理层归因之一是持续AI基础设施投资和AI产品使用。",
+          "Amazon过去12个月自由现金流转负，主要因AI相关固定资产购买增加，说明收入增长尚未完整转化为股东现金回报。"
+        ],
+        "applicable_conditions": [
+          "后续季度云收入、增量营业利润和客户续约继续覆盖折旧、能源与融资成本。",
+          "把AI业务收入与传统云迁移、关联客户和内部使用尽可能拆分。"
+        ],
+        "time_horizon": "2026年二季度后至未来4至8个季度。",
+        "priced_in": "高速云增长和AI运行率已经公开，真正未被证明的是每美元新增资本的可持续增量回报。",
+        "uncertainties": [
+          "三家公司AI收入披露口径不同，不能直接横向加总。",
+          "四季度是合理复核节点，但不是经营结果必然转折的证据。"
+        ],
+        "topic_id": "topic-ai-credit-broadcom"
+      }
+    },
+    {
+      "opinion_id": "opinion-009",
+      "segment_start": "seg-000501",
+      "segment_end": "seg-000520",
+      "timestamp_start": 900.76,
+      "timestamp_end": 937.1,
+      "exact_quote": "那么对于博通的股价的走势我在这里仍旧还是跟之前一样啊写的很清楚就是这是高增长环境下目前324到365这一线如果你看好博通的高增长能实现的那你这个位置其实就已经到你上车的位置了对吧但是如果市场现在发现啊随着时间的推演它呢高增长预期不能兑现且违约风险继续升高那么它跌破324往下走大家一定要注意避险",
+      "faithful_paraphrase": "讲者把博通324至365美元视为高增长可兑现情景下的介入区；若增长落空、信用风险上升且跌破324美元，则建议避险。",
+      "opinion_type": "conditional_investment_thesis",
+      "target": "博通股票",
+      "time_horizon": "视频发布后的中短期",
+      "stated_basis": [
+        "高增长预期",
+        "信用违约风险变化",
+        "324美元技术位置"
+      ],
+      "qualifiers": [
+        "如果看好",
+        "如果不能兑现",
+        "且",
+        "一定要注意"
+      ],
+      "context_before": "节目讨论博通融资担保、CDS与AI供应链信用风险。",
+      "context_after": "讲者进一步表示关键位置失守后不建议硬扛。",
+      "research_status": "conditional",
+      "assessment": {
+        "opinion_id": "opinion-009",
+        "status": "conditional",
+        "conclusion": "博通高增长与强自由现金流为看多情景提供经营基础，但324至365美元只是技术入场框架；截至8月21日收盘已在368.45美元，不能由业绩直接推出该区间具有安全边际。",
+        "supporting_evidence": [
+          "博通第二财季收入221.87亿美元、同比增48%，AI半导体收入108亿美元、同比增143%，自由现金流102.62亿美元。",
+          "公司给出第三财季约294亿美元收入展望，支持近期仍处于高增长环境。"
+        ],
+        "counterevidence": [
+          "截至2026年8月21日博通收于368.45美元，已经略高于讲者365美元区间上沿。",
+          "290亿美元最大回保敞口和拟议融资的不确定性会提高信用与估值折价要求，324美元并非基本面推导的损失下限。"
+        ],
+        "applicable_conditions": [
+          "AI收入、自由现金流和客户付款持续兑现，新增担保责任不显著高于已披露范围。",
+          "若跌破324美元，需要区分技术破位、增长预期下修和真实信用恶化。"
+        ],
+        "time_horizon": "未来两个季度至五年租赁风险逐步显现期。",
+        "priced_in": "高增长业绩和融资安排已公开，股价在财报后大幅波动表明预期很高；缺少一致预期和完整估值模型，无法认定便宜。",
+        "uncertainties": [
+          "拟议1000亿美元融资的最终结构尚未披露。",
+          "技术位依赖讲者图表，研究无法独立复现风险收益比。"
+        ],
+        "topic_id": "topic-ai-credit-broadcom"
+      }
+    },
+    {
+      "opinion_id": "opinion-010",
+      "segment_start": "seg-000558",
+      "segment_end": "seg-000581",
+      "timestamp_start": 1000.6,
+      "timestamp_end": 1036.44,
+      "exact_quote": "然后这一次呢上去如果能突破会进入新的震荡区域这个区域上方位置以前给大家标过啊这个位置其实是没有变的因为这上方最近都没有交易415到465以收盘价或者开盘价为准突破368那么他新的震荡区间会是在315到465这150块钱之前是下方的差不多这150块钱现在呢如果突破之后就会回到上方的这150块钱这又变成了一个新的区间好吧所以这是特斯拉的未来可能会出现的情况",
+      "faithful_paraphrase": "讲者判断特斯拉若以开盘或收盘价突破368美元，可能结束下方震荡并进入315至465美元的新宽区间，上方重点观察415至465美元。",
+      "opinion_type": "technical_breakout_forecast",
+      "target": "特斯拉股票",
+      "time_horizon": "视频发布后的中短期",
+      "stated_basis": [
+        "股价放量触及362美元",
+        "368美元为震荡上沿确认线",
+        "上方近期交易稀疏"
+      ],
+      "qualifiers": [
+        "如果能突破",
+        "可能",
+        "以收盘价或者开盘价为准"
+      ],
+      "context_before": "特斯拉从297美元反弹并放量接近前述震荡上沿。",
+      "context_after": "讲者强调差一美元未过也不能视为突破。",
+      "research_status": "conditional",
+      "assessment": {
+        "opinion_id": "opinion-010",
+        "status": "conditional",
+        "conclusion": "股价已接近368美元触发位但尚未确认突破，315至465美元新震荡区间只能作为条件化情景，不能由当前行情和基本面独立验证。",
+        "supporting_evidence": [
+          "特斯拉8月21日盘中最高366.50美元、收于362.86美元，较7月29日297.38美元低点明显反弹并接近讲者阈值。",
+          "8月21日成交量约5855万股，显著高于前几日，说明向上测试获得交易活跃度。"
+        ],
+        "counterevidence": [
+          "最高价、开盘价和收盘价均未达到368美元，按照讲者自己的条件尚不能确认突破。",
+          "Tesla二季度营业利润率仅1.4%、自由现金流为负10.92亿美元，基本面没有为465美元上沿提供可审计估值锚。"
+        ],
+        "applicable_conditions": [
+          "至少以日线收盘或次日开盘站上368美元，并由成交量和后续持稳确认。",
+          "汽车利润率、自由现金流或AI与机器人业务兑现能够支持更高估值。"
+        ],
+        "time_horizon": "视频发布后数周至两个季度。",
+        "priced_in": "7月底以来反弹和368美元附近压力已体现在公开价格；缺少一致预期和期权定价，无法判断突破情景被计价多少。",
+        "uncertainties": [
+          "315至465美元区间来自讲者图表规则，外部资料无法复现其统计有效性。",
+          "高波动股票可能盘中越线后迅速回落，突破定义会显著影响结果。"
+        ],
+        "topic_id": "topic-tesla-technical"
+      }
+    },
+    {
+      "opinion_id": "opinion-011",
+      "segment_start": "seg-000638",
+      "segment_end": "seg-000650",
+      "timestamp_start": 1119.88,
+      "timestamp_end": 1142.4,
+      "exact_quote": "它能过呢那当然对于软件的总体的走势是利好的但是我们上次讲软件个股的时候跟大家说的很清楚软件个股里边由于每只个股的位置高低各不相同即便IGV它突破了对软件整体的被动资金的买入是利好的但是一定也是有强有弱的",
+      "faithful_paraphrase": "讲者认为IGV若突破压力将利好软件板块的被动资金买入，但个股因位置与上方抛压不同仍会明显分化。",
+      "opinion_type": "sector_breadth_judgment",
+      "target": "IGV与软件股",
+      "time_horizon": "IGV突破后",
+      "stated_basis": [
+        "IGV重新放量测试压力",
+        "指数突破可能带来被动资金买入",
+        "成分股位置和上方压力不同"
+      ],
+      "qualifiers": [
+        "如果能过",
+        "利好",
+        "但是",
+        "一定也是有强有弱"
+      ],
+      "context_before": "讲者认为IGV已修复日线顶背离并开始重新放量。",
+      "context_after": "进一步说明并非每只IGV成分股都会因指数突破而大涨。",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-011",
+        "status": "partially_supported",
+        "conclusion": "‘IGV走强利好软件板块、个股仍分化’方向成立，但把价格突破直接表述为被动资金买入过于简化；截至8月21日也尚未站上107美元。",
+        "supporting_evidence": [
+          "iShares说明IGV跟踪北美软件及部分互动媒体公司指数，106只持仓使其能够反映板块整体风险偏好。",
+          "持仓权重差异很大，第一大持仓Palantir约10.37%，成分股基本面和价格位置不同，个股表现不会完全一致。"
+        ],
+        "counterevidence": [
+          "IGV 8月21日收盘103.37美元、NAV 103.40美元，低于讲者所述约107美元突破位。",
+          "ETF二级市场价格越线本身不要求基金买入成分股；只有净申购导致创建份额时，授权参与人和基金机制才传导到底层篮子。"
+        ],
+        "applicable_conditions": [
+          "IGV在107美元上方连续收盘，并同时出现净申购、成交量和市场宽度改善。",
+          "主要权重股与中小型成分股共同参与，而不是少数高权重股单独拉动。"
+        ],
+        "time_horizon": "突破确认后的数周至一个季度。",
+        "priced_in": "IGV年初至8月20日NAV回报仍为负3.53%、市盈率36.81倍，板块尚非普遍低预期；突破情景尚未在现货价格中确认。",
+        "uncertainties": [
+          "研究未取得8月21日的官方净申购与每日资金流数据。",
+          "指数季度再平衡和ETF日常创建赎回是不同机制，实际买盘需逐日核验。"
+        ],
+        "topic_id": "topic-igv-software"
+      }
+    },
+    {
+      "opinion_id": "opinion-012",
+      "segment_start": "seg-000695",
+      "segment_end": "seg-000696",
+      "timestamp_start": 1200.0,
+      "timestamp_end": 1259.64,
+      "exact_quote": "从英伟达自己本身来讲呢它的情况仍旧是206到216这种情况跟大盘其实是一样的它都没有动别看它下跌了最近下跌了三四天每天零点几零点几的跌位置没有走破位置没走破之前多当横盘对待就可以了",
+      "faithful_paraphrase": "讲者认为英伟达虽连续小跌，但关键位置未破，在财报前仍应按206至216美元附近的横盘结构对待。",
+      "opinion_type": "technical_consolidation_judgment",
+      "target": "英伟达股票",
+      "time_horizon": "下一次财报前",
+      "stated_basis": [
+        "连续数日仅小幅下跌",
+        "关键位置尚未跌破",
+        "下周财报可能提供新信号"
+      ],
+      "qualifiers": [
+        "仍旧",
+        "位置没有走破之前",
+        "多当横盘对待"
+      ],
+      "context_before": "半导体相对位置较低，方向需等待英伟达财报确认。",
+      "context_after": "片段后半转入会员节目预告，不属于本观点。",
+      "research_status": "partially_supported",
+      "assessment": {
+        "opinion_id": "opinion-012",
+        "status": "partially_supported",
+        "conclusion": "最新收盘位于206至216美元区间且财报催化临近，‘暂按横盘观察’具有短期操作含义；但近期多日高于216美元，区间稳定性尚未得到价格历史支持。",
+        "supporting_evidence": [
+          "英伟达8月21日收214.72美元，8月20日收216.85美元，最新价格确实回到讲者观察区附近。",
+          "公司官方确认8月26日盘后发布FY2027第二季度业绩，为下一次方向选择提供明确事件节点。",
+          "Q1收入816亿美元增85%、数据中心收入752亿美元增92%，基本面仍保持高速增长。"
+        ],
+        "counterevidence": [
+          "8月17日至19日收盘分别约225.01、219.74和217.56美元，显示近期并非一直被206至216美元窄幅约束。",
+          "财报和指引可能导致跳空，技术支撑在事件冲击下不能保证有效。"
+        ],
+        "applicable_conditions": [
+          "206美元附近在收盘和成交量意义上保持支撑，且财报前没有重大新信息。",
+          "财报收入、利润率和指引接近市场预期，未触发估值大幅重定价。"
+        ],
+        "time_horizon": "2026年8月21日至8月26日财报发布前后。",
+        "priced_in": "财报日期和Q1高增长均已公开，事件风险已部分进入价格；缺少期权曲面与一致预期，无法量化业绩偏离的计价程度。",
+        "uncertainties": [
+          "研究没有可靠的实时卖方一致预期和期权隐含波动数据。",
+          "206和216美元来自讲者技术图，缺少公开回测验证。"
+        ],
+        "topic_id": "topic-nvidia-semiconductors"
+      }
+    }
+  ],
+  "research_topics": [
+    {
+      "schema_version": 1,
+      "video_id": "0w77lIBdCn0",
+      "topic_id": "topic-ai-credit-broadcom",
+      "theme": "博通融资担保、AI货币化与信用传导",
+      "researched_at": "2026-08-24",
+      "disclaimer": "本文件为基于外部信源形成的独立研判，不代表视频作者观点。",
+      "topic_summary": "博通已披露的AI机架租赁回保安排最大敞口为290亿美元，Apollo、Blackstone平台首期资本方案为350亿美元；媒体所称最高1000亿美元是另一笔拟议融资的总规模，不能等同于博通担保额。AI需求和云收入已经快速增长，但资本开支、折旧、自由现金流和客户信用仍是回报兑现的硬约束。",
+      "assessments": [
+        {
+          "opinion_id": "opinion-005",
+          "status": "not_supported",
+          "conclusion": "‘博通担保1000亿美元’这一关键前提尚未被可靠披露支持；现有SEC文件确认的五年回保最大敞口是290亿美元，1000亿美元报道指融资总包且担保部分不明。",
+          "supporting_evidence": [
+            "博通10-Q确认其为客户五年租赁义务向投资伙伴提供回保，最大敞口290亿美元，信用风险确实进入资产负债表外延。",
+            "媒体报道另一拟议AI芯片交易可能包含600至700亿美元优先债和约300亿美元次级债，并称博通或担保其中一部分。"
+          ],
+          "counterevidence": [
+            "SEC披露的最大回保敞口为290亿美元，不是1000亿美元。",
+            "公开报道没有给出新交易中博通担保的确定比例、合同文本、借款主体或最终成交规模。"
+          ],
+          "applicable_conditions": [
+            "只有后续SEC文件确认新增担保责任及最大净敞口，才能按公司资产负债表风险评估。",
+            "需扣除机架转售、接管租约和客户付款等补救或敞口递减机制。"
+          ],
+          "time_horizon": "拟议融资签约、披露并逐步部署后的五年租赁期。",
+          "priced_in": "290亿美元回保和平台结构已公开；1000亿美元总融资报道也已传播，但实际担保责任不清，市场难以精确定价。",
+          "uncertainties": [
+            "拟议交易可能调整、分期或不落地。",
+            "客户身份、资产回收率、担保优先级和风险分担未公开。"
+          ]
+        },
+        {
+          "opinion_id": "opinion-006",
+          "status": "partially_supported",
+          "conclusion": "AI基础设施必须形成足够现金收入来覆盖折旧、能源和融资成本，这一机制成立；‘市场根本承受不了失败’则缺少损失规模和传染路径的量化支持。",
+          "supporting_evidence": [
+            "博通平台以客户租赁付款支撑大规模AI机架资本，且公司提供回保，说明终端货币化和客户信用是融资链的核心。",
+            "Amazon、Alphabet和Microsoft均报告云与AI收入快速增长，证明基础设施正在产生现实需求。"
+          ],
+          "counterevidence": [
+            "博通拥有接管租约或出售机架等补救措施，最大敞口也会随客户付款下降，失败损失不等于融资名义额。",
+            "AI基础设施风险分散在供应商、SPV、银行、私募信贷、云厂商和客户之间，尚无资料量化系统性集中度。"
+          ],
+          "applicable_conditions": [
+            "客户收入增长持续落后于租赁和计算成本，且机架二手回收价值显著下降。",
+            "同类融资在多家供应商和贷款人中高度集中，并触发再融资或保证金压力。"
+          ],
+          "time_horizon": "未来2至5年的产能爬坡与租赁偿付周期。",
+          "priced_in": "强劲AI需求与融资平台均已公开，信用损失率和资产残值没有透明市场价格，无法判断尾部风险是否充分计价。",
+          "uncertainties": [
+            "缺少客户级收入、租赁覆盖倍数和机架残值数据。",
+            "芯片迭代既可能提高新需求，也可能缩短旧资产经济寿命。"
+          ]
+        },
+        {
+          "opinion_id": "opinion-007",
+          "status": "insufficient",
+          "conclusion": "当前美国政府债务占GDP显著高于互联网泡沫时期，使宏观缓冲更复杂；但现有证据不足以证明AI失败的金融后果必然比2000年更糟。",
+          "supporting_evidence": [
+            "FRED/OMB数据显示2025年美国联邦总债务约占GDP的120.73%，高债务背景客观存在。",
+            "本轮AI建设同时使用企业资本开支、租赁、SPV和债务融资，潜在传导不仅限于股票估值。"
+          ],
+          "counterevidence": [
+            "政府债务与AI项目融资主体不同，不能把宏观债务比率直接转化为科技股泡沫损失。",
+            "当前云厂商已拥有可观收入、利润和现金流，产业基本面与2000年新上市互联网公司并不等同。"
+          ],
+          "applicable_conditions": [
+            "需要同时出现AI收入失速、融资违约、资产残值下跌和核心金融机构损失。",
+            "比较应统一通胀、市场市值、银行资本和政策反应口径。"
+          ],
+          "time_horizon": "未来数年的AI投资周期尾部情景。",
+          "priced_in": "高债务和AI资本开支是公开事实，但跨市场损失分布、政策响应和违约率未知，无法判断极端情景定价。",
+          "uncertainties": [
+            "没有可审计的2000年与2026年同口径压力测试。",
+            "未来AI收入、资产使用率、货币政策和财政空间均高度不确定。"
+          ]
+        },
+        {
+          "opinion_id": "opinion-008",
+          "status": "partially_supported",
+          "conclusion": "Alphabet、Amazon和Microsoft的最新数据支持AI货币化正在推进，因此立即判定失败为时过早；高资本开支和利润率压力说明回报质量仍需以后续季度验证。",
+          "supporting_evidence": [
+            "Alphabet二季度Google Cloud收入增长82%至247.68亿美元，明确称增长由企业AI基础设施和AI解决方案带动。",
+            "Amazon二季度AWS销售增长37%至422亿美元、营业利润升至166亿美元。",
+            "Microsoft FY2026第三季度AI业务年化收入运行率超过370亿美元、同比增123%，Azure增40%。"
+          ],
+          "counterevidence": [
+            "Microsoft云毛利率同比下降，管理层归因之一是持续AI基础设施投资和AI产品使用。",
+            "Amazon过去12个月自由现金流转负，主要因AI相关固定资产购买增加，说明收入增长尚未完整转化为股东现金回报。"
+          ],
+          "applicable_conditions": [
+            "后续季度云收入、增量营业利润和客户续约继续覆盖折旧、能源与融资成本。",
+            "把AI业务收入与传统云迁移、关联客户和内部使用尽可能拆分。"
+          ],
+          "time_horizon": "2026年二季度后至未来4至8个季度。",
+          "priced_in": "高速云增长和AI运行率已经公开，真正未被证明的是每美元新增资本的可持续增量回报。",
+          "uncertainties": [
+            "三家公司AI收入披露口径不同，不能直接横向加总。",
+            "四季度是合理复核节点，但不是经营结果必然转折的证据。"
+          ]
+        },
+        {
+          "opinion_id": "opinion-009",
+          "status": "conditional",
+          "conclusion": "博通高增长与强自由现金流为看多情景提供经营基础，但324至365美元只是技术入场框架；截至8月21日收盘已在368.45美元，不能由业绩直接推出该区间具有安全边际。",
+          "supporting_evidence": [
+            "博通第二财季收入221.87亿美元、同比增48%，AI半导体收入108亿美元、同比增143%，自由现金流102.62亿美元。",
+            "公司给出第三财季约294亿美元收入展望，支持近期仍处于高增长环境。"
+          ],
+          "counterevidence": [
+            "截至2026年8月21日博通收于368.45美元，已经略高于讲者365美元区间上沿。",
+            "290亿美元最大回保敞口和拟议融资的不确定性会提高信用与估值折价要求，324美元并非基本面推导的损失下限。"
+          ],
+          "applicable_conditions": [
+            "AI收入、自由现金流和客户付款持续兑现，新增担保责任不显著高于已披露范围。",
+            "若跌破324美元，需要区分技术破位、增长预期下修和真实信用恶化。"
+          ],
+          "time_horizon": "未来两个季度至五年租赁风险逐步显现期。",
+          "priced_in": "高增长业绩和融资安排已公开，股价在财报后大幅波动表明预期很高；缺少一致预期和完整估值模型，无法认定便宜。",
+          "uncertainties": [
+            "拟议1000亿美元融资的最终结构尚未披露。",
+            "技术位依赖讲者图表，研究无法独立复现风险收益比。"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "source_id": "src-avgo-sec-10q-20260503",
+          "title": "Broadcom Inc. Form 10-Q for the quarter ended May 3, 2026",
+          "publisher": "U.S. Securities and Exchange Commission",
+          "author": "Broadcom Inc.",
+          "published_at": "2026-06-09",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000054/avgo-20260503.htm",
+          "evidence_summary": "披露AI机架与客户租赁安排、五年回保以及290亿美元最大敞口，并列出违约时接管租约或出售机架等补救。",
+          "scope": "博通法定披露的既有安排；不覆盖8月媒体所述拟议新融资的最终条款。"
+        },
+        {
+          "source_id": "src-avgo-platform-20260609",
+          "title": "Broadcom, Apollo, and Blackstone Establish Landmark Strategic Platform to Accelerate More Than 20 Gigawatts of Global AI Deployments",
+          "publisher": "Broadcom Investor Relations",
+          "author": "Broadcom Inc.; Apollo Global Management; Blackstone",
+          "published_at": "2026-06-09",
+          "accessed_at": "2026-08-24",
+          "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-apollo-and-blackstone-establish-landmark-strategic",
+          "evidence_summary": "宣布面向超过20GW计算容量的AI平台及首期资本方案，说明融资、机架部署和客户租赁的产业背景。",
+          "scope": "参与方公告和前瞻性陈述；不等于实际客户付款或最终损失率。"
+        },
+        {
+          "source_id": "src-avgo-q2-2026-results",
+          "title": "Broadcom Inc. Announces Second Quarter Fiscal Year 2026 Financial Results and Quarterly Dividend",
+          "publisher": "Broadcom Investor Relations",
+          "author": "Broadcom Inc.",
+          "published_at": "2026-06-03",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.broadcom.com/company/news/financial-releases/64371",
+          "evidence_summary": "披露季度收入221.87亿美元、AI半导体收入108亿美元、自由现金流102.62亿美元及第三财季收入展望。",
+          "scope": "公司季度业绩和管理层展望；不单独证明股票估值或未来客户信用。"
+        },
+        {
+          "source_id": "src-avgo-financing-report-20260820",
+          "title": "Broadcom reportedly seeking up to $100B in debt financing for AI chip deal",
+          "publisher": "SiliconANGLE",
+          "author": "Maria Deutscher",
+          "published_at": "2026-08-20",
+          "accessed_at": "2026-08-24",
+          "url": "https://siliconangle.com/2026/08/20/broadcom-reportedly-seeking-up-to-100b-in-debt-financing-for-ai-chip-deal/",
+          "evidence_summary": "二级报道拟议融资总包最高1000亿美元，包含优先与次级债，并称博通可能担保其中一部分。",
+          "scope": "未完成交易的媒体报道；总融资规模不等于博通担保额。"
+        },
+        {
+          "source_id": "src-alphabet-q2-2026-sec",
+          "title": "Alphabet Announces Second Quarter 2026 Results",
+          "publisher": "U.S. Securities and Exchange Commission",
+          "author": "Alphabet Inc.",
+          "published_at": "2026-07-22",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm",
+          "evidence_summary": "披露收入1198亿美元增24%，Google Cloud收入247.68亿美元增82%，由企业AI基础设施和解决方案推动。",
+          "scope": "Alphabet季度合并和分部数据，未单列可比AI资产回报率。"
+        },
+        {
+          "source_id": "src-amazon-q2-2026",
+          "title": "Amazon.com Announces Second Quarter Results",
+          "publisher": "Amazon Investor Relations",
+          "author": "Amazon.com, Inc.",
+          "published_at": "2026-07-30",
+          "accessed_at": "2026-08-24",
+          "url": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
+          "evidence_summary": "披露AWS季度销售422亿美元增37%、营业利润166亿美元，并说明AI投入推高固定资产购买和自由现金流压力。",
+          "scope": "Amazon季度业绩；AWS增长不能全部归因于生成式AI。"
+        },
+        {
+          "source_id": "src-msft-fy26-q3",
+          "title": "Microsoft Fiscal Year 2026 Third Quarter Earnings Conference Call",
+          "publisher": "Microsoft Investor Relations",
+          "author": "Satya Nadella; Amy Hood; Microsoft Corporation",
+          "published_at": "2026-04-29",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3",
+          "evidence_summary": "披露AI业务年化收入运行率超过370亿美元、同比增123%，Azure增40%，同时云毛利率受AI投入压制。",
+          "scope": "微软截至2026年3月季度；包含管理层口径和前瞻性判断。"
+        },
+        {
+          "source_id": "src-us-debt-gdp-fred-2025",
+          "title": "Federal Debt: Total Public Debt as Percent of Gross Domestic Product",
+          "publisher": "Federal Reserve Bank of St. Louis",
+          "author": "U.S. Office of Management and Budget; FRED",
+          "published_at": "2026-06-25",
+          "accessed_at": "2026-08-24",
+          "url": "https://fred.stlouisfed.org/graph/?g=Sa8D",
+          "evidence_summary": "列示2025年美国联邦总债务约占GDP的120.73%，用于确认高公共债务背景。",
+          "scope": "美国政府债务宏观序列，不代表企业AI融资违约率或系统性损失。"
+        },
+        {
+          "source_id": "src-avgo-price-20260821",
+          "title": "Broadcom Stock Price History Charts",
+          "publisher": "FinanceCharts",
+          "author": "FinanceCharts Market Data",
+          "published_at": "2026-08-21",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.financecharts.com/stocks/AVGO/summary/price",
+          "evidence_summary": "列示博通2026年8月21日收盘价368.45美元，用于核对讲者324至365美元区间。",
+          "scope": "二级行情历史，不构成估值或投资建议。"
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "video_id": "0w77lIBdCn0",
+      "topic_id": "topic-igv-software",
+      "theme": "IGV突破、ETF资金机制与软件股分化",
+      "researched_at": "2026-08-24",
+      "disclaimer": "本文件为基于外部信源形成的独立研判，不代表视频作者观点。",
+      "topic_summary": "IGV确实提供对北美软件和相关行业的一篮子敞口，指数上涨可以代表板块风险偏好改善；但8月21日收盘103.37美元低于讲者107美元压力位，而且ETF价格突破不会自动触发所有成分股等比例上涨，真正的被动买入取决于基金净申购和创建赎回。",
+      "assessments": [
+        {
+          "opinion_id": "opinion-011",
+          "status": "partially_supported",
+          "conclusion": "‘IGV走强利好软件板块、个股仍分化’方向成立，但把价格突破直接表述为被动资金买入过于简化；截至8月21日也尚未站上107美元。",
+          "supporting_evidence": [
+            "iShares说明IGV跟踪北美软件及部分互动媒体公司指数，106只持仓使其能够反映板块整体风险偏好。",
+            "持仓权重差异很大，第一大持仓Palantir约10.37%，成分股基本面和价格位置不同，个股表现不会完全一致。"
+          ],
+          "counterevidence": [
+            "IGV 8月21日收盘103.37美元、NAV 103.40美元，低于讲者所述约107美元突破位。",
+            "ETF二级市场价格越线本身不要求基金买入成分股；只有净申购导致创建份额时，授权参与人和基金机制才传导到底层篮子。"
+          ],
+          "applicable_conditions": [
+            "IGV在107美元上方连续收盘，并同时出现净申购、成交量和市场宽度改善。",
+            "主要权重股与中小型成分股共同参与，而不是少数高权重股单独拉动。"
+          ],
+          "time_horizon": "突破确认后的数周至一个季度。",
+          "priced_in": "IGV年初至8月20日NAV回报仍为负3.53%、市盈率36.81倍，板块尚非普遍低预期；突破情景尚未在现货价格中确认。",
+          "uncertainties": [
+            "研究未取得8月21日的官方净申购与每日资金流数据。",
+            "指数季度再平衡和ETF日常创建赎回是不同机制，实际买盘需逐日核验。"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "source_id": "src-igv-ishares-20260821",
+          "title": "iShares Expanded Tech-Software Sector ETF",
+          "publisher": "BlackRock iShares",
+          "author": "BlackRock Fund Advisors",
+          "published_at": "2026-08-21",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.ishares.com/us/products/239771/IGV",
+          "evidence_summary": "官方页面列示NAV 103.40美元、收盘103.37美元、106只持仓、36.81倍市盈率、主要权重和跟踪指数。",
+          "scope": "基金结构、持仓和截至日期数据；不预测107美元突破后的表现。"
+        },
+        {
+          "source_id": "src-igv-sp-index-methodology-202603",
+          "title": "S&P North American Sector Indices Methodology",
+          "publisher": "S&P Dow Jones Indices",
+          "author": "S&P Dow Jones Indices",
+          "published_at": "2026-03-01",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.spglobal.com/spdji/en/documents/methodologies/methodology-sp-na-sector-index.pdf",
+          "evidence_summary": "说明相关指数采用自由流通市值和权重上限规则并定期再平衡，不以ETF价格突破作为成分调整条件。",
+          "scope": "指数编制与再平衡方法，不覆盖ETF二级市场净申购。"
+        },
+        {
+          "source_id": "src-igv-sec-prospectus-20260731",
+          "title": "iShares Expanded Tech-Software Sector ETF Summary Prospectus",
+          "publisher": "U.S. Securities and Exchange Commission",
+          "author": "iShares Trust",
+          "published_at": "2026-07-31",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526327903/0001193125-26-327903-index.htm",
+          "evidence_summary": "提供IGV跟踪指数、费用与ETF份额交易机制的法定披露背景。",
+          "scope": "基金法定概要；不提供实时资金流或个股涨跌预测。"
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "video_id": "0w77lIBdCn0",
+      "topic_id": "topic-institutional-positioning",
+      "theme": "机构仓位、低现金与标普风险阈值",
+      "researched_at": "2026-08-24",
+      "disclaimer": "本文件为基于外部信源形成的独立研判，不代表视频作者观点。",
+      "topic_summary": "美银8月调查支持机构现金偏低、权益配置偏重，因而回撤时可部署的缓冲较薄；但这组仓位信息不提供择时。VIX是未来30天预期波动率而非下跌概率，18、20、22以及SPY 745、729均应视作讲者的交易框架，而不是经官方证实的普适风险线。",
+      "assessments": [
+        {
+          "opinion_id": "opinion-001",
+          "status": "partially_supported",
+          "conclusion": "机构低现金和高权益配置支持‘增量购买缓冲较薄’的方向，但不能据此证明市场只能横盘，或断言所有机构都没有继续买入能力。",
+          "supporting_evidence": [
+            "美银8月全球基金经理调查的公开报道显示平均现金降至3.5%，为1998年调查以来第六低，全球股票配置升至净56%超配。",
+            "截至2026年8月21日，SPY仍位于765.72美元附近，显示仓位偏重与指数结构尚未破坏可以同时存在。"
+          ],
+          "counterevidence": [
+            "调查覆盖的是特定基金经理样本，不等于全部机构、养老金、被动基金或企业回购资金。",
+            "低现金既可能限制逢低买入，也可能反映持续风险偏好，不能单独决定短期波动方向。"
+          ],
+          "applicable_conditions": [
+            "把调查当作拥挤度和缓冲指标，而不是立即卖出或横盘的时间信号。",
+            "同时观察资金流、回购、盈利预期和市场宽度是否继续支撑指数。"
+          ],
+          "time_horizon": "未来数周至一个季度的仓位环境。",
+          "priced_in": "低现金与权益超配已经公开，拥挤信息至少部分被市场参与者知悉；缺少实时资金流和衍生品仓位，无法量化已计价程度。",
+          "uncertainties": [
+            "未取得美银完整原始调查报告，只能以有署名的二级报道交叉核对。",
+            "公开资料无法把调查样本映射为SPY的边际买卖盘。"
+          ]
+        },
+        {
+          "opinion_id": "opinion-002",
+          "status": "conditional",
+          "conclusion": "偏重仓位在真实风险冲击、杠杆收缩和流动性变差同时出现时会放大抛压，但低现金本身不足以证明波动必然加速。",
+          "supporting_evidence": [
+            "基金经理现金处于历史低位、全球股票配置处于多年高位，意味着同一方向的仓位较拥挤。",
+            "Cboe将VIX定义为由SPX期权价格推导的30天预期波动率，风险重新定价时可直接反映保护需求和不确定性上升。"
+          ],
+          "counterevidence": [
+            "拥挤可以维持很久，且高仓位在盈利兑现或流动性充足时不必转化为被迫卖出。",
+            "没有公开的实时机构杠杆、保证金和赎回数据证明市场已进入去杠杆。"
+          ],
+          "applicable_conditions": [
+            "风险事件需造成盈利、信用或政策预期的显著负向偏离。",
+            "同时出现基金赎回、波动率跳升、市场宽度恶化或融资条件收紧。"
+          ],
+          "time_horizon": "风险催化出现后的数日到数周。",
+          "priced_in": "仓位偏重属于公开信息，具体催化的方向、幅度和杠杆反馈尚未计价或无法观察。",
+          "uncertainties": [
+            "缺少对冲基金净杠杆和期权做市商伽马的可靠实时数据。",
+            "风险催化的类型会决定冲击是否集中在大型股、信用市场或整个指数。"
+          ]
+        },
+        {
+          "opinion_id": "opinion-003",
+          "status": "partially_supported",
+          "conclusion": "VIX上升确实表示市场定价的未来波动扩大，但官方定义不支持把18至20和22机械转换为标普下跌概率；阈值只能作为条件化警报。",
+          "supporting_evidence": [
+            "Cboe说明VIX以SPX期权买卖报价计算未来30天预期波动率，因此保护需求和不确定性上升通常会推高指数。",
+            "VIX可与价格结构共同用于监控风险状态，而不是只看现货跌幅。"
+          ],
+          "counterevidence": [
+            "VIX是非方向性的预期波动指标，既可能因下跌保护，也可能因事件前双向波动需求上升。",
+            "Cboe并未把18、20或22规定为标准化的风险概率分界线。"
+          ],
+          "applicable_conditions": [
+            "阈值必须与SPY价格、期限结构、成交量和信用利差同步验证。",
+            "关注VIX在阈值上方能否持续，而非单日盘中触及。"
+          ],
+          "time_horizon": "未来30天的风险监控窗口。",
+          "priced_in": "VIX本身就是市场价格形成的预期波动读数，但不能由一个点位判断保护是否充分或方向是否计价。",
+          "uncertainties": [
+            "研究未取得2026年8月21日的完整VIX期限结构和偏度数据。",
+            "讲者阈值可能来自个人历史回测，公开材料不足以复现。"
+          ]
+        },
+        {
+          "opinion_id": "opinion-004",
+          "status": "conditional",
+          "conclusion": "SPY 745和729可作为讲者图表中的观察位，但没有外部证据证明它们分别是普适的风险上升和爆发线。",
+          "supporting_evidence": [
+            "2026年8月21日SPY收于765.72美元，745和729分别比该收盘低约2.7%和4.8%，处于可被短期回撤测试的范围。",
+            "7月29日SPY盘中低点约729.10美元，说明729附近对应近期真实成交与反弹起点。"
+          ],
+          "counterevidence": [
+            "技术支撑会随时间、缺口、成交量和新高移动，历史反弹点不构成因果性风险阈值。",
+            "同一价格跌破可能是短暂假突破，也可能在宏观冲击下直接跳空，不能仅靠点位区分。"
+          ],
+          "applicable_conditions": [
+            "以日线或周线收盘、成交量和市场宽度确认跌破。",
+            "同时观察VIX、信用利差和高权重科技股是否共同恶化。"
+          ],
+          "time_horizon": "视频发布后数日至数周。",
+          "priced_in": "这些点位源自公开价格历史，市场可以观察；但触发后的资金反应和宏观原因无法预先计价。",
+          "uncertainties": [
+            "没有讲者完整图表参数和回测规则，无法复核线位生成方法。",
+            "最新可核验收盘为2026年8月21日，后续价格会改变相对距离。"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "source_id": "src-positioning-bofa-trustnet-20260818",
+          "title": "Investors shrug off AI fears and turn bullish in August, finds BofA survey",
+          "publisher": "Trustnet",
+          "author": "Jonathan Jones",
+          "published_at": "2026-08-18",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.trustnet.com/News/13482854/investors-shrug-off-ai-fears-and-turn-bullish-in-august-finds-bofa-survey/",
+          "evidence_summary": "报道美银8月全球基金经理调查：现金3.5%、为1998年以来第六低，全球股票配置净56%超配。",
+          "scope": "二级报道；用于核对调查核心数字，不替代未公开的美银完整原始报告。"
+        },
+        {
+          "source_id": "src-positioning-cboe-vix-faq",
+          "title": "VIX Frequently Asked Questions",
+          "publisher": "Cboe Global Markets",
+          "author": "Cboe Exchange, Inc.",
+          "published_at": "2019-10-08",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.cboe.com/tradable_products/vix/faqs",
+          "evidence_summary": "官方解释VIX由SPX期权报价推导，衡量未来30天预期波动率，指标本身不预测方向。",
+          "scope": "VIX方法与解释，不为任何具体点位提供交易结论。"
+        },
+        {
+          "source_id": "src-positioning-spy-price-20260821",
+          "title": "SPDR S&P 500 ETF Trust Stock Price History",
+          "publisher": "FinanceCharts",
+          "author": "FinanceCharts Market Data",
+          "published_at": "2026-08-21",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.financecharts.com/compare/SPY%2CJPM/summary/price",
+          "evidence_summary": "列示SPY在2026年8月21日收于765.72美元，以及7月29日盘中低点729.10美元等近期价格。",
+          "scope": "二级行情历史，用于核对价格距离；不验证技术线的预测能力。"
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "video_id": "0w77lIBdCn0",
+      "topic_id": "topic-nvidia-semiconductors",
+      "theme": "英伟达财报前价格结构与半导体方向",
+      "researched_at": "2026-08-24",
+      "disclaimer": "本文件为基于外部信源形成的独立研判，不代表视频作者观点。",
+      "topic_summary": "英伟达8月21日收于214.72美元，落在讲者206至216美元观察带内，且公司确认8月26日公布财报；不过此前一周股价曾在225美元附近，不能把整个阶段简单视为窄幅横盘。强劲Q1增长提高了预期，财报结果可能使价格直接跳出该区间。",
+      "assessments": [
+        {
+          "opinion_id": "opinion-012",
+          "status": "partially_supported",
+          "conclusion": "最新收盘位于206至216美元区间且财报催化临近，‘暂按横盘观察’具有短期操作含义；但近期多日高于216美元，区间稳定性尚未得到价格历史支持。",
+          "supporting_evidence": [
+            "英伟达8月21日收214.72美元，8月20日收216.85美元，最新价格确实回到讲者观察区附近。",
+            "公司官方确认8月26日盘后发布FY2027第二季度业绩，为下一次方向选择提供明确事件节点。",
+            "Q1收入816亿美元增85%、数据中心收入752亿美元增92%，基本面仍保持高速增长。"
+          ],
+          "counterevidence": [
+            "8月17日至19日收盘分别约225.01、219.74和217.56美元，显示近期并非一直被206至216美元窄幅约束。",
+            "财报和指引可能导致跳空，技术支撑在事件冲击下不能保证有效。"
+          ],
+          "applicable_conditions": [
+            "206美元附近在收盘和成交量意义上保持支撑，且财报前没有重大新信息。",
+            "财报收入、利润率和指引接近市场预期，未触发估值大幅重定价。"
+          ],
+          "time_horizon": "2026年8月21日至8月26日财报发布前后。",
+          "priced_in": "财报日期和Q1高增长均已公开，事件风险已部分进入价格；缺少期权曲面与一致预期，无法量化业绩偏离的计价程度。",
+          "uncertainties": [
+            "研究没有可靠的实时卖方一致预期和期权隐含波动数据。",
+            "206和216美元来自讲者技术图，缺少公开回测验证。"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "source_id": "src-nvda-price-20260821",
+          "title": "NVIDIA Stock Price History Charts",
+          "publisher": "FinanceCharts",
+          "author": "FinanceCharts Market Data",
+          "published_at": "2026-08-21",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.financecharts.com/stocks/NVDA/summary/price",
+          "evidence_summary": "列示8月21日收214.72美元及此前一周217至225美元附近的收盘历史。",
+          "scope": "二级行情历史，用于复核价格区间，不验证技术预测能力。"
+        },
+        {
+          "source_id": "src-nvda-q2-date-20260729",
+          "title": "NVIDIA Sets Conference Call for Second-Quarter Financial Results",
+          "publisher": "NVIDIA Investor Relations",
+          "author": "NVIDIA Corporation",
+          "published_at": "2026-07-29",
+          "accessed_at": "2026-08-24",
+          "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Second-Quarter-Financial-Results/default.aspx",
+          "evidence_summary": "确认2026年8月26日盘后公布FY2027第二季度业绩并召开电话会。",
+          "scope": "财报时间，不包含结果、指引或市场反应。"
+        },
+        {
+          "source_id": "src-nvda-q1-fy27-20260520",
+          "title": "NVIDIA Announces Financial Results for First Quarter Fiscal 2027",
+          "publisher": "NVIDIA Investor Relations",
+          "author": "NVIDIA Corporation",
+          "published_at": "2026-05-20",
+          "accessed_at": "2026-08-24",
+          "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-First-Quarter-Fiscal-2027/default.aspx",
+          "evidence_summary": "披露Q1收入816亿美元增85%、数据中心收入752亿美元增92%、GAAP毛利率74.9%。",
+          "scope": "截至2026年4月26日季度业绩；不保证下一季度结果或价格反应。"
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "video_id": "0w77lIBdCn0",
+      "topic_id": "topic-tesla-technical",
+      "theme": "特斯拉368美元突破与宽幅震荡假设",
+      "researched_at": "2026-08-24",
+      "disclaimer": "本文件为基于外部信源形成的独立研判，不代表视频作者观点。",
+      "topic_summary": "特斯拉8月21日最高366.50美元、收362.86美元，尚未满足讲者以开盘或收盘突破368美元的确认条件；从7月低点反弹明显，但季度经营利润率仅1.4%、自由现金流为负，使315至465美元区间更适合当作待验证技术情景而非目标价。",
+      "assessments": [
+        {
+          "opinion_id": "opinion-010",
+          "status": "conditional",
+          "conclusion": "股价已接近368美元触发位但尚未确认突破，315至465美元新震荡区间只能作为条件化情景，不能由当前行情和基本面独立验证。",
+          "supporting_evidence": [
+            "特斯拉8月21日盘中最高366.50美元、收于362.86美元，较7月29日297.38美元低点明显反弹并接近讲者阈值。",
+            "8月21日成交量约5855万股，显著高于前几日，说明向上测试获得交易活跃度。"
+          ],
+          "counterevidence": [
+            "最高价、开盘价和收盘价均未达到368美元，按照讲者自己的条件尚不能确认突破。",
+            "Tesla二季度营业利润率仅1.4%、自由现金流为负10.92亿美元，基本面没有为465美元上沿提供可审计估值锚。"
+          ],
+          "applicable_conditions": [
+            "至少以日线收盘或次日开盘站上368美元，并由成交量和后续持稳确认。",
+            "汽车利润率、自由现金流或AI与机器人业务兑现能够支持更高估值。"
+          ],
+          "time_horizon": "视频发布后数周至两个季度。",
+          "priced_in": "7月底以来反弹和368美元附近压力已体现在公开价格；缺少一致预期和期权定价，无法判断突破情景被计价多少。",
+          "uncertainties": [
+            "315至465美元区间来自讲者图表规则，外部资料无法复现其统计有效性。",
+            "高波动股票可能盘中越线后迅速回落，突破定义会显著影响结果。"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "source_id": "src-tsla-price-20260821",
+          "title": "Tesla Stock Price History Charts",
+          "publisher": "FinanceCharts",
+          "author": "FinanceCharts Market Data",
+          "published_at": "2026-08-21",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.financecharts.com/stocks/TSLA/summary/price",
+          "evidence_summary": "列示8月21日开349.88、最高366.50、最低346.90、收362.86美元及约5855万股成交量。",
+          "scope": "二级行情历史，用于判断是否满足技术触发，不代表未来区间。"
+        },
+        {
+          "source_id": "src-tsla-q2-2026-sec",
+          "title": "Tesla Q2 2026 Update",
+          "publisher": "U.S. Securities and Exchange Commission",
+          "author": "Tesla, Inc.",
+          "published_at": "2026-07-22",
+          "accessed_at": "2026-08-24",
+          "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049213/exhibit991.htm",
+          "evidence_summary": "披露季度收入282.36亿美元、营业利润率1.4%、资本开支57.89亿美元和自由现金流负10.92亿美元。",
+          "scope": "Tesla季度经营数据；不直接验证短期技术图形或目标价。"
+        }
+      ]
+    }
+  ],
+  "research_status_counts": {
+    "partially_supported": 6,
+    "conditional": 4,
+    "not_supported": 1,
+    "insufficient": 1
+  },
+  "agent_judgment": {
+    "schema_version": 1,
+    "video_id": "0w77lIBdCn0",
+    "source_as_of": "2026-08-24",
+    "disclaimer": "本节为Agent基于字幕与外部证据形成的独立判断，不代表视频作者观点，也不构成投资建议。",
+    "cross_topic_summary": "这期内容真正有决策价值的主线不是某个点位，而是‘缓冲变薄后的验证顺序’：机构低现金提高冲击放大风险，AI融资把终端收入和客户信用前置为硬约束，TSLA、IGV和NVDA的图表又都停在尚未确认的触发位附近。外部证据支持保持警惕，却不支持把290亿美元已披露回保扩写成1000亿美元担保，也不支持把VIX或单一价格线当作下跌概率。当前姿态应是等价格、现金流与信用三类证据同步，而不是提前押注暴风雨或平静。",
+    "topics": [
+      {
+        "topic_id": "topic-institutional-positioning",
+        "theme": "机构仓位、低现金与标普风险阈值",
+        "conclusion": "机构仓位拥挤是真实背景，短期崩跌并非已证实结论；把VIX与SPY线位升级为行动信号前，需要价格、波动率和融资压力共同确认。",
+        "evidence_layers": {
+          "facts": [
+            "美银8月调查的公开报道显示基金经理平均现金3.5%，为1998年以来第六低，全球股票配置净56%超配。",
+            "Cboe将VIX定义为SPX期权隐含的未来30天预期波动率，而非下跌概率。",
+            "SPY在2026年8月21日收765.72美元；745和729分别低约2.7%和4.8%。"
+          ],
+          "management_claims": [],
+          "inference": "低现金削弱逢低配置缓冲，并可能在赎回或去杠杆时放大波动；但在盈利和流动性仍强时，拥挤仓位可以长时间维持。",
+          "agent_judgment": "把3.5%现金当成脆弱度因子，把VIX 18至22和SPY 745、729当成分层警报；只有多指标同步恶化才从观察转为防御。"
+        },
+        "confidence": "中高，约75%支持仓位偏拥挤；低于45%支持短期下行必然加速。",
+        "time_horizon": "未来数周至一个季度；关键价格和波动率按日复核。",
+        "priced_in": "调查数字和技术点位都已公开，基础拥挤风险至少部分计价；实时杠杆、赎回和做市商仓位未知，无法量化尾部风险溢价。",
+        "what_must_be_true": [
+          "风险催化需要显著改变盈利、政策或信用预期，而不是只有一般性新闻噪声。",
+          "VIX上升与SPY收盘破位、市场宽度恶化和信用利差扩张同步。",
+          "机构出现赎回、保证金或融资约束，低现金才会转化为被迫卖出。"
+        ],
+        "disconfirmers": [
+          "未来20个交易日SPY始终收在745美元上方，且VIX未连续2日收于20以上。",
+          "SPY跌破745后5个交易日内重新站回765美元，且上涨家数占比恢复到55%以上。",
+          "未来1个月信用利差不扩张超过50个基点，基金流量也未出现连续2周净流出。"
+        ],
+        "downside_mechanism": {
+          "shock": "盈利、通胀或信用事件造成预期突然下修。",
+          "transmission": "保护需求推升隐含波动，赎回与杠杆约束迫使重仓机构卖出高流动性指数资产。",
+          "constraint": "现金仅3.5%左右的拥挤组合缺少逢低吸收能力，做市深度在冲击中下降。",
+          "outcome": "SPY关键成交区失守，现货与波动率反馈放大短期回撤。"
+        },
+        "action_posture": "watchlist",
+        "missing_evidence": [
+          "美银完整原始调查、样本结构和历史条件收益。",
+          "对冲基金净杠杆、SPX期权Gamma和实时基金赎回。",
+          "VIX期限结构、偏度与信用利差的同日数据。"
+        ],
+        "next_verification": "每日记录SPY收盘、VIX与市场宽度；若745或729被日线跌破，核对信用利差和基金流量后再提高风险等级。",
+        "source_urls": [
+          "https://www.trustnet.com/News/13482854/investors-shrug-off-ai-fears-and-turn-bullish-in-august-finds-bofa-survey/",
+          "https://www.cboe.com/tradable_products/vix/faqs",
+          "https://www.financecharts.com/compare/SPY%2CJPM/summary/price"
+        ],
+        "sources": []
+      },
+      {
+        "topic_id": "topic-ai-credit-broadcom",
+        "theme": "博通融资担保、AI货币化与信用传导",
+        "conclusion": "AI收入正在增长，但信用结构要求重新核保；当前应以290亿美元法定最大回保敞口为事实锚，等待拟议融资条款和单位经济性，而不是按1000亿美元担保做结论。",
+        "evidence_layers": {
+          "facts": [
+            "博通10-Q确认五年客户租赁回保的最大敞口为290亿美元，并拥有接管租约或出售AI机架等补救。",
+            "Apollo、Blackstone与博通平台宣布首期350亿美元资本方案，计划支持超过20GW计算容量。",
+            "博通第二财季收入增48%、AI半导体收入增143%、自由现金流102.62亿美元。",
+            "Alphabet Cloud收入增82%、AWS销售增37%，Microsoft AI年化收入运行率超过370亿美元。"
+          ],
+          "management_claims": [
+            "博通管理层给出第三财季约294亿美元收入展望。",
+            "Alphabet、Amazon与Microsoft均把部分增长归因于AI基础设施或AI解决方案需求。"
+          ],
+          "inference": "收入端已不是零验证，但供应商回保把客户利用率、付款能力和机架残值变成博通股东的条件性风险；名义融资规模必须与净敞口分开。",
+          "agent_judgment": "增长论点可以保留，入场论点必须降级。先核对新增担保和客户信用，再比较现金流与估值；若只看到股价跌到324美元而没有风险拆分，不足以构成安全边际。"
+        },
+        "confidence": "高，约90%确认现有最大回保为290亿美元；中高，约75%支持AI货币化推进；低于35%支持AI失败必然比2000年更糟。",
+        "time_horizon": "未来2至8个季度验证增长，2至5年观察租赁偿付和资产回收。",
+        "priced_in": "高增长、290亿美元回保和拟议1000亿美元总融资报道已公开；客户级违约率、担保比例、资产残值和估值预期没有透明价格。",
+        "what_must_be_true": [
+          "AI客户收入和融资覆盖倍数足以支付五年租赁与能源成本。",
+          "博通新增担保净敞口不显著超过已披露290亿美元，且风险分担清晰。",
+          "AI收入和自由现金流增长能够覆盖更高折旧、融资与潜在信用损失。"
+        ],
+        "disconfirmers": [
+          "后续SEC文件确认博通最大净回保升至600亿美元以上，且没有等值资产或追索权。",
+          "未来2个季度AI半导体收入增速低于20%，同时自由现金流同比下降30%以上。",
+          "客户租赁发生本金或利息逾期超过90日，或机架二手回收价值低于账面价值50%。"
+        ],
+        "downside_mechanism": {
+          "shock": "核心AI客户货币化不及预期或融资无法滚续。",
+          "transmission": "客户停付租赁，回保被调用，机架残值和博通现金流预期同时下修。",
+          "constraint": "算力资产技术迭代快、买家集中，处置可能折价；公司还需服务自身债务。",
+          "outcome": "信用利差、估值倍数和增长预期同向恶化，324美元技术位失去基本面支撑。"
+        },
+        "action_posture": "re_underwrite",
+        "missing_evidence": [
+          "拟议1000亿美元融资的最终借款主体、分层、担保比例和合同。",
+          "客户身份、租赁覆盖倍数、机架残值与集中度。",
+          "博通购买价格对应的一致预期、自由现金流收益率和信用损失情景。"
+        ],
+        "next_verification": "以博通下一份10-Q和任何8-K为第一验证点；把担保最大额、已部署敞口、客户付款和补救价值做成逐季桥接表。",
+        "source_urls": [
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000054/avgo-20260503.htm",
+          "https://investors.broadcom.com/news-releases/news-release-details/broadcom-apollo-and-blackstone-establish-landmark-strategic",
+          "https://www.broadcom.com/company/news/financial-releases/64371",
+          "https://siliconangle.com/2026/08/20/broadcom-reportedly-seeking-up-to-100b-in-debt-financing-for-ai-chip-deal/",
+          "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm",
+          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
+          "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3",
+          "https://fred.stlouisfed.org/graph/?g=Sa8D",
+          "https://www.financecharts.com/stocks/AVGO/summary/price"
+        ],
+        "sources": []
+      },
+      {
+        "topic_id": "topic-tesla-technical",
+        "theme": "特斯拉368美元突破与宽幅震荡假设",
+        "conclusion": "368美元尚未被开盘或收盘确认，当前只是突破候选；即使越线，也必须用持续性和基本面过滤，315至465美元不应被当成价值区间。",
+        "evidence_layers": {
+          "facts": [
+            "特斯拉2026年8月21日最高366.50美元、收362.86美元，没有满足368美元触发条件。",
+            "股价自7月29日297.38美元低点显著反弹，8月21日成交量约5855万股。",
+            "第二季度营业利润率1.4%，自由现金流负10.92亿美元。"
+          ],
+          "management_claims": [],
+          "inference": "价格动量支持继续观察突破，但低利润率和负自由现金流使上方区间缺少基本面锚；越线后的追价风险高于图表本身显示。",
+          "agent_judgment": "等待日线确认并设置失效条件。突破只证明供需变化，不证明465美元合理；若基本面不改善，把它当交易而不是投资论点。"
+        },
+        "confidence": "高，约90%确认截至8月21日尚未突破；低于45%支持突破后进入315至465美元稳定区间。",
+        "time_horizon": "未来数周至两个季度。",
+        "priced_in": "从7月底低点到362.86美元的反弹已反映部分乐观预期；缺少一致预期和期权数据，不能判断368美元上方空间。",
+        "what_must_be_true": [
+          "开盘或收盘明确站上368美元，并在后续交易日维持而非假突破。",
+          "成交量和市场宽度支持上涨，且不是单一消息造成的短暂挤仓。",
+          "汽车利润率、自由现金流或AI业务兑现至少一项改善。"
+        ],
+        "disconfirmers": [
+          "突破368美元后3个交易日内收盘跌回350美元以下。",
+          "未来2个季度营业利润率仍低于2.0%，且自由现金流累计低于负20亿美元。",
+          "股价在20个交易日内跌破315美元并连续2日未收复。"
+        ],
+        "downside_mechanism": {
+          "shock": "突破失败或下一季利润、现金流低于预期。",
+          "transmission": "动量资金止损，长期投资者下修高估值所需增长率。",
+          "constraint": "汽车业务利润率低、资本开支高，基本面缓冲不足。",
+          "outcome": "价格重新回到旧区间，突破追随者承受快速回撤。"
+        },
+        "action_posture": "wait_for_proof",
+        "missing_evidence": [
+          "368美元上方的后续收盘与成交量。",
+          "下一季度汽车毛利率、资本开支和自由现金流。",
+          "315至465美元区间的历史回测和风险收益分布。"
+        ],
+        "next_verification": "先等一次日线收盘站上368美元，再以3个交易日持稳和下一季现金流作为第二层确认。",
+        "source_urls": [
+          "https://www.financecharts.com/stocks/TSLA/summary/price",
+          "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049213/exhibit991.htm"
+        ],
+        "sources": []
+      },
+      {
+        "topic_id": "topic-igv-software",
+        "theme": "IGV突破、ETF资金机制与软件股分化",
+        "conclusion": "软件篮子改善值得观察，但IGV尚未站上107美元；即便突破，也要用净申购和参与宽度验证，不能把指数价格越线等同为自动被动买盘。",
+        "evidence_layers": {
+          "facts": [
+            "IGV在2026年8月21日收103.37美元、NAV 103.40美元，低于107美元压力位。",
+            "基金持有106只证券，第一大持仓Palantir权重约10.37%，个股权重和基本面差异明显。",
+            "IGV年初至8月20日NAV回报负3.53%，市盈率约36.81倍。"
+          ],
+          "management_claims": [
+            "iShares说明基金寻求跟踪北美软件及相关互动媒体公司指数。"
+          ],
+          "inference": "指数走强能够改善板块情绪，但底层买盘只有在净创建份额和广泛参与时更可靠；少数权重股也能制造表面突破。",
+          "agent_judgment": "把107美元视为第一道价格确认，把净申购和上涨家数视为第二道质量确认。没有第二道确认，不把突破外推到所有软件股。"
+        },
+        "confidence": "高，约90%确认尚未突破；中等，约65%支持有效突破利好板块情绪；低于40%支持所有成分股受益。",
+        "time_horizon": "未来数周至一个季度。",
+        "priced_in": "年内回报仍为负，但36.81倍市盈率并不低；市场对质量软件与高估值软件的预期已分化，不能以ETF整体代表便宜。",
+        "what_must_be_true": [
+          "IGV连续收于107美元上方并出现真实净申购。",
+          "上涨由多数成分股参与，而不是前3大权重单独推动。",
+          "软件公司收入、续费率和利润率能够支撑当前估值。"
+        ],
+        "disconfirmers": [
+          "突破107美元后5个交易日内收盘跌回103美元以下。",
+          "突破周基金份额净减少超过2%，或上涨成分股占比低于40%。",
+          "未来1个季度IGV前10大持仓中至少6家下调收入指引。"
+        ],
+        "downside_mechanism": {
+          "shock": "高权重软件公司业绩或指引低于高估值隐含预期。",
+          "transmission": "少数权重下跌拖累ETF，赎回和动量止损再传导至底层篮子。",
+          "constraint": "板块市盈率较高、个股相关性在压力中上升，分散效果变弱。",
+          "outcome": "107美元突破失败，弱势成分股跌幅明显大于指数。"
+        },
+        "action_posture": "watchlist",
+        "missing_evidence": [
+          "官方每日净申购、创建赎回和份额变动。",
+          "成分股上涨家数、等权指数和成交量宽度。",
+          "主要持仓的同口径增长、续费率与估值。"
+        ],
+        "next_verification": "若IGV收盘站上107美元，连续5日记录基金份额、净申购和成分股上涨占比，再判断是否为有效板块突破。",
+        "source_urls": [
+          "https://www.ishares.com/us/products/239771/IGV",
+          "https://www.spglobal.com/spdji/en/documents/methodologies/methodology-sp-na-sector-index.pdf",
+          "https://www.sec.gov/Archives/edgar/data/1100663/000119312526327903/0001193125-26-327903-index.htm"
+        ],
+        "sources": []
+      },
+      {
+        "topic_id": "topic-nvidia-semiconductors",
+        "theme": "英伟达财报前价格结构与半导体方向",
+        "conclusion": "214.72美元收盘让206至216美元成为可观察短带，但近期曾明显高于216美元；8月26日财报是更强的状态转换器，财报前不宜把技术区间视为稳定边界。",
+        "evidence_layers": {
+          "facts": [
+            "英伟达8月21日收214.72美元，8月20日收216.85美元。",
+            "8月17日至19日收盘仍在217.56至225.01美元之间，近期并非一直处于206至216美元。",
+            "公司确认8月26日盘后发布FY2027第二季度业绩。",
+            "上一季收入816亿美元增85%，数据中心收入752亿美元增92%。"
+          ],
+          "management_claims": [
+            "英伟达把AI工厂建设描述为加速，并通过官方公告确认财报发布时间。"
+          ],
+          "inference": "强基本面抬高市场预期，财报前的小幅回撤可以是横盘，也可以是事件前风险收缩；没有预期分布就不能判断哪一种占优。",
+          "agent_judgment": "把206美元作为失效观察位，而不是必守支撑；在财报前控制事件敞口，财报后再用指引和价格缺口重建区间。"
+        },
+        "confidence": "中等，约65%支持财报前暂按整理看待；低于40%支持206至216美元能约束财报后的波动。",
+        "time_horizon": "2026年8月21日至8月26日财报，以及财报后5个交易日。",
+        "priced_in": "财报日期和上一季高增长均已公开，高预期很可能部分进入价格；缺少一致预期和期权事件方差，无法判断利好门槛。",
+        "what_must_be_true": [
+          "206美元在财报前保持收盘支撑，卖压没有加速。",
+          "财报收入、数据中心增长、毛利率和指引接近或高于市场预期。",
+          "高增长仍能覆盖估值中隐含的持续增长要求。"
+        ],
+        "disconfirmers": [
+          "财报前连续2日收盘低于206美元。",
+          "财报后收入或指引低于一致预期10%以上，或毛利率环比下降300个基点以上。",
+          "财报后首个交易日收盘涨跌幅超过10%，使206至216美元区间失去解释力。"
+        ],
+        "downside_mechanism": {
+          "shock": "财报或指引未达到高增长预期。",
+          "transmission": "估值倍数下修、AI链相关性上升，半导体与软件风险偏好同步收缩。",
+          "constraint": "财报后流动性和期权对冲可能放大跳空，技术止损无法按预定价成交。",
+          "outcome": "206美元失守，原横盘框架被事件驱动的新价格区间取代。"
+        },
+        "action_posture": "wait_for_proof",
+        "missing_evidence": [
+          "8月26日前的可靠一致预期、期权隐含波动和机构仓位。",
+          "FY2027第二季度实际业绩与下一季度指引。",
+          "206至216美元区间的成交量分布和历史回测。"
+        ],
+        "next_verification": "8月26日前记录价格与隐含波动，财报发布后用收入、数据中心增速、毛利率、指引和次日收盘共同重设区间。",
+        "source_urls": [
+          "https://www.financecharts.com/stocks/NVDA/summary/price",
+          "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Second-Quarter-Financial-Results/default.aspx",
+          "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-First-Quarter-Fiscal-2027/default.aspx"
+        ],
+        "sources": []
+      }
+    ],
+    "sources": []
+  },
+  "fidelity_review": {
+    "schema_version": 1,
+    "video_id": "0w77lIBdCn0",
+    "reviewed_at": "2026-08-24T16:34:00+08:00",
+    "external_research_visible_to_reviewer": false,
+    "review_scope": "仅对照transcript.report.jsonl、video-analysis.json、opinions.jsonl与草稿第一部分；草稿第二、三部分在本轮原意审查中不可见且未用于修订第一部分。",
+    "draft_sha256": "5c1fe4829a54844d22c1a79d51482929abff0584eb5c9e5fd8eecb7ea5f33d2f",
+    "transcript_sha256": "736fd66fd3dd8fcd89b5d003c242922a1cd58fd4036d1d2ce00f822bc634c35e",
+    "overall_verdict": "passed_with_asr_caveats",
+    "post_revision_verdict": "passed_with_asr_caveats",
+    "section_checks": [
+      {
+        "section_id": "section-001",
+        "status": "passed_with_asr_caveats",
+        "transcript_range": "seg-000001–seg-000042",
+        "finding": "开场、机构弹药见底主线与本期主题被压缩进导语和总览；片头频道介绍未扩写为正文。自报姓名Rynau仅按字幕转写，未声称回听确认。"
+      },
+      {
+        "section_id": "section-002",
+        "status": "passed_with_asr_caveats",
+        "transcript_range": "seg-000043–seg-000280",
+        "finding": "美银现金3.5%、ICI现金低位、对冲基金杠杆、低波僵局、风险催化、VIX 18至22及SPY 745和729全部保留；条件与概率措辞未被强化。"
+      },
+      {
+        "section_id": "section-003",
+        "status": "passed_with_asr_caveats",
+        "transcript_range": "seg-000281–seg-000538",
+        "finding": "融资规模区间、若担保1000亿美元的条件句、AI收入必须接力、失败尾部情景、二季度货币化验证、四季度复核与博通324至365美元框架均按原意覆盖。"
+      },
+      {
+        "section_id": "section-004",
+        "status": "passed",
+        "transcript_range": "seg-000539–seg-000591",
+        "finding": "特斯拉297美元附近反弹、362美元测试、368美元开盘或收盘确认、315至465美元新区间及415至465美元上方观察带完整保留。"
+      },
+      {
+        "section_id": "section-005",
+        "status": "passed_with_asr_caveats",
+        "transcript_range": "seg-000592–seg-000673",
+        "finding": "IGV顶背离修复、约107美元压力、板块资金利好和成分股强弱分化均保留；IGV名称为低置信片段，但在上下文多次一致出现。"
+      },
+      {
+        "section_id": "section-006",
+        "status": "passed",
+        "transcript_range": "seg-000674–seg-000696",
+        "finding": "半导体相对位置、英伟达连续小跌、206至216美元横盘判断与财报验证节点完整保留，未把横盘升级为必然支撑。"
+      },
+      {
+        "section_id": "section-007",
+        "status": "passed",
+        "transcript_range": "seg-000697–seg-000750",
+        "finding": "会员内容推广、社区答疑、点赞评论转发与固定道别均未进入观点或报告正文；只有此前形成的英伟达实质性观点被保留。"
+      }
+    ],
+    "opinion_checks": [
+      {
+        "opinion_id": "opinion-001",
+        "status": "passed",
+        "finding": "机构仓位重、增量现金有限、标普结构完整与低波僵局四层逻辑均保留。"
+      },
+      {
+        "opinion_id": "opinion-002",
+        "status": "passed_with_asr_caveats",
+        "finding": "风险催化出现后仓位放大波动及当周回撤不足以释放风险的条件判断保留；未采用低置信错词。"
+      },
+      {
+        "opinion_id": "opinion-003",
+        "status": "passed_with_asr_caveats",
+        "finding": "VIX 18至20预备位置与22以上下行风险显著升高的原始分层保留；字幕中的Wix按重复上下文自然规范为VIX。"
+      },
+      {
+        "opinion_id": "opinion-004",
+        "status": "passed",
+        "finding": "SPY 745风险上升与729风险爆发两道技术确认线准确保留。"
+      },
+      {
+        "opinion_id": "opinion-005",
+        "status": "passed",
+        "finding": "只在若担保达到1000亿美元的条件下表达博通资产负债表担忧，没有把条件写成既成事实。"
+      },
+      {
+        "opinion_id": "opinion-006",
+        "status": "passed",
+        "finding": "AI基础设施必须由收入承接及失败时信用损失难以承受的判断完整保留。"
+      },
+      {
+        "opinion_id": "opinion-007",
+        "status": "passed",
+        "finding": "若AI浪潮失败且处于高债务背景，后果可能比2000年更糟的个人尾部判断保留为条件句。"
+      },
+      {
+        "opinion_id": "opinion-008",
+        "status": "passed_with_asr_caveats",
+        "finding": "当前未到失败警报、亚马逊谷歌微软二季度货币化验证、Meta稍滞后与四季度再评估均保留；未外推成已审计事实。"
+      },
+      {
+        "opinion_id": "opinion-009",
+        "status": "passed",
+        "finding": "博通324至365美元只适用于高增长兑现情景，跌破324还需信用风险上升的联合条件完整保留。"
+      },
+      {
+        "opinion_id": "opinion-010",
+        "status": "passed",
+        "finding": "特斯拉368美元触发、315至465美元新宽区间和415至465美元上方重点区准确保留。"
+      },
+      {
+        "opinion_id": "opinion-011",
+        "status": "passed_with_asr_caveats",
+        "finding": "IGV突破利好软件整体资金但个股仍分化的双层判断保留；低置信名称不改变核心命题。"
+      },
+      {
+        "opinion_id": "opinion-012",
+        "status": "passed",
+        "finding": "英伟达连续小跌但位置未破、财报前按206至216美元附近横盘处理的限定保留；会员预告未混入观点。"
+      }
+    ],
+    "exclusion_checks": [
+      {
+        "range": "seg-000697–seg-000708",
+        "status": "passed",
+        "finding": "中段会员节目预告仍保留在报告字幕依据中，但未进入观点、研究主题或成稿。"
+      },
+      {
+        "range": "seg-000709–seg-000715",
+        "status": "passed",
+        "finding": "片尾会员社区答疑服务推广按完整范围排除。"
+      },
+      {
+        "range": "seg-000723–seg-000728",
+        "status": "passed",
+        "finding": "点赞、评论与转发引导未进入最终报告。"
+      },
+      {
+        "range": "seg-000746–seg-000750",
+        "status": "passed",
+        "finding": "结束、周末祝福和固定道别未进入最终报告。"
+      }
+    ],
+    "unresolved_transcript_checks": [
+      {
+        "risk_id": "risk-correction-fallback",
+        "status": "unresolved",
+        "finding": "上游校订模型未返回有效JSON并使用规则回退；本报告未启动独立勘误或音视频核验。"
+      },
+      {
+        "segment_id": "seg-000001",
+        "term": "Rynau",
+        "status": "unresolved",
+        "finding": "自报姓名按字幕转写，未回听确认拼写。"
+      },
+      {
+        "segment_id": "seg-000115",
+        "term": "老德人会很多",
+        "status": "unresolved",
+        "finding": "正文只保留风险出现后抛压加速的上下文含义，不引用该不稳定短语。"
+      },
+      {
+        "segment_id": "seg-000146",
+        "term": "Wix",
+        "status": "context_normalized",
+        "finding": "同段反复讨论标普30天隐含波动与VIX点位，正文自然规范为VIX，但未声称回听确认。"
+      },
+      {
+        "segment_id": "seg-000331",
+        "term": "CoV",
+        "status": "unresolved",
+        "finding": "正文使用上下文中的CDS与信用风险概念，不依赖该孤立专名作为核心依据。"
+      },
+      {
+        "segment_id": "seg-000592",
+        "term": "IGV",
+        "status": "context_confirmed",
+        "finding": "片段置信度低，但前后持续讨论同一ETF和软件成分股，正文保留标准代码。"
+      },
+      {
+        "risk_id": "risk-dense-numbers",
+        "status": "unresolved",
+        "finding": "融资规模、公司收入与技术点位为密集数字区，第一部分仅按字幕条件化呈现；未声称已用音视频证实。"
+      }
+    ]
+  },
+  "citation_count": 20,
+  "source_artifact_hashes": {
+    "agent_judgment": "99fe8241dc56992b07398605208194849ebc981daddae85ad02b322e5b92f677",
+    "fidelity_review": "9e077d626b408a4dcd5df970393e819f3f7af934ee3bfb8cf5dea75a419c8413",
+    "opinions": "e82ba75b2ae707499c6dfca5245fdb98ee1b91eb6ab90f49fd799526021a9da5",
+    "research_dir": "4fc97c33d8bad4c4b4141db8149911acc404ae3ca9f2780e79c5a19a60f5362f",
+    "video_analysis": "11ea8d5ccf9e20af693686fdbcd3f0a3e8051528eabda545cd645c7282524b9f"
+  }
+}
