@@ -1,0 +1,427 @@
+{
+  "schema_version": 1,
+  "video_id": "SeRYHE7AQlY",
+  "generated_at": "2026-08-24T00:59:28.221833+00:00",
+  "citations": [
+    {
+      "source_id": "src-ai-msft-fy26-q4",
+      "title": "Microsoft FY 2026 Fourth Quarter Earnings Conference Call",
+      "publisher": "Microsoft Investor Relations",
+      "author": "Satya Nadella; Amy Hood; Microsoft Corporation",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
+      "evidence_summary": "披露Azure季度增长43%、全年收入超过1000亿美元、云需求高于产能、季度资本开支410亿美元及云毛利率65%。",
+      "scope": "微软截至2026年6月季度与财年；管理层口径需与财报结合。",
+      "source_ids": [
+        "src-ai-msft-fy26-q4"
+      ],
+      "research_topics": [
+        "topic-ai-returns"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-001"
+    },
+    {
+      "source_id": "src-ai-meta-q2-2026",
+      "title": "Meta Reports Second Quarter 2026 Results",
+      "publisher": "Meta Platforms Investor Relations",
+      "author": "Meta Platforms, Inc.",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-24",
+      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx",
+      "evidence_summary": "季度收入608亿美元增28%，资本开支310.8亿美元；费用增55%、营业利润降8%、自由现金流约7.84亿美元。",
+      "scope": "Meta 2026年第二季度合并经营结果，未单列AI资产回报。",
+      "source_ids": [
+        "src-ai-meta-q2-2026"
+      ],
+      "research_topics": [
+        "topic-ai-returns"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-002"
+    },
+    {
+      "source_id": "src-ai-amzn-10q-20260630",
+      "title": "Amazon.com, Inc. Form 10-Q for the quarter ended June 30, 2026",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Amazon.com, Inc.",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+      "evidence_summary": "披露上半年现金资本开支963亿美元，多数用于AWS技术基础设施；AWS二季度营业利润约166.2亿美元。",
+      "scope": "Amazon 2026年第二季度与上半年法定披露。",
+      "source_ids": [
+        "src-ai-amzn-10q-20260630"
+      ],
+      "research_topics": [
+        "topic-ai-returns"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-003"
+    },
+    {
+      "source_id": "src-ai-alphabet-10q-20260630",
+      "title": "Alphabet Inc. Form 10-Q for the quarter ended June 30, 2026",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Alphabet Inc.",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+      "evidence_summary": "披露上半年资本开支约806亿美元以及约852亿美元尚未开始的主要数据中心租赁承诺，显示未来固定成本规模。",
+      "scope": "Alphabet 2026年第二季度与上半年法定披露；未单列AI收入。",
+      "source_ids": [
+        "src-ai-alphabet-10q-20260630"
+      ],
+      "research_topics": [
+        "topic-ai-returns"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-004"
+    },
+    {
+      "source_id": "src-gold-wgc-midyear-2026",
+      "title": "Gold Mid-Year Outlook 2026: Point break",
+      "publisher": "World Gold Council",
+      "author": "Juan Carlos Artigas; Taylor Burnette; Fergal O'Connor",
+      "published_at": "2026-07-01",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.gold.org/goldhub/research/gold-mid-year-outlook-2026",
+      "evidence_summary": "记录2026年黄金从5500美元上方回落至4000美元下方、上半年跌约7%，并将利率、美元、风险与央行需求列为关键驱动。",
+      "scope": "2026年下半年黄金情景分析；行业机构观点而非保证。",
+      "source_ids": [
+        "src-gold-wgc-midyear-2026"
+      ],
+      "research_topics": [
+        "topic-gold-debasement"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-005"
+    },
+    {
+      "source_id": "src-gold-wgc-etf-202607",
+      "title": "Gold ETF Flows: July 2026",
+      "publisher": "World Gold Council",
+      "author": "World Gold Council",
+      "published_at": "2026-08-06",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.gold.org/goldhub/research/gold-etfs-holdings-and-flows/2026/08",
+      "evidence_summary": "7月全球黄金ETF净流入约30亿美元、持仓增加约23吨至4068吨；高收益率和强美元仍限制流入。",
+      "scope": "实物支持黄金ETF月度资金流，不覆盖央行和场外全部需求。",
+      "source_ids": [
+        "src-gold-wgc-etf-202607"
+      ],
+      "research_topics": [
+        "topic-gold-debasement"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-006"
+    },
+    {
+      "source_id": "src-gold-treasury-real-yields-20260821",
+      "title": "Daily Treasury Par Real Yield Curve Rates",
+      "publisher": "U.S. Department of the Treasury",
+      "author": "U.S. Department of the Treasury",
+      "published_at": "2026-08-21",
+      "accessed_at": "2026-08-24",
+      "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&type=daily_treasury_real_yield_curve",
+      "evidence_summary": "2026年8月21日5年、10年和30年期实际收益率约为2.09%、2.40%和3.00%。",
+      "scope": "美国TIPS推导的实际收益率曲线，反映美元无风险实际利率。",
+      "source_ids": [
+        "src-gold-treasury-real-yields-20260821"
+      ],
+      "research_topics": [
+        "topic-gold-debasement"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-007"
+    },
+    {
+      "source_id": "src-gold-imf-crypto-cycle-2023",
+      "title": "The Crypto Cycle and US Monetary Policy",
+      "publisher": "International Monetary Fund",
+      "author": "Natasha Che; Alexander Copestake; Davide Furceri; Tammaro Terracciano",
+      "published_at": "2023-08-04",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.imf.org/en/-/media/files/publications/wp/2023/english/wpiea2023163-print-pdf.pdf",
+      "evidence_summary": "研究发现加密因子与股票相关性上升，美联储收紧会压低加密因子，与加密资产稳定对冲市场风险的主张相冲突。",
+      "scope": "历史加密资产与美国货币政策关系；工作论文不代表IMF官方立场。",
+      "source_ids": [
+        "src-gold-imf-crypto-cycle-2023"
+      ],
+      "research_topics": [
+        "topic-gold-debasement"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-008"
+    },
+    {
+      "source_id": "src-nba-ubnt-proxy-20251024",
+      "title": "Ubiquiti Inc. 2025 Proxy Statement",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Ubiquiti Inc.",
+      "published_at": "2025-10-24",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173725000063/ubnt-20251024.htm",
+      "evidence_summary": "披露Robert Pera实益持有56,278,181股、约占总股本93%。",
+      "scope": "截至2025年10月17日的Ubiquiti股权与治理披露。",
+      "source_ids": [
+        "src-nba-ubnt-proxy-20251024"
+      ],
+      "research_topics": [
+        "topic-nba-private-assets"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-009"
+    },
+    {
+      "source_id": "src-nba-ubnt-10q-20251231",
+      "title": "Ubiquiti Inc. Form 10-Q for the quarter ended December 31, 2025",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Ubiquiti Inc.",
+      "published_at": "2026-02-06",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173726000014/ubnt-20251231.htm",
+      "evidence_summary": "确认高度集中的控制权，并列示控制权变化、投资者意愿和未来大额售股对价格的风险。",
+      "scope": "Ubiquiti截至2025年12月季度的法定风险披露。",
+      "source_ids": [
+        "src-nba-ubnt-10q-20251231"
+      ],
+      "research_topics": [
+        "topic-nba-private-assets"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-010"
+    },
+    {
+      "source_id": "src-nba-tax-code-197-2026",
+      "title": "26 U.S.C. § 197 — Amortization of goodwill and certain other intangibles",
+      "publisher": "Office of the Law Revision Counsel, U.S. House of Representatives",
+      "author": "United States Congress",
+      "published_at": "2026-07-17",
+      "accessed_at": "2026-08-24",
+      "url": "https://uscode.house.gov/view.xhtml?req=%28title%3A26+section%3A197+edition%3Aprelim%29",
+      "evidence_summary": "现行法典规定收购的合格第197条无形资产通常按15年摊销，并界定适用对象。",
+      "scope": "美国联邦所得税的一般无形资产规则；具体交易需专业税务分析。",
+      "source_ids": [
+        "src-nba-tax-code-197-2026"
+      ],
+      "research_topics": [
+        "topic-nba-private-assets"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-011"
+    },
+    {
+      "source_id": "src-nba-ajca-2004",
+      "title": "American Jobs Creation Act of 2004, H.R. 4520",
+      "publisher": "Congress.gov",
+      "author": "United States Congress",
+      "published_at": "2004-10-22",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.congress.gov/bill/108th-congress/house-bill/4520",
+      "evidence_summary": "第886节取消职业体育特许经营无形资产的特殊排除，使其进入第197条的一般摊销框架。",
+      "scope": "2004年联邦立法变更及其一般法律背景。",
+      "source_ids": [
+        "src-nba-ajca-2004"
+      ],
+      "research_topics": [
+        "topic-nba-private-assets"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-012"
+    },
+    {
+      "source_id": "src-nba-ap-lakers-20260812",
+      "title": "Lakers sale to Mark Walter group values franchise at $12.5 billion",
+      "publisher": "Associated Press",
+      "author": "Greg Beacham",
+      "published_at": "2026-08-12",
+      "accessed_at": "2026-08-24",
+      "url": "https://apnews.com/article/lakers-sale-kushner-iger-12-billion-d5058bb845d87873e23e270a6bb9be9f",
+      "evidence_summary": "报道湖人控股权交易估值约125亿美元、刷新纪录，并仍待NBA董事会批准。",
+      "scope": "交易金额、参与方和审批状态；不提供完整财务或税务结构。",
+      "source_ids": [
+        "src-nba-ap-lakers-20260812"
+      ],
+      "research_topics": [
+        "topic-nba-private-assets"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-013"
+    },
+    {
+      "source_id": "src-fiscal-cbo-outlook-2026",
+      "title": "The Budget and Economic Outlook: 2026 to 2036",
+      "publisher": "Congressional Budget Office",
+      "author": "Congressional Budget Office",
+      "published_at": "2026-02-01",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.cbo.gov/publication/62105",
+      "evidence_summary": "2026年赤字5.8% GDP、公众持有债务101% GDP，至2036年分别升至6.7%和120%；净利息占比升至4.6%。页面仅标注2026年2月，日期按月初标准化。",
+      "scope": "现行法律和截至2026年1月中旬信息下的2026至2036年联邦预算基线。",
+      "source_ids": [
+        "src-fiscal-cbo-outlook-2026"
+      ],
+      "research_topics": [
+        "topic-us-fiscal-debt"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-014"
+    },
+    {
+      "source_id": "src-fiscal-cbo-mbr-202608",
+      "title": "Monthly Budget Review: August 2026",
+      "publisher": "Congressional Budget Office",
+      "author": "Congressional Budget Office",
+      "published_at": "2026-08-10",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.cbo.gov/publication/61983",
+      "evidence_summary": "2026财年前十个月赤字1.8万亿美元，同比扩大1690亿美元；收入增3%，支出增5%。",
+      "scope": "截至2026年7月的联邦财政年内执行。",
+      "source_ids": [
+        "src-fiscal-cbo-mbr-202608"
+      ],
+      "research_topics": [
+        "topic-us-fiscal-debt"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-015"
+    },
+    {
+      "source_id": "src-fiscal-treasury-refunding-202608",
+      "title": "Quarterly Refunding Statement of Deputy Assistant Secretary for Federal Finance Brian Smith",
+      "publisher": "U.S. Department of the Treasury",
+      "author": "Brian Smith",
+      "published_at": "2026-08-05",
+      "accessed_at": "2026-08-24",
+      "url": "https://home.treasury.gov/news/press-releases/sb0590",
+      "evidence_summary": "宣布1250亿美元季度再融资、维持附息券种规模，并说明私人国库券需求增长及流动性买回安排。",
+      "scope": "2026年8月至10月美国财政部可交易债务融资安排。",
+      "source_ids": [
+        "src-fiscal-treasury-refunding-202608"
+      ],
+      "research_topics": [
+        "topic-us-fiscal-debt"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-016"
+    },
+    {
+      "source_id": "src-fiscal-fed-fsr-202605",
+      "title": "Financial Stability Report - May 2026: Overview",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "author": "Board of Governors of the Federal Reserve System",
+      "published_at": "2026-05-01",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.federalreserve.gov/publications/2026-may-financial-stability-report-overview.htm",
+      "evidence_summary": "截至2026年4月23日，银行体系资本与融资风险总体可控，但对冲基金杠杆仍高并可能放大国债市场冲击。页面仅标注2026年5月，日期按月初标准化。",
+      "scope": "美国金融体系脆弱性与近期系统性风险，不是财政可持续性预测。",
+      "source_ids": [
+        "src-fiscal-fed-fsr-202605"
+      ],
+      "research_topics": [
+        "topic-us-fiscal-debt"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-017"
+    },
+    {
+      "source_id": "src-week-nvda-earnings-date-20260729",
+      "title": "NVIDIA Sets Conference Call for Second-Quarter Financial Results",
+      "publisher": "NVIDIA Investor Relations",
+      "author": "NVIDIA Corporation",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-24",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Second-Quarter-Financial-Results/default.aspx",
+      "evidence_summary": "确认2026年8月26日美东时间盘后公布FY2027第二季度业绩并召开电话会。",
+      "scope": "英伟达单一公司财报时间，不代表结果或市场反应。",
+      "source_ids": [
+        "src-week-nvda-earnings-date-20260729"
+      ],
+      "research_topics": [
+        "topic-weekly-market-risk"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-018"
+    },
+    {
+      "source_id": "src-week-bea-release-schedule-202608",
+      "title": "BEA Release Schedule",
+      "publisher": "U.S. Bureau of Economic Analysis",
+      "author": "U.S. Bureau of Economic Analysis",
+      "published_at": "2026-08-01",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.bea.gov/index.php/news/schedule/full",
+      "evidence_summary": "列明8月26日8:30发布二季度GDP第二次估计、企业利润及7月个人收入和支出。页面为持续更新日历，发布日期按当月月初标准化。",
+      "scope": "美国官方宏观数据发布日期，不包含市场预期和实际结果。",
+      "source_ids": [
+        "src-week-bea-release-schedule-202608"
+      ],
+      "research_topics": [
+        "topic-weekly-market-risk"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-019"
+    },
+    {
+      "source_id": "src-week-kc-fed-jackson-hole-2026",
+      "title": "Jackson Hole FAQs",
+      "publisher": "Federal Reserve Bank of Kansas City",
+      "author": "Federal Reserve Bank of Kansas City",
+      "published_at": "2026-05-01",
+      "accessed_at": "2026-08-24",
+      "url": "https://www.kansascityfed.org/research/jackson-hole-economic-symposium/jackson-hole-faqs/",
+      "evidence_summary": "确认2026年杰克逊霍尔经济政策研讨会于8月27至29日举行，主题为金融创新对支付和政策的影响。页面未给出精确发布日期，按页面月份标准化。",
+      "scope": "会议时间与主题，不代表任何政策路径或演讲结果。",
+      "source_ids": [
+        "src-week-kc-fed-jackson-hole-2026"
+      ],
+      "research_topics": [
+        "topic-weekly-market-risk"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-020"
+    }
+  ]
+}
