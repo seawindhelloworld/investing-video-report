@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; script-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Investing Video Reports</title>
+  <style>
+    :root { color-scheme: dark; --bg:#070a10; --panel:#111827; --line:#263247; --text:#f6f7fb; --muted:#aeb8ca; --gold:#e8c266; --blue:#8db4ff; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at 85% 10%,#172033 0,transparent 36%),var(--bg); color:var(--text); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif; }
+    main { width:min(1120px,calc(100% - 32px)); margin:0 auto; padding:72px 0 96px; }
+    .eyebrow { color:var(--gold); font-size:.78rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase; }
+    h1 { max-width:900px; margin:18px 0 16px; font-size:clamp(2.6rem,7vw,6.2rem); line-height:.98; letter-spacing:-.055em; }
+    .deck { max-width:720px; color:var(--muted); font-size:clamp(1rem,2vw,1.3rem); line-height:1.75; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:54px; }
+    article { display:flex; flex-direction:column; min-height:270px; padding:26px; border:1px solid var(--line); border-top:4px solid var(--gold); border-radius:18px; background:linear-gradient(145deg,rgba(22,30,46,.96),rgba(11,16,27,.96)); box-shadow:0 18px 50px rgba(0,0,0,.25); }
+    article span { color:var(--gold); font-size:.72rem; font-weight:800; letter-spacing:.16em; }
+    article h2 { margin:20px 0 12px; font-size:1.6rem; line-height:1.25; }
+    article p { margin:0; color:var(--muted); line-height:1.7; }
+    article a { display:inline-flex; align-items:center; width:max-content; margin-top:auto; padding:10px 15px; border-radius:999px; background:#e9eefb; color:#111827; font-weight:800; text-decoration:none; }
+    article a:hover { background:var(--gold); }
+    footer { margin-top:38px; color:#78859a; font-size:.85rem; }
+    @media (max-width:800px) { main{padding-top:44px}.grid{grid-template-columns:1fr}article{min-height:230px} }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Market Intelligence · Published Reports</div>
+    <h1>投资视频<br>观点报告</h1>
+    <p class="deck">同一视频的完整研究版、出版阅读版与逐项对比。所有页面均为静态 HTML，可在桌面端和移动端直接阅读。</p>
+    <section class="grid">
+      <article>
+        <span>FULL RESEARCH EDITION</span>
+        <h2>原报告</h2>
+        <p>保留完整深读模块、量化反证、来源分组与研究字段，适合分析和复盘。</p>
+        <a href="2026-08-22-SeRYHE7AQlY/index.html">打开原报告 →</a>
+      </article>
+      <article>
+        <span>EDITORIAL V2</span>
+        <h2>新版阅读版</h2>
+        <p>以“资本变贵之后”为主线，减少重复与审计界面，强化结论、条件和行动含义。</p>
+        <a href="2026-08-22-SeRYHE7AQlY-editorial-v2/index.html">打开新版 →</a>
+      </article>
+      <article>
+        <span>SIDE-BY-SIDE REVIEW</span>
+        <h2>两版可视化对比</h2>
+        <p>从信息密度、阅读路径、研究深度、页面长度和移动端表现比较两版报告。</p>
+        <a href="2026-08-22-SeRYHE7AQlY-editorial-v2/comparison.html">查看对比 →</a>
+      </article>
+    </section>
+    <footer>Video ID · SeRYHE7AQlY</footer>
+  </main>
+</body>
+</html>
