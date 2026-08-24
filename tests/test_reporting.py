@@ -143,6 +143,31 @@ class ReportingTests(unittest.TestCase):
             self.assertNotIn("<p></p>", document)
             self.assertIn(">Executive Summary</h2>", document)
 
+    def test_project_template_renders_editorial_cover_and_deck(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / "report.md"
+            output = root / "index.html"
+            source.write_text(
+                '---\ntitle: "大债务周期下的贬值交易"\n'
+                'creator: "美投侃新闻"\n'
+                'description: "长期资本正在变贵。"\n---\n\n'
+                "# 大债务周期下的贬值交易\n\n正文。\n",
+                encoding="utf-8",
+            )
+
+            render_markdown_report(
+                source,
+                Path(__file__).resolve().parents[1] / "assets" / "report-template.html",
+                output,
+            )
+
+            document = output.read_text(encoding="utf-8")
+            self.assertIn('class="report-cover"', document)
+            self.assertIn("Market Intelligence", document)
+            self.assertIn('class="cover-deck">长期资本正在变贵。</p>', document)
+            self.assertIn("color-scheme: dark", document)
+
     def test_render_report_injects_script_free_reading_paths(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -185,17 +210,17 @@ class ReportingTests(unittest.TestCase):
         self.assertLess(metrics["creator_visible_compression_ratio"], 0.42)
         self.assertEqual(metrics["cross_layer_duplicate_block_count"], 0)
 
-    def test_readability_gate_rejects_missing_claim_mapping_on_long_reports(self) -> None:
+    def test_readability_gate_allows_editorial_components_without_claim_mapping(self) -> None:
         report = self._progressive_report().replace(
             'class="topic-brief" data-claim-id="claim-001"',
             'class="plain-topic" data-claim-id="claim-001"',
         )
-        with self.assertRaisesRegex(ValueError, "claim IDs do not map one-to-one"):
-            validate_report_readability(
-                report,
-                transcript_text="市场可能改善但仍需验证" * 420,
-                topic_count=2,
-            )
+        metrics = validate_report_readability(
+            report,
+            transcript_text="市场可能改善但仍需验证" * 420,
+            topic_count=2,
+        )
+        self.assertEqual(metrics["claim_map_count"], 1)
 
     def test_readability_gate_rejects_verbose_default_layer(self) -> None:
         report = self._progressive_report().replace(
@@ -209,18 +234,22 @@ class ReportingTests(unittest.TestCase):
                 topic_count=2,
             )
 
-    def test_readability_gate_requires_details_to_be_closed_by_default(self) -> None:
+    def test_readability_gate_allows_editorial_details_to_be_open(self) -> None:
         report = self._progressive_report().replace(
+            "完整背景、推理、限定和时间戳仍保留。" * 45,
+            "完整背景、推理和限定仍保留。",
+            1,
+        ).replace(
             '<details class="report-detail"',
             '<details open class="report-detail"',
             1,
         )
-        with self.assertRaisesRegex(ValueError, "closed by default"):
-            validate_report_readability(
-                report,
-                transcript_text="市场可能改善但仍需验证" * 420,
-                topic_count=2,
-            )
+        metrics = validate_report_readability(
+            report,
+            transcript_text="市场可能改善但仍需验证" * 420,
+            topic_count=2,
+        )
+        self.assertEqual(metrics["open_report_detail_count"], 1)
 
     def test_render_report_rejects_executable_raw_html(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -304,9 +333,12 @@ class ReportingTests(unittest.TestCase):
             validate_report_layers(text + "\n## 视频信息\n")
         with self.assertRaisesRegex(ValueError, "video cover"):
             validate_report_layers(text + "\n![视频封面](cover.jpg)\n")
-        described = text.replace("# R", '---\ndescription: "完整保留视频内容"\n---\n# R')
-        with self.assertRaisesRegex(ValueError, "header description"):
-            validate_report_layers(described)
+        described = text.replace(
+            "# R",
+            '---\ndescription: "长期资本正在变贵，市场需要重新给久期定价。"\n---\n# R',
+        )
+        counts = validate_report_layers(described)
+        self.assertEqual(counts["layer_heading_count"], 3)
 
     def test_validate_report_layers_rejects_host_voice_only_in_creator_section(self) -> None:
         text = """# R

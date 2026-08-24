@@ -296,11 +296,11 @@ Codex 服务层由外层脚本设置为：{config.codex_service_tier}
 3. 不修改上游字幕包，不下载视频，不运行 ASR，不假称回听确认字幕。
 4. 先检查 work/{metadata['video_id']}/manifest.json；若已有未完成运行，从当前阶段恢复。若只有 ingest 已完成，直接继续后续阶段。
 5. 严格完成 analyze、research、judgment、draft、fidelity_review、render 阶段门并使用项目 CLI 登记产物。render 成功后停止；外层自动化会用真实本地浏览器完成 html_validate 与 complete，避免模型重复消耗上下文或因浏览器工具不可用误报整单失败。
-6. analyze 阶段完整读取 transcript.corrected.jsonl，在正常内容理解和报告写作中按语境自然规范明显的 ASR 错词；不得为此启动独立勘误阶段、额外模型调用、全稿勘误扫描或派生勘误字幕，也不得修改导入字幕。若视频时长超过 1800 秒，绝对不做任何专门勘误，只使用上游已校订字幕并保留不确定性。无法确认的词项保留不确定性并写入转录风险。只在程序界定的片头或片尾窗口内（每侧最多 120 秒，且不超过字幕总时长的三分之一），才可将高确定性的广告、产品推广、订阅引导、销售话术、无关内容和片尾套话写入 excluded_ranges。视频中段的这些内容不从字幕或 transcript.report.jsonl 删除，也不写入 excluded_ranges；同一次分析中确认属于广告、推广、订阅或销售话术的中段最小范围写入 non_reportable_ranges，源字幕继续保留，但不得写入 opinions.jsonl、不得作为报告观点，也不得进入报告正文或外部研判。仅明显 ASR 噪声和空白段可在任何位置按最小范围排除；空白段由程序自动识别，不要消耗模型判断。无法判断、仅低置信度或仍可能有实质内容时必须保留在字幕依据中，也不得放入 non_reportable_ranges。每项必须包含 segment_start、segment_end、精确时间、category、具体 reason 和 certainty="high"，范围缩到最小完整片段，不得大段排除或用相邻小段规避限制。excluded_ranges 的 category 只能使用 advertising、product_promotion、subscription_prompt、sales_language、unrelated_content、boilerplate_outro、asr_noise、blank；non_reportable_ranges 只能使用前四种商业类别。执行 record-analysis 后必须检查程序生成的 content-selection.json 与 transcript.report.jsonl，后续正文和观点不得引用已排除或标为不可报告的区间。
+6. analyze 阶段完整读取 transcript.corrected.jsonl，但不启动字幕勘误、风险词扫描、额外模型调用或派生字幕；按上下文自然理解明显错词即可，最终报告不展示 ASR 风险清单。广告、推广、订阅和销售话术不进入观点、研究或正文；内容边界字段继续遵守 CLI schema，并在 record-analysis 后使用程序生成的 transcript.report.jsonl。
 7. 第一部分的内容依据只能来自不可变的 transcript.corrected.jsonl 及筛选视图 transcript.report.jsonl；不得修改上游字幕包，也不得在正常语义整理之外自行改写内容。无论出现在片头、中段或片尾，内容分析确认为广告、产品推广、订阅引导或销售话术的文字都不得进入报告正文、观点或外部研判；但中段原文仍留在字幕依据和筛选视图中，不做源内容删除。第二部分必须进行实时外部研究并保留直接 URL、来源日期、反方证据和适用条件。第三部分必须包含已计价判断、成立条件、量化反证、下行机制和观察姿态。
-7.1. 在同一次 Agent 运行、同一上下文中，起草前先做轻量编辑规划：确定一个核心命题、3—5条读者要点、主要/次要主题、每个主题的稳定 claim ID、默认展示内容、折叠审计内容和真正能减少阅读成本的可视化。不得为编辑规划另起模型调用、子任务或额外产物。
-7.2. 默认 HTML 必须使用渐进披露，而不是把完整转述连续铺开。每个研究主题分别使用 `<section class="topic-brief" data-claim-id="..." markdown="1">`、`<section class="evidence-delta" data-claim-id="..." markdown="1">` 和 `<section class="decision-brief" data-claim-id="..." markdown="1">` 承担三层的信息增量；三层 claim ID 必须一一对应，claim 数量必须等于已登记 research topic 数量，并且组件只能出现在对应层。每个默认可见 claim 组件不超过约260个汉字，只保留一句结论、至多三项关键依据/分歧和一个下一验证。背景、完整推理、限定、较长原话、详细 Agent 字段和更多来源放进同一 report.md 内默认关闭且不带 `open` 的 `<details class="report-detail" data-claim-id="..." markdown="1">`；每个 claim 至少有两个折叠详情，不得移到另一个详细版附件，也不得从审计内容删除。长报告第一层默认可见汉字不得超过报告字幕的42%，三层默认可见总量不得超过 `max(3200, 1200 + 750 × research topic 数量)`。
-7.3. 第一层保留作者原意，第二层只写外部证据带来的支持、收窄、冲突与条件，第三层只写综合取舍、已计价、反证和下一验证；同一长段或完整命题不得跨层重复。关键原话默认每个主题最多显示一句短引述，其余原话与时间戳折叠。卡片必须表达结论、比较、因果、条件或验证路径，不能只是把长段文字装进边框。
+7.1. 起草前在同一上下文中确定一个编辑标题、一个核心命题、3—5条封面导读和自然主题结构；不另起模型调用或规划文件。
+7.2. 最终 HTML 采用财经杂志式表达：强封面、主题导读、行情/KPI卡、人物观点卡、机制图、科技新闻卡和连贯正文。可使用 topic-brief、evidence-delta、decision-brief 与可选的深度阅读 details，但不强制时间戳、claim ID、审计映射、ASR提示或原始/推导数据标签。不要为了凑数量制造图表，每个视觉组件都必须帮助理解比较、因果、条件或节奏。
+7.3. 第一层保留作者内容，第二层只增加外部证据，第三层给出 Agent 取舍；避免整段重复。默认页面优先保证阅读体验和观点密度，完整结构化数据继续由 report-data.json 与 citations.json 承担。
 8. 最终正式产物必须写入 reports/<发布日期>-{metadata['video_id']}/，至少包含 report.md、index.html、report-data.json 和 citations.json。
 9. 必须实际执行 render-html。不要自行创建 html-validation.json，也不要执行 validate-html 或 complete-run；外层程序会在模型退出后通过本地 HTTP 和 Chrome/Chromium 的桌面、移动端截图完成网页验收与封板。报告生成任务不得修改项目代码。
 10. 不执行 git add、git commit、git push，不创建 Pull Request，不清理或覆盖无关文件。
@@ -310,7 +310,7 @@ Codex 服务层由外层脚本设置为：{config.codex_service_tier}
 14. 草稿只能写入 `reports/<发布日期>-{metadata['video_id']}/report.md`。fidelity-review.json 必须记录该草稿和 transcript.report.jsonl 的 SHA-256，且逐条覆盖全部 opinion_id。build-structured 只能使用 manifest 已登记的输入，随后 render-html 只能渲染同一份已审草稿并使用 assets/report-template.html。
 15. 外层程序生成的 html-validation.json 必须使用 schema_version=1、video_id={metadata['video_id']}、status="passed"、visual_review_completed=true，并记录 report_html_sha256、report_markdown_sha256、report_data_sha256、citations_sha256；四个值必须对应最终目录中的实际文件。
 
-最终消息请简洁列出：视频 ID、各阶段结果、字幕风险、观点/研究/判断数量、报告路径和剩余限制。
+最终消息请简洁列出：视频 ID、各阶段结果、观点/研究/判断数量、报告路径和剩余限制。
 """
 
 

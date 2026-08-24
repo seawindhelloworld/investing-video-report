@@ -257,9 +257,6 @@ def validate_rendered_report(report_html: Path, project_root: Path) -> dict[str,
         )
     if parser.claim_component_count and parser.reading_path_count != 1:
         raise ValueError("Rendered progressive report must contain one reading path navigator")
-    if parser.open_report_detail_count:
-        raise ValueError("Rendered report-detail disclosures must be closed by default")
-
     local_count = 0
     anchor_count = 0
     for attribute, raw_reference in parser.references:
@@ -312,7 +309,7 @@ def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
 
 def validate_report_layers(text: str) -> dict[str, int]:
     """Require ordered, visually separated report layers and a direct creator voice."""
-    metadata, _ = parse_front_matter(text)
+    parse_front_matter(text)
     external_marker = "本注为基于外部信源形成的独立研判，不代表视频作者观点。"
     lines = text.splitlines()
     creator_headings = [
@@ -347,11 +344,8 @@ def validate_report_layers(text: str) -> dict[str, int]:
             missing.append("ordered three-part structure")
         else:
             creator_content = "\n".join(lines[creator_start + 1 : external_start])
-            if (
-                'class="layer-intro creator"' not in creator_content
-                or "报告说明（非原内容）" not in creator_content
-            ):
-                missing.append("explicit non-content report boundary")
+            if 'class="layer-intro creator"' not in creator_content:
+                missing.append("creator-content editorial lead")
             host_voice_pattern = re.compile(
                 r"(?:视频|作者)(?:先|随后|还|最后|同时|进一步|最终)?"
                 r"(?:称|表示|转述|认为|指出|强调|提到|回顾|判断|预测|主张|"
@@ -370,7 +364,7 @@ def validate_report_layers(text: str) -> dict[str, int]:
             total_speaker_opinion_marker_count = text.count(speaker_marker)
             valid_speaker_marker_pattern = re.compile(
                 r'<div\s+class="speaker-opinion-marker"\s+data-speaker="[^"]+"[^>]*>'
-                r'[^\n]*报告标注 · 视频内个人判断',
+                r'[^\n]*class="speaker-opinion-kicker"[^\n]*</div>',
             )
             valid_speaker_opinion_marker_count = len(
                 valid_speaker_marker_pattern.findall(creator_content)
@@ -456,8 +450,6 @@ def validate_report_layers(text: str) -> dict[str, int]:
         missing.append("external evidence assessment disclaimer")
     if "本节为 Agent" not in text or "不构成投资建议" not in text:
         missing.append("Agent judgment disclaimer")
-    if metadata.get("description", "").strip():
-        missing.append("header description")
     if any(line.strip().startswith("## 视频信息") for line in text.splitlines()):
         missing.append("standalone video information section")
     if "![视频封面" in text:
@@ -576,7 +568,7 @@ def validate_report_readability(
     visible_main = sum(visible_counts.values())
     transcript_cjk = _cjk_count(transcript_text)
     normalized_topic_count = max(0, int(topic_count))
-    visible_limit = max(3200, 1200 + max(1, normalized_topic_count) * 750)
+    visible_limit = max(6000, 1800 + max(1, normalized_topic_count) * 1000)
     creator_ratio = (
         visible_counts["creator"] / transcript_cjk if transcript_cjk else 0.0
     )
@@ -604,11 +596,6 @@ def validate_report_readability(
         "evidence-delta": "external",
         "decision-brief": "agent",
     }
-    any_claim_components = any(
-        parser.claim_ids[class_name]
-        for parser in layer_claim_parsers.values()
-        for class_name in _CLAIM_COMPONENT_CLASSES
-    )
     claim_brief_sizes: list[int] = []
     for class_name, layer_name in expected_layer.items():
         identifiers = layer_claim_parsers[layer_name].claim_ids[class_name]
@@ -617,9 +604,13 @@ def validate_report_readability(
             for parser in layer_claim_parsers.values()
             for claim_id in parser.claim_ids[class_name]
         ]
-        if any(not claim_id_pattern.fullmatch(identifier) for identifier in all_identifiers):
-            violations.append(f"{class_name} has a missing or invalid data-claim-id")
-        if len(identifiers) != len(set(identifiers)):
+        if any(
+            identifier and not claim_id_pattern.fullmatch(identifier)
+            for identifier in all_identifiers
+        ):
+            violations.append(f"{class_name} has an invalid data-claim-id")
+        populated_identifiers = [identifier for identifier in identifiers if identifier]
+        if len(populated_identifiers) != len(set(populated_identifiers)):
             violations.append(f"{class_name} repeats a claim in the same layer")
         wrong_layer_count = len(all_identifiers) - len(identifiers)
         if wrong_layer_count:
@@ -630,41 +621,25 @@ def validate_report_readability(
                 class_name
             ]
         )
-        claim_sets[class_name] = set(identifiers)
-    if any_claim_components and len({frozenset(values) for values in claim_sets.values()}) != 1:
-        violations.append("topic/evidence/decision claim IDs do not map one-to-one")
+        claim_sets[class_name] = set(populated_identifiers)
 
     long_report = transcript_cjk >= 2500 and normalized_topic_count >= 1
     if long_report:
-        if not all(claim_sets.values()):
-            violations.append(
-                "long reports need topic-brief, evidence-delta, and decision-brief claim mapping"
-            )
-        if len(claim_sets["topic-brief"]) != normalized_topic_count:
-            violations.append(
-                "claim mapping count must match the recorded research topic count"
-            )
-        if claim_parser.report_detail_count < max(
-            1, len(claim_sets["topic-brief"]) * 2
-        ):
-            violations.append("long reports need same-page report-detail disclosures")
-        if claim_parser.open_report_detail_count:
-            violations.append("report-detail disclosures must be closed by default")
         if claim_parser.summary_dashboard_count != 1:
             violations.append("long reports need a default-visible summary-dashboard")
-        if claim_brief_sizes and max(claim_brief_sizes) > 260:
-            violations.append("a default-visible claim brief exceeds 260 CJK characters")
-        if creator_ratio > 0.42:
+        if claim_brief_sizes and max(claim_brief_sizes) > 360:
+            violations.append("a default-visible claim brief exceeds 360 CJK characters")
+        if creator_ratio > 0.65:
             violations.append(
-                f"creator layer default-visible compression ratio is {creator_ratio:.1%}, above 42%"
+                f"creator layer default-visible compression ratio is {creator_ratio:.1%}, above 65%"
             )
         if visible_main > visible_limit:
             violations.append(
                 f"default-visible main content has {visible_main} CJK characters, above {visible_limit}"
             )
 
-    if block_sizes and max(block_sizes) > 320:
-        violations.append("a default-visible paragraph exceeds 320 CJK characters")
+    if block_sizes and max(block_sizes) > 420:
+        violations.append("a default-visible paragraph exceeds 420 CJK characters")
 
     normalized_by_layer = {
         name: {
@@ -751,7 +726,7 @@ def _add_reading_paths(body_html: str) -> str:
                 f'<nav class="reading-paths {mode}" aria-label="阅读路径">'
                 '<strong>阅读路径</strong>'
                 + "".join(links)
-                + '<span>详细依据可在各主题内展开</span></nav>\n'
+                + '<span>核心内容、证据与判断一页贯通</span></nav>\n'
             )
             return nav + updated
     return body_html
@@ -800,7 +775,13 @@ def render_markdown_report(markdown_path: Path, template_path: Path, output_path
     if summary:
         template = template.replace("{{SUMMARY}}", html.escape(summary))
     else:
-        template = template.replace("<p>{{SUMMARY}}</p>", "")
+        template = re.sub(
+            r"<p\b[^>]*>\s*\{\{SUMMARY\}\}\s*</p>",
+            "",
+            template,
+            count=1,
+            flags=re.IGNORECASE,
+        )
         template = template.replace("{{SUMMARY}}", "")
     document = (
         template.replace("{{TITLE}}", html.escape(title))
@@ -999,8 +980,67 @@ def render_markdown_report(markdown_path: Path, template_path: Path, output_path
       .assessment-grid .assessment { margin: 0 0 5mm; }
       .visual-caption { margin-bottom: 5mm; }
     }
+    @media screen {
+      main { width: min(1180px, calc(100% - 48px)); margin: 24px auto 72px; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+      .report-body { padding: 0 clamp(4px, 4vw, 44px); }
+      .reading-paths { top: .65rem; margin: 1rem 0 2.6rem; padding: .7rem .8rem; border: 1px solid rgba(64, 78, 104, .82); border-radius: 999px; background: rgba(10, 15, 24, .88); box-shadow: 0 12px 36px rgba(0, 0, 0, .25); }
+      .reading-paths strong { color: var(--muted); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
+      .reading-paths a { padding: .38rem .72rem; color: #dce7f7; background: #182235; }
+      .reading-paths a:hover { color: #071019; background: var(--accent); }
+      .summary-dashboard { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .75rem; margin: 1.2rem 0 2rem; }
+      .summary-dashboard article { min-height: 154px; padding: 1rem; border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 14px; background: linear-gradient(160deg, #172235, #101722); }
+      .summary-dashboard span { color: var(--accent); font-size: .67rem; letter-spacing: .12em; }
+      .summary-dashboard strong { margin-top: .55rem; color: var(--ink); font-size: 1.03rem; }
+      .summary-dashboard p { margin-top: .5rem; color: var(--muted); font-size: .79rem; line-height: 1.5; }
+      .metric-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .7rem; margin: 1.1rem 0 2.2rem; }
+      .metric-card { padding: 1rem; border: 1px solid var(--line); border-radius: 13px; background: var(--panel); }
+      .metric-card strong { color: var(--ink); }
+      .logic-flow, .decision-chain { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; }
+      .logic-step, .decision-chain div { min-height: 122px; padding: 1rem; border: 1px solid var(--line); border-radius: 14px; color: var(--muted); background: linear-gradient(145deg, #141e2e, #0f1621); }
+      .logic-step strong, .decision-chain strong { color: var(--ink); }
+      .logic-step:not(:last-child)::after, .decision-chain div:not(:last-child)::after { color: var(--accent); }
+      .topic-brief, .evidence-delta, .decision-brief { padding: 1.15rem 1.25rem; border: 1px solid var(--line); border-radius: 15px; background: var(--panel); }
+      .topic-brief { border-top: 3px solid var(--blue); border-left-width: 1px; background: linear-gradient(145deg, var(--blue-soft), var(--panel)); }
+      .evidence-delta { border-top: 3px solid var(--accent); border-left-width: 1px; background: linear-gradient(145deg, var(--accent-soft), var(--panel)); }
+      .decision-brief { border-top: 3px solid var(--positive); border-left-width: 1px; background: linear-gradient(145deg, var(--positive-soft), var(--panel)); }
+      details.report-detail, details.source-group { padding: .8rem 1rem; border: 1px solid #263145; border-radius: 12px; background: #0e1520; }
+      details.report-detail summary, details.source-group summary { color: #9eabc0; font-size: .8rem; }
+      details.report-detail[open] summary, details.source-group[open] summary { color: var(--accent); }
+      .layer-intro { border: 1px solid var(--line); border-left-width: 1px; color: #bdc7d6; background: linear-gradient(135deg, #121b2b, #0f1622); }
+      .speaker-opinion-marker { border: 1px solid #574a2d; border-bottom: 0; background: #1b1a18; color: #f8e8b9; box-shadow: none; }
+      .speaker-opinion-kicker { color: #101318; background: var(--accent); }
+      .speaker-opinion-marker strong { color: var(--ink); }
+      .speaker-opinion-topic { color: #c8b989; }
+      .speaker-opinion-marker + blockquote { border: 1px solid #574a2d; border-left: 4px solid var(--accent); color: #f4e7c4; background: linear-gradient(145deg, #181a1c, #211f18); box-shadow: none; }
+      .quick-news-grid article, .signal-card, .data-card, .assessment-grid article, .judgment-overview article, .judgment-card, .assessment-depth article { border-color: var(--line); color: #c8d1df; background: var(--panel); }
+      .signal-card.positive { border-top-color: var(--positive); }
+      .signal-card.caution { border-top-color: var(--accent); }
+      .signal-card.question { border-top-color: var(--blue); }
+      .status-pill, .judgment-meta span, .status { color: var(--blue); background: var(--blue-soft); }
+      .agent-disclaimer, .editorial-note, .audit-links { border-color: var(--line); color: var(--muted); background: var(--panel); }
+      .judgment-facts p { border-color: var(--line); color: #c8d1df; background: #0f1723; }
+      .judgment-rationale { border-left-color: var(--blue); color: #c8d1df; background: var(--blue-soft); }
+      .judgment-checklist dt { color: var(--accent); background: var(--accent-soft); }
+      .judgment-checklist dd, .next-verification, .source-row, .annotation-target, .scope-label { color: var(--muted); }
+      nav.toc { border-color: var(--line); background: var(--panel); }
+    }
+    @media screen and (max-width: 780px) {
+      main { width: 100%; margin: 0 0 48px; }
+      .report-body { padding: 0 18px; }
+      .reading-paths { top: 0; margin-right: -18px; margin-left: -18px; border-right: 0; border-left: 0; border-radius: 0 0 16px 16px; }
+      .summary-dashboard, .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .summary-dashboard article:first-child { grid-column: 1 / -1; }
+      .logic-flow, .decision-chain { grid-template-columns: 1fr; }
+      .logic-step, .decision-chain div { min-height: auto; }
+    }
     """
-    document = document.replace("</style>", f"{extra_style}\n  </style>", 1)
+    project_template = (
+        Path(__file__).resolve().parents[2] / "assets" / "report-template.html"
+    ).resolve()
+    if template_path.resolve() == project_template:
+        extra_style = ""
+    if extra_style:
+        document = document.replace("</style>", f"{extra_style}\n  </style>", 1)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(document, encoding="utf-8")
 

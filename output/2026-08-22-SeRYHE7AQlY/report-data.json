@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-08-23T19:04:43.131336+00:00",
+  "generated_at": "2026-08-24T00:59:28.221833+00:00",
   "video": {
     "video_id": "SeRYHE7AQlY",
     "title": "达利欧：美债要爆！贬值交易黄金起飞！每周资金流动报告！湖人比美股还贵？",
@@ -1980,7 +1980,7 @@
     "reviewed_at": "2026-08-24T03:10:00+08:00",
     "external_research_visible_to_reviewer": false,
     "review_scope": "仅对照transcript.report.jsonl、video-analysis.json、opinions.jsonl与草稿第一部分；草稿第二、三部分在本轮原意审查中不可见且未用于修订第一部分。",
-    "draft_sha256": "08d99ab145690de5944da66016923b92fb4ded82ecd91c6358192167f5199589",
+    "draft_sha256": "f5c04c691cc6949ec36c372fd00502a0b74284851abed1db1b9bd0a3b6357a30",
     "transcript_sha256": "d5cbf6d432fec30fb58cb8d8eed7b59ec40f4e251819245a006da53c58392004",
     "overall_verdict": "passed_with_asr_caveats",
     "post_revision_verdict": "passed_with_asr_caveats",
@@ -2203,7 +2203,7 @@
   "citation_count": 20,
   "source_artifact_hashes": {
     "agent_judgment": "bd35aa768ef63d68eb52ececcfbc7c843c26fd56a8e24b63ee1026b172f1dfc3",
-    "fidelity_review": "ea0a74250536f1d3e4336571c2e544b3479ab7c1af6f7954f22558c0e9ccef61",
+    "fidelity_review": "8a42e8669323963f4a4d2a6d2637d73a70130188553e9269a75032fcfa2714a7",
     "opinions": "68794a8577ba901d985331724fce0186cba059c362f004afbbb5847bddf1c09c",
     "research_dir": "1b07441f34273955719e18e1b7417f0b686f97f0b87710a752bda28a64988d87",
     "video_analysis": "c1bebb0041cad2edcb6128958edeba3c27bd0dfe19c2c35d8a75fa25e5162fa4"

@@ -4,346 +4,253 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' data:; script-src 'none'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
-  <title>达利欧：美债要爆！贬值交易黄金起飞！每周资金流动报告！湖人比美股还贵？</title>
+  <title>大债务周期下的贬值交易｜美债、黄金、AI 与湖人估值</title>
   <style>
     :root {
-      color-scheme: light;
-      --ink: #152033;
-      --muted: #667085;
-      --line: #e3e8ef;
-      --paper: #ffffff;
-      --canvas: #f2f5f9;
-      --note: #f7f9fc;
-      --accent: #3157d5;
-      --accent-soft: #eef3ff;
-      --warm: #a45f0a;
-      --warm-soft: #fff7e8;
-      --positive: #19734b;
-      --positive-soft: #eaf8f1;
+      color-scheme: dark;
+      --ink: #f4f6fb;
+      --muted: #9da8b9;
+      --line: #293348;
+      --paper: #0d131e;
+      --canvas: #070a10;
+      --panel: #121a28;
+      --panel-strong: #172235;
+      --accent: #f4c65d;
+      --accent-soft: rgba(244, 198, 93, .12);
+      --blue: #66c7ff;
+      --blue-soft: rgba(102, 199, 255, .11);
+      --positive: #64d899;
+      --positive-soft: rgba(100, 216, 153, .11);
+      --negative: #ff8178;
+      --negative-soft: rgba(255, 129, 120, .11);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; background: var(--canvas); }
     body {
       margin: 0;
       color: var(--ink);
-      background: var(--canvas);
-      font: 17px/1.68 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(49, 94, 154, .18), transparent 32rem),
+        radial-gradient(circle at 90% 18%, rgba(244, 198, 93, .08), transparent 28rem),
+        var(--canvas);
+      font: 17px/1.72 Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       text-rendering: optimizeLegibility;
     }
-    main {
-      width: min(1120px, calc(100% - 40px));
-      margin: 28px auto 56px;
-      padding: clamp(28px, 5vw, 68px);
-      background: var(--paper);
+    main { width: min(1180px, calc(100% - 48px)); margin: 24px auto 72px; }
+    .report-cover {
+      position: relative;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      padding: clamp(34px, 7vw, 88px);
       border: 1px solid var(--line);
-      border-radius: 22px;
-      box-shadow: 0 20px 54px rgba(16, 24, 40, .08);
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(22, 34, 54, .98), rgba(9, 13, 21, .96) 62%);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .36);
+      isolation: isolate;
     }
-    header { margin-bottom: 2rem; }
-    h1, h2, h3, h4 { line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
-    h1 { max-width: 18em; margin: .15em 0 .35em; font-size: clamp(2rem, 5vw, 3.55rem); }
-    h2 { margin-top: 2.35em; padding-bottom: .4em; border-bottom: 1px solid var(--line); font-size: clamp(1.55rem, 3vw, 2.15rem); }
-    h3 { margin-top: 1.65em; font-size: 1.28rem; }
-    h4 { margin-bottom: .4em; }
-    p { max-width: 74ch; }
-    li + li { margin-top: .35rem; }
-    a { color: var(--accent); text-underline-offset: .18em; }
+    .report-cover::before {
+      content: "";
+      position: absolute;
+      width: 30rem;
+      height: 30rem;
+      top: -15rem;
+      right: -6rem;
+      border: 1px solid rgba(244, 198, 93, .28);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5rem rgba(244, 198, 93, .025), 0 0 0 10rem rgba(102, 199, 255, .018);
+      z-index: -1;
+    }
+    .cover-topline, .cover-bottomline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .cover-topline { position: absolute; top: clamp(28px, 5vw, 54px); left: clamp(34px, 7vw, 88px); right: clamp(34px, 7vw, 88px); }
+    .cover-topline span:last-child { color: var(--muted); }
+    .meta { margin: 0 0 1.2rem; color: var(--muted); font-size: .82rem; letter-spacing: .06em; }
+    h1, h2, h3, h4 { line-height: 1.18; letter-spacing: -.035em; text-wrap: balance; }
+    h1 { max-width: 14em; margin: 0; font-size: clamp(2.7rem, 7vw, 5.8rem); font-weight: 820; }
+    .cover-deck { max-width: 50rem; margin: 1.4rem 0 2.1rem; color: #cbd3df; font-size: clamp(1.05rem, 2.1vw, 1.35rem); line-height: 1.58; }
+    .cover-bottomline { justify-content: flex-start; flex-wrap: wrap; padding-top: 1.25rem; border-top: 1px solid var(--line); color: var(--muted); }
+    .cover-bottomline span { display: inline-flex; align-items: center; gap: .55rem; }
+    .cover-bottomline span::before { content: ""; width: .38rem; height: .38rem; border-radius: 50%; background: var(--accent); }
+    .report-body { padding: 0 clamp(4px, 4vw, 44px); }
+    .reading-paths {
+      position: sticky;
+      top: .65rem;
+      z-index: 20;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .5rem;
+      margin: 1rem 0 2.6rem;
+      padding: .7rem .8rem;
+      border: 1px solid rgba(64, 78, 104, .82);
+      border-radius: 999px;
+      background: rgba(10, 15, 24, .88);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .25);
+      backdrop-filter: blur(18px);
+    }
+    .reading-paths strong { margin: 0 .2rem 0 .35rem; color: var(--muted); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
+    .reading-paths a { padding: .38rem .72rem; border-radius: 999px; color: #dce7f7; background: #182235; font-size: .78rem; font-weight: 750; text-decoration: none; }
+    .reading-paths a:hover { color: #071019; background: var(--accent); }
+    .reading-paths span { margin-left: auto; padding-right: .35rem; color: var(--muted); font-size: .74rem; }
+    h2 { margin: 4.6rem 0 1.8rem; padding: 0 0 1rem; border-bottom: 1px solid var(--line); font-size: clamp(1.85rem, 4vw, 3.05rem); }
+    h2::before { content: "REPORT / "; display: block; margin-bottom: .55rem; color: var(--accent); font-size: .68rem; font-weight: 850; letter-spacing: .17em; }
+    h3 { margin: 3rem 0 1rem; font-size: clamp(1.3rem, 2.5vw, 1.78rem); }
+    h3::before { content: ""; display: inline-block; width: .5rem; height: .5rem; margin: 0 .65rem .16rem 0; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 .28rem var(--accent-soft); }
+    h4 { margin-bottom: .4rem; }
+    p { max-width: 76ch; }
+    li + li { margin-top: .4rem; }
+    a { color: var(--blue); text-decoration-color: rgba(102, 199, 255, .4); text-underline-offset: .2em; }
     a:hover { text-decoration-thickness: 2px; }
-    .meta { color: var(--muted); }
-    header > p:last-child { max-width: 72ch; color: #475467; font-size: 1.08rem; }
-    blockquote {
-      margin: 1.5em 0;
-      padding: 1em 1.25em;
-      border-left: 4px solid var(--accent);
-      background: var(--accent-soft);
-      color: #263a72;
-    }
-    table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; }
-    th, td { min-width: 8rem; padding: .75rem .7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-    th { color: #344054; background: #f8fafc; font-size: .86rem; }
-    code { font-size: .88em; }
+    blockquote { margin: 1.45rem 0; padding: 1.05rem 1.25rem; border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; background: var(--accent-soft); color: #f7e6b9; }
+    table { width: 100%; border-collapse: collapse; display: block; overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+    th, td { min-width: 8rem; padding: .85rem .8rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--accent); background: #172134; font-size: .78rem; letter-spacing: .04em; }
+    td { color: #c8d1df; font-size: .9rem; }
+    code { color: #dce8f9; font-size: .88em; }
     img { display: block; max-width: 100%; height: auto; border-radius: 14px; }
-    img[src$=".svg"] { width: 100%; margin: 1rem 0 .35rem; border: 1px solid var(--line); background: #fff; box-shadow: 0 12px 30px rgba(16, 24, 40, .06); }
-    .visual-caption { margin: .35rem 0 1.4rem; color: var(--muted); font-size: .86rem; }
-    .layer-intro { margin: 1rem 0 1.6rem; padding: 1rem 1.15rem; border-radius: 12px; color: #344054; background: #f4f7fb; }
-    .layer-intro.creator { border-left: 5px solid var(--accent); }
-    .layer-intro.external { border-left: 5px solid #d8a33a; }
-    .summary-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: .65rem; margin: 1rem 0 1.5rem; }
-    .summary-dashboard article { min-height: 112px; padding: .85rem .9rem; border: 1px solid var(--line); border-top: 4px solid #6b83df; border-radius: 13px; background: #fbfcfe; }
-    .summary-dashboard span { color: var(--muted); font-size: .76rem; font-weight: 750; }
-    .summary-dashboard strong { display: block; margin-top: .28rem; color: #1f3a8a; font-size: .98rem; }
-    .summary-dashboard p { margin: .28rem 0 0; color: #475467; font-size: .8rem; line-height: 1.45; }
-    .signal-grid, .data-grid, .assessment-grid, .judgment-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .75rem; margin: 1rem 0 1.5rem; }
-    .signal-card, .data-card, .assessment-grid article, .judgment-overview article { padding: 1rem; border: 1px solid var(--line); border-radius: 13px; background: #fbfcfe; }
-    .signal-card h4, .assessment-grid h3, .judgment-overview h3 { margin: 0 0 .35rem; font-size: 1rem; }
-    .signal-card p, .assessment-grid p, .judgment-overview p { margin: .32rem 0; font-size: .88rem; line-height: 1.55; }
-    .signal-card.positive { border-top: 4px solid #55a47f; }
-    .signal-card.caution { border-top: 4px solid #d8a33a; }
-    .signal-card.question { border-top: 4px solid #8291ad; }
-    .data-card { border-top: 3px solid #9db0ef; border-radius: 4px; background: #f8faff; }
-    .data-card strong { display: block; color: #1f3a8a; font-size: 1.18rem; font-variant-numeric: tabular-nums; }
-    .data-card span { display: block; margin-top: .2rem; color: var(--muted); font-size: .82rem; }
-    .quick-news-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0 1.4rem; }
-    .quick-news-grid article { padding: .95rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfd; }
-    .quick-news-grid h3 { margin: 0 0 .35rem; font-size: 1rem; }
-    .quick-news-grid p { margin: .3rem 0; font-size: .88rem; }
-    .speaker-opinion-marker { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .65rem; margin: 1.15rem 0 0; padding: .8rem 1rem .72rem; border: 1px solid #e7b85e; border-bottom: 0; border-radius: 14px 14px 0 0; background: #fff4d8; color: #6f3b00; box-shadow: 0 9px 24px rgba(146, 85, 10, .08); }
-    .speaker-opinion-marker::before { content: "◆"; color: #c66a08; font-size: .8rem; }
-    .speaker-opinion-kicker { padding: .18rem .5rem; border-radius: 999px; background: #b45309; color: #fff; font-size: .72rem; font-weight: 800; }
-    .speaker-opinion-marker strong { color: #7a3e00; font-size: 1.08rem; }
-    .speaker-opinion-topic { color: #8a5a20; font-size: .82rem; }
-    .speaker-opinion-marker + blockquote { margin-top: 0; padding: 1rem 1.2rem 1.08rem; border: 1px solid #e7b85e; border-left: 5px solid #d97706; border-radius: 0 0 14px 14px; color: #3f2a12; background: linear-gradient(145deg, #fffdf8, #fff8e8); box-shadow: 0 12px 28px rgba(146, 85, 10, .08); }
-    .editorial-note { margin: .75rem 0 1.2rem; padding: .8rem 1rem; border: 1px dashed #98a2b3; border-left: 4px solid #667085; border-radius: 10px; background: #f8fafc; color: #475467; font-size: .86rem; }
-    .scope-label { color: #7a4b08; font-size: .78rem !important; }
-    .source-row, .annotation-target { color: var(--muted); font-size: .8rem !important; }
-    .status-row, .judgment-meta { display: flex; flex-wrap: wrap; gap: .35rem; margin: .6rem 0; }
-    .status-pill, .judgment-meta span { display: inline-flex; padding: .2rem .55rem; border-radius: 999px; background: #e9efff; color: #3157d5; font-size: .76rem; font-weight: 750; }
-    .status-pill.warn, .judgment-meta span.caution { color: #b54708; background: #fff3e8; }
-    .status-pill.neutral { color: #475467; background: #f2f4f7; }
-    .agent-disclaimer { margin: 1rem 0 1.3rem; padding: 1rem 1.15rem; border: 1px solid #b7c6f8; border-left: 5px solid var(--accent); border-radius: 12px; background: #f5f7ff; color: #263a72; }
-    .judgment-card { margin: 1rem 0 1.35rem; padding: 1rem 1.1rem; border: 1px solid #cdd6f7; border-radius: 15px; background: linear-gradient(145deg, #fff, #f7f9ff); }
-    .judgment-card h3 { margin: 0 0 .55rem; font-size: 1.08rem; }
-    .judgment-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: .65rem 0; }
-    .judgment-facts p { margin: 0; padding: .72rem .78rem; border: 1px solid #e2e7f2; border-radius: 10px; background: #fff; font-size: .84rem; line-height: 1.55; }
-    .judgment-rationale { margin: .7rem 0; padding: .72rem .8rem; border-left: 3px solid #8296df; background: #f7f9ff; color: #344054; font-size: .84rem; line-height: 1.58; }
-    .judgment-checklist { display: grid; grid-template-columns: 68px minmax(0, 1fr) 68px minmax(0, 1fr); gap: .45rem .55rem; margin: .7rem 0 0; font-size: .8rem; }
-    .judgment-checklist dt { margin: 0; padding: .5rem .35rem; border-radius: 8px; background: #e9efff; color: #2344a1; font-weight: 800; text-align: center; }
-    .judgment-checklist dd { margin: 0; padding: .48rem .15rem; color: #475467; line-height: 1.45; }
-    .next-verification { margin: .72rem 0 0; padding-top: .65rem; border-top: 1px dashed #cdd5e7; color: #344054; font-size: .82rem; }
-    .decision-chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; margin: .85rem 0 1.3rem; }
-    .decision-chain div { position: relative; padding: .75rem; border: 1px solid #dfe5f4; border-radius: 10px; background: #fff; font-size: .82rem; }
-    .decision-chain strong { display: block; margin-bottom: .25rem; color: #344054; }
-    .decision-chain div:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -.48rem; z-index: 2; color: #667085; font-weight: 800; }
-    details.source-group { margin: .75rem 0; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 11px; background: #fcfcfd; }
-    details.source-group summary { cursor: pointer; color: #344054; font-weight: 700; }
-    details.source-group[open] summary { margin-bottom: .65rem; }
-    @media (max-width: 640px) {
-      body { font-size: 16px; }
-      main { width: 100%; margin: 0; padding: 22px 18px 48px; border: 0; border-radius: 0; box-shadow: none; }
-      .quick-news-grid, .judgment-facts, .decision-chain { grid-template-columns: 1fr; }
-      .judgment-checklist { grid-template-columns: 62px minmax(0, 1fr); }
-      .decision-chain div:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.8rem; }
-      p:has(> img[src$=".svg"]) { max-width: 100%; overflow-x: auto; padding-bottom: .35rem; }
-      p > img[src$=".svg"] { width: 760px; max-width: none; }
-    }
-    @page { size: A4; margin: 14mm 13mm 16mm; }
-    @media print {
-      html, body { background: #fff; }
-      body { font-size: 10.5pt; line-height: 1.55; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      main { width: auto; max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; }
-      h2, h3 { break-after: avoid-page; page-break-after: avoid; }
-      p, li { orphans: 3; widows: 3; }
-      img[src$=".svg"] { border: .3pt solid #d0d5dd; box-shadow: none; }
-      .judgment-card, .speaker-opinion-marker, .speaker-opinion-marker + blockquote { break-inside: avoid-page; page-break-inside: avoid; }
-    }
-  
-    img { display: block; max-width: 100%; height: auto; border-radius: 14px; }
-    img[src$=".svg"] { width: 100%; margin: 1rem 0 .35rem; border: 1px solid var(--line); background: #fff; box-shadow: 0 12px 30px rgba(16, 24, 40, .06); }
-    .visual-caption { margin: .35rem 0 1.4rem; color: var(--muted); font-size: .86rem; }
-    .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: .75rem; margin: 1.4rem 0 1.8rem; }
-    .metric-card { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(145deg, #fff, #f8faff); }
-    .metric-card strong { display: block; color: #16213e; font-size: 1.55rem; line-height: 1.15; font-variant-numeric: tabular-nums; }
-    .metric-card span { display: block; margin-top: .3rem; color: var(--muted); font-size: .82rem; }
-    .summary-dashboard { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .65rem; margin: 1rem 0 1.5rem; }
-    .summary-dashboard article { min-height: 120px; padding: .85rem .9rem; border: 1px solid var(--line); border-top: 4px solid #6b83df; border-radius: 13px; background: #fbfcfe; }
-    .summary-dashboard span { color: var(--muted); font-size: .76rem; font-weight: 750; text-transform: uppercase; }
-    .summary-dashboard strong { display: block; margin-top: .28rem; color: #1f3a8a; font-size: .98rem; }
-    .summary-dashboard p { margin: .28rem 0 0; color: #475467; font-size: .8rem; line-height: 1.45; }
-    .logic-flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .55rem; margin: 1.1rem 0 1.4rem; }
-    .logic-step { position: relative; min-height: 92px; padding: .8rem .65rem; border: 1px solid #cdd6f7; border-radius: 12px; background: #f7f9ff; text-align: center; font-size: .84rem; line-height: 1.4; }
-    .logic-step strong { display: block; margin-bottom: .25rem; color: #2344a1; font-size: .92rem; }
-    .logic-step:not(:last-child)::after { content: "→"; position: absolute; top: 31px; right: -.62rem; z-index: 2; color: #667085; font-weight: 800; }
-    .reading-paths { position: sticky; top: .55rem; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; margin: 0 0 1.5rem; padding: .65rem .75rem; border: 1px solid #d6deee; border-radius: 12px; background: rgba(255, 255, 255, .96); box-shadow: 0 8px 24px rgba(16, 24, 40, .08); backdrop-filter: blur(10px); }
-    .reading-paths strong { margin-right: .15rem; color: #344054; font-size: .8rem; }
-    .reading-paths a { padding: .32rem .58rem; border-radius: 999px; background: #eef3ff; color: #2344a1; font-size: .78rem; font-weight: 750; text-decoration: none; }
-    .reading-paths a:hover { background: #dfe8ff; }
-    .reading-paths span { margin-left: auto; color: var(--muted); font-size: .75rem; }
-    h2 { scroll-margin-top: 5.2rem; }
-    .topic-brief, .evidence-delta, .decision-brief { margin: .85rem 0 1rem; padding: 1rem 1.05rem; border: 1px solid #dce3ef; border-radius: 14px; background: #fbfcfe; }
-    .topic-brief { border-left: 5px solid #6b83df; }
-    .evidence-delta { border-left: 5px solid #d8a33a; background: #fffdf8; }
-    .decision-brief { border-left: 5px solid #55a47f; background: #f8fcfa; }
+    .layer-intro { margin: 1rem 0 2rem; padding: 1.15rem 1.25rem; border: 1px solid var(--line); border-radius: 14px; color: #bdc7d6; background: linear-gradient(135deg, #121b2b, #0f1622); }
+    .layer-intro p { margin: 0; max-width: none; }
+    .summary-dashboard { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .75rem; margin: 1.2rem 0 2rem; }
+    .summary-dashboard article { min-height: 154px; padding: 1rem; border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 14px; background: linear-gradient(160deg, #172235, #101722); }
+    .summary-dashboard span { color: var(--accent); font-size: .67rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    .summary-dashboard strong { display: block; margin-top: .55rem; color: var(--ink); font-size: 1.03rem; line-height: 1.35; }
+    .summary-dashboard p { margin: .5rem 0 0; color: var(--muted); font-size: .79rem; line-height: 1.5; }
+    .market-board, .metric-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .7rem; margin: 1.1rem 0 2.2rem; }
+    .market-board article, .metric-card { padding: 1rem; border: 1px solid var(--line); border-radius: 13px; background: var(--panel); }
+    .market-board span, .metric-card span { display: block; color: var(--muted); font-size: .72rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+    .market-board strong, .metric-card strong { display: block; margin-top: .35rem; color: var(--ink); font-size: clamp(1.35rem, 2.8vw, 2rem); font-variant-numeric: tabular-nums; line-height: 1.1; }
+    .market-board small { display: block; margin-top: .42rem; color: var(--muted); line-height: 1.35; }
+    .market-board .up strong { color: var(--positive); }
+    .market-board .down strong { color: var(--negative); }
+    .story-visual, .logic-flow, .decision-chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; margin: 1rem 0 1.75rem; }
+    .story-visual article, .logic-step, .decision-chain div { position: relative; min-height: 122px; padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(145deg, #141e2e, #0f1621); }
+    .story-visual span { color: var(--accent); font-size: .68rem; font-weight: 850; letter-spacing: .12em; }
+    .story-visual strong, .logic-step strong, .decision-chain strong { display: block; margin: .45rem 0 .35rem; color: var(--ink); }
+    .story-visual p, .logic-step, .decision-chain div { color: var(--muted); font-size: .82rem; line-height: 1.5; }
+    .story-visual p { margin: 0; }
+    .story-visual article:not(:last-child)::after, .logic-step:not(:last-child)::after, .decision-chain div:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -.67rem; z-index: 2; color: var(--accent); font-weight: 900; }
+    .dual-thesis { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 1rem 0 1.8rem; }
+    .dual-thesis article { padding: 1.15rem 1.2rem; border: 1px solid var(--line); border-radius: 15px; background: var(--panel); }
+    .dual-thesis article:first-child { border-top: 3px solid var(--negative); background: linear-gradient(145deg, var(--negative-soft), var(--panel)); }
+    .dual-thesis article:last-child { border-top: 3px solid var(--positive); background: linear-gradient(145deg, var(--positive-soft), var(--panel)); }
+    .dual-thesis span { color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .dual-thesis strong { display: block; margin: .45rem 0; font-size: 1.16rem; }
+    .dual-thesis p { margin: 0; color: var(--muted); font-size: .87rem; }
+    .topic-brief, .evidence-delta, .decision-brief { margin: .9rem 0 1.1rem; padding: 1.15rem 1.25rem; border: 1px solid var(--line); border-radius: 15px; background: var(--panel); }
+    .topic-brief { border-top: 3px solid var(--blue); background: linear-gradient(145deg, var(--blue-soft), var(--panel)); }
+    .evidence-delta { border-top: 3px solid var(--accent); background: linear-gradient(145deg, var(--accent-soft), var(--panel)); }
+    .decision-brief { border-top: 3px solid var(--positive); background: linear-gradient(145deg, var(--positive-soft), var(--panel)); }
     .topic-brief > :first-child, .evidence-delta > :first-child, .decision-brief > :first-child { margin-top: 0; }
     .topic-brief > :last-child, .evidence-delta > :last-child, .decision-brief > :last-child { margin-bottom: 0; }
-    .topic-brief p, .evidence-delta p, .decision-brief p { margin: .38rem 0; }
-    .topic-brief ul, .evidence-delta ul, .decision-brief ul { margin: .55rem 0 0; padding-left: 1.15rem; }
-    details.report-detail { margin: .65rem 0 1.3rem; padding: .75rem .9rem; border: 1px solid #e0e5ed; border-radius: 11px; background: #fcfcfd; }
-    details.report-detail summary { cursor: pointer; color: #475467; font-size: .84rem; font-weight: 750; }
-    details.report-detail[open] summary { margin-bottom: .8rem; color: #344054; }
-    details.report-detail > :last-child { margin-bottom: 0; }
-    .reading-note { margin: 1rem 0 1.4rem; padding: 1rem 1.15rem; border-left: 4px solid #d7a12b; border-radius: 10px; background: #fffaf0; }
-    .chapter-lead { margin: 1.1rem 0 1.45rem; padding: 1rem 1.2rem; border-left: 4px solid var(--accent); background: var(--accent-soft); font-size: 1.02rem; }
-    .chapter-lead strong { color: #2344a1; }
-    .video-data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: .7rem; margin: 1rem 0 1.45rem; }
-    .data-card { padding: .9rem 1rem; border-top: 3px solid #9db0ef; background: #f8faff; }
-    .data-card strong { display: block; color: #1f3a8a; font-size: 1.22rem; font-variant-numeric: tabular-nums; }
-    .data-card span { display: block; margin-top: .2rem; color: var(--muted); font-size: .82rem; }
-    .signal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0 1.5rem; }
-    .signal-card { padding: 1rem; border: 1px solid var(--line); border-radius: 13px; background: #fbfcfe; }
-    .signal-card h4 { margin: 0 0 .35rem; font-size: 1rem; }
-    .signal-card p { margin: .25rem 0; font-size: .9rem; }
-    .signal-card.positive { border-top: 4px solid #55a47f; }
-    .signal-card.caution { border-top: 4px solid #d8a33a; }
-    .signal-card.question { border-top: 4px solid #8291ad; }
-    .quote-pull { margin: 1.3rem 0 1.6rem; padding: 1.2rem 1.35rem; border-radius: 14px; background: #172447; color: #fff; font-size: 1.1rem; }
-    .quote-pull p { margin: 0; max-width: none; }
-    .quote-pull a { color: #cfdbff; }
-    .number-ribbon { display: flex; flex-wrap: wrap; gap: .55rem; margin: .9rem 0 1.35rem; }
-    .number-ribbon span { padding: .42rem .65rem; border-radius: 999px; background: #eef2f7; color: #344054; font-size: .82rem; font-variant-numeric: tabular-nums; }
-    .quick-news-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0 1.4rem; }
-    .quick-news-grid article { padding: .95rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfd; }
+    .speaker-opinion-marker { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .7rem; margin: 1.35rem 0 0; padding: .9rem 1.05rem .82rem; border: 1px solid #574a2d; border-bottom: 0; border-radius: 15px 15px 0 0; background: #1b1a18; color: #f8e8b9; }
+    .speaker-opinion-marker::before { content: "◆"; color: var(--accent); }
+    .speaker-opinion-kicker { padding: .2rem .55rem; border-radius: 999px; color: #101318; background: var(--accent); font-size: .67rem; font-weight: 900; letter-spacing: .08em; }
+    .speaker-opinion-marker strong { color: var(--ink); font-size: 1.08rem; }
+    .speaker-opinion-topic { color: #c8b989; font-size: .82rem; }
+    .speaker-opinion-marker + blockquote { margin-top: 0; border: 1px solid #574a2d; border-left: 4px solid var(--accent); border-radius: 0 0 15px 15px; background: linear-gradient(145deg, #181a1c, #211f18); color: #f4e7c4; }
+    details.report-detail, details.source-group { margin: .65rem 0 1.45rem; padding: .8rem 1rem; border: 1px solid #263145; border-radius: 12px; background: #0e1520; }
+    details.report-detail summary, details.source-group summary { cursor: pointer; color: #9eabc0; font-size: .8rem; font-weight: 800; letter-spacing: .03em; }
+    details.report-detail summary::after, details.source-group summary::after { content: "  ↘"; color: var(--accent); }
+    details[open] summary { margin-bottom: .85rem; color: var(--accent); }
+    .quick-news-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; margin: 1rem 0 1.7rem; }
+    .quick-news-grid article, .quick-news-grid > ol > li { padding: 1rem; border: 1px solid var(--line); border-radius: 13px; background: var(--panel); }
     .quick-news-grid h3 { margin: 0 0 .35rem; font-size: 1rem; }
-    .quick-news-grid p { margin: .3rem 0; font-size: .88rem; }
-    .quick-news-grid article:first-child { grid-column: 1 / -1; }
-    .coverage-note { margin: 1rem 0; padding: .85rem 1rem; border: 1px dashed #98a2b3; border-radius: 11px; color: #475467; background: #fcfcfd; font-size: .88rem; }
-    details.source-group { margin: .75rem 0; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 11px; background: #fcfcfd; }
-    details.source-group summary { cursor: pointer; color: #344054; font-weight: 700; }
-    details.source-group[open] summary { margin-bottom: .65rem; }
-    .company-takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; margin: 1rem 0 1.4rem; }
-    .company-takeaways article { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: #fbfcfe; font-size: .9rem; }
-    .company-takeaways h3 { margin: 0 0 .45rem; }
-    .company-takeaways p { margin: .35rem 0; }
-    .assessment-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin: 1rem 0 1.4rem; }
-    .assessment-grid .assessment { margin: 0; }
-    .assessment-grid .assessment p { margin: .45rem 0; }
-    .scope-label { color: #7a4b08; font-size: .78rem; line-height: 1.45; }
-    .source-row { color: var(--muted); font-size: .8rem; }
-    .assessment-depth { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin: 1rem 0 1.6rem; }
-    .assessment-depth article { padding: 1rem 1.05rem; border: 1px solid var(--line); border-radius: 14px; background: #fcfcfd; }
-    .assessment-depth h3 { margin: 0 0 .55rem; font-size: 1.02rem; }
-    .assessment-depth p { margin: .5rem 0; font-size: .86rem; line-height: 1.62; }
-    .status-row { display: flex; flex-wrap: wrap; gap: .35rem; margin: .65rem 0; }
-    .status-pill { display: inline-flex; padding: .2rem .55rem; border-radius: 999px; background: #eef2ff; color: #3157d5; font-size: .76rem; font-weight: 750; }
-    .status-pill.warn { background: #fff3e8; color: #b54708; }
-    .status-pill.neutral { background: #f2f4f7; color: #475467; }
-    .audit-links { padding: 1rem 1.15rem; border: 1px dashed #98a2b3; border-radius: 12px; background: #fcfcfd; }
-    .audit-links ul { margin-bottom: 0; }
-    .assessment h3 { margin-top: 0; color: var(--ink); }
-    .assessment ul { margin-bottom: .4rem; }
-    .layer-intro { margin: 1rem 0 1.6rem; padding: 1rem 1.15rem; border-radius: 12px; background: #f4f7fb; color: #344054; }
-    .layer-intro.creator { border-left: 5px solid #3157d5; }
-    .layer-intro.external { border-left: 5px solid #d8a33a; }
-    .speaker-opinion-marker { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .65rem; margin: 1.15rem 0 0; padding: .8rem 1rem .72rem; border: 1px solid #e7b85e; border-bottom: 0; border-radius: 14px 14px 0 0; background: #fff4d8; color: #6f3b00; box-shadow: 0 9px 24px rgba(146, 85, 10, .08); }
-    .speaker-opinion-marker::before { content: "◆"; color: #c66a08; font-size: .8rem; }
-    .speaker-opinion-kicker { padding: .18rem .5rem; border-radius: 999px; background: #b45309; color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: .02em; }
-    .speaker-opinion-marker strong { color: #7a3e00; font-size: 1.08rem; }
-    .speaker-opinion-topic { color: #8a5a20; font-size: .82rem; }
-    .speaker-opinion-marker + blockquote { margin-top: 0; padding: 1rem 1.2rem 1.08rem; border: 1px solid #e7b85e; border-left: 5px solid #d97706; border-radius: 0 0 14px 14px; background: linear-gradient(145deg, #fffdf8, #fff8e8); color: #3f2a12; box-shadow: 0 12px 28px rgba(146, 85, 10, .08); }
-    .speaker-opinion-marker + blockquote p { max-width: none; }
-    .speaker-opinion-marker + blockquote p:first-child { margin-top: 0; }
-    .speaker-opinion-marker + blockquote p:last-child { margin-bottom: 0; }
-    .editorial-note { margin: .75rem 0 1.2rem; padding: .8rem 1rem; border: 1px dashed #98a2b3; border-left: 4px solid #667085; border-radius: 10px; background: #f8fafc; color: #475467; font-size: .86rem; }
-    .editorial-note strong { color: #344054; }
-    .editorial-note.compact { margin: .5rem 0; padding: .65rem .75rem; font-size: .8rem; }
-    .annotation-target { margin: -.15rem 0 .85rem; color: #475467; font-size: .88rem; }
-    .annotation-target a { font-weight: 700; }
-    .status { display: inline-flex; padding: .2rem .55rem; border-radius: 999px; background: #e9efff; color: #2344a1; font-size: .8rem; font-weight: 700; }
-    .agent-disclaimer { margin: 1rem 0 1.3rem; padding: 1rem 1.15rem; border: 1px solid #b7c6f8; border-left: 5px solid #3157d5; border-radius: 12px; background: #f5f7ff; color: #263a72; }
-    .judgment-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: .7rem; margin: 1rem 0 1.5rem; }
-    .judgment-overview article { padding: .95rem; border: 1px solid var(--line); border-radius: 14px; background: #fbfcfe; }
-    .judgment-overview h3 { margin: 0 0 .35rem; font-size: 1rem; }
-    .judgment-overview p { margin: .3rem 0; font-size: .86rem; }
-    .judgment-overview .verdict { color: #1f3a8a; font-weight: 750; }
-    .judgment-card { margin: 1rem 0 1.35rem; padding: 1.15rem 1.25rem; border: 1px solid #cdd6f7; border-radius: 15px; background: linear-gradient(145deg, #fff, #f7f9ff); }
-    .judgment-card h3 { margin: 0 0 .55rem; }
-    .judgment-card.compact { padding: 1rem 1.1rem; }
-    .judgment-card.compact h3 { font-size: 1.08rem; }
-    .judgment-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: .65rem 0; }
-    .judgment-facts p { margin: 0; padding: .72rem .78rem; border-radius: 10px; background: #fff; border: 1px solid #e2e7f2; font-size: .84rem; line-height: 1.55; }
-    .judgment-rationale { margin: .7rem 0; padding: .72rem .8rem; border-left: 3px solid #8296df; background: #f7f9ff; color: #344054; font-size: .84rem; line-height: 1.58; }
-    .next-verification { margin: .72rem 0 0; padding-top: .65rem; border-top: 1px dashed #cdd5e7; color: #344054; font-size: .82rem; }
-    .judgment-checklist { display: grid; grid-template-columns: 68px minmax(0, 1fr) 68px minmax(0, 1fr); gap: .45rem .55rem; margin: .7rem 0 0; font-size: .8rem; }
-    .judgment-checklist dt { margin: 0; padding: .5rem .35rem; border-radius: 8px; background: #e9efff; color: #2344a1; font-weight: 800; text-align: center; }
-    .judgment-checklist dd { margin: 0; padding: .48rem .15rem; color: #475467; line-height: 1.45; }
-    .judgment-meta { display: flex; flex-wrap: wrap; gap: .4rem; margin: .55rem 0 .8rem; }
-    .judgment-meta span { padding: .22rem .56rem; border-radius: 999px; background: #e9efff; color: #2344a1; font-size: .76rem; font-weight: 700; }
-    .judgment-meta span.caution { background: #fff3e8; color: #b54708; }
-    .decision-chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; margin: .85rem 0; }
-    .decision-chain div { position: relative; padding: .75rem; border-radius: 10px; background: #fff; border: 1px solid #dfe5f4; font-size: .82rem; }
-    .decision-chain strong { display: block; margin-bottom: .25rem; color: #344054; }
-    .decision-chain div:not(:last-child)::after { content: "→"; position: absolute; top: 50%; right: -.48rem; z-index: 2; color: #667085; font-weight: 800; }
-    nav.toc { margin: 2rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfe; }
-    @media screen and (min-width: 900px) {
-      main { width: min(1080px, calc(100% - 48px)); padding: 56px 64px; }
-    }
-    @media (max-width: 760px) {
-      .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .logic-flow { grid-template-columns: 1fr; }
-      .logic-step { min-height: auto; text-align: left; }
-      .logic-step:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.95rem; }
-      .summary-dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .company-takeaways, .assessment-grid, .assessment-depth, .signal-grid, .quick-news-grid, .judgment-overview, .decision-chain, .judgment-facts { grid-template-columns: 1fr; }
-      .judgment-checklist { grid-template-columns: 62px minmax(0, 1fr); }
-      .speaker-opinion-marker { align-items: flex-start; }
-      .reading-paths { top: 0; margin-right: -8px; margin-left: -8px; border-radius: 0 0 12px 12px; overflow-x: auto; flex-wrap: nowrap; }
+    .quick-news-grid h3::before { display: none; }
+    .signal-grid, .data-grid, .assessment-grid, .judgment-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .8rem; margin: 1rem 0 1.7rem; }
+    .signal-card, .data-card, .assessment-grid article, .judgment-overview article, .judgment-card { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+    .signal-card.positive { border-top: 3px solid var(--positive); }
+    .signal-card.caution { border-top: 3px solid var(--accent); }
+    .signal-card.question { border-top: 3px solid var(--blue); }
+    .status-row, .judgment-meta { display: flex; flex-wrap: wrap; gap: .4rem; margin: .65rem 0; }
+    .status-pill, .judgment-meta span, .status { display: inline-flex; padding: .22rem .58rem; border-radius: 999px; color: var(--blue); background: var(--blue-soft); font-size: .74rem; font-weight: 800; }
+    .agent-disclaimer, .editorial-note { margin: 1rem 0 1.4rem; padding: 1rem 1.15rem; border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; color: var(--muted); background: var(--panel); }
+    .judgment-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+    .judgment-facts p { margin: 0; padding: .8rem; border: 1px solid var(--line); border-radius: 10px; background: #0f1723; }
+    .video-data-grid, .company-takeaways, .assessment-depth { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .8rem; margin: 1rem 0 1.7rem; }
+    .company-takeaways article, .assessment-depth article { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+    .number-ribbon { display: flex; flex-wrap: wrap; gap: .55rem; margin: .9rem 0 1.4rem; }
+    .number-ribbon span { padding: .42rem .68rem; border: 1px solid var(--line); border-radius: 999px; color: #cbd4e2; background: var(--panel); font-size: .8rem; font-variant-numeric: tabular-nums; }
+    .reading-note, .chapter-lead, .coverage-note, .audit-links { margin: 1rem 0 1.5rem; padding: 1rem 1.15rem; border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; color: #c4cedc; background: var(--panel); }
+    .quote-pull { margin: 1.3rem 0 1.7rem; padding: 1.25rem 1.35rem; border-radius: 15px; color: #0b111b; background: var(--accent); font-size: 1.08rem; font-weight: 750; }
+    .quote-pull p { margin: 0; max-width: none; }
+    .judgment-card { margin: 1rem 0 1.4rem; }
+    .judgment-rationale { margin: .75rem 0; padding: .8rem; border-left: 3px solid var(--blue); color: #c8d1df; background: var(--blue-soft); }
+    .judgment-checklist { display: grid; grid-template-columns: 76px minmax(0, 1fr) 76px minmax(0, 1fr); gap: .5rem .6rem; margin: .8rem 0 0; font-size: .8rem; }
+    .judgment-checklist dt { margin: 0; padding: .5rem .35rem; border-radius: 8px; color: var(--accent); background: var(--accent-soft); font-weight: 850; text-align: center; }
+    .judgment-checklist dd { margin: 0; padding: .46rem .15rem; color: var(--muted); }
+    .next-verification { margin-top: .75rem; padding-top: .7rem; border-top: 1px dashed var(--line); color: var(--muted); }
+    .source-row, .annotation-target, .scope-label { color: var(--muted); font-size: .8rem; }
+    nav.toc { margin: 1.5rem 0 2rem; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 13px; background: var(--panel); }
+    @media (max-width: 780px) {
+      body { font-size: 16px; }
+      main { width: 100%; margin: 0 0 48px; }
+      .report-cover { min-height: 620px; padding: 92px 22px 30px; border-width: 0 0 1px; border-radius: 0; }
+      .cover-topline { top: 28px; left: 22px; right: 22px; align-items: flex-start; }
+      .cover-topline span:last-child { max-width: 10rem; text-align: right; }
+      h1 { font-size: clamp(2.55rem, 13vw, 4.1rem); }
+      .cover-deck { font-size: 1.02rem; }
+      .report-body { padding: 0 18px; }
+      .reading-paths { top: 0; margin-right: -18px; margin-left: -18px; border-right: 0; border-left: 0; border-radius: 0 0 16px 16px; flex-wrap: nowrap; overflow-x: auto; }
       .reading-paths strong, .reading-paths a { flex: 0 0 auto; }
       .reading-paths span { display: none; }
-      .decision-chain div:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.8rem; }
-      .quick-news-grid article:first-child { grid-column: auto; }
-      p:has(> img[src$=".svg"]) { max-width: 100%; overflow-x: auto; padding-bottom: .35rem; }
-      p > img[src$=".svg"] { width: 700px; max-width: none; }
+      .summary-dashboard, .market-board, .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .summary-dashboard article:first-child, .market-board article:first-child { grid-column: 1 / -1; }
+      .story-visual, .logic-flow, .decision-chain, .dual-thesis, .quick-news-grid, .judgment-facts, .company-takeaways, .assessment-depth { grid-template-columns: 1fr; }
+      .judgment-checklist { grid-template-columns: 66px minmax(0, 1fr); }
+      .story-visual article, .logic-step, .decision-chain div { min-height: auto; }
+      .story-visual article:not(:last-child)::after, .logic-step:not(:last-child)::after, .decision-chain div:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -.92rem; }
+      h2 { margin-top: 3.7rem; }
+      table { max-width: 100%; }
     }
     @page { size: A4; margin: 14mm 13mm 16mm; }
     @media print {
+      :root { color-scheme: light; --ink: #172033; --muted: #596579; --line: #d7dde7; --paper: #fff; --canvas: #fff; --panel: #f7f9fc; --panel-strong: #eef2f7; }
       html, body { background: #fff; }
-      body {
-        color: #172033;
-        font-size: 10.5pt;
-        line-height: 1.55;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      main {
-        width: auto !important;
-        max-width: none;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        border-radius: 0;
-        box-shadow: none;
-      }
-      header { margin-bottom: 8mm; }
-      h1 { margin: .2em 0 .45em; font-size: 25pt; }
-      h2 { margin-top: 10mm; font-size: 17pt; break-after: avoid-page; page-break-after: avoid; }
+      body { color: #172033; font-size: 10.5pt; line-height: 1.55; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main { width: auto; max-width: none; margin: 0; }
+      .report-cover { min-height: 240mm; border: 0; border-radius: 0; box-shadow: none; break-after: page; page-break-after: always; }
+      .report-body { padding: 0; }
+      .reading-paths { display: none; }
+      h1 { font-size: 32pt; }
+      h2 { margin-top: 10mm; font-size: 18pt; break-after: avoid-page; page-break-after: avoid; }
       h3 { font-size: 13pt; break-after: avoid-page; page-break-after: avoid; }
       p, li { orphans: 3; widows: 3; }
-      a { color: inherit; text-decoration-color: #98a2b3; }
-      img { max-height: 240mm; object-fit: contain; }
-      img[src$=".svg"] { border: .3pt solid #d0d5dd; box-shadow: none; }
-      table { display: table; overflow: visible; font-size: 9pt; }
+      table { display: table; overflow: visible; font-size: 8.5pt; }
       thead { display: table-header-group; }
-      tr, img, blockquote, nav.toc, .metric-grid, .logic-flow, .logic-step,
-      .reading-note, .chapter-lead, .data-card, .signal-card, .quote-pull,
-      .quick-news-grid article, .company-takeaways article, .assessment, .audit-links,
-      .summary-dashboard article, .judgment-overview article, .judgment-card, .decision-chain,
-      .speaker-opinion-marker, .speaker-opinion-marker + blockquote {
-        break-inside: avoid-page;
-        page-break-inside: avoid;
-      }
-      .reading-paths { display: none; }
+      tr, blockquote, .summary-dashboard article, .market-board article, .story-visual article, .dual-thesis article, .speaker-opinion-marker, .speaker-opinion-marker + blockquote, .topic-brief, .evidence-delta, .decision-brief { break-inside: avoid-page; page-break-inside: avoid; }
       details.report-detail > :not(summary) { display: block !important; }
       details.report-detail summary { display: none; }
-      .speaker-opinion-marker { break-after: avoid-page; page-break-after: avoid; }
-      .assessment-grid { display: block; }
-      .assessment-grid .assessment { margin: 0 0 5mm; }
-      .visual-caption { margin-bottom: 5mm; }
     }
-    
   </style>
 </head>
 <body>
   <main>
-    <header>
+    <header class="report-cover">
+      <div class="cover-topline"><span>Market Intelligence</span><span>Deep Research Report</span></div>
       <p class="meta">美投侃新闻 · 2026-08-22 · 报告日期 2026-08-24</p>
-      <h1>达利欧：美债要爆！贬值交易黄金起飞！每周资金流动报告！湖人比美股还贵？</h1>
-      
+      <h1>大债务周期下的贬值交易｜美债、黄金、AI 与湖人估值</h1>
+      <p class="cover-deck">当长期资本越来越贵，美债、黄金、AI 基建与稀缺私人资产正在争夺同一笔久期资金。</p>
+      <div class="cover-bottomline"><span>Content</span><span>Evidence</span><span>Decision</span></div>
     </header>
-    <nav class="reading-paths video" aria-label="阅读路径"><strong>阅读路径</strong><a href="#creator-content">视频内容</a><a href="#external-evidence">外部证据</a><a href="#agent-judgment">直接看 Agent 判断</a><span>详细依据可在各主题内展开</span></nav>
+    <div class="report-body">
+      <nav class="reading-paths video" aria-label="阅读路径"><strong>阅读路径</strong><a href="#creator-content">视频内容</a><a href="#external-evidence">外部证据</a><a href="#agent-judgment">直接看 Agent 判断</a><span>核心内容、证据与判断一页贯通</span></nav>
 <h2 id="creator-content">第一部分｜视频 / 作者内容</h2>
 <div class="layer-intro creator">
-<p><strong>报告说明（非原内容）：</strong>本部分直接整理字幕中的数据、推理、判断与限定。达利欧的受访观点与 Jason 的个人判断按实际说话人区分；未经外部核验的数字仍属于视频内容。持仓与行动仅作记录，不构成本报告的投资建议。时间用于回溯字幕上下文。</p>
+<p>本期市场表面上在交易黄金、AI 和球队估值，底层却是同一件事：<strong>资本成本上升之后，哪些资产还能证明自己的现金流与稀缺性。</strong></p>
 </div>
-<p>开场市场扫描把焦点放在长端美债收益率、财政部回购、美元走弱与贵金属上涨的同向变化：风险资产在高利率、能源价格与 AI 拥挤交易降温之间分化，后续五个主题都围绕“更贵的长期资本如何被吸收”展开。</p>
+<p>长端美债收益率走高、财政部回购未能维持涨幅，美元却与贵金属走出相反方向；与此同时，AI 拥挤交易降温，湖人估值冲上私人资产的新高度。这些看似分散的故事，最终都落到“更贵的长期资本如何被吸收”。</p>
 <h3 id="_2">一页看懂</h3>
 <section class="summary-dashboard">
 <article><span>核心命题</span><strong>长期资本正在变贵</strong><p>财政融资、AI数据中心与稀缺私人资产都在竞争久期资金。</p></article>
@@ -351,6 +258,13 @@
 <article><span>黄金</span><strong>短空与长多并存</strong><p>实际利率压制短期，财政与信用问题支撑长期配置。</p></article>
 <article><span>AI</span><strong>收入改善仍待回报</strong><p>需求增长削弱极端空头，利润质量才是下一道门。</p></article>
 <article><span>私人资产与单周风险</span><strong>先看结构，再看价格</strong><p>球队税盾与事件日历都需要条件，不能直接推出收益。</p></article>
+</section>
+<section class="market-board">
+<article class="down"><span>美元指数</span><strong>-0.8%</strong><small>财政担忧压过避险需求</small></article>
+<article class="up"><span>黄金</span><strong>+5.5%</strong><small>五周累计上涨约16.5%</small></article>
+<article class="up"><span>白银</span><strong>+6.8%</strong><small>贵金属同步走强</small></article>
+<article class="up"><span>比特币期货</span><strong>+22%</strong><small>重返7.8万美元上方</small></article>
+<article class="up"><span>WTI原油</span><strong>+5.7%</strong><small>连续第二周上涨</small></article>
 </section>
 <h3 id="us-fiscal">美国财政、国债供需与债务周期</h3>
 <section class="topic-brief" data-claim-id="claim-us-fiscal">
@@ -361,25 +275,31 @@
 <li><strong>下一验证：</strong>财政政策能否持续改变债务供需，而非一次性托住交易。</li>
 </ul>
 </section>
-<div class="speaker-opinion-marker" data-speaker="Ray Dalio"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Ray Dalio</strong><span class="speaker-opinion-topic">债务周期与危机窗口</span></div>
+<section class="story-visual">
+<article><span>01 · SUPPLY</span><strong>债务供给扩张</strong><p>赤字与再融资把更多久期资产推向市场。</p></article>
+<article><span>02 · PRICE</span><strong>长端利率抬升</strong><p>更高收益率既增加财政成本，也提高资产吸引力。</p></article>
+<article><span>03 · DEMAND</span><strong>机构资金接盘</strong><p>养老金与保险资金可能延缓供需失衡。</p></article>
+<article><span>04 · POLICY</span><strong>政策决定速度</strong><p>危机时点取决于赤字、通胀与官方反应。</p></article>
+</section>
+<div class="speaker-opinion-marker" data-speaker="Ray Dalio"><span class="speaker-opinion-kicker">RAY DALIO VIEW</span><strong>Ray Dalio</strong><span class="speaker-opinion-topic">债务周期与危机窗口</span></div>
 
 <blockquote>
 <p>债务供给扩大、需求转弱、长端利率上升、货币走弱与官方买债被视为周期后段组合；若政策不变，危机或在约三年出现，但时点预测很可能不准。</p>
 </blockquote>
-<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">高收益率的需求缓冲</span></div>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">JASON TAKE</span><strong>Jason</strong><span class="speaker-opinion-topic">高收益率的需求缓冲</span></div>
 
 <blockquote>
 <p>收益率上升既会抬高利息负担，也会提高美债吸引力；新增机构需求可能把危机向后推，因此不无限看空美国经济或美债。</p>
 </blockquote>
 <details class="report-detail" data-claim-id="claim-us-fiscal">
-<summary>展开债务周期推理、四条观点与原话定位</summary>
+<summary>深入阅读｜债务周期的完整推理</summary>
 <p>达利欧先用现金流与资产负债表说明主权债务的特殊性：本币债务很少以名义违约结束，更常通过利率、货币贬值、金融压抑或央行资产负债表调整重新分配损失。美国与1990年代及日本的比较用于说明，方向可以相似，速度却会被国内储蓄、货币主权、外部冲击与政策反应改变。</p>
-<p>四条可追溯判断分别是：</p>
+<p>四条判断组成完整逻辑：</p>
 <ol>
-<li><code>02:02–02:14</code>：美国已出现周期后段的典型组合。</li>
-<li><code>09:59–10:09</code>：赤字由接近 GDP 的7%降至约3%会明显降风险，外部冲击会提前风险。</li>
-<li><code>10:09–10:23</code>：约三年、前后两年只是带明确自我否定的猜测。</li>
-<li><code>12:06–12:41</code>：高收益率会吸引新的长期买方，使恶性循环并非畅通无阻。</li>
+<li>美国已经出现周期后段的典型组合。</li>
+<li>赤字由接近 GDP 的7%降至约3%会明显降风险，外部冲击会提前风险。</li>
+<li>约三年、前后两年只是带明确自我否定的猜测。</li>
+<li>高收益率会吸引新的长期买方，使恶性循环并非畅通无阻。</li>
 </ol>
 <blockquote>
 <p><strong>关键原话</strong>
@@ -395,24 +315,28 @@
 <li><strong>下一验证：</strong>财政纪律信号能否转为持续行动，以及实际利率是否回落。</li>
 </ul>
 </section>
-<div class="speaker-opinion-marker" data-speaker="Ray Dalio"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Ray Dalio</strong><span class="speaker-opinion-topic">货币贬值配置</span></div>
+<section class="dual-thesis">
+<article><span>SHORT TERM</span><strong>实际利率仍是压制项</strong><p>高利率、财政纪律信号与持仓拥挤，都可能让黄金在急涨后先消化估值。</p></article>
+<article><span>LONG TERM</span><strong>信用与贬值逻辑未退场</strong><p>债务、货币、地缘与央行储备分散，让黄金继续拥有组合保险价值。</p></article>
+</section>
+<div class="speaker-opinion-marker" data-speaker="Ray Dalio"><span class="speaker-opinion-kicker">RAY DALIO VIEW</span><strong>Ray Dalio</strong><span class="speaker-opinion-topic">货币贬值配置</span></div>
 
 <blockquote>
 <p>多数主要经济体可能经历某种债务和货币贬值调整，因此偏好黄金并少量配置比特币。</p>
 </blockquote>
-<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">黄金期限分层与持仓</span></div>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">JASON TAKE</span><strong>Jason</strong><span class="speaker-opinion-topic">黄金期限分层与持仓</span></div>
 
 <blockquote>
 <p>黄金可能是债务风险过程中的优先对冲；短期或有压力，但中长期支撑未解，个人黄金仓位不轻易削减。</p>
 </blockquote>
 <details class="report-detail" data-claim-id="claim-gold">
-<summary>展开资金流、短长期框架与四条观点</summary>
+<summary>深入阅读｜黄金的短期与长期框架</summary>
 <p>黄金段先回到当周价格与资金流：长端收益率回升时，贵金属并未同步走弱，说明交易者同时关注财政与货币政策公信力。Jason 随后把看法分成两个期限：短期由实际利率上行、财政纪律信号和美联储按兵不动决定；中长期由债务、货币、地缘与信用问题是否解决决定。</p>
 <ul>
-<li><code>11:19–11:27</code>：达利欧偏好黄金与少量比特币。</li>
-<li><code>12:41–12:45</code>：Jason 称黄金“可能”是最佳选择，保留不确定词。</li>
-<li><code>16:00–16:29</code>：短期判断偏谨慎，变量是实际利率与财政纪律。</li>
-<li><code>16:29–16:45</code>：中长期支撑与个人不减仓行动。</li>
+<li>达利欧偏好黄金与少量比特币。</li>
+<li>Jason 称黄金“可能”是最佳选择，并没有使用绝对措辞。</li>
+<li>短期判断偏谨慎，变量是实际利率与财政纪律。</li>
+<li>中长期支撑与个人不减仓行动构成另一条配置逻辑。</li>
 </ul>
 <blockquote>
 <p><strong>关键原话</strong>
@@ -428,19 +352,25 @@
 <li><strong>下一验证：</strong>企业需求能否转成利润和可持续现金流。</li>
 </ul>
 </section>
-<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">AI投资回报与长期买点</span></div>
+<section class="story-visual">
+<article><span>01 · CAPEX</span><strong>7.5万亿美元投入锚</strong><p>巨额基础设施支出先把回报门槛推到前台。</p></article>
+<article><span>02 · REVENUE</span><strong>产业收入要两位数增长</strong><p>真实需求是削弱极端空头逻辑的第一步。</p></article>
+<article><span>03 · QUALITY</span><strong>企业预算要变成利润</strong><p>重复计算、折旧与融资成本会吞掉表面增长。</p></article>
+<article><span>04 · RETURN</span><strong>估值回落才可能是买点</strong><p>长期机会最终取决于可持续现金流，而非投入规模。</p></article>
+</section>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">JASON TAKE</span><strong>Jason</strong><span class="speaker-opinion-topic">AI投资回报与长期买点</span></div>
 
 <blockquote>
 <p>AI回报较去年末和年初有所改善；回报不足的担忧减弱，但估值回落能否成为买点，仍依赖收入质量和利润兑现。</p>
 </blockquote>
 <details class="report-detail" data-claim-id="claim-ai-returns">
-<summary>展开小摩口径、三条判断与关键限定</summary>
+<summary>深入阅读｜AI投入如何转成回报</summary>
 <p>小摩以未来累计约7.5万亿美元投入为量级锚，分别从AI产业累计收入和企业AI预算讨论回收。内容同时指出两个口径问题：产业收入可能在芯片、云和应用之间重复计算，企业预算也难以从公开披露中完整观察；中小企业采用还受隐私、人才与技术成熟度约束。</p>
 <p>三条判断构成递进：</p>
 <ol>
-<li><code>19:38–19:45</code>：二季度后AI资产回报率“至少”较去年末和年初改善。</li>
-<li><code>20:07–20:28</code>：空头核心担忧减弱，但必须有两位数产业增长和高利润、可持续企业需求。</li>
-<li><code>20:53–21:07</code>：Jason 相信长期回报会来、云平台会受益，并把质疑增加和估值下降视为更好买点。</li>
+<li>二季度后AI资产回报率“至少”较去年末和年初改善。</li>
+<li>空头核心担忧减弱，但必须有两位数产业增长和高利润、可持续企业需求。</li>
+<li>Jason 相信长期回报会来、云平台会受益，并把质疑增加和估值下降视为更好买点。</li>
 </ol>
 <blockquote>
 <p><strong>关键原话</strong>
@@ -456,37 +386,50 @@
 <li><strong>下一验证：</strong>下一笔可比球队交易及最终成交结构。</li>
 </ul>
 </section>
-<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">Ubiquiti流通风险、球队税盾与湖人估值</span></div>
+<section class="story-visual">
+<article><span>01 · CONTROL</span><strong>稀缺控制权</strong><p>顶级球队几乎不会公开流通，控制权本身就有溢价。</p></article>
+<article><span>02 · ALLOCATION</span><strong>无形资产分配</strong><p>特许经营权、媒体权与商誉进入交易结构。</p></article>
+<article><span>03 · TAX SHIELD</span><strong>长期摊销</strong><p>非现金费用可能降低应税利润，改善税后现金流。</p></article>
+<article><span>04 · PRICE</span><strong>20倍收入仍需解释</strong><p>品牌与税盾可以解释贵，却不能解释任何价格。</p></article>
+</section>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">JASON TAKE</span><strong>Jason</strong><span class="speaker-opinion-topic">Ubiquiti流通风险、球队税盾与湖人估值</span></div>
 
 <blockquote>
 <p>喜欢Ubiquiti产品，但约93%控制权与低流通盘提高投资风险；球队税盾可能影响回报，湖人约20倍收入估值则超出个人认知。</p>
 </blockquote>
 <details class="report-detail" data-claim-id="claim-nba-assets">
-<summary>展开球队所有者、税盾推理、三条判断与转录风险</summary>
+<summary>深入阅读｜球队所有者、税盾与估值</summary>
 <p>NBA老板被归为科技、金融、消费及传统实业等财富路径。科技组包括前微软CEO Steve Ballmer、阿里巴巴联合创始人蔡崇信、TIBCO创办人Vivek Ranadivé、Qualtrics创办人Ryan Smith与Ubiquiti创办人Robert Pera；金融、餐饮赌场、邮轮、媒体电信、地产与商业中心也构成球队资本来源。</p>
 <p>税盾推理是：收购价可能分配给特许经营权、商誉、转播权和球员合同等无形资产，再按约15年摊销，形成非现金费用并降低应税利润。无形资产可能在经济上升值，因此会出现账面摊销与经济价值方向不同的情况。</p>
 <ul>
-<li><code>23:36–23:45</code>：产品偏好与约93%控制权、低流通盘风险分开。</li>
-<li><code>25:42–25:50</code>：更高效的税盾被列为球队回报考量。</li>
-<li><code>26:01–26:20</code>：认可城市与品牌溢价，但约20倍收入估值超出认知，等待76人估值作参照。</li>
+<li>产品偏好与约93%控制权、低流通盘风险分开。</li>
+<li>更高效的税盾被列为球队回报考量。</li>
+<li>认可城市与品牌溢价，但约20倍收入估值超出认知，等待76人估值作参照。</li>
 </ul>
-<blockquote>
-<p><strong>转录提示（非原内容）：</strong>字幕把“税盾”多次识别为“税顿”，把“湖人”多次识别为“胡人”，并把相邻已明确出现的“约20倍收入”在结论处识别为“20BPS”；本段按上下文作正常语义规范，未修改上游字幕，也未回听确认。公司和人名密集处仍可能有未解决词项。</p>
-</blockquote>
 </details>
 <h3 id="_3">科技五大新闻</h3>
 <section class="quick-news-grid">
-<ol>
-<li><strong>Apollo Global Management 数据事件：</strong>7月遭社会工程攻击，员工姓名、出生日期、联系方式、社保号与地址等被获取；公司称当时暂无公开或欺诈证据，多家对冲基金也曾遭攻击尝试。</li>
-<li><strong>York Space Systems 业绩与指引：</strong>IPO后股价大幅回落，二季度不及预期并下调全年营收指引；供应链与政府订单节奏被列为原因。</li>
-<li><strong>苹果组织调整：</strong>Siri、Vision Pro及系统体验团队合计约200个岗位调整，与Siri新AI架构和Vision Pro内容、游戏业务收缩有关；产品线仍被保留。</li>
-<li><strong>存储股分歧：</strong>SanDisk、美光、西部数据与希捷在上半年上涨后回撤，强基本面和偏低估值与利率、AI资本开支循环融资风险相互拉扯。</li>
-<li><strong>英伟达与Poolside：</strong>以许可费、招聘和额外投资获取模型技术与人才；类似交易结构引发对并购审查边界的质疑。</li>
-</ol>
+<article>
+<h3 id="01-poolside">01 · 英伟达 × Poolside</h3>
+<p>以许可费、招聘和额外投资获取模型技术与人才；类似交易结构引发对并购审查边界的质疑。</p>
+</article>
+<article>
+<h3 id="02">02 · 存储股分歧</h3>
+<p>SanDisk、美光、西部数据与希捷在上半年上涨后回撤，强基本面与利率、AI资本开支循环融资风险相互拉扯。</p>
+</article>
+<article>
+<h3 id="03">03 · 苹果组织调整</h3>
+<p>Siri、Vision Pro及系统体验团队合计约200个岗位调整；产品线仍被保留。</p>
+</article>
+<article>
+<h3 id="04-york-space-systems">04 · York Space Systems</h3>
+<p>IPO后股价大幅回落，二季度不及预期并下调全年营收指引；供应链与政府订单节奏被列为原因。</p>
+</article>
+<article>
+<h3 id="05-apollo">05 · Apollo 数据事件</h3>
+<p>7月遭社会工程攻击，多类员工信息被获取；公司称当时暂无公开或欺诈证据。</p>
+</article>
 </section>
-<blockquote>
-<p><strong>转录提示（非原内容）：</strong>本章来自密集公司名与数字字幕，York Space Systems、Poolside及对冲基金名称等存在识别不确定性；仅按字幕整理，未用音视频确认。页面按项目约定不显示本章视频时间。</p>
-</blockquote>
 <h3 id="weekly-risk">一周市场回顾与下一周事件风险</h3>
 <section class="topic-brief" data-claim-id="claim-weekly-risk">
 <p><strong>结论：</strong>当周美股主要指数结束三周连涨，长端收益率、油价与 AI 拥挤交易压制风险偏好；下一周宏观与科技财报集中，Jason 预计波动率不会低。</p>
@@ -496,13 +439,20 @@
 <li><strong>下一验证：</strong>实际结果相对预期的偏离与跨资产反应。</li>
 </ul>
 </section>
-<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">报告标注 · 视频内个人判断</span><strong>Jason</strong><span class="speaker-opinion-topic">下一周波动率</span></div>
+<section class="metric-grid">
+<article class="metric-card"><strong>PCE</strong><span>通胀与利率预期</span></article>
+<article class="metric-card"><strong>GDP</strong><span>二季度第二次修正</span></article>
+<article class="metric-card"><strong>NVDA</strong><span>AI 主线核心财报</span></article>
+<article class="metric-card"><strong>软件股</strong><span>密集业绩与指引</span></article>
+<article class="metric-card"><strong>政策会</strong><span>利率路径再定价</span></article>
+</section>
+<div class="speaker-opinion-marker" data-speaker="Jason"><span class="speaker-opinion-kicker">JASON TAKE</span><strong>Jason</strong><span class="speaker-opinion-topic">下一周波动率</span></div>
 
 <blockquote>
 <p>英伟达与一组软件公司密集发布财报，波动率恐怕不低，需要管理预期。</p>
 </blockquote>
 <details class="report-detail" data-claim-id="claim-weekly-risk">
-<summary>展开当周资产表现、驱动、公司事件与下周日历</summary>
+<summary>深入阅读｜当周资产表现与下周日历</summary>
 <p>标普、纳指与罗素2000结束三周连涨。半导体走弱、存储略稳、软件近乎持平，大型科技多数下跌；能源、制药、IT服务与农业相对较强。美债收益率走高并基本抹去财政部回购公告后的价格反弹；美元指数跌约0.8%，黄金涨约5.5%，白银涨约6.8%，比特币期货和WTI原油也上涨。</p>
 <p>主要解释链包括：长端收益率接近多年高位、市场怀疑回购能否抵消结构性赤字、AI资本开支与融资风险持续演变，以及中东冲突与能源通胀风险。零售财报分化，英伟达、Meta、沃尔玛、Home Depot、Target、阿里巴巴与Moderna等个股事件被逐一列举。</p>
 <p>下周关注PCE、GDP第二次修正、消费者信心与政策会议，并关注Intuit、英伟达、CrowdStrike、Salesforce、Synopsys、惠普、Marvell、Workday与Best Buy等财报。</p>
@@ -513,7 +463,7 @@
 </details>
 <h2 id="external-evidence">第二部分｜外部证据研判</h2>
 <div class="layer-intro external">
-<p>第二层只说明外部材料给第一层命题带来的支持、收窄、冲突与适用条件。研究截至2026年8月24日，共覆盖5个主题、15条观点与20个来源。</p>
+<p>第二层不重复视频，而是回答三个问题：哪些判断得到现实数据支持，哪些被条件收窄，哪些仍然只是好故事。</p>
 </div>
 <p>本注为基于外部信源形成的独立研判，不代表视频作者观点。</p>
 <h3 id="_5">外部研判总览</h3>
@@ -559,8 +509,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="01">观点研判注 01｜美国财政、国债供需与债务周期 · 部分支持 / 时点不支持</h3>
-<p>对应第一部分：<a href="#us-fiscal">美国财政、国债供需与债务周期</a></p>
+<h3 id="01">证据校准 01｜美国财政 · 趋势成立，倒计时不成立</h3>
 <section class="evidence-delta" data-claim-id="claim-us-fiscal">
 <p><strong>证据结论：</strong>CBO支持财政轨迹和利息负担恶化，却不支持未来一至五年的精确危机倒计时；财政部融资与美联储稳定报告显示高收益率仍能吸引部分需求。</p>
 <ul>
@@ -571,11 +520,10 @@
 </section>
 <details class="report-detail" data-claim-id="claim-us-fiscal">
 <summary>展开四条研判、数据边界与关键来源</summary>
-<p><code>opinion-001</code> 为部分支持：CBO预计债务到2036年升至GDP的120%、净利息占比升至4.6%，但周期组合不等于危机已启动。<code>opinion-002</code> 为条件成立：赤字由5.8%附近持续降至约3%会改善算术，但3%并非单一危机阈值。<code>opinion-003</code> 为不支持：官方十年基线和当前市场运行不能验证约三年的时点。<code>opinion-004</code> 为部分支持：收益率能调节需求，却可能把短券需求、长期负债匹配资金和杠杆相对价值交易混在一起。</p>
+<p>CBO预计债务到2036年升至GDP的120%、净利息占比升至4.6%，但周期组合不等于危机已经启动。赤字若从5.8%附近持续降至约3%，财政算术会明显改善；与此同时，收益率可以调节需求，却也可能把短券买盘、长期负债匹配资金和杠杆交易混在一起。</p>
 <p>关键来源：<a href="https://www.cbo.gov/publication/62105">CBO 2026–2036预算展望</a>、<a href="https://www.cbo.gov/publication/61983">CBO 2026年8月月度预算回顾</a>、<a href="https://home.treasury.gov/news/press-releases/sb0590">美国财政部2026年8月再融资声明</a>、<a href="https://www.federalreserve.gov/publications/2026-may-financial-stability-report-overview.htm">美联储2026年5月金融稳定报告</a>。</p>
 </details>
-<h3 id="02">观点研判注 02｜黄金、货币贬值与实际利率 · 分歧 / 条件成立</h3>
-<p>对应第一部分：<a href="#gold-debasement">黄金、货币贬值与实际利率</a></p>
+<h3 id="02_1">证据校准 02｜黄金 · 长期保险，短期并非单边交易</h3>
 <section class="evidence-delta" data-claim-id="claim-gold">
 <p><strong>证据结论：</strong>结构性需求支持黄金分散价值，但高实际利率与历史高价收窄短期上行空间；比特币与股票风险周期相关，不能自动取得黄金式防御属性。</p>
 <ul>
@@ -586,11 +534,10 @@
 </section>
 <details class="report-detail" data-claim-id="claim-gold">
 <summary>展开四条研判、定价状态与关键来源</summary>
-<p><code>opinion-005</code> 为分歧：黄金配置前提较强，比特币稳定对冲前提较弱。<code>opinion-006</code> 为条件成立：“最佳”必须限定在制度信用冲击与长期分散。<code>opinion-007</code> 为部分支持：高实际利率是短期逆风，但ETF流入与地缘风险构成反证。<code>opinion-008</code> 为条件成立：中长期支撑不能替代对具体仓位、成本和最大回撤的评估。</p>
+<p>黄金作为制度信用风险的长期分散工具，证据明显强于比特币的稳定对冲属性；“最佳对冲”必须限定冲击类型与持有期限。高实际利率仍是短期逆风，ETF流入和地缘风险则提供反向支撑，中长期逻辑不能替代对仓位、成本和最大回撤的管理。</p>
 <p>黄金在2026年1月曾突破5500美元/盎司，6月跌破4000美元；这说明风险已被显著计价并经历重估。关键来源：<a href="https://www.gold.org/goldhub/research/gold-mid-year-outlook-2026">世界黄金协会2026年中展望</a>、<a href="https://www.gold.org/goldhub/research/gold-etfs-holdings-and-flows/2026/08">2026年7月黄金ETF流量</a>、<a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&amp;type=daily_treasury_real_yield_curve">美国财政部实际收益率曲线</a>、<a href="https://www.imf.org/en/-/media/files/publications/wp/2023/english/wpiea2023163-print-pdf.pdf">IMF加密周期工作论文</a>。</p>
 </details>
-<h3 id="03ai">观点研判注 03｜AI资本开支、收入质量与回报兑现 · 部分支持 / 等待单位经济性</h3>
-<p>对应第一部分：<a href="#ai-returns">AI资本开支、收入质量与回报兑现</a></p>
+<h3 id="03ai">证据校准 03｜AI回报 · 需求是真的，单位经济性仍待证明</h3>
 <section class="evidence-delta" data-claim-id="claim-ai-returns">
 <p><strong>证据结论：</strong>Azure与AWS的增长和利润证明云端变现不是零，但超大规模资本开支、折旧和利润率压力使“AI资产回报率改善”只能得到方向性支持。</p>
 <ul>
@@ -601,11 +548,10 @@
 </section>
 <details class="report-detail" data-claim-id="claim-ai-returns">
 <summary>展开三条研判、收入与资本口径边界</summary>
-<p><code>opinion-009</code> 为部分支持：合并报表支持云业务改善，却没有单列AI资产回报率。<code>opinion-010</code> 为条件成立：收入和订单削弱“完全没有回报”的论点，但Alphabet约806亿美元半年资本开支与约852亿美元未开始数据中心租赁承诺显示固定成本仍在前置。<code>opinion-011</code> 为部分支持：云平台已受益，经营事实却不能直接推出“回报必然”或“任何估值回落都是买点”。</p>
+<p>合并报表支持云业务改善，却没有单列AI资产回报率。收入和订单已经削弱“完全没有回报”的论点，但Alphabet约806亿美元半年资本开支与约852亿美元未开始数据中心租赁承诺，说明固定成本仍在前置。云平台已经受益，不等于回报必然兑现，也不意味着任何估值回落都是买点。</p>
 <p>关键来源：<a href="https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4">微软FY2026第四季度电话会</a>、<a href="https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx">Meta 2026年第二季度结果</a>、<a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm">Amazon 2026年第二季度10-Q</a>、<a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm">Alphabet 2026年第二季度10-Q</a>。</p>
 </details>
-<h3 id="04nba">观点研判注 04｜NBA球队估值、税盾与关联资产风险 · 事实支持 / 估值条件化</h3>
-<p>对应第一部分：<a href="#nba-assets">NBA球队估值、税盾与关联资产风险</a></p>
+<h3 id="04nba">证据校准 04｜NBA资产 · 税盾存在，但不是免费午餐</h3>
 <section class="evidence-delta" data-claim-id="claim-nba-assets">
 <p><strong>证据结论：</strong>SEC文件确认Ubiquiti约93%控制权；税法确认合格收购无形资产可按15年摊销，但具体球队交易必须有税基提升和购买价分配，不能把税盾当作自动收益。</p>
 <ul>
@@ -616,11 +562,10 @@
 </section>
 <details class="report-detail" data-claim-id="claim-nba-assets">
 <summary>展开三条研判、法律适用边界与估值缺口</summary>
-<p><code>opinion-012</code> 得到支持：公司文件不仅确认Robert Pera持有约93%，还主动列示控制权、投资者意愿和未来大额售股风险。<code>opinion-013</code> 为条件成立：第197条与2004年立法确立一般机制，但股票或合伙权益交易本身不自动产生资产收购式税盾。<code>opinion-014</code> 为部分支持：约125亿美元纪录价格真实，约20倍收入与高估判断却缺少可复核的完整收入、债务、媒体权和税后自由现金流。</p>
+<p>公司文件确认Robert Pera持有约93%，并主动列示控制权、投资者意愿和未来大额售股风险。第197条与2004年立法确立了无形资产摊销的一般机制，但股票或合伙权益交易本身不自动产生资产收购式税盾。约125亿美元纪录价格真实，约20倍收入的高估判断仍缺完整收入、债务、媒体权和税后自由现金流。</p>
 <p>关键来源：<a href="https://www.sec.gov/Archives/edgar/data/1511737/000151173725000063/ubnt-20251024.htm">Ubiquiti 2025代理文件</a>、<a href="https://www.sec.gov/Archives/edgar/data/1511737/000151173726000014/ubnt-20251231.htm">Ubiquiti 2025年末10-Q</a>、<a href="https://uscode.house.gov/view.xhtml?req=%28title%3A26+section%3A197+edition%3Aprelim%29">美国税法第197条</a>、<a href="https://www.congress.gov/bill/108th-congress/house-bill/4520">2004年美国就业创造法</a>、<a href="https://apnews.com/article/lakers-sale-kushner-iger-12-billion-d5058bb845d87873e23e270a6bb9be9f">美联社湖人交易报道</a>。</p>
 </details>
-<h3 id="05">观点研判注 05｜下一周事件密度与市场波动风险 · 条件成立</h3>
-<p>对应第一部分：<a href="#weekly-risk">一周市场回顾与下一周事件风险</a></p>
+<h3 id="05">证据校准 05｜事件风险 · 日历很满，波动方向仍未知</h3>
 <section class="evidence-delta" data-claim-id="claim-weekly-risk">
 <p><strong>证据结论：</strong>英伟达财报、GDP与个人收入支出、杰克逊霍尔会议确实集中在同一周；公开日历提高事件风险，却不能保证实现波动率上升。</p>
 <ul>
@@ -631,7 +576,7 @@
 </section>
 <details class="report-detail" data-claim-id="claim-weekly-risk">
 <summary>展开事件核验、已计价判断与来源</summary>
-<p><code>opinion-015</code> 为条件成立。英伟达确认8月26日盘后发布FY2027第二季度业绩；BEA同日上午发布GDP第二次估计、企业利润和7月个人收入支出；堪萨斯城联储确认杰克逊霍尔会议于8月27至29日举行。日历本身已公开，真正决定波动的是业绩指引、通胀数据和政策沟通相对市场预期的偏离。</p>
+<p>英伟达确认8月26日盘后发布FY2027第二季度业绩；BEA同日上午发布GDP第二次估计、企业利润和7月个人收入支出；堪萨斯城联储确认杰克逊霍尔会议于8月27至29日举行。日历本身已经公开，真正决定波动的是业绩指引、通胀数据和政策沟通相对市场预期的偏离。</p>
 <p>密集软件财报未逐一取得同等级的官方时间核验，且研究未取得实时期权曲面和机构仓位，因此不能量化“已计价多少”。关键来源：<a href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Second-Quarter-Financial-Results/default.aspx">英伟达官方财报日历</a>、<a href="https://www.bea.gov/index.php/news/schedule/full">BEA发布日历</a>、<a href="https://www.kansascityfed.org/research/jackson-hole-economic-symposium/jackson-hole-faqs/">堪萨斯城联储杰克逊霍尔说明</a>。</p>
 </details>
 <h2 id="agent-judgment">第三部分｜Agent 综合判断</h2>
@@ -705,7 +650,7 @@
 <li><strong>缺失证据 / 下一验证：</strong>未来3次10年与30年拍卖的尾差、投标倍数和间接投标占比，与回购利差联读。</li>
 </ul>
 </details>
-<h3 id="02_1">判断 02｜黄金：保险有价格，不与比特币等同</h3>
+<h3 id="02_2">判断 02｜黄金：保险有价格，不与比特币等同</h3>
 <section class="decision-brief" data-claim-id="claim-gold">
 <ul>
 <li><strong>Agent判断：</strong>黄金适合有限比例的制度风险分散，不能脱离实际利率和买入价格当作必胜交易。</li>
@@ -835,15 +780,9 @@
 <li>NVIDIA, <a href="https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-Second-Quarter-Financial-Results/default.aspx">Q2 FY2027 earnings call date</a>；BEA, <a href="https://www.bea.gov/index.php/news/schedule/full">Release Schedule</a>；Kansas City Fed, <a href="https://www.kansascityfed.org/research/jackson-hole-economic-symposium/jackson-hole-faqs/">Jackson Hole FAQs</a>。</li>
 </ul>
 </details>
-<h2 id="_8">方法与限制</h2>
-<ul>
-<li>第一部分仅依据不可变的 <code>transcript.corrected.jsonl</code> 及程序生成的 <code>transcript.report.jsonl</code>。没有下载视频、运行转录或声称回听确认；明显错词只在正常语义整理中按上下文规范。</li>
-<li>已登记内容边界共排除7个片头或片尾片段；中段2个商业区间仍保留在筛选字幕中，但未进入观点、研究和正文。明显内容与不确定内容没有因追求简洁而整段删除。</li>
-<li>上游质量包报告语音覆盖率约99.88%、时间线覆盖率约98.09%，最长间隙约3.8秒，未解决词项10个。上游自动校订模型未返回文本，转而使用规则回退，校订数为0；这增加了密集公司名、专有名词与数字处的不确定性。</li>
-<li>已标记的高风险词项集中在“企业快乐”“A,科技”“商誉”“摊销”“ARM和Cloudstrike”“Point-72”“千禧”“Two Sigma”“Crowdstrike”“注意”等片段；其中部分可能本身正确，风险表示未被音视频确认，而不是认定错误。</li>
-<li>外部研究截至2026-08-24。官方页面只标注月份而无日的来源在结构化元数据中按月初标准化，并在证据摘要注明；实时估值、期权曲面、机构仓位、球队完整财务与交易税务结构仍缺失。</li>
-<li>第二、三部分分别是独立证据研判与Agent判断，不改变第一部分所保留的原意；所有阈值都是可复盘的观察规则，不是收益承诺。</li>
-</ul>
+<h2 id="_8">结语</h2>
+<p>这期内容真正串起美债、黄金、AI 与湖人估值的，不是某一个价格目标，而是<strong>久期资金开始要求更高回报</strong>。财政需要稳定买方，黄金需要对冲价值，AI 需要利润兑现，稀缺资产需要税后现金流。资本越贵，叙事越不够用；下一阶段的赢家，必须把稀缺性变成可持续回报。</p>
+    </div>
   </main>
 </body>
 </html>
