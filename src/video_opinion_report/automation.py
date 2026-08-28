@@ -11,6 +11,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Sequence
 
+from .cli import build_structured, render_html
+from .content_selection import materialize_model_transcript_view
 from .ingestion import import_transcript_package
 from .integrity import sha256_file
 from .materials import (
@@ -22,13 +24,18 @@ from .materials import (
     validate_material_report_data,
     validate_material_report_markdown,
 )
-from .models import RunManifest, Stage
+from .models import RunManifest, Stage, StageRecord, StageStatus
 from .reporting import (
     render_markdown_report,
     validate_rendered_report,
     validate_report_layers,
 )
-from .store import ManifestStore, sha256_artifact, validate_video_id
+from .store import (
+    ManifestStore,
+    ProcessedReportStore,
+    sha256_artifact,
+    validate_video_id,
+)
 from .visual_review import run_headless_visual_review
 
 
@@ -44,6 +51,53 @@ REPORT_ARTIFACTS = {
     "report_html": "index.html",
     "report_data": "report-data.json",
     "citations": "citations.json",
+}
+VIDEO_MODEL_STAGES = (
+    Stage.ANALYZE,
+    Stage.RESEARCH,
+    Stage.JUDGMENT,
+    Stage.DRAFT,
+    Stage.FIDELITY_REVIEW,
+)
+VIDEO_STAGE_WEB_SEARCH = {
+    Stage.ANALYZE: False,
+    Stage.RESEARCH: True,
+    Stage.JUDGMENT: False,
+    Stage.DRAFT: False,
+    Stage.FIDELITY_REVIEW: False,
+}
+VIDEO_STAGE_REASONING_CAPS = {
+    Stage.ANALYZE: "high",
+    Stage.RESEARCH: "high",
+    Stage.JUDGMENT: "xhigh",
+    Stage.DRAFT: "high",
+    Stage.FIDELITY_REVIEW: "medium",
+}
+VIDEO_GENERATED_ARTIFACTS = {
+    "video_analysis",
+    "opinions",
+    "content_selection",
+    "transcript_report_jsonl",
+    "transcript_corrected_model",
+    "transcript_report_model",
+    "research_dir",
+    "agent_judgment",
+    "draft_markdown",
+    "fidelity_review",
+    "report_data",
+    "citations",
+    "report_markdown",
+    "report_html",
+    "html_validation",
+}
+VIDEO_INGEST_METADATA_KEYS = {
+    "transcript_package_created_at",
+    "transcript_correction_count",
+    "transcript_unresolved_term_count",
+    "transcript_package_contract",
+    "transcript_package_schema_version",
+    "transcript_quality",
+    "transcript_provenance",
 }
 
 
@@ -64,6 +118,7 @@ class AutomationConfig:
     sandbox: str = "workspace-write"
     report_type: str = "video"
     codex_service_tier: str = "default"
+    regenerate: bool = False
 
     def validated(self) -> "AutomationConfig":
         project_root = self.project_root.expanduser().resolve()
@@ -73,6 +128,8 @@ class AutomationConfig:
             raise ValueError(f"Unsupported automation engine: {self.engine}")
         if self.report_type not in REPORT_TYPES:
             raise ValueError(f"Unsupported report type: {self.report_type}")
+        if self.regenerate and self.report_type != "video":
+            raise ValueError("Regeneration with a preserved revision is only supported for video reports")
         package = self.package.expanduser().resolve()
         manifest_name = (
             "package.json" if self.report_type == "video" else "material-package.json"
@@ -116,6 +173,7 @@ class AutomationConfig:
             sandbox=self.sandbox,
             report_type=self.report_type,
             codex_service_tier=self.codex_service_tier,
+            regenerate=self.regenerate,
         )
 
 
@@ -190,10 +248,13 @@ def build_codex_command(
     config: AutomationConfig,
     final_message_path: Path,
     attachments: Sequence[Path] = (),
+    *,
+    enable_search: bool = True,
+    reasoning_effort: str | None = None,
 ) -> list[str]:
+    effective_effort = reasoning_effort or config.reasoning_effort
     command = [
         config.codex_binary,
-        "--search",
         "--disable",
         "multi_agent",
         "--disable",
@@ -201,7 +262,7 @@ def build_codex_command(
         "--model",
         config.model,
         "--config",
-        f"model_reasoning_effort={json.dumps(config.reasoning_effort)}",
+        f"model_reasoning_effort={json.dumps(effective_effort)}",
         "--config",
         f"service_tier={json.dumps(config.codex_service_tier)}",
         "--sandbox",
@@ -214,6 +275,8 @@ def build_codex_command(
         "--ephemeral",
         "--json",
     ]
+    if enable_search:
+        command.insert(1, "--search")
     for attachment in attachments:
         command.extend(["--image", str(attachment)])
     command.extend(
@@ -231,14 +294,17 @@ def build_opencode_command(
     prompt: str,
     content_id: str,
     attachments: Sequence[Path] = (),
+    *,
+    reasoning_effort: str | None = None,
 ) -> list[str]:
+    effective_effort = reasoning_effort or config.reasoning_effort
     command = [
         config.opencode_binary,
         "run",
         "--model",
         config.model,
         "--variant",
-        config.reasoning_effort,
+        effective_effort,
         "--format",
         "default",
         "--dir",
@@ -259,10 +325,92 @@ def build_engine_command(
     prompt: str,
     content_id: str,
     attachments: Sequence[Path] = (),
+    *,
+    enable_search: bool = True,
+    reasoning_effort: str | None = None,
 ) -> tuple[list[str], str | None]:
     if config.engine == "codex":
-        return build_codex_command(config, final_message_path, attachments), prompt
-    return build_opencode_command(config, prompt, content_id, attachments), None
+        return (
+            build_codex_command(
+                config,
+                final_message_path,
+                attachments,
+                enable_search=enable_search,
+                reasoning_effort=reasoning_effort,
+            ),
+            prompt,
+        )
+    return (
+        build_opencode_command(
+            config,
+            prompt,
+            content_id,
+            attachments,
+            reasoning_effort=reasoning_effort,
+        ),
+        None,
+    )
+
+
+def video_stage_reasoning_effort(config: AutomationConfig, stage: Stage) -> str:
+    """Treat the selected effort as a ceiling and lower routine video stages."""
+
+    if config.engine != "codex":
+        return config.reasoning_effort
+    order = {value: index for index, value in enumerate(CODEX_REASONING_EFFORTS)}
+    requested = config.reasoning_effort
+    cap = VIDEO_STAGE_REASONING_CAPS[stage]
+    return requested if order[requested] <= order[cap] else cap
+
+
+def _ensure_model_transcript_view(
+    project_root: Path,
+    video_id: str,
+    *,
+    source_key: str,
+    artifact_key: str,
+    filename: str,
+) -> Path:
+    project_root = project_root.resolve()
+    store = ManifestStore(project_root)
+    manifest = store.load(video_id)
+    source_path = store.artifact_path(manifest, source_key)
+    output_path = store.run_dir(video_id) / "transcript" / filename
+    materialize_model_transcript_view(
+        transcript_path=source_path,
+        output_path=output_path,
+        source_artifact=source_path.name,
+    )
+    if (
+        manifest.artifacts.get(artifact_key) != str(output_path.relative_to(project_root))
+        or manifest.artifact_hashes.get(artifact_key) != sha256_file(output_path)
+    ):
+        store.set_artifact(manifest, artifact_key, output_path)
+        store.save(manifest)
+    return output_path
+
+
+def ensure_video_stage_model_inputs(
+    project_root: Path, video_id: str, stage: Stage
+) -> dict[str, Path]:
+    inputs: dict[str, Path] = {}
+    if stage is Stage.ANALYZE:
+        inputs["corrected"] = _ensure_model_transcript_view(
+            project_root,
+            video_id,
+            source_key="transcript_corrected_jsonl",
+            artifact_key="transcript_corrected_model",
+            filename="transcript.corrected.model.txt",
+        )
+    if stage in {Stage.RESEARCH, Stage.DRAFT, Stage.FIDELITY_REVIEW}:
+        inputs["report"] = _ensure_model_transcript_view(
+            project_root,
+            video_id,
+            source_key="transcript_report_jsonl",
+            artifact_key="transcript_report_model",
+            filename="transcript.report.model.txt",
+        )
+    return inputs
 
 
 def _effective_codex_service_tier(
@@ -276,42 +424,152 @@ def _effective_codex_service_tier(
     return requested
 
 
-def build_codex_prompt(config: AutomationConfig, metadata: dict[str, str]) -> str:
-    return f"""你正在以非交互自动化方式运行，工作目录是：
-{config.project_root}
+def _published_report_date(raw: str) -> str:
+    value = raw.strip()
+    if len(value) == 8 and value.isdigit():
+        return f"{value[:4]}-{value[4:6]}-{value[6:]}"
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).date().isoformat()
+    except ValueError:
+        return "<发布日期>"
 
-请从下面这个已经完成结构和质量验证的字幕包，生成一份完整的三层观点报告：
-{metadata['package_manifest']}
 
-视频 ID：{metadata['video_id']}
-视频时长（秒）：{metadata['duration_seconds'] or '包内未填写'}
-指定执行引擎由外层脚本设置为：{config.engine}
-指定模型由外层脚本设置为：{config.model}
-指定推理强度/模型变体由外层脚本设置为：{config.reasoning_effort}
-Codex 服务层由外层脚本设置为：{config.codex_service_tier}
+def build_video_stage_prompt(
+    config: AutomationConfig,
+    metadata: dict[str, str],
+    stage: Stage,
+) -> str:
+    if stage not in VIDEO_MODEL_STAGES:
+        raise ValueError(f"Video stage does not require a model call: {stage.value}")
+    video_id = metadata["video_id"]
+    run_dir = config.project_root / "work" / video_id
+    transcript_dir = run_dir / "transcript"
+    corrected_model_view = transcript_dir / "transcript.corrected.model.txt"
+    report_model_view = transcript_dir / "transcript.report.model.txt"
+    report_dir = (
+        config.project_root
+        / "reports"
+        / f"{_published_report_date(metadata['published_at'])}-{video_id}"
+    )
+    cli_prefix = (
+        f"{config.project_root / '.venv' / 'bin' / 'video-opinion-report'} "
+        f"--project-root {config.project_root}"
+    )
+    common = f"""你正在执行同一个视频报告自动化任务中的一个独立、顺序阶段。
+工作目录：{config.project_root}
+视频 ID：{video_id}
+当前唯一阶段：{stage.value}
 
-硬性要求：
-1. 完整阅读并遵守项目根目录的 AGENTS.md、WORKFLOW.md，以及 .agents/skills/subtitle-opinion-report/SKILL.md。
-2. 不使用多 Agent、子 Agent、任务分派或并行 Agent；所有分析、研究、审查与判断由当前 Agent 顺序完成。
-3. 不修改上游字幕包，不下载视频，不运行 ASR，不假称回听确认字幕。
-4. 先检查 work/{metadata['video_id']}/manifest.json；若已有未完成运行，从当前阶段恢复。若只有 ingest 已完成，直接继续后续阶段。
-5. 严格完成 analyze、research、judgment、draft、fidelity_review、render 阶段门并使用项目 CLI 登记产物。render 成功后停止；外层自动化会用真实本地浏览器完成 html_validate 与 complete，避免模型重复消耗上下文或因浏览器工具不可用误报整单失败。
-6. analyze 阶段完整读取 transcript.corrected.jsonl，但不启动字幕勘误、风险词扫描、额外模型调用或派生字幕；按上下文自然理解明显错词即可，最终报告不展示 ASR 风险清单。广告、推广、订阅和销售话术不进入观点、研究或正文；内容边界字段继续遵守 CLI schema，并在 record-analysis 后使用程序生成的 transcript.report.jsonl。
-7. 第一部分的内容依据只能来自不可变的 transcript.corrected.jsonl 及筛选视图 transcript.report.jsonl；不得修改上游字幕包，也不得在正常语义整理之外自行改写内容。无论出现在片头、中段或片尾，内容分析确认为广告、产品推广、订阅引导或销售话术的文字都不得进入报告正文、观点或外部研判；但中段原文仍留在字幕依据和筛选视图中，不做源内容删除。第二部分必须进行实时外部研究并保留直接 URL、来源日期、反方证据和适用条件。第三部分必须包含已计价判断、成立条件、量化反证、下行机制和观察姿态。
-7.1. 起草前在同一上下文中确定一个编辑标题、一个核心命题、3—5条封面导读和自然主题结构；不另起模型调用或规划文件。
-7.2. 最终 HTML 采用财经杂志式表达：强封面、主题导读、行情/KPI卡、人物观点卡、机制图、科技新闻卡和连贯正文。可使用 topic-brief、evidence-delta、decision-brief 与可选的深度阅读 details，但不强制时间戳、claim ID、审计映射、ASR提示或原始/推导数据标签。不要为了凑数量制造图表，每个视觉组件都必须帮助理解比较、因果、条件或节奏。
-7.3. 第一层保留作者内容，第二层只增加外部证据，第三层给出 Agent 取舍；避免整段重复。默认页面优先保证阅读体验和观点密度，完整结构化数据继续由 report-data.json 与 citations.json 承担。
-8. 最终正式产物必须写入 reports/<发布日期>-{metadata['video_id']}/，至少包含 report.md、index.html、report-data.json 和 citations.json。
-9. 必须实际执行 render-html。不要自行创建 html-validation.json，也不要执行 validate-html 或 complete-run；外层程序会在模型退出后通过本地 HTTP 和 Chrome/Chromium 的桌面、移动端截图完成网页验收与封板。报告生成任务不得修改项目代码。
-10. 不执行 git add、git commit、git push，不创建 Pull Request，不清理或覆盖无关文件。
-11. 这是无人值守运行，不向用户提问。若无法完成，保留可恢复的 manifest 状态，并在最终消息中准确说明阻塞阶段和原因。
-12. `video-analysis.json` 必须使用 schema_version=1，完整记录包内视频身份、summary、sections、topic_clusters、excluded_ranges、non_reportable_ranges 与 transcript_risks，且不得包含任何单独字幕勘误字段。`opinions.jsonl` 每条必须包含 opinion_id、精确时间、字幕原句 exact_quote、faithful_paraphrase、opinion_type、target、time_horizon、stated_basis、qualifiers、context_before、context_after 和 research_status="pending"；时间必须落在字幕范围内，原句必须可在对应区间找到。
-13. 每个研究主题使用 schema_version=1，记录 video_id、topic_id、theme、researched_at、作者边界声明、topic_summary、完整 assessments 和 sources。每个 assessment 必须有支持证据、反方证据、适用条件、期限、已计价判断和不确定性；每个 source 必须有唯一 source_id、标题、发布者、作者、发布日期、访问日期、直接 URL、证据摘要和适用范围。Agent 判断主题必须与研究主题一一对应；新增来源必须附同样的完整来源元数据，不能只写 URL。
-14. 草稿只能写入 `reports/<发布日期>-{metadata['video_id']}/report.md`。fidelity-review.json 必须记录该草稿和 transcript.report.jsonl 的 SHA-256，且逐条覆盖全部 opinion_id。build-structured 只能使用 manifest 已登记的输入，随后 render-html 只能渲染同一份已审草稿并使用 assets/report-template.html。
-15. 外层程序生成的 html-validation.json 必须使用 schema_version=1、video_id={metadata['video_id']}、status="passed"、visual_review_completed=true，并记录 report_html_sha256、report_markdown_sha256、report_data_sha256、citations_sha256；四个值必须对应最终目录中的实际文件。
-
-最终消息请简洁列出：视频 ID、各阶段结果、观点/研究/判断数量、报告路径和剩余限制。
+通用硬性要求：
+1. 完整阅读并遵守 AGENTS.md、WORKFLOW.md 和 .agents/skills/subtitle-opinion-report/SKILL.md；只读取本阶段明确列出的输入。
+2. 这是同一外层任务的顺序阶段会话，不使用多 Agent、子 Agent、任务分派或并行 Agent，也不启动额外模型会话。
+3. 不修改上游字幕包，不下载视频，不运行 ASR，不假称回听确认；不修改项目代码或无关文件。
+4. 只完成并登记 {stage.value}，不要提前执行后续阶段。外层程序会检查 manifest 后再启动下一阶段，并负责结构化合并、HTML 渲染、浏览器验收和 complete。
+5. 不执行 git add、git commit、git push，不创建 Pull Request；这是无人值守运行，不向用户提问。
+6. 若本阶段无法通过 CLI 校验，保留可恢复产物并在最终消息说明具体错误；不要绕过阶段门。
 """
+    if stage is Stage.ANALYZE:
+        return common + f"""
+本阶段不使用网络或外部研究。阅读：
+- .agents/skills/subtitle-opinion-report/references/content-boundaries.md
+- .agents/skills/subtitle-opinion-report/references/opinion-schema.md
+- {transcript_dir / 'package.json'}
+- {corrected_model_view}（由校订 JSONL 确定性生成，包含全部 segment ID、时间与正文，必须完整读取）
+- {transcript_dir / 'corrections.json'}（只提取校订摘要和未解决词项；跳过 usage、模型响应与运行元数据）
+
+完成内容原意、章节、主题、广告/非报告内容边界和主观观点提取。不要启动独立字幕勘误、风险词扫描或派生字幕；明显 ASR 错词只按上下文自然理解，无法确定时保留不确定性。广告、推广、订阅与销售话术不得成为观点。
+
+写入：
+- {run_dir / 'video-analysis.json'}
+- {run_dir / 'opinions.jsonl'}
+
+随后执行：
+{cli_prefix} record-analysis --video-id {video_id} --video-analysis {run_dir / 'video-analysis.json'} --opinions {run_dir / 'opinions.jsonl'}
+
+`video-analysis.json` 使用 schema_version=2，并包含视频身份、summary、sections、topic_clusters、excluded_ranges、non_reportable_ranges、transcript_risks。每个 section 必须有唯一 section_id、字幕 segment 范围、summary 和 key_points；每个可报告 section 都必须被覆盖。
+
+`opinions.jsonl` 每条除完整观点契约、精确时间和可在对应字幕区间找到的 exact_quote 外，还必须包含 section_id、speaker、stance_owner、attribution_mode。speaker 是实际说出这段话的人，stance_owner 是该观点真正归属的人或机构；attribution_mode 只能是 self、reported、direct_quote 或 uncertain。作者转述 CNBC、机构、嘉宾或其他人的判断时，不得归到作者本人。research_status 必须为 pending。
+"""
+    if stage is Stage.RESEARCH:
+        return common + f"""
+本阶段进行实时外部研究。阅读：
+- .agents/skills/subtitle-opinion-report/references/research-guidelines.md
+- {run_dir / 'video-analysis.json'}
+- {run_dir / 'opinions.jsonl'}
+- {report_model_view}（不得全量重读；仅在某条观点确需消歧时，按 section 的 segment 范围读取对应片段）
+
+按主题去重聚类并研究全部 opinion_id。打开直接来源页面，不能把搜索摘要当证据；优先一手资料，同时记录支持证据、反方证据、适用条件、期限、已计价判断、不确定性、日期和直接 URL。广告或非报告区间不得进入研究。相同主题内复用共同来源；每个主题通常保留 3—5 个最有解释力的直接来源，全部主题合计最多 24 个来源、最多 24 次搜索。只有关键事实无法由这些来源核实时才可超出，并在最终消息说明原因。
+
+先按 research-guidelines 的精确 JSON 契约一次性写好全部主题文件，再执行下方唯一 CLI 命令。不要试探 `video-opinion-report`、Poetry 或其他入口，不要在校验前循环改写同一批文件。
+
+每个主题写入 {run_dir / 'research'} 下独立 schema_version=1 JSON，随后执行：
+{cli_prefix} record-research --video-id {video_id} --research-dir {run_dir / 'research'}
+
+只完成 research；不要生成 Agent 判断或报告草稿。
+"""
+    if stage is Stage.JUDGMENT:
+        return common + f"""
+本阶段形成独立 Agent 综合判断。阅读：
+- .agents/skills/subtitle-opinion-report/references/agent-judgment.md
+- {run_dir / 'video-analysis.json'}
+- {run_dir / 'opinions.jsonl'}
+- {run_dir / 'research'} 中已登记的全部主题文件
+
+本阶段不再进行网络检索；外部证据以已登记研究为准。研究主题与判断主题一一对应，区分 fact、management_claim、inference、agent_judgment，并包含资料日期、置信度、期限、priced-in、成立条件、量化反证、下行机制、行动姿态、缺失证据和下一验证。
+
+写入 {run_dir / 'agent-judgment.json'}，随后执行：
+{cli_prefix} record-judgment --video-id {video_id} --judgment {run_dir / 'agent-judgment.json'}
+
+只完成 judgment；不要起草报告。
+"""
+    if stage is Stage.DRAFT:
+        return common + f"""
+本阶段不再进行网络研究。阅读：
+- .agents/skills/subtitle-opinion-report/references/report-template.md
+- {run_dir / 'video-analysis.json'}
+- {run_dir / 'opinions.jsonl'}
+- {report_model_view}（必须完整读取；它与已登记 report JSONL 的 segment、时间和文字一一对应）
+- {run_dir / 'research'} 中已登记的全部主题文件
+- {run_dir / 'agent-judgment.json'}
+
+在本次起草会话内先做轻量编辑规划：确定编辑标题、核心命题、3—5 条封面导读和自然主题顺序，但不另建规划文件或模型会话。然后写完整财经杂志式三层报告，严格保持：第一部分只呈现作者内容，第二部分只增加外部证据，第三部分给出 Agent 决策增量。广告、推广、订阅和销售话术一律不进入正文；五条片尾科技新闻固定命名“科技五大新闻”。
+
+在第一部分标题之前必须放置且只放置一个 `<section id="investor-dashboard" class="investor-dashboard">`。它是报告综合前言，不属于三层中的作者内容，必须醒目标注“报告综合 · 非视频原内容”。按主要投资主题给出资产/公司、视频核心观点、证据状态、Agent 姿态、期限、下一催化剂和关键反证；保持首屏可扫读，不输出个性化仓位或买卖指令。
+
+第二部分开头必须用一句直接声明同时包含“外部证据研判”和“不代表视频作者观点”；第三部分开头必须直接包含“本节为 Agent”“不代表视频作者观点”和“不构成投资建议”。这些是层级边界门禁，不要改成只有近义词的文案。
+
+第一部分对每个可报告 section 做语义覆盖，并保留推理链、限定条件和观点归属，不要求逐字转录。作者自己的判断使用 `speaker-opinion-marker creator-view-card`；作者转述他人或机构观点使用 `speaker-opinion-marker reported-view-card`，两者都写入 data-speaker、data-stance-owner 和 data-attribution-mode。第二部分优先用 evidence-status-grid 呈现支持、收窄、冲突和未知；第三部分按需要使用 scenario-grid、catalyst-calendar、plain-language-note 与 asset-map。六个投资问题只作为内部完整性检查，不机械展开为六个固定小节。
+
+Markdown 表格分隔行只写 `---`，不要使用 `:---`、`---:` 或 `:---:`，避免渲染出被安全门拒绝的内联 style 属性。
+
+只写入 {report_dir / 'report.md'}，随后执行：
+{cli_prefix} record-draft --video-id {video_id} --markdown {report_dir / 'report.md'}
+
+不要执行 fidelity review、build-structured、render-html、validate-html 或 complete-run。
+"""
+    return common + f"""
+这是第一轮原意审查的全新隔离上下文。本阶段禁止网络检索，禁止打开 {run_dir / 'research'}、{run_dir / 'agent-judgment.json'}、report-data.json、citations.json 或任何外部研究结果。
+
+只允许阅读：
+- .agents/skills/subtitle-opinion-report/references/fidelity-review.md
+- {transcript_dir / 'package.json'}
+- {report_model_view}（必须完整读取；包含全部可报告 segment ID、时间与文字）
+- {run_dir / 'video-analysis.json'}
+- {run_dir / 'opinions.jsonl'}
+- {report_dir / 'report.md'}
+
+只审查报告第一部分及其中作者观点的忠实性：语气强度、限定条件、时间/对象范围、归因、上下文和是否加入字幕不存在的因果。不要用第二、三部分的“正确答案”反向改写作者内容。若需修订，只改 report.md 的第一部分，然后用 `record-draft --force` 重新登记；不得改第二、三部分。
+
+写入 {run_dir / 'fidelity-review.json'}。若 video-analysis 使用 schema_version=2，则审查也使用 schema_version=2；否则保持 schema_version=1。设置 external_research_visible_to_reviewer=false；draft_sha256 取修订后 report.md，transcript_sha256 直接使用 model view 头部记录的 report JSONL source_sha256，不要为了计算哈希再次读取 JSONL 正文。逐条覆盖全部 section_id 和 opinion_id。schema_version=2 的 section_checks 必须记录 coverage_status、report_locations 和 omission_reason；opinion_checks 必须复核 speaker、stance_owner、attribution_mode 与 report_locations。随后执行：
+{cli_prefix} record-fidelity-review --video-id {video_id} --review {run_dir / 'fidelity-review.json'}
+
+不要执行 build-structured、render-html、validate-html 或 complete-run。
+"""
+
+
+def build_codex_prompt(config: AutomationConfig, metadata: dict[str, str]) -> str:
+    """Backward-compatible helper for callers previewing the first model stage."""
+    return build_video_stage_prompt(config, metadata, Stage.ANALYZE)
 
 
 def build_material_prompt(
@@ -392,9 +650,380 @@ def prepare_manifest(config: AutomationConfig, metadata: dict[str, str]) -> RunM
     return manifest
 
 
+def _copy_directory_snapshot(source: Path, destination: Path) -> None:
+    source = source.resolve()
+    destination = destination.resolve()
+    if not source.is_dir():
+        raise FileNotFoundError(source)
+    source_hash = sha256_artifact(source)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    if destination.exists():
+        raise FileExistsError(f"Report revision already exists: {destination}")
+    temporary = destination.with_name(destination.name + ".tmp")
+    if temporary.exists():
+        shutil.rmtree(temporary)
+    try:
+        shutil.copytree(source, temporary)
+        if sha256_artifact(temporary) != source_hash:
+            raise RuntimeError(f"Report revision snapshot checksum mismatch: {source}")
+        os.replace(temporary, destination)
+    except Exception:
+        if temporary.exists():
+            shutil.rmtree(temporary)
+        raise
+
+
+def _record_video_revision(project_root: Path, revision: dict[str, Any]) -> None:
+    path = project_root / "state" / "report-revisions.json"
+    if path.is_file():
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        revisions = list(payload.get("revisions") or [])
+    else:
+        revisions = []
+    duplicate = any(
+        item.get("video_id") == revision["video_id"]
+        and item.get("revision_id") == revision["revision_id"]
+        for item in revisions
+    )
+    if duplicate:
+        raise RuntimeError("Report revision registry already contains this revision")
+    revisions.append(revision)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(".json.tmp")
+    temporary.write_text(
+        json.dumps(
+            {"schema_version": 1, "revisions": revisions},
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    os.replace(temporary, path)
+
+
+def _remove_regenerated_path(
+    path: Path,
+    *,
+    allowed_roots: Sequence[Path],
+) -> None:
+    resolved = path.resolve()
+    if not any(
+        resolved == root.resolve() or resolved.is_relative_to(root.resolve())
+        for root in allowed_roots
+    ):
+        raise RuntimeError(f"Refusing to reset artifact outside report run: {resolved}")
+    if resolved.is_symlink():
+        raise RuntimeError(f"Refusing to reset symlinked report artifact: {resolved}")
+    if resolved.is_dir():
+        shutil.rmtree(resolved)
+    elif resolved.exists():
+        resolved.unlink()
+
+
+def archive_and_reset_completed_video(
+    config: AutomationConfig,
+    metadata: dict[str, str],
+    manifest: RunManifest,
+) -> tuple[RunManifest, dict[str, Any]]:
+    """Preserve a completed report revision, then reset only generated stages."""
+
+    if not manifest.is_complete(Stage.COMPLETE):
+        raise RuntimeError("只有已完成的视频报告可以重新生成；未完成任务请直接恢复")
+    manifest = require_completed_report(config.project_root, metadata["video_id"])
+    store = ManifestStore(config.project_root)
+    run_directory = store.run_dir(manifest.video_id).resolve()
+    report_directory = store.artifact_path(manifest, "report_html").parent.resolve()
+    reports_root = (config.project_root / "reports").resolve()
+    report_directory.relative_to(reports_root)
+    report_name = report_directory.name
+    current_output = (config.output_root / report_name).resolve()
+    current_output.relative_to(config.output_root)
+    revision_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    revision_report = (
+        reports_root / "_revisions" / report_name / revision_id
+    ).resolve()
+    revision_output = (
+        config.output_root / "_revisions" / report_name / revision_id
+    ).resolve()
+    revision_work = (
+        config.project_root / "work" / "_revisions" / manifest.video_id / revision_id
+    ).resolve()
+    revision_report.relative_to(reports_root)
+    revision_output.relative_to(config.output_root)
+    revision_work.relative_to(config.project_root / "work")
+
+    _copy_directory_snapshot(report_directory, revision_report)
+    _copy_directory_snapshot(
+        current_output if current_output.is_dir() else report_directory,
+        revision_output,
+    )
+    _copy_directory_snapshot(run_directory, revision_work)
+
+    previous_run: dict[str, Any] = {}
+    previous_run_path = revision_output / "automation-run.json"
+    if previous_run_path.is_file():
+        loaded = json.loads(previous_run_path.read_text(encoding="utf-8"))
+        if isinstance(loaded, dict):
+            previous_run = loaded
+    revision = {
+        "schema_version": 1,
+        "video_id": manifest.video_id,
+        "revision_id": revision_id,
+        "archived_at": utc_now(),
+        "source_package_sha256": manifest.artifact_hashes.get("transcript_package"),
+        "previous_completed_at": manifest.stages[Stage.COMPLETE.value].finished_at,
+        "previous_manifest_updated_at": manifest.updated_at,
+        "engine": previous_run.get("engine"),
+        "model": previous_run.get("model"),
+        "reasoning_effort": previous_run.get("reasoning_effort"),
+        "report_directory": str(revision_report.relative_to(config.project_root)),
+        "output_directory": str(revision_output.relative_to(config.project_root)),
+        "work_directory": str(revision_work.relative_to(config.project_root)),
+    }
+    _record_video_revision(config.project_root, revision)
+
+    generated_paths = {
+        (config.project_root / relative).resolve()
+        for key, relative in manifest.artifacts.items()
+        if key in VIDEO_GENERATED_ARTIFACTS
+    }
+    _remove_regenerated_path(
+        report_directory,
+        allowed_roots=(reports_root,),
+    )
+    for path in sorted(generated_paths, key=lambda item: len(item.parts), reverse=True):
+        if path == report_directory or path.is_relative_to(report_directory):
+            continue
+        _remove_regenerated_path(path, allowed_roots=(run_directory,))
+    for directory in (run_directory / "automation", run_directory / "validation"):
+        _remove_regenerated_path(directory, allowed_roots=(run_directory,))
+
+    package_payload = json.loads(
+        store.artifact_path(manifest, "transcript_package").read_text(encoding="utf-8")
+    )
+    video = package_payload.get("video")
+    if not isinstance(video, dict):
+        raise RuntimeError("Imported transcript package lost video metadata")
+    old_metadata = dict(manifest.metadata)
+    manifest.metadata = {
+        key: value
+        for key, value in video.items()
+        if key not in {"video_id", "source_url"}
+    }
+    manifest.metadata.update(
+        {
+            key: old_metadata[key]
+            for key in VIDEO_INGEST_METADATA_KEYS
+            if key in old_metadata
+        }
+    )
+    manifest.metadata.update(
+        {
+            "regeneration_count": int(old_metadata.get("regeneration_count") or 0) + 1,
+            "previous_revision_id": revision_id,
+            "regenerated_at": utc_now(),
+        }
+    )
+    for key in VIDEO_GENERATED_ARTIFACTS:
+        manifest.artifacts.pop(key, None)
+        manifest.artifact_hashes.pop(key, None)
+    for stage in Stage:
+        if stage is not Stage.INGEST:
+            manifest.stages[stage.value] = StageRecord()
+    manifest.updated_at = utc_now()
+    store.save(manifest)
+    ProcessedReportStore(config.project_root).remove(manifest.video_id)
+    return store.load(manifest.video_id), revision
+
+
+def _start_video_stage(project_root: Path, video_id: str, stage: Stage) -> RunManifest:
+    store = ManifestStore(project_root)
+    manifest = store.load(video_id)
+    if manifest.is_complete(stage):
+        return manifest
+    status = manifest.stages[stage.value].status
+    if status == StageStatus.PENDING:
+        manifest.start(stage)
+    else:
+        manifest.restart(stage)
+    store.save(manifest)
+    return manifest
+
+
+def _fail_video_stage_if_unfinished(
+    project_root: Path,
+    video_id: str,
+    stage: Stage,
+    error: str,
+) -> None:
+    store = ManifestStore(project_root)
+    manifest = store.load(video_id)
+    record = manifest.stages[stage.value]
+    if manifest.is_complete(stage) or record.status == StageStatus.FAILED:
+        return
+    manifest.fail(stage, error, retryable=True)
+    store.save(manifest)
+
+
+def _sanitized_engine_command(config: AutomationConfig, command: list[str]) -> list[str]:
+    if config.engine == "opencode" and command:
+        return command[:-1] + ["<prompt>"]
+    return command
+
+
+def _invoke_video_model_stage(
+    config: AutomationConfig,
+    metadata: dict[str, str],
+    stage: Stage,
+    *,
+    run_command: "RunCommand",
+) -> dict[str, Any] | None:
+    manifest = ManifestStore(config.project_root).load(metadata["video_id"])
+    if manifest.is_complete(stage):
+        return None
+    _start_video_stage(config.project_root, metadata["video_id"], stage)
+    ensure_video_stage_model_inputs(config.project_root, metadata["video_id"], stage)
+    manifest = ManifestStore(config.project_root).load(metadata["video_id"])
+    guard_hashes, guarded_project_files = _video_guard_hashes(
+        config, manifest, metadata
+    )
+    final_message_path = (
+        config.project_root
+        / "work"
+        / metadata["video_id"]
+        / "automation"
+        / f"{stage.value}-final-message.txt"
+    )
+    final_message_path.parent.mkdir(parents=True, exist_ok=True)
+    prompt = build_video_stage_prompt(config, metadata, stage)
+    stage_reasoning_effort = video_stage_reasoning_effort(config, stage)
+    command, prompt_input = build_engine_command(
+        config,
+        final_message_path,
+        prompt,
+        metadata["video_id"],
+        enable_search=VIDEO_STAGE_WEB_SEARCH[stage],
+        reasoning_effort=stage_reasoning_effort,
+    )
+    effective_service_tier = config.codex_service_tier
+    try:
+        result = run_command(
+            command,
+            input=prompt_input,
+            text=True,
+            cwd=config.project_root,
+            check=False,
+        )
+        if isinstance(result.args, (list, tuple)):
+            command = [str(argument) for argument in result.args]
+            effective_service_tier = _effective_codex_service_tier(
+                command, config.codex_service_tier
+            )
+        _require_video_guards_unchanged(
+            guard_hashes,
+            config.project_root,
+            guarded_project_files,
+        )
+    except Exception as exc:
+        _fail_video_stage_if_unfinished(
+            config.project_root,
+            metadata["video_id"],
+            stage,
+            str(exc),
+        )
+        raise
+    if result.returncode != 0:
+        error = (
+            f"{config.engine} {stage.value} stage exited with status "
+            f"{result.returncode}"
+        )
+        _fail_video_stage_if_unfinished(
+            config.project_root,
+            metadata["video_id"],
+            stage,
+            error,
+        )
+        raise RuntimeError(error)
+    manifest = ManifestStore(config.project_root).load(metadata["video_id"])
+    if not manifest.is_complete(stage):
+        error = (
+            f"{config.engine} {stage.value} stage exited successfully without "
+            "registering a completed stage"
+        )
+        _fail_video_stage_if_unfinished(
+            config.project_root,
+            metadata["video_id"],
+            stage,
+            error,
+        )
+        raise RuntimeError(error)
+    return {
+        "stage": stage.value,
+        "command": _sanitized_engine_command(config, command),
+        "final_message": (
+            str(final_message_path.relative_to(config.project_root))
+            if config.engine == "codex"
+            else None
+        ),
+        "codex_service_tier": effective_service_tier,
+        "reasoning_effort": stage_reasoning_effort,
+    }
+
+
+def _build_and_render_video_report(project_root: Path, video_id: str) -> None:
+    store = ManifestStore(project_root)
+    manifest = store.load(video_id)
+    if manifest.is_complete(Stage.RENDER):
+        return
+    _start_video_stage(project_root, video_id, Stage.RENDER)
+    manifest = store.load(video_id)
+    report_markdown = _artifact_path(project_root, manifest, "draft_markdown")
+    report_directory = report_markdown.parent
+    arguments = argparse.Namespace(
+        video_id=video_id,
+        video_analysis=_artifact_path(project_root, manifest, "video_analysis"),
+        opinions=_artifact_path(project_root, manifest, "opinions"),
+        research_dir=_artifact_directory(project_root, manifest, "research_dir"),
+        agent_judgment=_artifact_path(project_root, manifest, "agent_judgment"),
+        fidelity_review=_artifact_path(project_root, manifest, "fidelity_review"),
+        report_data=report_directory / "report-data.json",
+        citations=report_directory / "citations.json",
+    )
+    try:
+        build_structured(project_root, arguments)
+        render_html(
+            project_root,
+            video_id,
+            report_markdown,
+            project_root / "assets" / "report-template.html",
+            report_directory / "index.html",
+        )
+    except Exception as exc:
+        _fail_video_stage_if_unfinished(
+            project_root,
+            video_id,
+            Stage.RENDER,
+            str(exc),
+        )
+        raise
+    manifest = store.load(video_id)
+    if not manifest.is_complete(Stage.RENDER):
+        raise RuntimeError("Deterministic report rendering did not complete")
+
+
 def _artifact_path(project_root: Path, manifest: RunManifest, key: str) -> Path:
     path = ManifestStore(project_root).artifact_path(manifest, key)
     if not path.is_file():
+        raise FileNotFoundError(path)
+    return path
+
+
+def _artifact_directory(
+    project_root: Path, manifest: RunManifest, key: str
+) -> Path:
+    path = ManifestStore(project_root).artifact_path(manifest, key)
+    if not path.is_dir():
         raise FileNotFoundError(path)
     return path
 
@@ -909,57 +1538,42 @@ def run_automation(
     metadata = load_package_metadata(config.package)
     started_at = utc_now()
     manifest = prepare_manifest(config, metadata)
-    guard_hashes, guarded_project_files = _video_guard_hashes(
-        config, manifest, metadata
-    )
-    # Analysis through rendering is model work. Browser validation and completion are
-    # deterministic outer steps, so a rendered run must never spend another model turn.
-    engine_invoked = not manifest.is_complete(Stage.RENDER)
-    final_message_path = (
-        config.project_root
-        / "work"
-        / metadata["video_id"]
-        / "automation"
-        / "codex-final-message.txt"
-    )
-    command: list[str] = []
-    effective_service_tier = config.codex_service_tier
-    if engine_invoked:
-        final_message_path.parent.mkdir(parents=True, exist_ok=True)
-        prompt = build_codex_prompt(config, metadata)
-        command, prompt_input = build_engine_command(
+    was_complete = manifest.is_complete(Stage.COMPLETE)
+    previous_revision: dict[str, Any] | None = None
+    if config.regenerate:
+        manifest, previous_revision = archive_and_reset_completed_video(
             config,
-            final_message_path,
-            prompt,
-            metadata["video_id"],
+            metadata,
+            manifest,
         )
-        try:
-            result = run_command(
-                command,
-                input=prompt_input,
-                text=True,
-                cwd=config.project_root,
-                check=False,
+    invocations: list[dict[str, Any]] = []
+    if not manifest.is_complete(Stage.RENDER):
+        for stage in VIDEO_MODEL_STAGES:
+            invocation = _invoke_video_model_stage(
+                config,
+                metadata,
+                stage,
+                run_command=run_command,
             )
-            if isinstance(result.args, (list, tuple)):
-                command = [str(argument) for argument in result.args]
-                effective_service_tier = _effective_codex_service_tier(
-                    command, config.codex_service_tier
-                )
-        finally:
-            _require_video_guards_unchanged(
-                guard_hashes,
-                config.project_root,
-                guarded_project_files,
-            )
-        if result.returncode != 0:
-            raise RuntimeError(
-                f"{config.engine} automation exited with status {result.returncode}"
-            )
-
+            if invocation is not None:
+                invocations.append(invocation)
+        _build_and_render_video_report(config.project_root, metadata["video_id"])
     finalize_rendered_video_report(config.project_root, metadata["video_id"])
     manifest = require_completed_report(config.project_root, metadata["video_id"])
     finished_at = utc_now()
+    engine_invoked = bool(invocations)
+    reused_existing = was_complete and not config.regenerate and not engine_invoked
+    effective_service_tier = (
+        str(invocations[-1]["codex_service_tier"])
+        if invocations
+        else config.codex_service_tier
+    )
+    commands = [list(item["command"]) for item in invocations]
+    final_messages = {
+        str(item["stage"]): item["final_message"]
+        for item in invocations
+        if item["final_message"] is not None
+    }
     run_metadata: dict[str, Any] = {
         "schema_version": 1,
         "report_type": "video",
@@ -973,18 +1587,25 @@ def run_automation(
         "engine": config.engine,
         "model": config.model,
         "reasoning_effort": config.reasoning_effort,
+        "stage_reasoning_efforts": {
+            str(item["stage"]): str(item["reasoning_effort"])
+            for item in invocations
+        },
         "codex_service_tier": effective_service_tier,
         "sandbox": config.sandbox,
         "engine_invoked": engine_invoked,
-        "engine_command": (
-            command[:-1] + ["<prompt>"]
-            if config.engine == "opencode" and command
-            else command
+        "reused_existing": reused_existing,
+        "regenerated": config.regenerate,
+        "previous_revision_id": (
+            previous_revision["revision_id"] if previous_revision else None
         ),
+        "engine_invocation_count": len(invocations),
+        "engine_stages": [str(item["stage"]) for item in invocations],
+        "engine_commands": commands,
+        "engine_final_messages": final_messages,
+        "engine_command": commands[-1] if commands else [],
         "engine_final_message": (
-            str(final_message_path.relative_to(config.project_root))
-            if engine_invoked and config.engine == "codex"
-            else None
+            next(reversed(final_messages.values())) if final_messages else None
         ),
         "started_at": started_at,
         "finished_at": finished_at,
@@ -999,6 +1620,9 @@ def run_automation(
         "video_id": metadata["video_id"],
         "engine": config.engine,
         "engine_invoked": engine_invoked,
+        "reused_existing": reused_existing,
+        "regenerated": config.regenerate,
+        "previous_revision": previous_revision,
         "model": config.model,
         "reasoning_effort": config.reasoning_effort,
         "codex_service_tier": effective_service_tier,
@@ -1044,6 +1668,11 @@ def parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Validate arguments and print the Codex command/prompt without changing files",
     )
+    result.add_argument(
+        "--regenerate",
+        action="store_true",
+        help="Archive a completed video report revision, then regenerate it from analyze",
+    )
     return result
 
 
@@ -1062,6 +1691,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             sandbox=arguments.sandbox,
             report_type=arguments.report_type,
             codex_service_tier=arguments.codex_service_tier,
+            regenerate=arguments.regenerate,
         ).validated()
         metadata = load_input_metadata(config)
         engine_binary = resolve_engine_binary(
@@ -1079,13 +1709,55 @@ def main(argv: Sequence[str] | None = None) -> int:
             sandbox=config.sandbox,
             report_type=config.report_type,
             codex_service_tier=config.codex_service_tier,
+            regenerate=config.regenerate,
         )
         if arguments.dry_run:
             if config.report_type == "video":
                 content_id = metadata["video_id"]
-                final_message_name = "codex-final-message.txt"
-                prompt = build_codex_prompt(config, metadata)
-                attachments: list[Path] = []
+                stages = []
+                for stage in VIDEO_MODEL_STAGES:
+                    prompt = build_video_stage_prompt(config, metadata, stage)
+                    final_message_path = (
+                        config.project_root
+                        / "work"
+                        / content_id
+                        / "automation"
+                        / f"{stage.value}-final-message.txt"
+                    )
+                    stages.append(
+                        {
+                            "stage": stage.value,
+                            "web_search_enabled": VIDEO_STAGE_WEB_SEARCH[stage],
+                            "reasoning_effort": video_stage_reasoning_effort(
+                                config, stage
+                            ),
+                            "command": build_engine_command(
+                                config,
+                                final_message_path,
+                                prompt,
+                                content_id,
+                                enable_search=VIDEO_STAGE_WEB_SEARCH[stage],
+                                reasoning_effort=video_stage_reasoning_effort(
+                                    config, stage
+                                ),
+                            )[0],
+                            "prompt": prompt,
+                        }
+                    )
+                print(
+                    json.dumps(
+                        {
+                            "report_type": config.report_type,
+                            "content_id": content_id,
+                            "engine": config.engine,
+                            "regenerate": config.regenerate,
+                            "stages": stages,
+                        },
+                        ensure_ascii=False,
+                        indent=2,
+                    )
+                )
+                return 0
             else:
                 content_id = metadata["material_id"]
                 final_message_name = "engine-final-message.txt"

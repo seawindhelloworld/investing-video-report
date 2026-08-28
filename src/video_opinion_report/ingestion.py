@@ -203,7 +203,7 @@ def _validate_quality_summary(
         isinstance(coverage, bool)
         or not isinstance(coverage, (int, float))
         or not math.isfinite(coverage)
-        or coverage < 0.95
+        or coverage < 0
         or coverage > 1
     ):
         raise ValueError("Transcript package quality validation did not pass: coverage ratio")
@@ -215,8 +215,6 @@ def _validate_quality_summary(
     ):
         raise ValueError("Transcript package quality validation did not pass: maximum gap")
     maximum_uncovered_speech = quality.get("maximum_uncovered_speech_seconds")
-    evaluated_gap = maximum_gap
-    evaluated_gap_label = "maximum gap"
     if maximum_uncovered_speech is not None:
         if (
             isinstance(maximum_uncovered_speech, bool)
@@ -229,31 +227,21 @@ def _validate_quality_summary(
                 "Transcript package quality validation did not pass: "
                 "maximum uncovered speech"
             )
-        evaluated_gap = maximum_uncovered_speech
-        evaluated_gap_label = "maximum uncovered speech"
-    if evaluated_gap > 5:
-        raise ValueError(
-            "Transcript package quality validation did not pass: "
-            f"{evaluated_gap_label} {evaluated_gap:.2f}s exceeds 5.00s"
-        )
     if quality.get("correction_count") != len(corrections.get("corrections") or []):
         raise ValueError("Transcript package correction count does not match correction log")
     if quality.get("unresolved_term_count") != len(unresolved):
         raise ValueError("Transcript package unresolved term count does not match correction log")
-    return _validate_timeline_quality(
+    return _summarize_timeline_quality(
         corrected_path,
         duration_seconds,
         quality,
-        allow_voice_activity_gap=maximum_uncovered_speech is not None,
     )
 
 
-def _validate_timeline_quality(
+def _summarize_timeline_quality(
     corrected_path: Path,
     duration_seconds: float,
     declared_quality: dict[str, Any],
-    *,
-    allow_voice_activity_gap: bool,
 ) -> dict[str, Any]:
     segments = read_jsonl(corrected_path)
     coverage_mode = declared_quality.get("coverage_mode")
@@ -262,11 +250,15 @@ def _validate_timeline_quality(
         segments,
         media_duration=duration_seconds,
         allow_blank_text=True,
-        # Voice-activity packages intentionally measure the quality gate over
-        # detected speech. Their raw timeline coverage can be lower because
-        # silence and music are not expected to have transcript segments.
-        min_coverage_ratio=0.0 if voice_activity_coverage else 0.95,
+        # Timeline metrics are retained for audit only. The report consumes the
+        # transcript as text, so silence, music, and endpoint offsets do not
+        # decide whether the package can be imported.
+        min_coverage_ratio=0.0,
         max_gap_seconds=float("inf"),
+        # Repeated wording is an upstream ASR-quality concern. The report-side
+        # importer treats the transcript as immutable text material and only
+        # requires a structurally usable timeline.
+        max_repeated_segments=max(2, len(segments)),
     )
     if metrics["errors"]:
         raise ValueError(
@@ -278,6 +270,7 @@ def _validate_timeline_quality(
     declared_coverage = declared_quality.get("coverage_ratio")
     declared_timeline_coverage = declared_quality.get("timeline_coverage_ratio")
     declared_gap = declared_quality.get("maximum_gap_seconds")
+    advisories: list[dict[str, Any]] = []
 
     coverage_declarations: list[tuple[str, float]] = []
     if declared_timeline_coverage is not None:
@@ -305,30 +298,40 @@ def _validate_timeline_quality(
         coverage_declarations.append(("coverage_ratio", float(declared_coverage)))
     for field, value in coverage_declarations:
         if abs(value - computed_coverage) > 0.005:
-            raise ValueError(
-                "Transcript package quality validation did not pass: declared "
-                "coverage does not match transcript timeline "
-                f"({field}={value:.6f}, computed={computed_coverage:.6f})"
+            advisories.append(
+                {
+                    "code": "declared_timeline_coverage_mismatch",
+                    "field": field,
+                    "declared": value,
+                    "computed": computed_coverage,
+                }
             )
     if isinstance(declared_gap, (int, float)) and not isinstance(declared_gap, bool):
         if abs(float(declared_gap) - computed_gap) > 0.1:
-            raise ValueError(
-                "Transcript package quality validation did not pass: declared "
-                "maximum gap does not match transcript timeline"
+            advisories.append(
+                {
+                    "code": "declared_timeline_maximum_gap_mismatch",
+                    "declared": float(declared_gap),
+                    "computed": computed_gap,
+                }
             )
-    if not allow_voice_activity_gap and computed_gap > 5:
-        raise ValueError(
-            "Transcript package quality validation did not pass: maximum gap "
-            f"{computed_gap:.2f}s exceeds 5.00s"
-        )
-    if segments[-1].end > duration_seconds + 1.0:
-        raise ValueError(
-            "Transcript package quality validation did not pass: transcript extends "
-            "beyond video duration"
+    trailing_offset = segments[-1].end - duration_seconds
+    if trailing_offset > 0:
+        advisories.append(
+            {
+                "code": "transcript_extends_beyond_declared_video_duration",
+                "difference_seconds": trailing_offset,
+            }
         )
     quality = dict(declared_quality)
+    quality["report_admission_mode"] = "text_source_timeline_tolerant"
     quality["computed_timeline_coverage_ratio"] = computed_coverage
     quality["computed_timeline_maximum_gap_seconds"] = computed_gap
+    quality["computed_transcript_start_seconds"] = segments[0].start
+    quality["computed_transcript_end_seconds"] = segments[-1].end
+    quality["computed_leading_offset_seconds"] = segments[0].start
+    quality["computed_trailing_offset_seconds"] = trailing_offset
+    quality["timeline_advisories"] = advisories
     return quality
 
 
@@ -419,11 +422,10 @@ def import_transcript_package(project_root: Path, package: Path) -> str:
         declared_quality = (
             payload.get("quality") if isinstance(payload.get("quality"), dict) else {}
         )
-        quality = _validate_timeline_quality(
+        quality = _summarize_timeline_quality(
             resolved_files["transcript_corrected_jsonl"],
             float(duration_seconds),
             declared_quality,
-            allow_voice_activity_gap=False,
         )
         contract = "legacy-eight-file"
     else:

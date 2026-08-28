@@ -38,6 +38,48 @@
 
 行动姿态是研究工作流状态，不是买入、卖出、仓位或收益承诺。
 
+## JSON 契约
+
+顶层字段名必须是 `topics`，不是 `judgments`。每个主题使用以下结构；`next_verification` 可以是字符串或非空列表，其他字段名不得自行改写：
+
+```json
+{
+  "schema_version": 1,
+  "video_id": "video-001",
+  "source_as_of": "2026-08-28",
+  "disclaimer": "不代表视频作者观点，也不构成投资建议。",
+  "cross_topic_summary": "跨主题结论",
+  "topics": [
+    {
+      "topic_id": "topic-01",
+      "theme": "主题",
+      "conclusion": "结论",
+      "evidence_layers": {
+        "facts": ["可核对事实"],
+        "management_claims": [],
+        "inference": "证据之间的推论",
+        "agent_judgment": "Agent 的独立判断"
+      },
+      "confidence": "medium",
+      "time_horizon": "未来两个季度",
+      "priced_in": "已计价判断或无法观测的缺口",
+      "what_must_be_true": ["成立条件"],
+      "disconfirmers": ["未来 6 个月指标低于 10%"],
+      "downside_mechanism": {
+        "shock": "冲击",
+        "transmission": "传导",
+        "constraint": "约束",
+        "outcome": "结果"
+      },
+      "action_posture": "wait_for_proof",
+      "missing_evidence": "缺失证据",
+      "next_verification": ["下一次验证"],
+      "source_urls": ["https://example.com/source"]
+    }
+  ]
+}
+```
+
 ## 写作要求
 
 - 先给判断，再给证据，不复述整段视频；

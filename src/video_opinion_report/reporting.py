@@ -110,6 +110,34 @@ _CLAIM_COMPONENT_CLASSES = (
 )
 
 
+class _ReportComponentParser(HTMLParser):
+    """Collect raw report components without interpreting their prose."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.elements: list[tuple[str, set[str], dict[str, str]]] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        values = {name: value or "" for name, value in attrs}
+        classes = set(values.get("class", "").split())
+        if classes:
+            self.elements.append((tag, classes, values))
+
+    def handle_startendtag(
+        self, tag: str, attrs: list[tuple[str, str | None]]
+    ) -> None:
+        self.handle_starttag(tag, attrs)
+
+    def with_class(self, class_name: str) -> list[tuple[str, set[str], dict[str, str]]]:
+        return [element for element in self.elements if class_name in element[1]]
+
+
+def _report_components(text: str) -> _ReportComponentParser:
+    parser = _ReportComponentParser()
+    parser.feed(text)
+    return parser
+
+
 class _VisibleReportTextParser(HTMLParser):
     """Collect text that is visible before a reader opens disclosure widgets."""
 
@@ -184,6 +212,8 @@ class _ClaimComponentParser(HTMLParser):
         self.report_detail_count = 0
         self.open_report_detail_count = 0
         self.summary_dashboard_count = 0
+        self.investor_dashboard_count = 0
+        self.investor_topic_count = 0
         self._component_stack: list[tuple[str, str, str, list[str]]] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
@@ -195,6 +225,10 @@ class _ClaimComponentParser(HTMLParser):
                 self.open_report_detail_count += 1
         if "summary-dashboard" in classes:
             self.summary_dashboard_count += 1
+        if "investor-dashboard" in classes:
+            self.investor_dashboard_count += 1
+        if "investor-topic" in classes:
+            self.investor_topic_count += 1
         for class_name in _CLAIM_COMPONENT_CLASSES:
             if class_name in classes:
                 claim_id = values.get("data-claim-id", "")
@@ -310,7 +344,11 @@ def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
 def validate_report_layers(text: str) -> dict[str, int]:
     """Require ordered, visually separated report layers and a direct creator voice."""
     parse_front_matter(text)
-    external_marker = "本注为基于外部信源形成的独立研判，不代表视频作者观点。"
+    external_marker_pattern = re.compile(
+        r"(?:本注|本节|本部分)[^。\n]{0,120}"
+        r"外部(?:信源|证据)[^。\n]{0,120}研判[^。\n]{0,120}"
+        r"不代表视频作者观点"
+    )
     lines = text.splitlines()
     creator_headings = [
         index
@@ -330,6 +368,9 @@ def validate_report_layers(text: str) -> dict[str, int]:
         if line.startswith("## ") and "第三部分" in line and "Agent 综合判断" in line
     ]
     missing: list[str] = []
+    dashboard_count = 0
+    creator_view_card_count = 0
+    reported_view_card_count = 0
     if not creator_headings:
         missing.append("first creator-content section")
     if not external_headings:
@@ -340,6 +381,25 @@ def validate_report_layers(text: str) -> dict[str, int]:
         creator_start = creator_headings[0]
         external_start = external_headings[0]
         agent_start = agent_headings[0]
+        whole_components = _report_components(text)
+        dashboard_count = len(whole_components.with_class("investor-dashboard"))
+        if dashboard_count > 1:
+            missing.append("single investor dashboard")
+        elif dashboard_count == 1:
+            preamble = "\n".join(lines[:creator_start])
+            preamble_components = _report_components(preamble)
+            dashboards = preamble_components.with_class("investor-dashboard")
+            if len(dashboards) != 1:
+                missing.append("investor dashboard before creator-content section")
+            else:
+                _, _, dashboard_attributes = dashboards[0]
+                if dashboard_attributes.get("id") != "investor-dashboard":
+                    missing.append("investor dashboard anchor")
+                boundary_label = re.compile(
+                    r"报告综合\s*(?:[·｜|/]\s*)?非视频原内容"
+                )
+                if not boundary_label.search(preamble):
+                    missing.append("investor dashboard non-video boundary label")
         if not creator_start < external_start < agent_start:
             missing.append("ordered three-part structure")
         else:
@@ -357,21 +417,67 @@ def validate_report_layers(text: str) -> dict[str, int]:
             attribution_count = len(host_voice_pattern.findall(creator_content))
             if attribution_count:
                 missing.append("third-person attribution in creator-content section")
-            if external_marker in creator_content or 'class="assessment"' in creator_content:
+            if (
+                external_marker_pattern.search(creator_content)
+                or 'class="assessment"' in creator_content
+            ):
                 missing.append("external assessment leaked into creator-content section")
-            speaker_marker = 'class="speaker-opinion-marker"'
-            speaker_opinion_marker_count = creator_content.count(speaker_marker)
-            total_speaker_opinion_marker_count = text.count(speaker_marker)
-            valid_speaker_marker_pattern = re.compile(
-                r'<div\s+class="speaker-opinion-marker"\s+data-speaker="[^"]+"[^>]*>'
-                r'[^\n]*class="speaker-opinion-kicker"[^\n]*</div>',
+            creator_components = _report_components(creator_content)
+            speaker_markers = creator_components.with_class("speaker-opinion-marker")
+            all_speaker_markers = whole_components.with_class(
+                "speaker-opinion-marker"
             )
-            valid_speaker_opinion_marker_count = len(
-                valid_speaker_marker_pattern.findall(creator_content)
-            )
+            speaker_opinion_marker_count = len(speaker_markers)
+            total_speaker_opinion_marker_count = len(all_speaker_markers)
             if total_speaker_opinion_marker_count != speaker_opinion_marker_count:
                 missing.append("speaker-opinion marker outside creator-content section")
-            if valid_speaker_opinion_marker_count != speaker_opinion_marker_count:
+            kicker_count = len(
+                creator_components.with_class("speaker-opinion-kicker")
+            )
+            malformed_speaker_marker = kicker_count != speaker_opinion_marker_count
+            creator_view_card_count = 0
+            reported_view_card_count = 0
+            for _, classes, attributes in speaker_markers:
+                speaker = attributes.get("data-speaker", "").strip()
+                if not speaker:
+                    malformed_speaker_marker = True
+                enhanced = bool(
+                    classes.intersection({"creator-view-card", "reported-view-card"})
+                )
+                if not enhanced:
+                    continue
+                stance_owner = attributes.get("data-stance-owner", "").strip()
+                attribution_mode = attributes.get(
+                    "data-attribution-mode", ""
+                ).strip()
+                if not stance_owner or attribution_mode not in {
+                    "self",
+                    "reported",
+                    "direct_quote",
+                    "uncertain",
+                }:
+                    malformed_speaker_marker = True
+                if "creator-view-card" in classes:
+                    creator_view_card_count += 1
+                    if (
+                        attribution_mode != "self"
+                        or speaker.casefold() != stance_owner.casefold()
+                    ):
+                        malformed_speaker_marker = True
+                if "reported-view-card" in classes:
+                    reported_view_card_count += 1
+                    if attribution_mode not in {
+                        "reported",
+                        "direct_quote",
+                        "uncertain",
+                    }:
+                        malformed_speaker_marker = True
+                if {
+                    "creator-view-card",
+                    "reported-view-card",
+                } <= classes:
+                    malformed_speaker_marker = True
+            if malformed_speaker_marker:
                 missing.append("malformed speaker-opinion marker")
             quick_news_grid_count = creator_content.count('class="quick-news-grid"')
             tech_five_news_heading_pattern = re.compile(
@@ -433,6 +539,9 @@ def validate_report_layers(text: str) -> dict[str, int]:
         attribution_count = 0
         unlabeled_editorial_note_count = 0
         speaker_opinion_marker_count = 0
+        creator_view_card_count = 0
+        reported_view_card_count = 0
+        dashboard_count = 0
         tech_five_news_heading_count = 0
         promotional_content_count = 0
         tech_news_visible_timestamp_count = 0
@@ -446,7 +555,8 @@ def validate_report_layers(text: str) -> dict[str, int]:
     duration_weighting_count = len(duration_weight_pattern.findall(text))
     if duration_weighting_count:
         missing.append("duration-derived topic weighting")
-    if external_marker not in text:
+    external_disclaimer_count = len(external_marker_pattern.findall(text))
+    if not external_disclaimer_count:
         missing.append("external evidence assessment disclaimer")
     if "本节为 Agent" not in text or "不构成投资建议" not in text:
         missing.append("Agent judgment disclaimer")
@@ -457,13 +567,16 @@ def validate_report_layers(text: str) -> dict[str, int]:
     if missing:
         raise ValueError(f"Final report is missing required layers: {', '.join(missing)}")
     return {
-        "external_assessment_disclaimer_count": text.count(external_marker),
+        "external_assessment_disclaimer_count": external_disclaimer_count,
         "agent_judgment_heading_count": len(agent_headings),
         "layer_heading_count": 3,
         "creator_direct_voice_attribution_count": attribution_count,
         "duration_weighting_count": duration_weighting_count,
         "unlabeled_editorial_note_count": unlabeled_editorial_note_count,
         "speaker_opinion_marker_count": speaker_opinion_marker_count,
+        "creator_view_card_count": creator_view_card_count,
+        "reported_view_card_count": reported_view_card_count,
+        "investor_dashboard_count": dashboard_count,
         "tech_five_news_heading_count": tech_five_news_heading_count,
         "promotional_content_count": promotional_content_count,
         "tech_news_visible_timestamp_count": tech_news_visible_timestamp_count,
@@ -640,6 +753,20 @@ def validate_report_readability(
 
     if block_sizes and max(block_sizes) > 420:
         violations.append("a default-visible paragraph exceeds 420 CJK characters")
+    if claim_parser.investor_dashboard_count:
+        creator_heading = next(
+            (
+                match.start()
+                for match in re.finditer(r"^##\s+", body, flags=re.MULTILINE)
+                if "第一部分" in body[match.start() : body.find("\n", match.start())]
+            ),
+            len(body),
+        )
+        dashboard_metrics = _visible_metrics(body[:creator_heading])
+        if int(dashboard_metrics["cjk_count"]) > 1200:
+            violations.append("investor dashboard exceeds 1200 CJK characters")
+        if not 1 <= claim_parser.investor_topic_count <= 8:
+            violations.append("investor dashboard needs 1 to 8 investor-topic cards")
 
     normalized_by_layer = {
         name: {
@@ -675,6 +802,8 @@ def validate_report_readability(
         "report_detail_count": claim_parser.report_detail_count,
         "open_report_detail_count": claim_parser.open_report_detail_count,
         "claim_map_count": len(claim_sets["topic-brief"]),
+        "investor_dashboard_count": claim_parser.investor_dashboard_count,
+        "investor_topic_count": claim_parser.investor_topic_count,
         "max_claim_brief_cjk_count": max(claim_brief_sizes, default=0),
         "visible_quote_cjk_count": visible_quote_cjk,
         "long_visible_block_count": sum(size > 180 for size in block_sizes),
@@ -722,6 +851,8 @@ def _add_reading_paths(body_html: str) -> str:
                 break
             links.append(f'<a href="#{anchor}">{label}</a>')
         else:
+            if mode == "video" and 'id="investor-dashboard"' in updated:
+                links.insert(0, '<a href="#investor-dashboard">投资总览</a>')
             nav = (
                 f'<nav class="reading-paths {mode}" aria-label="阅读路径">'
                 '<strong>阅读路径</strong>'

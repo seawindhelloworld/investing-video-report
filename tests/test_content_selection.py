@@ -4,7 +4,10 @@ import unittest
 from pathlib import Path
 
 from video_opinion_report.cli import record_analysis
-from video_opinion_report.content_selection import materialize_content_selection
+from video_opinion_report.content_selection import (
+    materialize_content_selection,
+    materialize_model_transcript_view,
+)
 from video_opinion_report.models import Stage
 from video_opinion_report.store import ManifestStore
 
@@ -16,6 +19,24 @@ TRANSCRIPT = """{"segment_id":"seg-001","start":0,"end":2,"text":"订阅并购�
 
 
 class ContentSelectionTests(unittest.TestCase):
+    def test_materializes_lossless_low_overhead_model_view(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            transcript = root / "transcript.report.jsonl"
+            transcript.write_text(TRANSCRIPT, encoding="utf-8")
+            model_view = root / "transcript.report.model.txt"
+            metadata = materialize_model_transcript_view(
+                transcript_path=transcript,
+                output_path=model_view,
+                source_artifact=transcript.name,
+            )
+            text = model_view.read_text(encoding="utf-8")
+            self.assertEqual(metadata["segment_count"], 3)
+            self.assertIn(f"source_sha256={metadata['source_sha256']}", text)
+            self.assertIn('seg-002\t2.000\t4.000\t"正文一"', text)
+            self.assertNotIn('"segment_id":', text)
+            self.assertNotIn('"source_chunk":', text)
+
     def test_removes_blank_segments_without_model_exclusion(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

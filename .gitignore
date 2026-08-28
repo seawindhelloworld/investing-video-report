@@ -16,6 +16,7 @@ state/*.json
 
 # Visual QA screenshots and regenerated PDFs are local verification artifacts.
 reports/**/qa/
+output/previews/
 
 # Browser exports and local authentication material must never be committed.
 cookies*.txt

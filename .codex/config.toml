@@ -1,3 +1,2 @@
-[agents]
-enabled = true
-max_concurrent_threads_per_session = 4
+# Project-specific Agent roles are intentionally not configured here.
+# Report automation disables multi-Agent features explicitly on the CLI.

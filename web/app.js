@@ -10,6 +10,8 @@ const modelInput = document.querySelector("#model");
 const effortInput = document.querySelector("#reasoning-effort");
 const fastModeInput = document.querySelector("#codex-fast-mode");
 const fastModeRow = document.querySelector("#fast-mode-row");
+const regenerateInput = document.querySelector("#regenerate-report");
+const regenerateRow = document.querySelector("#regenerate-row");
 const submitButton = document.querySelector("#generate-button");
 const formError = document.querySelector("#form-error");
 const emptyState = document.querySelector("#empty-state");
@@ -126,8 +128,11 @@ function selectReportType(nextType, { resetFile = false } = {}) {
     ? "支持 TXT、Markdown、HTML、DOC/DOCX、RTF、PNG、JPG 和 WebP"
     : "压缩包内需包含唯一的 package.json 及其引用文件";
   document.querySelector("#content-id-label").textContent = material ? "素材 ID" : "视频 ID";
+  regenerateRow.hidden = material;
+  regenerateInput.disabled = material;
   selectMode(material ? "zip" : importMode);
   renderStages(material ? MATERIAL_STAGES : VIDEO_STAGES);
+  updateEffortDescription();
   if (resetFile) {
     archiveInput.value = "";
     document.querySelector("#archive-name").textContent = "尚未选择文件";
@@ -173,6 +178,15 @@ async function loadConfig() {
   } catch {
     showError(formError, "无法读取服务配置，请刷新页面重试。");
   }
+}
+
+function updateEffortDescription() {
+  document.querySelector("#effort-label").textContent = reportType === "video" ? "推理强度上限" : "推理强度";
+  document.querySelector("#effort-note").textContent = engine === "codex"
+    ? (reportType === "video"
+      ? "选项会随模型变化；分析、研究和起草最高 high，原意审查最高 medium。"
+      : "选项会随当前 Codex 模型自动变化。")
+    : "选项来自该 OpenCode 模型的本机元数据，并作为 --variant 传入。";
 }
 
 function updateModelDependentControls() {
@@ -258,10 +272,7 @@ async function selectEngine(nextEngine) {
   });
   document.querySelector("#engine-warning").hidden = engine !== "opencode";
   document.querySelector("#model-label").textContent = engine === "codex" ? "Codex 模型" : "OpenCode 模型";
-  document.querySelector("#effort-label").textContent = "推理强度";
-  document.querySelector("#effort-note").textContent = engine === "codex"
-    ? "选项会随当前 Codex 模型自动变化。"
-    : "选项来自该 OpenCode 模型的本机元数据，并作为 --variant 传入。";
+  updateEffortDescription();
   fastModeRow.hidden = engine !== "codex";
   await loadEngineModels(engine);
 }
@@ -361,6 +372,71 @@ function syncSubmitButton() {
       : "开始生成报告";
 }
 
+function stopJobPolling() {
+  if (pollTimer === null) return;
+  clearInterval(pollTimer);
+  pollTimer = null;
+}
+
+function renderEmptyJobState() {
+  stopJobPolling();
+  currentJobId = null;
+  emptyState.hidden = false;
+  jobView.hidden = true;
+  jobStatus.textContent = "等待任务";
+  jobStatus.className = "status-chip idle";
+  renderJobList(jobHistory);
+}
+
+function renderSubmittingState() {
+  stopJobPolling();
+  currentJobId = null;
+  renderJobList(jobHistory);
+  emptyState.hidden = true;
+  jobView.hidden = false;
+  renderStages(reportType === "material" ? MATERIAL_STAGES : VIDEO_STAGES);
+  updateStages({});
+  jobStatus.textContent = "提交中";
+  jobStatus.className = "status-chip running";
+  document.querySelector("#job-title").textContent = "正在创建新任务";
+  document.querySelector("#detail-report-type").textContent = reportTypeLabel(reportType);
+  document.querySelector("#content-id-label").textContent = reportType === "material" ? "素材 ID" : "视频 ID";
+  document.querySelector("#content-id").textContent = "等待服务确认";
+  document.querySelector("#detail-engine").textContent = engineLabel(engine);
+  document.querySelector("#detail-model").textContent = modelInput.value || "—";
+  document.querySelector("#detail-effort").textContent = effortInput.value || "—";
+  document.querySelector("#detail-service-tier").textContent = engine === "codex"
+    ? (fastModeInput.checked && !fastModeInput.disabled ? "Fast" : "标准")
+    : "—";
+  document.querySelector("#detail-created-at").textContent = "刚刚";
+  document.querySelector("#detail-job-id").textContent = "待分配";
+  document.querySelector("#detail-started-at").textContent = "—";
+  document.querySelector("#detail-finished-at").textContent = "—";
+  document.querySelector("#detail-package").textContent = "正在上传并校验输入";
+  document.querySelector("#detail-run-mode").textContent = (
+    reportType === "video" && regenerateInput.checked ? "重新生成（保留旧版）" : "复用或续跑"
+  );
+  document.querySelector("#job-activity").textContent = "正在上传输入并创建新任务…";
+  document.querySelector("#job-progress-value").textContent = "0%";
+  document.querySelector("#job-progress-bar").style.width = "0%";
+  document.querySelector("#job-current-stage").textContent = "准备中";
+  document.querySelector("#job-stage-elapsed").textContent = "0 秒";
+  document.querySelector("#job-last-event").textContent = "刚刚";
+  document.querySelector("#job-heartbeat").textContent = "等待服务确认";
+  document.querySelector("#job-heartbeat").classList.remove("stale");
+  const pulse = document.querySelector("#activity-pulse");
+  pulse.classList.add("running");
+  pulse.classList.remove("stale");
+  jobLog.textContent = "正在上传输入并创建新任务…";
+  document.querySelector(".log-panel summary span").textContent = "等待任务 ID";
+  const rawLogLink = document.querySelector("#raw-log-link");
+  rawLogLink.hidden = true;
+  rawLogLink.removeAttribute("href");
+  cancelButton.hidden = true;
+  resultActions.hidden = true;
+  showError(jobError, "");
+}
+
 function renderJobList(jobs) {
   jobList.replaceChildren();
   jobCount.textContent = `${jobs.length} 个任务`;
@@ -426,9 +502,17 @@ async function loadJobs({ selectActive = false } = {}) {
   hasActiveJob = jobHistory.some((job) => displayStatus(job.status) === "running");
   renderJobList(jobHistory);
   syncSubmitButton();
-  if (selectActive && !currentJobId) {
-    const active = jobHistory.find((job) => displayStatus(job.status) === "running");
-    if (active) await openJob(active.job_id);
+  const active = jobHistory.find((job) => displayStatus(job.status) === "running");
+  if (selectActive && active && active.job_id !== currentJobId) {
+    await openJob(active.job_id);
+    return;
+  }
+  if (
+    currentJobId
+    && !submitting
+    && !jobHistory.some((job) => job.job_id === currentJobId)
+  ) {
+    renderEmptyJobState();
   }
 }
 
@@ -451,6 +535,9 @@ function renderJobDetails(job) {
   document.querySelector("#detail-started-at").textContent = formatTime(job.started_at);
   document.querySelector("#detail-finished-at").textContent = formatTime(job.finished_at);
   document.querySelector("#detail-package").textContent = job.package_manifest || "—";
+  document.querySelector("#detail-run-mode").textContent = job.regenerate
+    ? "重新生成（保留旧版）"
+    : "复用或续跑";
   const normalized = displayStatus(job.status);
   const progress = Number.isFinite(job.progress_percent) ? job.progress_percent : 0;
   const activityText = job.retrying
@@ -465,6 +552,7 @@ function renderJobDetails(job) {
     : `${job.completed_stage_count || 0}/${job.total_stage_count || 0}`;
   document.querySelector("#job-stage-elapsed").textContent = formatElapsed(secondsSince(job.stage_started_at));
   document.querySelector("#job-last-event").textContent = formatRecency(job.last_event_at);
+  document.querySelector("#job-token-usage").textContent = Number(job.token_usage_total || 0).toLocaleString("zh-CN");
   const heartbeatAge = secondsSince(job.heartbeat_at);
   const heartbeat = document.querySelector("#job-heartbeat");
   heartbeat.textContent = normalized !== "running"
@@ -487,11 +575,17 @@ function renderJobDetails(job) {
 
   const reportUrl = job.result?.report_url;
   const markdownUrl = job.result?.markdown_url;
+  const previousReportUrl = job.result?.previous_report_url;
+  const previousReportLink = document.querySelector("#open-previous-report");
   if (normalized === "completed" && reportUrl?.startsWith("/outputs/") && markdownUrl?.startsWith("/outputs/")) {
     document.querySelector("#open-report").href = reportUrl;
     document.querySelector("#download-markdown").href = markdownUrl;
+    previousReportLink.hidden = !previousReportUrl?.startsWith("/outputs/");
+    if (!previousReportLink.hidden) previousReportLink.href = previousReportUrl;
     resultActions.hidden = false;
   } else {
+    previousReportLink.hidden = true;
+    previousReportLink.removeAttribute("href");
     resultActions.hidden = true;
   }
   showError(jobError, normalized === "failed" ? (job.error || "报告未能完成，请查看日志。") : "");
@@ -508,15 +602,12 @@ async function pollJob(jobId) {
     if (jobId !== currentJobId) return job;
     renderJobDetails(job);
     if (displayStatus(job.status) !== "running") {
-      clearInterval(pollTimer);
-      pollTimer = null;
+      stopJobPolling();
       await loadJobs();
     }
     return job;
   } catch (error) {
     if (jobId === currentJobId) {
-      clearInterval(pollTimer);
-      pollTimer = null;
       showError(jobError, error.message);
     }
     return null;
@@ -525,13 +616,12 @@ async function pollJob(jobId) {
 
 async function openJob(jobId, { scroll = false } = {}) {
   currentJobId = jobId;
-  clearInterval(pollTimer);
-  pollTimer = null;
+  stopJobPolling();
   renderJobList(jobHistory);
   emptyState.hidden = true;
   jobView.hidden = false;
   const job = await pollJob(jobId);
-  if (job && displayStatus(job.status) === "running" && currentJobId === jobId) {
+  if ((!job || displayStatus(job.status) === "running") && currentJobId === jobId) {
     pollTimer = setInterval(() => pollJob(jobId), 1000);
   }
   if (scroll) progressPanel.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -567,6 +657,10 @@ form.addEventListener("submit", async (event) => {
     "codex_service_tier",
     engine === "codex" && fastModeInput.checked && !fastModeInput.disabled ? "fast" : "default",
   );
+  data.append(
+    "regenerate",
+    reportType === "video" && regenerateInput.checked && !regenerateInput.disabled ? "true" : "false",
+  );
 
   if (!modelInput.value.trim()) {
     showError(formError, "请选择要调用的模型。");
@@ -596,6 +690,8 @@ form.addEventListener("submit", async (event) => {
   }
 
   submitting = true;
+  const previousJobId = currentJobId;
+  renderSubmittingState();
   syncSubmitButton();
   try {
     const response = await fetch("/api/jobs", { method: "POST", body: data });
@@ -609,6 +705,11 @@ form.addEventListener("submit", async (event) => {
   } catch (error) {
     submitting = false;
     await loadJobs().catch(() => {});
+    if (previousJobId && jobHistory.some((item) => item.job_id === previousJobId)) {
+      await openJob(previousJobId).catch(() => {});
+    } else if (!currentJobId) {
+      renderEmptyJobState();
+    }
     syncSubmitButton();
     showError(formError, error.message);
   }
@@ -624,4 +725,4 @@ loadJobs({ selectActive: true }).catch((error) => showError(jobError, error.mess
 clearInterval(listTimer);
 listTimer = setInterval(() => {
   loadJobs({ selectActive: true }).catch(() => {});
-}, 4000);
+}, 2000);

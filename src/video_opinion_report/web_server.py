@@ -114,6 +114,18 @@ def _one_line(value: object, limit: int = 220) -> str:
     return text if len(text) <= limit else text[: limit - 1] + "…"
 
 
+def codex_event_token_total(payload: dict[str, Any]) -> int:
+    if payload.get("type") != "turn.completed":
+        return 0
+    usage = payload.get("usage")
+    if not isinstance(usage, dict):
+        return 0
+    return sum(
+        int(usage.get(key) or 0)
+        for key in ("input_tokens", "output_tokens", "reasoning_output_tokens")
+    )
+
+
 def summarize_codex_event(payload: dict[str, Any]) -> tuple[str, str] | None:
     event_type = str(payload.get("type") or "")
     if event_type == "thread.started":
@@ -121,13 +133,7 @@ def summarize_codex_event(payload: dict[str, Any]) -> tuple[str, str] | None:
     if event_type == "turn.started":
         return "thinking", "模型开始分析"
     if event_type == "turn.completed":
-        usage = payload.get("usage")
-        total = 0
-        if isinstance(usage, dict):
-            total = sum(
-                int(usage.get(key) or 0)
-                for key in ("input_tokens", "output_tokens", "reasoning_output_tokens")
-            )
+        total = codex_event_token_total(payload)
         suffix = f" · {total:,} tokens" if total else ""
         return "turn_completed", "模型阶段完成" + suffix
     if event_type == "turn.failed":
@@ -506,6 +512,7 @@ class ReportJob:
     package_manifest: str
     log_path: Path
     codex_service_tier: str = "default"
+    regenerate: bool = False
     title: str = ""
     status: str = "queued"
     created_at: str = field(default_factory=utc_now)
@@ -521,6 +528,8 @@ class ReportJob:
     current_stage: str | None = None
     stage_started_at: str | None = None
     raw_log_path: Path | None = None
+    token_usage_total: int = 0
+    stage_token_usage: dict[str, int] = field(default_factory=dict)
     recent_events: list[dict[str, str]] = field(default_factory=list)
     process: subprocess.Popen[str] | None = field(default=None, repr=False)
 
@@ -604,6 +613,16 @@ class JobRegistry:
             job = self._jobs.get(job_id)
             if job is not None and job.status == "running":
                 job.heartbeat_at = utc_now()
+
+    def record_token_usage(self, job_id: str, stage: str, tokens: int) -> None:
+        if tokens <= 0:
+            return
+        with self._lock:
+            job = self._jobs[job_id]
+            job.token_usage_total += tokens
+            job.stage_token_usage[stage] = (
+                job.stage_token_usage.get(stage, 0) + tokens
+            )
 
     def begin(self, job_id: str) -> bool:
         with self._lock:
@@ -737,6 +756,8 @@ class JobRegistry:
             stage_started_at = live_job.stage_started_at
             recent_events = list(live_job.recent_events)
             raw_log_path = live_job.raw_log_path
+            token_usage_total = live_job.token_usage_total
+            stage_token_usage = dict(live_job.stage_token_usage)
         completed_stage_count = sum(
             stage_statuses.get(key) == "completed" for key, _, _ in definitions
         )
@@ -760,6 +781,7 @@ class JobRegistry:
             "model": job.model,
             "reasoning_effort": job.reasoning_effort,
             "codex_service_tier": job.codex_service_tier,
+            "regenerate": job.regenerate,
             "status": job.status,
             "display_status": self.display_status(job.status),
             "created_at": job.created_at,
@@ -789,6 +811,8 @@ class JobRegistry:
             "process_alive": process_alive,
             "recent_events": recent_events,
             "raw_log_available": bool(raw_log_path and raw_log_path.is_file()),
+            "token_usage_total": token_usage_total,
+            "stage_token_usage": stage_token_usage,
             "stage_definitions": [
                 {"key": key, "label": label, "description": description}
                 for key, label, description in definitions
@@ -813,6 +837,7 @@ class JobRegistry:
                     "model": job.model,
                     "reasoning_effort": job.reasoning_effort,
                     "codex_service_tier": job.codex_service_tier,
+                    "regenerate": job.regenerate,
                     "activity": job.activity,
                     "heartbeat_at": job.heartbeat_at,
                     "status": job.status,
@@ -871,11 +896,14 @@ class ReportWebApplication:
         model: str,
         reasoning_effort: str,
         codex_service_tier: str = "default",
+        regenerate: bool = False,
     ) -> ReportJob:
         if engine not in ENGINES:
             raise ValueError("Unsupported automation engine")
         if report_type not in REPORT_TYPES:
             raise ValueError("Unsupported report type")
+        if regenerate and report_type != "video":
+            raise ValueError("只有视频报告支持保留旧版后重新生成")
         if not model or any(character in model for character in "\r\n\0"):
             raise ValueError("A valid model is required")
         if engine == "codex" and not self.config.codex_binary:
@@ -917,6 +945,7 @@ class ReportWebApplication:
             package_manifest=str(package_manifest.resolve()),
             log_path=log_path,
             codex_service_tier=codex_service_tier,
+            regenerate=regenerate,
             title=str(metadata.get("title") or content_id),
         )
         self.registry.add(job)
@@ -956,6 +985,7 @@ class ReportWebApplication:
             sandbox=self.config.sandbox,
             report_type=job.report_type,
             codex_service_tier=job.codex_service_tier,
+            regenerate=job.regenerate,
         )
 
         def logged_runner(
@@ -967,15 +997,43 @@ class ReportWebApplication:
             check: bool,
         ) -> subprocess.CompletedProcess[str]:
             del text, check
+            if job.engine == "codex":
+                active_tier = f'service_tier="{job.codex_service_tier}"'
+                command = [
+                    active_tier if argument.startswith("service_tier=") else argument
+                    for argument in command
+                ]
             raw_log_path = job.log_path.with_suffix(".raw.jsonl")
             raw_tail: list[str] = []
             self.registry.update(job.job_id, raw_log_path=raw_log_path)
+            stage_label = None
+            if job.report_type == "video":
+                stage_details = self.registry.stage_details(
+                    job.report_type, job.content_id
+                )
+                running_stage = next(
+                    (
+                        key
+                        for key, _, _ in VIDEO_STAGE_DEFINITIONS
+                        if stage_details.get(key, {}).get("status") == "running"
+                    ),
+                    None,
+                )
+                stage_label = next(
+                    (
+                        label
+                        for key, label, _ in VIDEO_STAGE_DEFINITIONS
+                        if key == running_stage
+                    ),
+                    None,
+                )
             with (
                 job.log_path.open("a", encoding="utf-8", buffering=1) as log,
                 raw_log_path.open("a", encoding="utf-8", buffering=1) as raw_log,
             ):
                 started_message = (
-                    f"启动 {job.engine} {job.report_type} 自动化"
+                    f"启动 {job.engine} "
+                    + (f"{stage_label}阶段" if stage_label else f"{job.report_type} 自动化")
                     + (
                         " · Fast 模式"
                         if job.engine == "codex" and job.codex_service_tier == "fast"
@@ -1006,6 +1064,17 @@ class ReportWebApplication:
                             raw_tail.append(_one_line(raw_line, 1_000))
                             if len(raw_tail) > 80:
                                 del raw_tail[:-80]
+                            if job.engine == "codex":
+                                try:
+                                    raw_event = json.loads(raw_line)
+                                except json.JSONDecodeError:
+                                    raw_event = None
+                                if isinstance(raw_event, dict):
+                                    self.registry.record_token_usage(
+                                        job.job_id,
+                                        running_stage or "model",
+                                        codex_event_token_total(raw_event),
+                                    )
                             summary = summarize_engine_line(raw_line, job.engine)
                             if summary is None:
                                 continue
@@ -1053,7 +1122,10 @@ class ReportWebApplication:
                 log.write(f"[{utc_now()}] {exit_message}\n")
                 self.registry.record_event(job.job_id, "engine_exit", exit_message)
                 if process.returncode == 0:
-                    validation_message = "模型阶段结束，正在进行浏览器验收与产物封板"
+                    validation_message = (
+                        (f"{stage_label}模型阶段结束，" if stage_label else "模型阶段结束，")
+                        + "自动继续下一阶段或验收封板"
+                    )
                     log.write(f"[{utc_now()}] {validation_message}\n")
                     self.registry.record_event(
                         job.job_id, "validating", validation_message
@@ -1089,22 +1161,51 @@ class ReportWebApplication:
 
         try:
             self.registry.record_event(
-                job.job_id, "pipeline", "正在检查已有产物并从首个未完成阶段恢复"
+                job.job_id,
+                "pipeline",
+                (
+                    "正在保存旧报告快照并准备从原意分析重新生成"
+                    if job.regenerate
+                    else "正在检查已有产物并从首个未完成阶段恢复"
+                ),
             )
             result = run_automation(config, run_command=logged_runner)
             if job.cancel_requested:
                 raise JobCancelledError("任务已由用户取消")
-            output_directory = Path(str(result["output_directory"]))
-            relative = output_directory.relative_to(self.config.output_root)
+            output_root = self.config.output_root.resolve()
+            output_directory = Path(str(result["output_directory"])).resolve()
+            relative = output_directory.relative_to(output_root)
             result["report_url"] = "/outputs/" + relative.as_posix() + "/index.html"
             result["markdown_url"] = "/outputs/" + relative.as_posix() + "/report.md"
+            previous_revision = result.get("previous_revision")
+            if isinstance(previous_revision, dict) and previous_revision.get(
+                "output_directory"
+            ):
+                previous_output = (
+                    self.config.project_root
+                    / str(previous_revision["output_directory"])
+                ).resolve()
+                previous_relative = previous_output.relative_to(output_root)
+                result["previous_report_url"] = (
+                    "/outputs/" + previous_relative.as_posix() + "/index.html"
+                )
+                result["previous_markdown_url"] = (
+                    "/outputs/" + previous_relative.as_posix() + "/report.md"
+                )
             self.registry.update(
                 job.job_id,
                 status="completed",
                 finished_at=utc_now(),
                 result=result,
             )
-            self.registry.record_event(job.job_id, "completed", "报告已完成并通过验收")
+            completed_message = (
+                "已复用现有报告（未调用模型）"
+                if result.get("reused_existing")
+                else "新报告已完成并通过验收，旧版已保留用于对比"
+                if result.get("regenerated")
+                else "报告已完成并通过验收"
+            )
+            self.registry.record_event(job.job_id, "completed", completed_message)
         except Exception as exc:
             with job.log_path.open("a", encoding="utf-8") as log:
                 log.write("\n" + traceback.format_exc() + "\n")
@@ -1335,6 +1436,10 @@ class ReportRequestHandler(BaseHTTPRequestHandler):
                 text_field(fields, "codex_service_tier")
                 or self.application.config.default_codex_service_tier
             )
+            regenerate_value = text_field(fields, "regenerate") or "false"
+            if regenerate_value not in {"true", "false"}:
+                raise ValueError("重新生成参数无效")
+            regenerate = regenerate_value == "true"
             package_path = text_field(fields, "package_path")
             upload_id = uuid.uuid4().hex
             upload_directory = self.application.upload_root / upload_id
@@ -1384,6 +1489,7 @@ class ReportRequestHandler(BaseHTTPRequestHandler):
                 model=model,
                 reasoning_effort=reasoning_effort,
                 codex_service_tier=codex_service_tier,
+                regenerate=regenerate,
             )
             self._send_json(
                 HTTPStatus.ACCEPTED,

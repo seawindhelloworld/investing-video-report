@@ -9,9 +9,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from .content_selection import materialize_content_selection
+from .content_selection import (
+    materialize_content_selection,
+    materialize_model_transcript_view,
+)
 from .ingestion import import_transcript_package
-from .models import Stage
+from .models import Stage, StageStatus
 from .reporting import (
     build_structured_artifacts,
     render_markdown_report,
@@ -114,6 +117,14 @@ def _completed_with_artifacts(root: Path, manifest: object, stage: Stage, *keys:
         return False
     for key in keys:
         _artifact_path(root, manifest, key)
+    return True
+
+
+def _start_stage_if_needed(manifest: object, stage: Stage) -> bool:
+    record = getattr(manifest, "stages")[stage.value]
+    if record.status == StageStatus.RUNNING:
+        return False
+    getattr(manifest, "start")(stage)
     return True
 
 
@@ -225,15 +236,25 @@ def record_analysis(root: Path, video_id: str, analysis_path: Path, opinions_pat
         _artifact_path(root, manifest, "video_analysis")
         _artifact_path(root, manifest, "opinions")
         _artifact_path(root, manifest, "content_selection")
-        _artifact_path(root, manifest, "transcript_report_jsonl")
+        report_transcript = _artifact_path(root, manifest, "transcript_report_jsonl")
+        model_view = (
+            store.run_dir(video_id) / "transcript" / "transcript.report.model.txt"
+        )
+        materialize_model_transcript_view(
+            transcript_path=report_transcript,
+            output_path=model_view,
+            source_artifact=report_transcript.name,
+        )
+        store.set_artifact(manifest, "transcript_report_model", model_view)
+        store.save(manifest)
         return
-    if not already_complete:
-        manifest.start(stage)
+    if not already_complete and _start_stage_if_needed(manifest, stage):
         store.save(manifest)
     try:
         analysis = _load_object(analysis_file)
-        if analysis.get("schema_version") != 1:
-            raise ValueError("video-analysis must use schema_version 1")
+        analysis_schema = analysis.get("schema_version")
+        if analysis_schema not in {1, 2}:
+            raise ValueError("video-analysis must use schema_version 1 or 2")
         if str(analysis.get("video_id")) != video_id:
             raise ValueError("video-analysis video_id does not match the run")
         if "targeted_corrections" in analysis:
@@ -253,6 +274,8 @@ def record_analysis(root: Path, video_id: str, analysis_path: Path, opinions_pat
         for field in ("sections", "topic_clusters", "transcript_risks"):
             if not isinstance(analysis.get(field), list):
                 raise ValueError(f"video-analysis {field} must be a list")
+        if analysis_schema == 2 and not analysis["sections"]:
+            raise ValueError("video-analysis v2 needs at least one reportable section")
         for field in ("excluded_ranges", "non_reportable_ranges"):
             if not isinstance(analysis.get(field), list):
                 raise ValueError(f"video-analysis {field} must be a list")
@@ -273,11 +296,21 @@ def record_analysis(root: Path, video_id: str, analysis_path: Path, opinions_pat
         transcript_positions = {
             segment.segment_id: index for index, segment in enumerate(transcript)
         }
+        section_ranges: dict[str, tuple[int, int]] = {}
         for section in analysis["sections"]:  # type: ignore[index]
             if not isinstance(section, dict):
                 raise ValueError("video-analysis sections must contain objects")
             for field in ("section_id", "title", "segment_start", "segment_end"):
                 _text(section.get(field), f"video-analysis section {field}")
+            section_id = str(section["section_id"])
+            if section_id in section_ranges:
+                raise ValueError(f"Duplicate video-analysis section_id: {section_id}")
+            if analysis_schema == 2:
+                _text(section.get("summary"), f"video-analysis section {section_id} summary")
+                _text_list(
+                    section.get("key_points"),
+                    f"video-analysis section {section_id} key_points",
+                )
             start_id = str(section["segment_start"])
             end_id = str(section["segment_end"])
             if (
@@ -288,6 +321,10 @@ def record_analysis(root: Path, video_id: str, analysis_path: Path, opinions_pat
                 raise ValueError(
                     f"video-analysis section has an invalid transcript range: {start_id}–{end_id}"
                 )
+            section_ranges[section_id] = (
+                transcript_positions[start_id],
+                transcript_positions[end_id],
+            )
         selection_path = store.run_dir(video_id) / "content-selection.json"
         filtered_transcript_path = (
             store.run_dir(video_id) / "transcript" / "transcript.report.jsonl"
@@ -337,6 +374,38 @@ def record_analysis(root: Path, video_id: str, analysis_path: Path, opinions_pat
                 "time_horizon",
             ):
                 _text(item.get(field), f"Opinion {opinion_id} {field}")
+            if analysis_schema == 2:
+                section_id = _text(
+                    item.get("section_id"), f"Opinion {opinion_id} section_id"
+                )
+                if section_id not in section_ranges:
+                    raise ValueError(
+                        f"Opinion {opinion_id} refers to an unknown section: {section_id}"
+                    )
+                speaker = _text(item.get("speaker"), f"Opinion {opinion_id} speaker")
+                stance_owner = _text(
+                    item.get("stance_owner"), f"Opinion {opinion_id} stance_owner"
+                )
+                attribution_mode = _text(
+                    item.get("attribution_mode"),
+                    f"Opinion {opinion_id} attribution_mode",
+                )
+                allowed_attribution_modes = {
+                    "self",
+                    "reported",
+                    "direct_quote",
+                    "uncertain",
+                }
+                if attribution_mode not in allowed_attribution_modes:
+                    raise ValueError(
+                        f"Opinion {opinion_id} has unsupported attribution_mode: "
+                        f"{attribution_mode}"
+                    )
+                if speaker.casefold() != stance_owner.casefold() and attribution_mode == "self":
+                    raise ValueError(
+                        f"Opinion {opinion_id} cannot use self attribution for a different "
+                        "stance owner"
+                    )
             _text_list(
                 item.get("stated_basis"),
                 f"Opinion {opinion_id} stated_basis",
@@ -384,6 +453,12 @@ def record_analysis(root: Path, video_id: str, analysis_path: Path, opinions_pat
                 )
             segment_start = item.get("segment_start")
             segment_end = item.get("segment_end")
+            if analysis_schema == 2 and (
+                segment_start is None or segment_end is None
+            ):
+                raise ValueError(
+                    f"Opinion {opinion_id} needs a segment range for section coverage"
+                )
             if segment_start is not None or segment_end is not None:
                 start_id = str(segment_start or "")
                 end_id = str(segment_end or "")
@@ -397,11 +472,31 @@ def record_analysis(root: Path, video_id: str, analysis_path: Path, opinions_pat
                     raise ValueError(
                         f"Opinion segment range does not cover its timestamps: {opinion_id}"
                     )
+                if analysis_schema == 2:
+                    section_start, section_end = section_ranges[str(item["section_id"])]
+                    if (
+                        transcript_positions[start_id] < section_start
+                        or transcript_positions[end_id] > section_end
+                    ):
+                        raise ValueError(
+                            f"Opinion {opinion_id} lies outside its assigned section"
+                        )
         store.set_artifact(manifest, "video_analysis", analysis_file)
         store.set_artifact(manifest, "opinions", opinions_file)
         store.set_artifact(manifest, "content_selection", selection_path)
         store.set_artifact(manifest, "transcript_report_jsonl", filtered_transcript_path)
+        model_view_path = (
+            store.run_dir(video_id) / "transcript" / "transcript.report.model.txt"
+        )
+        materialize_model_transcript_view(
+            transcript_path=filtered_transcript_path,
+            output_path=model_view_path,
+            source_artifact=filtered_transcript_path.name,
+        )
+        store.set_artifact(manifest, "transcript_report_model", model_view_path)
         manifest.metadata["opinion_count"] = len(opinions)
+        manifest.metadata["video_analysis_schema_version"] = analysis_schema
+        manifest.metadata["video_analysis_section_count"] = len(section_ranges)
         manifest.metadata["transcript_included_segment_count"] = selection[
             "included_segment_count"
         ]
@@ -435,8 +530,7 @@ def record_research(root: Path, video_id: str, research_dir: Path) -> None:
     if already_complete and "research_dir" in manifest.artifacts:
         _artifact_path(root, manifest, "research_dir")
         return
-    if not already_complete:
-        manifest.start(stage)
+    if not already_complete and _start_stage_if_needed(manifest, stage):
         store.save(manifest)
     try:
         opinion_lines = _artifact_path(root, manifest, "opinions").read_text(
@@ -578,8 +672,7 @@ def record_agent_judgment(
         manifest.restart(stage)
         already_complete = False
         store.save(manifest)
-    elif not already_complete:
-        manifest.start(stage)
+    elif not already_complete and _start_stage_if_needed(manifest, stage):
         store.save(manifest)
     try:
         judgment = _load_object(judgment_file)
@@ -759,14 +852,20 @@ def record_draft(root: Path, video_id: str, markdown_path: Path, *, force: bool 
         manifest.restart(stage)
         already_complete = False
         store.save(manifest)
-    elif not already_complete:
-        manifest.start(stage)
+    elif not already_complete and _start_stage_if_needed(manifest, stage):
         store.save(manifest)
     try:
         text = markdown_file.read_text(encoding="utf-8")
         if len(text.strip()) < 100:
             raise ValueError("Draft Markdown is unexpectedly short")
         layer_counts = validate_report_layers(text)
+        if (
+            manifest.metadata.get("video_analysis_schema_version") == 2
+            and layer_counts["investor_dashboard_count"] != 1
+        ):
+            raise ValueError(
+                "video-analysis v2 reports need exactly one investor dashboard"
+            )
         transcript_text = "".join(
             segment.text
             for segment in read_jsonl(
@@ -805,13 +904,13 @@ def record_fidelity_review(root: Path, video_id: str, review_path: Path, *, forc
         manifest.restart(stage)
         already_complete = False
         store.save(manifest)
-    elif not already_complete:
-        manifest.start(stage)
+    elif not already_complete and _start_stage_if_needed(manifest, stage):
         store.save(manifest)
     try:
         review = _load_object(review_file)
-        if review.get("schema_version") != 1:
-            raise ValueError("Fidelity review must use schema_version 1")
+        review_schema = review.get("schema_version")
+        if review_schema not in {1, 2}:
+            raise ValueError("Fidelity review must use schema_version 1 or 2")
         if str(review.get("video_id") or "") != video_id:
             raise ValueError("Fidelity review video_id does not match the run")
         if review.get("external_research_visible_to_reviewer") is not False:
@@ -833,6 +932,27 @@ def record_fidelity_review(root: Path, video_id: str, review_path: Path, *, forc
         for field in ("section_checks", "opinion_checks", "exclusion_checks"):
             if not isinstance(review.get(field), list):
                 raise ValueError(f"Fidelity review {field} must be a list")
+        analysis = _load_object(_artifact_path(root, manifest, "video_analysis"))
+        analysis_schema = analysis.get("schema_version")
+        if analysis_schema == 2 and review_schema != 2:
+            raise ValueError("Fidelity review must use schema_version 2 for analysis v2")
+        expected_sections = {
+            str(item.get("section_id") or "")
+            for item in analysis.get("sections", [])  # type: ignore[union-attr]
+            if isinstance(item, dict)
+        }
+        reviewed_sections = {
+            str(item.get("section_id") or "")
+            for item in review["section_checks"]  # type: ignore[index]
+            if isinstance(item, dict)
+        }
+        if (
+            reviewed_sections != expected_sections
+            or len(reviewed_sections) != len(review["section_checks"])  # type: ignore[arg-type]
+        ):
+            raise ValueError(
+                "Fidelity review section coverage does not match recorded sections"
+            )
         expected_opinions = {
             str(json.loads(line)["opinion_id"])
             for line in _artifact_path(root, manifest, "opinions")
@@ -845,10 +965,54 @@ def record_fidelity_review(root: Path, video_id: str, review_path: Path, *, forc
             for item in review["opinion_checks"]  # type: ignore[index]
             if isinstance(item, dict)
         }
-        if reviewed_opinions != expected_opinions:
+        if (
+            reviewed_opinions != expected_opinions
+            or len(reviewed_opinions) != len(review["opinion_checks"])  # type: ignore[arg-type]
+        ):
             raise ValueError(
                 "Fidelity review opinion coverage does not match recorded opinions"
             )
+        if review_schema == 2:
+            for item in review["section_checks"]:  # type: ignore[index]
+                if not isinstance(item, dict):
+                    raise ValueError("Fidelity review section_checks must contain objects")
+                section_id = str(item.get("section_id") or "")
+                coverage_status = str(item.get("coverage_status") or "")
+                if coverage_status not in {"included", "intentionally_omitted"}:
+                    raise ValueError(
+                        f"Fidelity review section {section_id} has invalid coverage_status"
+                    )
+                locations = item.get("report_locations")
+                if coverage_status == "included":
+                    _text_list(
+                        locations,
+                        f"Fidelity review section {section_id} report_locations",
+                    )
+                elif not str(item.get("omission_reason") or "").strip():
+                    raise ValueError(
+                        f"Fidelity review section {section_id} needs an omission_reason"
+                    )
+            opinion_records = {
+                str(json.loads(line)["opinion_id"]): json.loads(line)
+                for line in _artifact_path(root, manifest, "opinions")
+                .read_text(encoding="utf-8")
+                .splitlines()
+                if line.strip()
+            }
+            for item in review["opinion_checks"]:  # type: ignore[index]
+                if not isinstance(item, dict):
+                    raise ValueError("Fidelity review opinion_checks must contain objects")
+                opinion_id = str(item.get("opinion_id") or "")
+                expected = opinion_records[opinion_id]
+                for field in ("speaker", "stance_owner", "attribution_mode"):
+                    if str(item.get(field) or "") != str(expected.get(field) or ""):
+                        raise ValueError(
+                            f"Fidelity review {opinion_id} does not preserve {field}"
+                        )
+                _text_list(
+                    item.get("report_locations"),
+                    f"Fidelity review opinion {opinion_id} report_locations",
+                )
         store.set_artifact(manifest, "fidelity_review", review_file)
         manifest.metadata["fidelity_review_verdict"] = verdict
         manifest.metadata["unresolved_transcript_check_count"] = len(unresolved)
@@ -879,7 +1043,7 @@ def render_html(
     if force:
         manifest.restart(stage)
     else:
-        manifest.start(stage)
+        _start_stage_if_needed(manifest, stage)
     store.save(manifest)
     try:
         markdown_file = markdown_path.expanduser().resolve()

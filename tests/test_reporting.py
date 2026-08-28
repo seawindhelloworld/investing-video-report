@@ -458,6 +458,82 @@ class ReportingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "outside creator-content"):
             validate_report_layers(outside)
 
+    def test_investor_dashboard_and_attribution_cards_keep_layer_boundaries(self) -> None:
+        text = """# R
+
+<section id="investor-dashboard" class="investor-dashboard" data-as-of="2026-08-28" markdown="1">
+<header class="investor-dashboard-header"><span class="dashboard-kicker">INVESTOR DASHBOARD</span><strong>投资决策总览</strong><small>报告综合 · 非视频原内容</small></header>
+<div class="investor-dashboard-grid">
+<article class="investor-topic" data-status="mixed"><div class="investor-topic-head"><span class="asset-tags">CRM</span><span class="status-pill">证据：部分支持</span></div><strong>软件需求仍有韧性</strong><p class="video-core"><b>视频核心观点</b>行业进入分化。</p><dl><dt>Agent 姿态</dt><dd>等待证明</dd><dt>期限</dt><dd>两个季度</dd><dt>下一催化</dt><dd>下一次财报</dd><dt>关键反证</dt><dd>cRPO 连续两季低于 10%</dd></dl></article>
+</div>
+</section>
+
+## 第一部分｜视频 / 作者内容
+
+<div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>以下为忠实整理。</div>
+
+<div class="speaker-opinion-marker creator-view-card" data-speaker="Jason" data-stance-owner="Jason" data-attribution-mode="self"><span class="speaker-opinion-kicker">JASON TAKE</span><strong>Jason</strong><span class="speaker-opinion-topic">软件</span></div>
+
+> 软件行业将继续分化。
+
+<div class="speaker-opinion-marker reported-view-card" data-speaker="Jason" data-stance-owner="CNBC" data-attribution-mode="reported"><span class="speaker-opinion-kicker">CNBC VIEW</span><strong>CNBC</strong><span class="speaker-opinion-topic">由 Jason 转述</span></div>
+
+> 合作提供了继续乐观的理由。
+
+## 第二部分｜外部证据研判
+
+本注为基于外部信源形成的独立研判，不代表视频作者观点。
+
+## 第三部分｜Agent 综合判断
+
+本节为 Agent 基于视频、研判和注明日期的资料形成，不代表视频作者观点，也不构成投资建议。
+"""
+        counts = validate_report_layers(text)
+        self.assertEqual(counts["investor_dashboard_count"], 1)
+        self.assertEqual(counts["creator_view_card_count"], 1)
+        self.assertEqual(counts["reported_view_card_count"], 1)
+
+        misplaced = text.replace(
+            "## 第一部分｜视频 / 作者内容",
+            "## 第一部分｜视频 / 作者内容\n\n<section id=\"investor-dashboard-copy\" class=\"investor-dashboard\">报告综合 · 非视频原内容</section>",
+        )
+        with self.assertRaisesRegex(ValueError, "single investor dashboard"):
+            validate_report_layers(misplaced)
+
+        missing_label = text.replace("报告综合 · 非视频原内容", "综合摘要")
+        with self.assertRaisesRegex(ValueError, "non-video boundary label"):
+            validate_report_layers(missing_label)
+
+        misattributed = text.replace(
+            'data-stance-owner="Jason" data-attribution-mode="self"',
+            'data-stance-owner="CNBC" data-attribution-mode="self"',
+        )
+        with self.assertRaisesRegex(ValueError, "malformed speaker-opinion marker"):
+            validate_report_layers(misattributed)
+
+    def test_rendered_dashboard_is_linked_from_reading_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / "report.md"
+            output = root / "index.html"
+            report = self._progressive_report().replace(
+                "## 第一部分｜视频 / 作者内容",
+                '<section id="investor-dashboard" class="investor-dashboard" markdown="1">\n\n'
+                '<small>报告综合 · 非视频原内容</small>\n\n'
+                '<article class="investor-topic">等待证明</article>\n\n'
+                '</section>\n\n## 第一部分｜视频 / 作者内容',
+            )
+            source.write_text(report, encoding="utf-8")
+            render_markdown_report(
+                source,
+                Path(__file__).resolve().parents[1] / "assets" / "report-template.html",
+                output,
+            )
+            document = output.read_text(encoding="utf-8")
+            self.assertIn('href="#investor-dashboard">投资总览</a>', document)
+            self.assertIn('class="investor-dashboard"', document)
+            self.assertIn('class="investor-topic"', document)
+
     def test_validate_report_layers_requires_fixed_tech_news_name_and_rejects_ads(self) -> None:
         text = """# R
 

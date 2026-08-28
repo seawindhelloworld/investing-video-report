@@ -1,0 +1,406 @@
+{
+  "schema_version": 1,
+  "video_id": "SEP1w0SGpg4",
+  "generated_at": "2026-08-28T10:12:36.088523+00:00",
+  "citations": [
+    {
+      "source_id": "src-tariff-001",
+      "title": "Adjusting Imports of Semiconductors, Semiconductor Manufacturing Equipment, and Their Derivative Products into the United States",
+      "publisher": "The White House",
+      "author": "President Donald J. Trump",
+      "published_at": "2026-01-14",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.whitehouse.gov/presidential-actions/2026/01/adjusting-imports-of-semiconductors-semiconductor-manufacturing-equipment-and-their-derivative-products-into-the-united-states/",
+      "evidence_summary": "官方公告给出半导体措施的两阶段结构、首阶段25%关税及按用途设置的多类豁免。",
+      "scope": "美国半导体及衍生品进口措施的官方政策框架",
+      "source_ids": [
+        "src-tariff-001"
+      ],
+      "research_topics": [
+        "tariff-policy"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-001"
+    },
+    {
+      "source_id": "src-tariff-002",
+      "title": "USTR Increases Tariffs Under Section 301 on Tungsten Products, Wafers, and Polysilicon, Concluding the Statutory Four-Year Review",
+      "publisher": "Office of the United States Trade Representative",
+      "author": "Office of the United States Trade Representative",
+      "published_at": "2024-12-11",
+      "accessed_at": "2026-08-28",
+      "url": "https://ustr.gov/about-us/policy-offices/press-office/press-releases/2024/december/ustr-increases-tariffs-under-section-301-tungsten-products-wafers-and-polysilicon-concluding",
+      "evidence_summary": "USTR确认部分中国半导体301关税在2025年提高至50%，说明实际执行先例存在。",
+      "scope": "既有美国对华半导体301关税的实施背景",
+      "source_ids": [
+        "src-tariff-002"
+      ],
+      "research_topics": [
+        "tariff-policy"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-002"
+    },
+    {
+      "source_id": "src-software-001",
+      "title": "Salesforce Announces Strong Second Quarter Fiscal 2027 Results",
+      "publisher": "Salesforce",
+      "author": "Salesforce Investor Relations",
+      "published_at": "2026-08-26",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.salesforce.com/news/press-releases/2026/08/26/fy27-q2-earnings/",
+      "evidence_summary": "披露收入、RPO、cRPO、Agentforce ARR、并购贡献、现金流指引及250亿美元ASR。",
+      "scope": "Salesforce FY27第二季度公司披露",
+      "source_ids": [
+        "src-software-001"
+      ],
+      "research_topics": [
+        "software-ai"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-003"
+    },
+    {
+      "source_id": "src-software-002",
+      "title": "Salesforce and Anthropic Announce ClaudeForce",
+      "publisher": "Salesforce",
+      "author": "Salesforce and Anthropic Communications",
+      "published_at": "2026-08-26",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/",
+      "evidence_summary": "披露ClaudeForce的37项预置技能、试点状态、开放测试时间和后续集成计划。",
+      "scope": "Salesforce与Anthropic产品合作的公司主张与发布节奏",
+      "source_ids": [
+        "src-software-002"
+      ],
+      "research_topics": [
+        "software-ai"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-004"
+    },
+    {
+      "source_id": "src-software-003",
+      "title": "Commission Guidance on Management’s Discussion and Analysis of Financial Condition and Results of Operations",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "U.S. Securities and Exchange Commission",
+      "published_at": "2020-01-30",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.sec.gov/rules-regulations/2020/01/commission-guidance-managements-discussion-analysis-financial-condition-results-operations",
+      "evidence_summary": "SEC要求公司说明关键经营指标的定义、用途、计算方法及口径变化。",
+      "scope": "上市公司自定义关键经营指标的披露原则",
+      "source_ids": [
+        "src-software-003"
+      ],
+      "research_topics": [
+        "software-ai"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-005"
+    },
+    {
+      "source_id": "src-software-004",
+      "title": "Salesforce, Inc. Current Report on Form 8-K",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Salesforce, Inc.",
+      "published_at": "2026-03-11",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.sec.gov/Archives/edgar/data/1108524/000119312526104282/d887348d8k.htm",
+      "evidence_summary": "披露250亿美元加速回购协议以及同期发行总额250亿美元、多期限票据的融资安排。",
+      "scope": "Salesforce回购融资结构与资产负债表约束",
+      "source_ids": [
+        "src-software-004"
+      ],
+      "research_topics": [
+        "software-ai"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-006"
+    },
+    {
+      "source_id": "src-google-001",
+      "title": "Alphabet Inc. Quarterly Report on Form 10-Q for the Quarter Ended June 30, 2026",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Alphabet Inc.",
+      "published_at": "2026-07-23",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+      "evidence_summary": "提供经营现金流、资本开支、现金与证券、债务、租赁承诺和融资风险等法定披露。",
+      "scope": "Alphabet截至2026年6月30日的财务状况与资本约束",
+      "source_ids": [
+        "src-google-001"
+      ],
+      "research_topics": [
+        "google-ai"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-007"
+    },
+    {
+      "source_id": "src-google-002",
+      "title": "Alphabet Announces Second Quarter 2026 Results",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Alphabet Inc.",
+      "published_at": "2026-07-22",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm",
+      "evidence_summary": "披露集团收入、Google Cloud收入、营业利润增速及Gemini企业采用等管理层主张。",
+      "scope": "Alphabet 2026年第二季度经营结果",
+      "source_ids": [
+        "src-google-002"
+      ],
+      "research_topics": [
+        "google-ai"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-008"
+    },
+    {
+      "source_id": "src-google-003",
+      "title": "Introducing Gemini 3.7 Flash",
+      "publisher": "Google",
+      "author": "Tulsee Doshi on behalf of the Gemini team",
+      "published_at": "2026-08-13",
+      "accessed_at": "2026-08-28",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/",
+      "evidence_summary": "披露Gemini 3.7 Flash的公司自报基准、阶段性API定价和2027年后的价格调整。",
+      "scope": "谷歌最新Flash模型的产品与定价主张",
+      "source_ids": [
+        "src-google-003"
+      ],
+      "research_topics": [
+        "google-ai"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-009"
+    },
+    {
+      "source_id": "src-memory-001",
+      "title": "Memory Share of Top CSPs’ CapEx to Rise from 47% in 2026 to 68% in 2027, Driving Industry Revenue Toward US$1 Trillion, Says TrendForce",
+      "publisher": "TrendForce",
+      "author": "TrendForce Semiconductor Research",
+      "published_at": "2026-08-25",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.trendforce.com/presscenter/news/20260825-13198.html",
+      "evidence_summary": "原始预测给出九家CSP资本开支、存储占比68%以及HBM、服务器DRAM、企业SSD的价格和供给假设。",
+      "scope": "TrendForce对2026至2027年AI服务器存储开支的预测",
+      "source_ids": [
+        "src-memory-001"
+      ],
+      "research_topics": [
+        "memory-cycle"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-010"
+    },
+    {
+      "source_id": "src-memory-002",
+      "title": "DRAM and NAND Flash Market Outlooks Expected to Diverge in 2027, Says TrendForce",
+      "publisher": "TrendForce",
+      "author": "TrendForce Semiconductor Research",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.trendforce.com/presscenter/news/20260730-13158.html",
+      "evidence_summary": "预计DRAM继续偏紧，而NAND在2027年下半年因新增产能可能转松，并提示CSP现金流风险。",
+      "scope": "2027年DRAM与NAND供需分化",
+      "source_ids": [
+        "src-memory-002"
+      ],
+      "research_topics": [
+        "memory-cycle"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-011"
+    },
+    {
+      "source_id": "src-memory-003",
+      "title": "Memory Suppliers and CSPs Shift Toward Multi-Year LTAs as AI Demand Drives Structural Tightness, Says TrendForce",
+      "publisher": "TrendForce",
+      "author": "TrendForce Semiconductor Research",
+      "published_at": "2026-07-09",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.trendforce.com/presscenter/news/20260709-13140.html",
+      "evidence_summary": "说明多年度长期合同、价格上限、服务器DRAM价格走势和客户降配机制。",
+      "scope": "AI存储长期合同与价格约束",
+      "source_ids": [
+        "src-memory-003"
+      ],
+      "research_topics": [
+        "memory-cycle"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-012"
+    },
+    {
+      "source_id": "src-memory-004",
+      "title": "Micron Technology, Inc. Reports Record Results for the Third Quarter of Fiscal 2026",
+      "publisher": "Micron Technology Investor Relations",
+      "author": "Micron Technology, Inc.",
+      "published_at": "2026-06-24",
+      "accessed_at": "2026-08-28",
+      "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Results-for-the-Third-Quarter-of-Fiscal-2026/default.aspx",
+      "evidence_summary": "公司披露创纪录收入与毛利率、客户协议、资本开支和HBM4E量产节奏。",
+      "scope": "Micron FY26第三季度经营表现与供给计划",
+      "source_ids": [
+        "src-memory-004"
+      ],
+      "research_topics": [
+        "memory-cycle"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-013"
+    },
+    {
+      "source_id": "src-gold-001",
+      "title": "Gold ETF Flows: July 2026 — Europe's golden heatwave",
+      "publisher": "World Gold Council",
+      "author": "World Gold Council Research",
+      "published_at": "2026-08-06",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.gold.org/goldhub/data/global-gold-backed-etf-holdings-and-flows",
+      "evidence_summary": "披露2026年7月全球黄金ETF净流入、持仓、AUM及黄金市场日均交易量。",
+      "scope": "2026年7月全球黄金ETF资金流与市场流动性",
+      "source_ids": [
+        "src-gold-001"
+      ],
+      "research_topics": [
+        "gold-debasement"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-014"
+    },
+    {
+      "source_id": "src-gold-002",
+      "title": "Gold ETF Flows: June 2026 — H1 flows remain positive",
+      "publisher": "World Gold Council",
+      "author": "World Gold Council Research",
+      "published_at": "2026-07-08",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.gold.org/goldhub/research/gold-etfs-holdings-and-flows/2026/07",
+      "evidence_summary": "披露2026年上半年创纪录的全球黄金交易流动性、ETF交易规模及6月流出。",
+      "scope": "2026年上半年全球黄金市场深度与ETF资金流",
+      "source_ids": [
+        "src-gold-002"
+      ],
+      "research_topics": [
+        "gold-debasement"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-015"
+    },
+    {
+      "source_id": "src-gold-003",
+      "title": "Federal Reserve Bank of Kansas City to Host Annual Jackson Hole Economic Policy Symposium Aug. 27-29",
+      "publisher": "Federal Reserve Bank of Kansas City",
+      "author": "Federal Reserve Bank of Kansas City",
+      "published_at": "2026-08-25",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.kansascityfed.org/newsroom/2026-news-releases/kansas-city-fed-to-host-annual-jackson-hole-economic-policy-symposium-2026/",
+      "evidence_summary": "官方确认沃什讲话安排在2026年8月28日美东时间10:00，并说明材料随会议发布。",
+      "scope": "沃什讲话事件时间与研究时点校验",
+      "source_ids": [
+        "src-gold-003"
+      ],
+      "research_topics": [
+        "gold-debasement"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-016"
+    },
+    {
+      "source_id": "src-gold-004",
+      "title": "Federal Reserve Issues FOMC Statement",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "author": "Federal Open Market Committee",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-08-28",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260729a.htm",
+      "evidence_summary": "FOMC维持3.50%至3.75%目标区间，并称通胀仍高于2%目标。",
+      "scope": "沃什讲话前的美国货币政策基线",
+      "source_ids": [
+        "src-gold-004"
+      ],
+      "research_topics": [
+        "gold-debasement"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-017"
+    },
+    {
+      "source_id": "src-gold-005",
+      "title": "Treasury Announces Marketable Borrowing Estimates",
+      "publisher": "U.S. Department of the Treasury",
+      "author": "U.S. Department of the Treasury",
+      "published_at": "2026-08-03",
+      "accessed_at": "2026-08-28",
+      "url": "https://home.treasury.gov/news/press-releases/sb0584",
+      "evidence_summary": "财政部预计2026年第三季度与第四季度分别净市场化借款7390亿和6280亿美元。",
+      "scope": "美国近期市场化融资需求",
+      "source_ids": [
+        "src-gold-005"
+      ],
+      "research_topics": [
+        "gold-debasement"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-018"
+    },
+    {
+      "source_id": "src-gold-006",
+      "title": "Minutes of the Meeting of the Treasury Borrowing Advisory Committee August 4, 2026",
+      "publisher": "U.S. Department of the Treasury",
+      "author": "Treasury Borrowing Advisory Committee",
+      "published_at": "2026-08-05",
+      "accessed_at": "2026-08-28",
+      "url": "https://home.treasury.gov/news/press-releases/sb0592",
+      "evidence_summary": "记录一级交易商对FY2027至FY2028融资缺口和未来票息债发行调整的预期。",
+      "scope": "美国中期财政融资压力与发行能力",
+      "source_ids": [
+        "src-gold-006"
+      ],
+      "research_topics": [
+        "gold-debasement"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-019"
+    }
+  ]
+}

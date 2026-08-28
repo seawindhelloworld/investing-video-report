@@ -280,23 +280,83 @@ class TranscriptPackageTests(unittest.TestCase):
             )
             self.assertNotIn("transcript_jsonl", manifest.artifacts)
 
-    def test_rejects_current_package_with_failed_quality_summary(self) -> None:
+    def test_imports_current_package_with_low_upstream_coverage(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            with self.assertRaisesRegex(ValueError, "coverage ratio"):
-                import_transcript_package(
-                    root,
-                    self.make_current_package(root, coverage_ratio=0.90),
-                )
+            video_id = import_transcript_package(
+                root,
+                self.make_current_package(root, coverage_ratio=0.90),
+            )
+            quality = ManifestStore(root).load(video_id).metadata["transcript_quality"]
+            self.assertEqual(quality["coverage_ratio"], 0.90)
+            self.assertEqual(
+                quality["report_admission_mode"],
+                "text_source_timeline_tolerant",
+            )
 
-    def test_rejects_declared_quality_that_does_not_match_timeline(self) -> None:
+    def test_records_declared_quality_mismatch_without_rejecting_text(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            with self.assertRaisesRegex(ValueError, "declared coverage"):
-                import_transcript_package(
-                    root,
-                    self.make_current_package(root, coverage_ratio=0.98),
-                )
+            video_id = import_transcript_package(
+                root,
+                self.make_current_package(root, coverage_ratio=0.98),
+            )
+            quality = ManifestStore(root).load(video_id).metadata["transcript_quality"]
+            self.assertEqual(
+                quality["timeline_advisories"][0]["code"],
+                "declared_timeline_coverage_mismatch",
+            )
+
+    def test_imports_transcript_that_extends_beyond_video_duration(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            package = self.make_current_package(root, schema_version=2)
+            transcript_path = package / "transcript.corrected.jsonl"
+            segment = json.loads(transcript_path.read_text(encoding="utf-8"))
+            segment["end"] = 30.0
+            transcript_path.write_text(
+                json.dumps(segment, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            package_manifest = package / "package.json"
+            payload = json.loads(package_manifest.read_text(encoding="utf-8"))
+            payload["files"]["transcript_corrected_jsonl"]["sha256"] = sha256_file(
+                transcript_path
+            )
+            package_manifest.write_text(json.dumps(payload), encoding="utf-8")
+
+            video_id = import_transcript_package(root, package)
+            manifest = ManifestStore(root).load(video_id)
+            quality = manifest.metadata["transcript_quality"]
+            self.assertEqual(quality["computed_transcript_end_seconds"], 30.0)
+            self.assertEqual(quality["computed_trailing_offset_seconds"], 28.5)
+            self.assertIn(
+                "transcript_extends_beyond_declared_video_duration",
+                {item["code"] for item in quality["timeline_advisories"]},
+            )
+            imported = root / manifest.artifacts["transcript_corrected_jsonl"]
+            self.assertEqual(json.loads(imported.read_text(encoding="utf-8"))["end"], 30.0)
+
+    def test_rejects_structurally_invalid_transcript_timeline(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            package = self.make_current_package(root, schema_version=2)
+            transcript_path = package / "transcript.corrected.jsonl"
+            segment = json.loads(transcript_path.read_text(encoding="utf-8"))
+            segment["end"] = segment["start"]
+            transcript_path.write_text(
+                json.dumps(segment, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            package_manifest = package / "package.json"
+            payload = json.loads(package_manifest.read_text(encoding="utf-8"))
+            payload["files"]["transcript_corrected_jsonl"]["sha256"] = sha256_file(
+                transcript_path
+            )
+            package_manifest.write_text(json.dumps(payload), encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "end must be greater than start"):
+                import_transcript_package(root, package)
 
     def test_imports_voice_activity_validated_package_with_long_silent_gap(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -325,22 +385,26 @@ class TranscriptPackageTests(unittest.TestCase):
                 2,
             )
 
-    def test_rejects_voice_activity_package_with_wrong_timeline_declaration(self) -> None:
+    def test_records_voice_activity_timeline_mismatch_without_rejecting_text(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            with self.assertRaisesRegex(ValueError, "timeline_coverage_ratio"):
-                import_transcript_package(
+            video_id = import_transcript_package(
+                root,
+                self.make_current_package(
                     root,
-                    self.make_current_package(
-                        root,
-                        coverage_ratio=0.999,
-                        maximum_gap_seconds=21.0,
-                        maximum_uncovered_speech_seconds=2.0,
-                        coverage_mode="voice_activity",
-                        timeline_coverage_ratio=0.96,
-                        schema_version=2,
-                    ),
-                )
+                    coverage_ratio=0.999,
+                    maximum_gap_seconds=21.0,
+                    maximum_uncovered_speech_seconds=2.0,
+                    coverage_mode="voice_activity",
+                    timeline_coverage_ratio=0.96,
+                    schema_version=2,
+                ),
+            )
+            quality = ManifestStore(root).load(video_id).metadata["transcript_quality"]
+            self.assertIn(
+                "declared_timeline_coverage_mismatch",
+                {item["code"] for item in quality["timeline_advisories"]},
+            )
 
     def test_imports_voice_activity_package_with_low_timeline_coverage(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -363,27 +427,29 @@ class TranscriptPackageTests(unittest.TestCase):
             quality = ManifestStore(root).load(video_id).metadata["transcript_quality"]
             self.assertEqual(quality["computed_timeline_coverage_ratio"], 0.5)
 
-    def test_rejects_package_with_too_much_uncovered_speech(self) -> None:
+    def test_imports_package_with_large_upstream_uncovered_speech_metric(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            with self.assertRaisesRegex(ValueError, "maximum uncovered speech"):
-                import_transcript_package(
+            video_id = import_transcript_package(
+                root,
+                self.make_current_package(
                     root,
-                    self.make_current_package(
-                        root,
-                        maximum_gap_seconds=21.0,
-                        maximum_uncovered_speech_seconds=6.0,
-                    ),
-                )
+                    maximum_gap_seconds=21.0,
+                    maximum_uncovered_speech_seconds=6.0,
+                ),
+            )
+            quality = ManifestStore(root).load(video_id).metadata["transcript_quality"]
+            self.assertEqual(quality["maximum_uncovered_speech_seconds"], 6.0)
 
-    def test_rejects_long_gap_without_voice_activity_metric(self) -> None:
+    def test_imports_long_timeline_gap_without_voice_activity_metric(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            with self.assertRaisesRegex(ValueError, "maximum gap"):
-                import_transcript_package(
-                    root,
-                    self.make_current_package(root, maximum_gap_seconds=21.0),
-                )
+            video_id = import_transcript_package(
+                root,
+                self.make_current_package(root, maximum_gap_seconds=21.0),
+            )
+            quality = ManifestStore(root).load(video_id).metadata["transcript_quality"]
+            self.assertEqual(quality["computed_timeline_maximum_gap_seconds"], 21.0)
 
     def test_rejects_boolean_package_schema_version(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

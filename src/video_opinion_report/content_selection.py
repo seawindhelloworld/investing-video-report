@@ -77,6 +77,51 @@ def _serialize_segments(segments: list[TranscriptSegment]) -> bytes:
     ).encode("utf-8")
 
 
+def materialize_model_transcript_view(
+    *,
+    transcript_path: Path,
+    output_path: Path,
+    source_artifact: str,
+) -> dict[str, Any]:
+    """Write a lossless, low-overhead transcript view for model consumption.
+
+    The validated JSONL remains the authoritative artifact. This view keeps every
+    segment ID, timestamp, and text value while omitting repeated JSON field names
+    and unrelated ASR metadata that would otherwise be re-sent on every model turn.
+    """
+
+    segments = read_jsonl(transcript_path)
+    errors = validate_segments(segments, allow_blank_text=True)
+    if errors:
+        raise ValueError(f"Transcript model view source is invalid: {errors[0]}")
+    source_hash = sha256_file(transcript_path)
+    lines = [
+        "# Deterministic transcript model view",
+        f"# source_artifact={source_artifact}",
+        f"# source_sha256={source_hash}",
+        "# columns=segment_id\tstart_seconds\tend_seconds\ttext_json",
+    ]
+    lines.extend(
+        "\t".join(
+            (
+                segment.segment_id,
+                f"{segment.start:.3f}",
+                f"{segment.end:.3f}",
+                json.dumps(segment.text, ensure_ascii=False),
+            )
+        )
+        for segment in segments
+    )
+    content = ("\n".join(lines) + "\n").encode("utf-8")
+    _write_analysis_artifact(output_path, content)
+    return {
+        "source_artifact": source_artifact,
+        "source_sha256": source_hash,
+        "model_view_sha256": sha256_file(output_path),
+        "segment_count": len(segments),
+    }
+
+
 def materialize_content_selection(
     *,
     video_id: str,

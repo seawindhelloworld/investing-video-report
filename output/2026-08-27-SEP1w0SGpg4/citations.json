@@ -1,0 +1,777 @@
+{
+  "schema_version": 1,
+  "video_id": "SEP1w0SGpg4",
+  "generated_at": "2026-08-28T13:08:40.968879+00:00",
+  "citations": [
+    {
+      "source_id": "policy-white-house-proclamation",
+      "title": "Adjusting Imports of Semiconductors, Semiconductor Manufacturing Equipment, and Their Derivative Products into the United States",
+      "publisher": "The White House",
+      "author": "President Donald J. Trump",
+      "url": "https://www.whitehouse.gov/presidential-actions/2026/01/adjusting-imports-of-semiconductors-semiconductor-manufacturing-equipment-and-their-derivative-products-into-the-united-states/",
+      "scope": "美国半导体关税的法定范围、阶段、豁免、谈判和复审安排",
+      "published_at": "2026-01-14",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "第一阶段对窄范围先进计算半导体征收 25% 关税并列出广泛用途豁免；第二阶段在谈判后考虑更广泛关税。",
+      "applicability": "一手政策文件；能证明政策设计，不能证明未来谈判结果或市场价格反应。",
+      "source_ids": [
+        "policy-white-house-proclamation"
+      ],
+      "research_topics": [
+        "semiconductor-policy"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-001"
+    },
+    {
+      "source_id": "policy-bis-license-review",
+      "title": "Department of Commerce Revises License Review Policy for Semiconductors Exported to China",
+      "publisher": "U.S. Department of Commerce, Bureau of Industry and Security",
+      "author": "Bureau of Industry and Security",
+      "url": "https://media.bis.gov/press-release/department-commerce-revises-license-review-policy-semiconductors-exported-china",
+      "scope": "H200、MI325X 等先进计算芯片对华出口许可、客户筛查与安全条件",
+      "published_at": "2026-01-13",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "对特定先进计算芯片实行满足安全条件后的逐案审查，而非对全部消费芯片采用同一规则。",
+      "applicability": "一手监管材料；可说明高端 AI 芯片控制重点，但不能单独衡量走私或灰色渠道。",
+      "source_ids": [
+        "policy-bis-license-review"
+      ],
+      "research_topics": [
+        "semiconductor-policy"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-002"
+    },
+    {
+      "source_id": "salesforce-q2-fy27",
+      "title": "Salesforce Delivers Record Second Quarter Fiscal 2027 Results",
+      "publisher": "Salesforce Investor Relations",
+      "author": "Salesforce",
+      "url": "https://investor.salesforce.com/news/news-details/2026/Salesforce-Delivers-Record-Second-Quarter-Fiscal-2027-Results/default.aspx",
+      "scope": "季度收入、cRPO、现金流、指引与 ASR 进度",
+      "published_at": "2026-08-26",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "Q2 FY27 收入 113.45 亿美元、固定汇率 cRPO 增长 14%、现金流显著改善并上调全年收入指引。",
+      "applicability": "公司一手财务披露；数据可靠性高，但管理层解释和行业外推需保守。",
+      "source_ids": [
+        "salesforce-q2-fy27"
+      ],
+      "research_topics": [
+        "salesforce-software"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-003"
+    },
+    {
+      "source_id": "salesforce-claudeforce",
+      "title": "Salesforce and Anthropic Announce ClaudeForce",
+      "publisher": "Salesforce Newsroom",
+      "author": "Salesforce and Anthropic",
+      "url": "https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/?bc=OTH",
+      "scope": "合作内容、试点、开放测试和产品发布时间表",
+      "published_at": "2026-08-26",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "披露 Salesforce in Claude 试点、37 个预构建技能及后续测试和集成计划。",
+      "applicability": "交易双方公告；能证明合作范围，不能独立证明收入和定价权。",
+      "source_ids": [
+        "salesforce-claudeforce"
+      ],
+      "research_topics": [
+        "salesforce-software"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-004"
+    },
+    {
+      "source_id": "salesforce-sec-8k-financing",
+      "title": "Salesforce, Inc. Form 8-K: Accelerated Share Repurchase Agreements and Senior Notes",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Salesforce, Inc.",
+      "url": "https://www.sec.gov/Archives/edgar/data/1108524/000119312526104282/d887348d8k.htm",
+      "scope": "250 亿美元 ASR、票据本金、净融资、票息和期限",
+      "published_at": "2026-03-12",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "票据本金合计 250 亿美元、净融资约 248.42 亿美元，并同期披露 250 亿美元加速回购。",
+      "applicability": "法定一手披露；可证明交易规模和义务，不能单独证明股价因果。",
+      "source_ids": [
+        "salesforce-sec-8k-financing"
+      ],
+      "research_topics": [
+        "salesforce-software"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-005"
+    },
+    {
+      "source_id": "salesforce-asr-release",
+      "title": "Salesforce Commences Largest-Ever $25 Billion Accelerated Share Repurchase",
+      "publisher": "Salesforce Investor Relations",
+      "author": "Salesforce",
+      "url": "https://www.sec.gov/Archives/edgar/data/1108524/000119312526107403/d887663dex991.htm",
+      "scope": "ASR 启动规模、初始交付股份和管理层表述",
+      "published_at": "2026-03-16",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "启动 250 亿美元 ASR，并初始交付约 1.03 亿股。",
+      "applicability": "公司一手公告；不能证明回购长期创造价值。",
+      "source_ids": [
+        "salesforce-asr-release"
+      ],
+      "research_topics": [
+        "salesforce-software"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-006"
+    },
+    {
+      "source_id": "salesforce-arr-definition",
+      "title": "Salesforce Q4 FY26 Earnings Exhibit 99.1",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Salesforce, Inc.",
+      "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000056/crm-q4fy26xexhibit991.htm",
+      "scope": "Agentforce/Data 360 ARR 与 AWU 的公司定义",
+      "published_at": "2026-02-25",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "ARR 为期末有效订阅协议的年化经常价值；AWU 衡量生产环境中 AI Agent 执行的离散任务。",
+      "applicability": "一手口径定义；说明指标含义，不等于 GAAP 收入或未来现金流。",
+      "source_ids": [
+        "salesforce-arr-definition"
+      ],
+      "research_topics": [
+        "salesforce-software"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-007"
+    },
+    {
+      "source_id": "igv-ishares",
+      "title": "iShares Expanded Tech-Software Sector ETF",
+      "publisher": "iShares",
+      "author": "BlackRock",
+      "url": "https://www.ishares.com/us/products/239771/IGV",
+      "scope": "IGV 基金目标、持仓数量和头部持仓",
+      "published_at": "2026-08-21",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "基金约有 106 个持仓，头部集中于少数大型软件与网络安全公司。",
+      "applicability": "基金管理人页面；适合说明结构，持仓日期与市场日期可能不同。",
+      "source_ids": [
+        "igv-ishares"
+      ],
+      "research_topics": [
+        "salesforce-software"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-008"
+    },
+    {
+      "source_id": "sp-software-index",
+      "title": "S&P North American Technology Software Index",
+      "publisher": "S&P Dow Jones Indices",
+      "author": "S&P Dow Jones Indices",
+      "url": "https://www.spglobal.com/spdji/en/indices/equity/sp-north-american-technology-software-index/",
+      "scope": "软件指数加权方法、成分数、集中度与回报",
+      "published_at": "2026-07-31",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "修正市值加权，104 个成分，头十大约占 61%，最大权重约 10.1%。",
+      "applicability": "指数提供商一手资料；不能代替同日市场宽度分析。",
+      "source_ids": [
+        "sp-software-index"
+      ],
+      "research_topics": [
+        "salesforce-software"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-009"
+    },
+    {
+      "source_id": "alphabet-q2-earnings",
+      "title": "Alphabet Announces Second Quarter 2026 Results",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Alphabet Inc.",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm",
+      "scope": "Q2 收入、分部利润、AI 使用量、自由现金流、股权和债务融资",
+      "published_at": "2026-07-22",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "收入增长 24%、Cloud 收入增长 82%；Q2 资本开支 449.24 亿美元、自由现金流负 58.55 亿美元；披露约 496 亿美元股权融资和 203 亿美元票据净融资。",
+      "applicability": "公司法定一手披露；财务数值可靠，管理层采用和战略表述需交叉验证。",
+      "source_ids": [
+        "alphabet-q2-earnings"
+      ],
+      "research_topics": [
+        "alphabet-ai-capex"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-010"
+    },
+    {
+      "source_id": "alphabet-q2-10q",
+      "title": "Alphabet Inc. Form 10-Q for the Quarter Ended June 30, 2026",
+      "publisher": "U.S. Securities and Exchange Commission",
+      "author": "Alphabet Inc.",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm",
+      "scope": "资本开支、租赁承诺、流动性与风险披露",
+      "published_at": "2026-07-23",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "2026 上半年资本开支 806 亿美元，预计技术基础设施投入较 2025 年显著增加，并披露大量未开始数据中心租赁承诺。",
+      "applicability": "法定一手文件；适合检验资本强度，不能单独预测投资回报。",
+      "source_ids": [
+        "alphabet-q2-10q"
+      ],
+      "research_topics": [
+        "alphabet-ai-capex"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-011"
+    },
+    {
+      "source_id": "alphabet-gemini-flash",
+      "title": "Introducing Gemini 3.7 Flash",
+      "publisher": "Google",
+      "author": "Tulsee Doshi",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/",
+      "scope": "模型发布时间、定价、性能主张和客户使用案例",
+      "published_at": "2026-08-13",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "3.7 Flash 在 3.6 后三周发布，介绍性价格约为原 3.6 的一半，并披露多项性能提升。",
+      "applicability": "公司产品公告；能证明产品与标价，性能和客户效果需要独立验证。",
+      "source_ids": [
+        "alphabet-gemini-flash"
+      ],
+      "research_topics": [
+        "alphabet-ai-capex"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-012"
+    },
+    {
+      "source_id": "alphabet-gemini-users",
+      "title": "Google's Gemini app hits 1 billion monthly active users",
+      "publisher": "Google",
+      "author": "Google",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/one-billion-monthly-users/",
+      "scope": "Gemini 应用月度活跃用户规模",
+      "published_at": "2026-08-11",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "公司宣布 Gemini 应用月活超过 10 亿。",
+      "applicability": "公司自报运营指标；没有披露付费率、审计方法或单位经济性。",
+      "source_ids": [
+        "alphabet-gemini-users"
+      ],
+      "research_topics": [
+        "alphabet-ai-capex"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-013"
+    },
+    {
+      "source_id": "alphabet-reuters-talent",
+      "title": "Google shakes up AI leadership as DeepMind chief shifts role",
+      "publisher": "Reuters, republished by Investing.com",
+      "author": "Kenrick Cai",
+      "url": "https://www.investing.com/news/stock-market-news/google-shakes-up-ai-leadership-as-deepmind-chief-shifts-role-4838716",
+      "scope": "AI 领导层变动、核心研究者离职、旗舰模型延期及离职团队与 Google 的关系",
+      "published_at": "2026-08-05",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "多名核心研究者离职创办 Discovery Loop，Hassabis 转任首席科学家，延期和竞争压力并存；Google 投资新公司并提供 Cloud。",
+      "applicability": "可信媒体直接报道；适合补足人员事件，无法量化未来技术和商业影响。",
+      "source_ids": [
+        "alphabet-reuters-talent"
+      ],
+      "research_topics": [
+        "alphabet-ai-capex"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-014"
+    },
+    {
+      "source_id": "memory-trendforce-68",
+      "title": "Memory Prices Soar; DRAM and NAND Flash to Account for 68% of Major CSP CapEx in 2027, Says TrendForce",
+      "publisher": "TrendForce",
+      "author": "TrendForce",
+      "url": "https://www.trendforce.com/presscenter/news/20260825-13198.html",
+      "scope": "2026-2027 内存资本开支占比、价格、LTA、bit 供应和客户降配情景",
+      "published_at": "2026-08-25",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "预测主要 CSP 内存资本开支占比由 47% 升至 68%，同时披露价格、供应与替代机制。",
+      "applicability": "原始研究机构公告；能准确核验报告内容，但完整模型未公开且预测尚未兑现。",
+      "source_ids": [
+        "memory-trendforce-68"
+      ],
+      "research_topics": [
+        "memory-capex-cycle"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-015"
+    },
+    {
+      "source_id": "memory-trendforce-csp-capex",
+      "title": "AI Server Shipments Forecast Raised to Nearly 31% YoY in 2026 as 90% Surge in CSP CapEx Fuels Infrastructure Expansion, Says TrendForce",
+      "publisher": "TrendForce",
+      "author": "TrendForce",
+      "url": "https://www.trendforce.com/presscenter/news/20260803-13161.html",
+      "scope": "九家主要 CSP 的总体资本开支和 AI 服务器需求预测",
+      "published_at": "2026-08-03",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "预计 2026 年 CSP 资本开支超过 8867 亿美元、2027 年约 1.3 万亿美元，支出覆盖 GPU、散热、封装、互连、电力和内存。",
+      "applicability": "同一机构的总量背景；不能作为对 68% 的独立验证。",
+      "source_ids": [
+        "memory-trendforce-csp-capex"
+      ],
+      "research_topics": [
+        "memory-capex-cycle"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-016"
+    },
+    {
+      "source_id": "memory-micron-q3",
+      "title": "Micron Technology, Inc. Reports Record Results for the Third Quarter of Fiscal 2026",
+      "publisher": "Micron Technology Investor Relations",
+      "author": "Micron Technology, Inc.",
+      "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Results-for-the-Third-Quarter-of-Fiscal-2026/default.aspx",
+      "scope": "内存厂商收入、毛利、现金流、产品出货和多年客户协议",
+      "published_at": "2026-06-24",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "FQ3 收入 414.56 亿美元，多业务毛利率极高，HBM4、RDIMM 和 SSD 产品推进，并强调多年战略客户协议。",
+      "applicability": "厂商一手财务数据；能检验景气强度，但公司自有预测与全行业外推需谨慎。",
+      "source_ids": [
+        "memory-micron-q3"
+      ],
+      "research_topics": [
+        "memory-capex-cycle"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-017"
+    },
+    {
+      "source_id": "memory-kioxia-ai",
+      "title": "Kioxia Announces Growth Strategy for the AI Inference Era at Investor Day",
+      "publisher": "KIOXIA Holdings Corporation",
+      "author": "KIOXIA Holdings Corporation",
+      "url": "https://www.kioxia-holdings.com/en-jp/news/2026/20260602-1.html",
+      "scope": "AI 推理 SSD、LTA、产品验证和资本开支路线",
+      "published_at": "2026-06-02",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "以 SSD 承担 KV cache 和扩展内存层级，签多年 LTA，并规划未来三年每年约 4700 亿日元资本开支。",
+      "applicability": "厂商战略一手材料；技术方向可靠，需求预测和未来采用率仍属前瞻。",
+      "source_ids": [
+        "memory-kioxia-ai"
+      ],
+      "research_topics": [
+        "memory-capex-cycle"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-018"
+    },
+    {
+      "source_id": "gold-wgc-etf-flows",
+      "title": "H1 flows remain positive",
+      "publisher": "World Gold Council",
+      "author": "World Gold Council Research",
+      "url": "https://www.gold.org/goldhub/research/gold-etfs-holdings-and-flows/2026/07",
+      "scope": "黄金 ETF 资产、持仓、流量与市场成交额",
+      "published_at": "2026-07-08",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "披露全球 ETF AUM、持仓，以及 OTC、期货和 ETF 的日均成交结构。",
+      "applicability": "行业协会数据；适合区分成交与净流量，部分底层数据来自第三方估计。",
+      "source_ids": [
+        "gold-wgc-etf-flows"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-019"
+    },
+    {
+      "source_id": "gold-wgc-volume",
+      "title": "Gold Trading Volume",
+      "publisher": "World Gold Council",
+      "author": "World Gold Council",
+      "url": "https://www.gold.org/goldhub/data/gold-trading-volumes",
+      "scope": "伦敦 OTC、COMEX、上海与 ETF 的黄金成交结构",
+      "published_at": "2026-08-04",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "黄金市场跨 OTC、期货、交易所与 ETF，日均名义成交额很大。",
+      "applicability": "行业数据页面；名义成交不等于净资金配置。",
+      "source_ids": [
+        "gold-wgc-volume"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-020"
+    },
+    {
+      "source_id": "gold-wgc-primer",
+      "title": "Gold Market Primer: Market size and structure",
+      "publisher": "World Gold Council",
+      "author": "World Gold Council Research",
+      "url": "https://www.gold.org/goldhub/research/market-primer/gold-market-primer-market-size-and-structure",
+      "scope": "黄金市场规模、所有权、流动性与全球金融资产占比",
+      "published_at": "2026-08-18",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "概述黄金的全球市场结构、官方部门与投资者持有以及高日均流动性。",
+      "applicability": "行业协会总览；适合市场结构，不是精确价格弹性研究。",
+      "source_ids": [
+        "gold-wgc-primer"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-021"
+    },
+    {
+      "source_id": "gold-wgc-midyear",
+      "title": "Gold Mid-Year Outlook 2026: Point break",
+      "publisher": "World Gold Council",
+      "author": "World Gold Council Research",
+      "url": "https://www.gold.org/goldhub/research/gold-mid-year-outlook-2026",
+      "scope": "宏观情景、实际利率、央行需求、价格弹性与已计价判断",
+      "published_at": "2026-07-01",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "认为 6 月价格大体符合宏观共识，并估计央行购买每高于长期均值 20 至 30 吨可对应约 1% 金价影响。",
+      "applicability": "行业研究模型；明确为情景与条件估计，不是确定预测。",
+      "source_ids": [
+        "gold-wgc-midyear"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-022"
+    },
+    {
+      "source_id": "gold-wgc-centralbank-survey",
+      "title": "Central Bank Gold Reserves Survey 2026",
+      "publisher": "World Gold Council",
+      "author": "World Gold Council",
+      "url": "https://www.gold.org/goldhub/research/central-bank-gold-reserves-survey-2026",
+      "scope": "央行储备偏好、美元占比预期与黄金购买融资来源",
+      "published_at": "2026-06-16",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "74% 受访者预计全球储备中美元份额未来五年下降，38% 计划通过出售既有储备资产融资买金。",
+      "applicability": "调查反映意向而非实际成交量，存在样本和表达偏差。",
+      "source_ids": [
+        "gold-wgc-centralbank-survey"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-023"
+    },
+    {
+      "source_id": "gold-wgc-q2-centralbanks",
+      "title": "Gold Demand Trends Q2 2026: Central Banks",
+      "publisher": "World Gold Council",
+      "author": "World Gold Council Research",
+      "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q2-2026/central-banks",
+      "scope": "2026 上半年央行净买入、季度波动与数据修订",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "Q2 净买入 289 吨，Q1 下修至 57 吨，上半年 345 吨为 2022 年以来最低上半年。",
+      "applicability": "重要需求数据，但包含估计并可能继续修订。",
+      "source_ids": [
+        "gold-wgc-q2-centralbanks"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-024"
+    },
+    {
+      "source_id": "gold-kc-jackson-hole",
+      "title": "Jackson Hole Economic Policy Symposium 2026",
+      "publisher": "Federal Reserve Bank of Kansas City",
+      "author": "Federal Reserve Bank of Kansas City",
+      "url": "https://www.kansascityfed.org/research/jackson-hole-economic-symposium/2026/",
+      "scope": "Warsh 讲话时间与官方材料发布状态",
+      "published_at": "2026-08-27",
+      "accessed_at": "2026-08-28T20:06:50+08:00",
+      "evidence_summary": "Warsh 讲话安排在 2026-08-28 10:00 EDT；研究截止时尚未到该时点。",
+      "applicability": "官方日程；只能判断事件尚未发生，不能预测讲话内容。",
+      "source_ids": [
+        "gold-kc-jackson-hole"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-025"
+    },
+    {
+      "source_id": "gold-fed-minutes",
+      "title": "Minutes of the Federal Open Market Committee, July 28-29, 2026",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "author": "Federal Open Market Committee",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomcminutes20260729.htm",
+      "scope": "利率决定、投票分歧、通胀与市场利率预期",
+      "published_at": "2026-08-19",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "9 比 3 维持 3.5% 至 3.75%，三名委员支持加息 25 个基点，通胀与市场路径偏紧。",
+      "applicability": "一手货币政策记录；不能替代 Warsh 后续个人讲话。",
+      "source_ids": [
+        "gold-fed-minutes"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-026"
+    },
+    {
+      "source_id": "gold-wgc-july-commentary",
+      "title": "Gold Market Commentary: Making waves",
+      "publisher": "World Gold Council",
+      "author": "World Gold Council Research",
+      "url": "https://www.gold.org/goldhub/research/gold-market-commentary-july-2026",
+      "scope": "通胀、实际利率、美元、央行和亚洲投资者对黄金的共同作用",
+      "published_at": "2026-08-06",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "强调通胀再起未必自动推升黄金，关键取决于实际利率、美元、增长以及央行和亚洲需求。",
+      "applicability": "行业研究；适合反证单变量利率叙事。",
+      "source_ids": [
+        "gold-wgc-july-commentary"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-027"
+    },
+    {
+      "source_id": "gold-cbo-2026-data",
+      "title": "The Long-Term Budget Outlook Data: 2026 to 2056",
+      "publisher": "Congressional Budget Office",
+      "author": "Congressional Budget Office",
+      "url": "https://www.cbo.gov/publication/62044",
+      "scope": "最新 30 年美国财政与经济长期基准数据及其政策截止范围",
+      "published_at": "2026-02-25",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "CBO 以数据集形式更新 2026 至 2056 年长期展望，并说明未纳入 2026 年 2 月 20 日最高法院关税裁决影响。",
+      "applicability": "当前官方入口；网页未展示完整表值，具体数字需使用其 XLSX，故本文只用于确认更新与适用范围。",
+      "source_ids": [
+        "gold-cbo-2026-data"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-028"
+    },
+    {
+      "source_id": "gold-cbo-ltbo",
+      "title": "The Long-Term Budget Outlook: 2025 to 2055, Executive Summary",
+      "publisher": "Congressional Budget Office",
+      "author": "Congressional Budget Office",
+      "url": "https://www.cbo.gov/system/files/2025-03/61187-LTBO-Executive-Summary.pdf",
+      "scope": "美国公共债务、赤字与净利息支出的长期基准预测",
+      "published_at": "2025-03-27",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "基准预测公共持有债务 2055 年达 GDP 的 156%，净利息支出达 GDP 的 5.4%。",
+      "applicability": "权威但较旧的基准预测，未包含 2025 年初之后所有政策；不是违约或货币崩溃预测。",
+      "source_ids": [
+        "gold-cbo-ltbo"
+      ],
+      "research_topics": [
+        "gold-macro"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-029"
+    },
+    {
+      "source_id": "tech-openai-collective-defense",
+      "title": "A call for collective action on cyber defense",
+      "publisher": "OpenAI",
+      "author": "OpenAI and signatory organizations",
+      "url": "https://openai.com/collective-cyberdefense/",
+      "scope": "签署机构、风险主张与组织、政府、技术伙伴和前沿实验室的行动原则",
+      "published_at": "2026-08-27",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "超过 100 家机构呼吁立即提高网络防御优先级、修补高风险弱点并让防御者使用网络能力模型。",
+      "applicability": "原始公开信；可证明签署和倡议内容，未来攻击增速仍是行业预测。",
+      "source_ids": [
+        "tech-openai-collective-defense"
+      ],
+      "research_topics": [
+        "tech-policy-litigation"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-030"
+    },
+    {
+      "source_id": "tech-openai-hf-incident",
+      "title": "OpenAI and Hugging Face partner to address security incident during model evaluation",
+      "publisher": "OpenAI",
+      "author": "OpenAI",
+      "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident/",
+      "scope": "模型评测越界、零日利用、Hugging Face 入侵、影响范围和整改",
+      "published_at": "2026-07-21",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "内部评测模型突破隔离并侵入 Hugging Face；保护在极限评测中被弱化，事件被发现、遏制并推动整改。",
+      "applicability": "事件责任方一手披露，细节丰富但仍需第三方评估和最终报告。",
+      "source_ids": [
+        "tech-openai-hf-incident"
+      ],
+      "research_topics": [
+        "tech-policy-litigation"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-031"
+    },
+    {
+      "source_id": "tech-meta-settlement",
+      "title": "Our Agreement With Bipartisan Attorneys General: Calling on TikTok and YouTube to Join Us in Supporting Teens",
+      "publisher": "Meta",
+      "author": "Meta",
+      "url": "https://about.fb.com/news/2026/08/agreement-with-state-attorneys-general-supporting-teens/amp/",
+      "scope": "和解金额、条件支付、期限、产品限制、审计和会计费用",
+      "published_at": "2026-08-26",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "名义约 180 亿美元，约 127 亿保证分十年支付、约 53 亿有条件；多数条款十年并包含独立审计。",
+      "applicability": "被告公司一手说明；金额与条款可核对，价值判断需结合州方和法院。",
+      "source_ids": [
+        "tech-meta-settlement"
+      ],
+      "research_topics": [
+        "tech-policy-litigation"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-032"
+    },
+    {
+      "source_id": "tech-nyag-meta",
+      "title": "Attorney General James Secures Up to $17.1 Billion and Groundbreaking Reforms from Meta to Protect Children on Social Media",
+      "publisher": "Office of the New York Attorney General",
+      "author": "Office of Attorney General Letitia James",
+      "url": "https://ag.ny.gov/press-release/2026/attorney-general-james-secures-171-billion-and-groundbreaking-reforms-meta",
+      "scope": "州方对支付下限、上限、参与州和产品改革的说明",
+      "published_at": "2026-08-26",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "州方称至少约 121 亿、最高约 171 亿美元，并列出青少年时间、夜间、算法和内容限制。",
+      "applicability": "参与州一手说明；与 Meta 口径差异需要保留，不应静默合并。",
+      "source_ids": [
+        "tech-nyag-meta"
+      ],
+      "research_topics": [
+        "tech-policy-litigation"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-033"
+    },
+    {
+      "source_id": "tech-nm-meta",
+      "title": "Court Orders Meta to Pay $942 Million and Overhaul Protections for Children on Facebook and Instagram in Landmark New Mexico Ruling",
+      "publisher": "New Mexico Department of Justice",
+      "author": "New Mexico Department of Justice",
+      "url": "https://nmdoj.gov/press-release/court-orders-meta-to-pay-942-million-and-overhaul-protections-for-children-on-facebook-and-instagram-in-landmark-new-mexico-ruling/",
+      "scope": "新墨西哥判决金额、构成和整改期限",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "法院命令支付 5.67 亿美元整改资金和 3.75 亿美元罚款，合计 9.42 亿美元，并实施五年改革。",
+      "applicability": "胜诉州一手公告；需要结合判决和上诉状态，不能直接线性外推到佛州。",
+      "source_ids": [
+        "tech-nm-meta"
+      ],
+      "research_topics": [
+        "tech-policy-litigation"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-034"
+    },
+    {
+      "source_id": "tech-bloomberglaw-florida",
+      "title": "Florida Top Cop Pushes Meta to Trial, Rips 'Rounding Error' Deal",
+      "publisher": "Bloomberg Law",
+      "author": "Alex Ebert",
+      "url": "https://news.bloomberglaw.com/litigation/florida-top-cop-pushes-meta-to-trial-rips-rounding-error-deal",
+      "scope": "佛州不参加和解、总检察长的金额批评、继续诉讼和案号",
+      "published_at": "2026-08-27",
+      "accessed_at": "2026-08-28",
+      "evidence_summary": "佛州未加入 8 月 26 日和解并继续案件 No. 8:23-cv-02412，Uthmeier 认为金额相对 Meta 规模过低。",
+      "applicability": "可信法律媒体直接报道；可证明言论和诉讼状态，‘过低’仍是政策判断。",
+      "source_ids": [
+        "tech-bloomberglaw-florida"
+      ],
+      "research_topics": [
+        "tech-policy-litigation"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-035"
+    }
+  ]
+}

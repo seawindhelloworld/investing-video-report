@@ -34,6 +34,11 @@ description: ""
 
 # Synthetic report
 
+<section id="investor-dashboard" class="investor-dashboard" markdown="1">
+<header class="investor-dashboard-header"><strong>投资决策总览</strong><small>报告综合 · 非视频原内容</small></header>
+<article class="investor-topic" data-status="mixed">市场改善仍需等待下一期数据验证。</article>
+</section>
+
 ## 第一部分｜视频 / 作者内容
 
 <div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>以下为忠实整理。</div>
@@ -128,7 +133,7 @@ class VideoPipelineTests(unittest.TestCase):
             analysis.write_text(
                 json.dumps(
                     {
-                        "schema_version": 1,
+                        "schema_version": 2,
                         "video_id": video_id,
                         "title": "Synthetic report",
                         "creator": "Creator",
@@ -142,6 +147,8 @@ class VideoPipelineTests(unittest.TestCase):
                                 "title": "市场判断",
                                 "segment_start": "seg-000001",
                                 "segment_end": "seg-000001",
+                                "summary": "市场可能改善，但判断带有明确限定。",
+                                "key_points": ["改善是可能性判断，不是确定结论。"],
                             }
                         ],
                         "topic_clusters": [],
@@ -158,12 +165,16 @@ class VideoPipelineTests(unittest.TestCase):
                 json.dumps(
                     {
                         "opinion_id": "opinion-001",
+                        "section_id": "section-1",
                         "timestamp_start": 0.0,
                         "timestamp_end": 3.0,
                         "segment_start": "seg-000001",
                         "segment_end": "seg-000001",
                         "exact_quote": "我认为市场可能改善",
                         "faithful_paraphrase": "市场可能改善",
+                        "speaker": "Creator",
+                        "stance_owner": "Creator",
+                        "attribution_mode": "self",
                         "opinion_type": "market_judgment",
                         "target": "市场",
                         "time_horizon": "视频中未明确",
@@ -285,16 +296,31 @@ class VideoPipelineTests(unittest.TestCase):
             review.write_text(
                 json.dumps(
                     {
-                        "schema_version": 1,
+                        "schema_version": 2,
                         "video_id": video_id,
                         "external_research_visible_to_reviewer": False,
                         "overall_verdict": "passed",
                         "post_revision_verdict": "passed",
                         "draft_sha256": sha256_file(draft),
                         "transcript_sha256": sha256_file(report_transcript),
-                        "section_checks": [{"section_id": "section-1", "status": "passed"}],
+                        "section_checks": [
+                            {
+                                "section_id": "section-1",
+                                "status": "passed",
+                                "coverage_status": "included",
+                                "report_locations": ["第一部分 / 市场判断"],
+                                "omission_reason": "",
+                            }
+                        ],
                         "opinion_checks": [
-                            {"opinion_id": "opinion-001", "status": "passed"}
+                            {
+                                "opinion_id": "opinion-001",
+                                "status": "passed",
+                                "speaker": "Creator",
+                                "stance_owner": "Creator",
+                                "attribution_mode": "self",
+                                "report_locations": ["第一部分 / 市场判断"],
+                            }
                         ],
                         "exclusion_checks": [],
                         "unresolved_transcript_checks": [],

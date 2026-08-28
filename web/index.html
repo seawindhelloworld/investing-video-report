@@ -109,7 +109,7 @@
               <small id="model-note" class="inline-note">从当前 Codex 账号可用的模型中选择。</small>
             </label>
             <label>
-              <span id="effort-label" class="field-label">推理强度</span>
+              <span id="effort-label" class="field-label">推理强度上限</span>
               <select id="reasoning-effort" class="text-field" name="reasoning_effort" required>
                 <option value="low">low</option>
                 <option value="medium">medium</option>
@@ -117,7 +117,7 @@
                 <option value="xhigh">xhigh</option>
                 <option value="max">max</option>
               </select>
-              <small id="effort-note" class="inline-note">仅显示 Codex 支持的标准强度。</small>
+              <small id="effort-note" class="inline-note">视频报告会按阶段自动降档，综合判断保留最高强度。</small>
             </label>
           </div>
 
@@ -128,6 +128,15 @@
               <small>同一个 Sol 模型走低延迟服务层；通常更快，但可能消耗更多额度。</small>
             </span>
             <i>加速</i>
+          </label>
+
+          <label id="regenerate-row" class="regenerate-row">
+            <input id="regenerate-report" type="checkbox">
+            <span>
+              <b>重新生成并保留旧版</b>
+              <small>仅用于已经完成的同一视频；旧报告会生成独立快照，新报告从原意分析阶段重新运行。</small>
+            </span>
+            <i>对比</i>
           </label>
 
           <div id="engine-warning" class="engine-warning" hidden>OpenCode 将以无人值守模式复用本机权限配置。当前列出的 DeepSeek V4 Flash / Pro 均为文字模型；含图片素材时请改用支持图片的 Codex 模型。</div>
@@ -174,6 +183,7 @@
                 <div><dt>开始时间</dt><dd id="detail-started-at">—</dd></div>
                 <div><dt>结束时间</dt><dd id="detail-finished-at">—</dd></div>
                 <div><dt>输入清单</dt><dd id="detail-package">—</dd></div>
+                <div><dt>运行方式</dt><dd id="detail-run-mode">—</dd></div>
               </dl>
             </details>
 
@@ -192,6 +202,7 @@
                 <div><dt>阶段耗时</dt><dd id="job-stage-elapsed">0 秒</dd></div>
                 <div><dt>最近事件</dt><dd id="job-last-event">刚刚</dd></div>
                 <div><dt>进程心跳</dt><dd id="job-heartbeat">正常</dd></div>
+                <div><dt>累计 Tokens</dt><dd id="job-token-usage">0</dd></div>
               </dl>
             </section>
 
@@ -207,6 +218,7 @@
 
             <div id="result-actions" class="result-actions" hidden>
               <a id="open-report" class="primary-button" target="_blank" rel="noopener">打开完整报告 <b>↗</b></a>
+              <a id="open-previous-report" class="secondary-button" target="_blank" rel="noopener" hidden>打开旧版对比</a>
               <a id="download-markdown" class="secondary-button" download>下载 Markdown</a>
             </div>
             <div id="job-error" class="message error" role="alert" hidden></div>
