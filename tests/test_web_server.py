@@ -14,6 +14,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 from video_opinion_report.web_server import (
+    VIDEO_STAGE_DEFINITIONS,
     JobRegistry,
     ReportJob,
     ReportHTTPServer,
@@ -32,6 +33,22 @@ from video_opinion_report.web_server import (
 
 
 class WebServerTests(unittest.TestCase):
+    def test_video_ui_exposes_only_the_five_meaning_report_stages(self) -> None:
+        self.assertEqual(
+            [key for key, _, _ in VIDEO_STAGE_DEFINITIONS],
+            ["ingest", "analyze", "render", "html_validate", "complete"],
+        )
+        script = (
+            Path(__file__).resolve().parents[1] / "web" / "app.js"
+        ).read_text(encoding="utf-8")
+        video_block = script.split("const VIDEO_STAGES = [", 1)[1].split(
+            "];", 1
+        )[0]
+        self.assertIn("原意分析与成稿", video_block)
+        self.assertNotIn("research", video_block)
+        self.assertNotIn("judgment", video_block)
+        self.assertNotIn("fidelity_review", video_block)
+
     def test_frontend_automatically_follows_new_active_job(self) -> None:
         script = (
             Path(__file__).resolve().parents[1] / "web" / "app.js"
@@ -41,12 +58,12 @@ class WebServerTests(unittest.TestCase):
         self.assertIn("await openJob(active.job_id)", script)
         self.assertIn("renderSubmittingState();", script)
         self.assertIn("}, 2000);", script)
-        self.assertIn('data.append(\n    "regenerate"', script)
+        self.assertNotIn('data.append(\n    "regenerate"', script)
         page = (
             Path(__file__).resolve().parents[1] / "web" / "index.html"
         ).read_text(encoding="utf-8")
-        self.assertIn('id="regenerate-report"', page)
-        self.assertIn('id="open-previous-report"', page)
+        self.assertNotIn('id="regenerate-report"', page)
+        self.assertNotIn('id="open-previous-report"', page)
 
     def make_zip(self, files: dict[str, bytes]) -> bytes:
         stream = io.BytesIO()
@@ -274,68 +291,6 @@ class WebServerTests(unittest.TestCase):
             self.assertEqual(payload["codex_service_tier"], "default")
             self.assertIn("自动回退标准服务层", payload["log"])
 
-    def test_regenerated_job_exposes_current_and_previous_report_urls(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            output = root / "output" / "2026-08-23-video-1"
-            previous = (
-                root
-                / "output"
-                / "_revisions"
-                / "2026-08-23-video-1"
-                / "revision-1"
-            )
-            output.mkdir(parents=True)
-            previous.mkdir(parents=True)
-            application = ReportWebApplication(
-                WebServerConfig(
-                    project_root=root,
-                    output_root=root / "output",
-                    codex_binary=sys.executable,
-                    opencode_binary=None,
-                    default_codex_model="gpt-5.6-sol",
-                    default_opencode_model="",
-                    default_reasoning_effort="high",
-                    sandbox="workspace-write",
-                    web_root=Path(__file__).resolve().parents[1] / "web",
-                )
-            )
-            job = ReportJob(
-                job_id="job-regenerated-links",
-                content_id="video-1",
-                report_type="video",
-                engine="codex",
-                model="gpt-5.6-sol",
-                reasoning_effort="high",
-                package_manifest=str(root / "package.json"),
-                log_path=root / "job.log",
-                regenerate=True,
-            )
-            application.registry.add(job)
-            result = {
-                "output_directory": str(output),
-                "regenerated": True,
-                "previous_revision": {
-                    "output_directory": str(previous.relative_to(root))
-                },
-            }
-            with patch(
-                "video_opinion_report.web_server.run_automation",
-                return_value=result,
-            ):
-                application._run_job(job)
-
-            payload = application.registry.as_dict(job.job_id)
-            self.assertEqual(
-                payload["result"]["report_url"],
-                "/outputs/2026-08-23-video-1/index.html",
-            )
-            self.assertEqual(
-                payload["result"]["previous_report_url"],
-                "/outputs/_revisions/2026-08-23-video-1/revision-1/index.html",
-            )
-            self.assertEqual(payload["activity"], "新报告已完成并通过验收，旧版已保留用于对比")
-
     def test_lists_session_jobs_with_three_states_and_run_parameters(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -383,6 +338,7 @@ class WebServerTests(unittest.TestCase):
                 registry.add(job)
 
             payloads = {job["job_id"]: job for job in registry.list_dicts()}
+            self.assertTrue(all("regenerate" not in job for job in payloads.values()))
             self.assertEqual(payloads["job-completed"]["display_status"], "completed")
             self.assertEqual(payloads["job-failed"]["display_status"], "failed")
             self.assertEqual(payloads["job-running"]["display_status"], "running")
@@ -391,6 +347,7 @@ class WebServerTests(unittest.TestCase):
             self.assertEqual(detail["engine"], "codex")
             self.assertEqual(detail["model"], "gpt-5.6-sol")
             self.assertEqual(detail["reasoning_effort"], "xhigh")
+            self.assertNotIn("regenerate", detail)
             self.assertEqual(
                 detail["package_manifest"],
                 str(root / "completed" / "package.json"),
@@ -611,7 +568,7 @@ class WebServerTests(unittest.TestCase):
                 self.assertIn('<option value="material">素材报告</option>', page)
                 self.assertIn('<select id="model"', page)
                 self.assertIn('id="codex-fast-mode"', page)
-                self.assertIn('id="regenerate-report"', page)
+                self.assertNotIn('id="regenerate-report"', page)
                 self.assertIn('id="job-list"', page)
                 self.assertIn("完整任务参数", page)
 
@@ -656,96 +613,13 @@ class WebServerTests(unittest.TestCase):
                 arguments = create_job.call_args.kwargs
                 self.assertEqual(arguments["report_type"], "material")
                 self.assertEqual(arguments["codex_service_tier"], "fast")
-                self.assertFalse(arguments["regenerate"])
+                self.assertNotIn("regenerate", arguments)
                 self.assertEqual(arguments["package_manifest"].name, "material-package.json")
                 connection.close()
             finally:
                 server.shutdown()
                 server.server_close()
                 thread.join(timeout=5)
-
-    def test_video_submission_passes_explicit_regeneration_flag(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            project = Path(directory).resolve()
-            output_root = project / "output"
-            output_root.mkdir()
-            application = ReportWebApplication(
-                WebServerConfig(
-                    project_root=project,
-                    output_root=output_root,
-                    codex_binary="/usr/bin/true",
-                    opencode_binary=None,
-                    default_codex_model="gpt-5.6-sol",
-                    default_opencode_model="",
-                    default_reasoning_effort="high",
-                    sandbox="workspace-write",
-                    web_root=Path(__file__).resolve().parents[1] / "web",
-                )
-            )
-            server = ReportHTTPServer(("127.0.0.1", 0), application)
-            thread = threading.Thread(target=server.serve_forever, daemon=True)
-            thread.start()
-            port = int(server.server_address[1])
-            try:
-                boundary = "video-regenerate-boundary"
-                archive_payload = self.make_zip({"package.json": b"{}"})
-                text_fields = {
-                    "report_type": "video",
-                    "engine": "codex",
-                    "model": "gpt-5.6-sol",
-                    "reasoning_effort": "high",
-                    "regenerate": "true",
-                }
-                parts = [
-                    (
-                        f"--{boundary}\r\nContent-Disposition: form-data; "
-                        f'name="{name}"\r\n\r\n{value}\r\n'
-                    ).encode()
-                    for name, value in text_fields.items()
-                ]
-                parts.extend(
-                    [
-                        (
-                            f"--{boundary}\r\nContent-Disposition: form-data; "
-                            'name="package_archive"; filename="video.zip"\r\n'
-                            "Content-Type: application/zip\r\n\r\n"
-                        ).encode(),
-                        archive_payload,
-                        f"\r\n--{boundary}--\r\n".encode(),
-                    ]
-                )
-                body = b"".join(parts)
-                fake_job = SimpleNamespace(
-                    job_id="job-regenerate",
-                    report_type="video",
-                    content_id="video-1",
-                    status="queued",
-                )
-                with patch.object(
-                    ReportWebApplication, "create_job", return_value=fake_job
-                ) as create_job:
-                    connection = http.client.HTTPConnection(
-                        "127.0.0.1", port, timeout=5
-                    )
-                    connection.request(
-                        "POST",
-                        "/api/jobs",
-                        body=body,
-                        headers={
-                            "Content-Type": f"multipart/form-data; boundary={boundary}",
-                            "Content-Length": str(len(body)),
-                        },
-                    )
-                    response = connection.getresponse()
-                    response.read()
-                    connection.close()
-                self.assertEqual(response.status, 202)
-                self.assertTrue(create_job.call_args.kwargs["regenerate"])
-            finally:
-                server.shutdown()
-                server.server_close()
-                thread.join(timeout=5)
-
 
 if __name__ == "__main__":
     unittest.main()

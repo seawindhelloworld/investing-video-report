@@ -93,11 +93,7 @@ FALLBACK_CODEX_MODELS = (
 )
 VIDEO_STAGE_DEFINITIONS = (
     ("ingest", "导入校验", "字幕契约与质量门"),
-    ("analyze", "原意分析", "章节、观点与限定"),
-    ("research", "外部研判", "证据、反方与条件"),
-    ("judgment", "综合判断", "定价、反证与风险"),
-    ("draft", "报告起草", "三层内容结构"),
-    ("fidelity_review", "原意审查", "逐段忠实性核对"),
+    ("analyze", "原意分析与成稿", "理解增强、编辑规划与可视化成稿"),
     ("render", "页面渲染", "Markdown 与 HTML"),
     ("html_validate", "网页验收", "链接、布局与映射"),
     ("complete", "完成交付", "产物一致性确认"),
@@ -181,7 +177,7 @@ def summarize_codex_event(payload: dict[str, Any]) -> tuple[str, str] | None:
         return "tool", f"{action}：{tool or '外部工具'}"
     if item_type == "web_search":
         query = _one_line(item.get("query"), 160)
-        action = "检索完成" if completed else "正在检索外部证据"
+        action = "检索完成" if completed else "正在按需查询资料"
         return "search", action + (f"：{query}" if query else "")
     if item_type == "error":
         return "error", "运行提示：" + _one_line(item.get("message") or "未知错误")
@@ -512,7 +508,6 @@ class ReportJob:
     package_manifest: str
     log_path: Path
     codex_service_tier: str = "default"
-    regenerate: bool = False
     title: str = ""
     status: str = "queued"
     created_at: str = field(default_factory=utc_now)
@@ -716,7 +711,20 @@ class JobRegistry:
             if job.report_type == "material"
             else VIDEO_STAGE_DEFINITIONS
         )
-        stage_details = self.stage_details(job.report_type, job.content_id)
+        all_stage_details = self.stage_details(job.report_type, job.content_id)
+        stage_details = {
+            key: all_stage_details.get(
+                key,
+                {
+                    "status": "pending",
+                    "started_at": None,
+                    "finished_at": None,
+                    "error": None,
+                    "retryable": None,
+                },
+            )
+            for key, _, _ in definitions
+        }
         stage_statuses = {
             name: str(record["status"]) for name, record in stage_details.items()
         }
@@ -781,7 +789,6 @@ class JobRegistry:
             "model": job.model,
             "reasoning_effort": job.reasoning_effort,
             "codex_service_tier": job.codex_service_tier,
-            "regenerate": job.regenerate,
             "status": job.status,
             "display_status": self.display_status(job.status),
             "created_at": job.created_at,
@@ -837,7 +844,6 @@ class JobRegistry:
                     "model": job.model,
                     "reasoning_effort": job.reasoning_effort,
                     "codex_service_tier": job.codex_service_tier,
-                    "regenerate": job.regenerate,
                     "activity": job.activity,
                     "heartbeat_at": job.heartbeat_at,
                     "status": job.status,
@@ -896,14 +902,11 @@ class ReportWebApplication:
         model: str,
         reasoning_effort: str,
         codex_service_tier: str = "default",
-        regenerate: bool = False,
     ) -> ReportJob:
         if engine not in ENGINES:
             raise ValueError("Unsupported automation engine")
         if report_type not in REPORT_TYPES:
             raise ValueError("Unsupported report type")
-        if regenerate and report_type != "video":
-            raise ValueError("只有视频报告支持保留旧版后重新生成")
         if not model or any(character in model for character in "\r\n\0"):
             raise ValueError("A valid model is required")
         if engine == "codex" and not self.config.codex_binary:
@@ -945,7 +948,6 @@ class ReportWebApplication:
             package_manifest=str(package_manifest.resolve()),
             log_path=log_path,
             codex_service_tier=codex_service_tier,
-            regenerate=regenerate,
             title=str(metadata.get("title") or content_id),
         )
         self.registry.add(job)
@@ -985,7 +987,6 @@ class ReportWebApplication:
             sandbox=self.config.sandbox,
             report_type=job.report_type,
             codex_service_tier=job.codex_service_tier,
-            regenerate=job.regenerate,
         )
 
         def logged_runner(
@@ -1163,11 +1164,7 @@ class ReportWebApplication:
             self.registry.record_event(
                 job.job_id,
                 "pipeline",
-                (
-                    "正在保存旧报告快照并准备从原意分析重新生成"
-                    if job.regenerate
-                    else "正在检查已有产物并从首个未完成阶段恢复"
-                ),
+                "正在检查已有产物并从首个未完成阶段恢复",
             )
             result = run_automation(config, run_command=logged_runner)
             if job.cancel_requested:
@@ -1177,21 +1174,6 @@ class ReportWebApplication:
             relative = output_directory.relative_to(output_root)
             result["report_url"] = "/outputs/" + relative.as_posix() + "/index.html"
             result["markdown_url"] = "/outputs/" + relative.as_posix() + "/report.md"
-            previous_revision = result.get("previous_revision")
-            if isinstance(previous_revision, dict) and previous_revision.get(
-                "output_directory"
-            ):
-                previous_output = (
-                    self.config.project_root
-                    / str(previous_revision["output_directory"])
-                ).resolve()
-                previous_relative = previous_output.relative_to(output_root)
-                result["previous_report_url"] = (
-                    "/outputs/" + previous_relative.as_posix() + "/index.html"
-                )
-                result["previous_markdown_url"] = (
-                    "/outputs/" + previous_relative.as_posix() + "/report.md"
-                )
             self.registry.update(
                 job.job_id,
                 status="completed",
@@ -1201,8 +1183,6 @@ class ReportWebApplication:
             completed_message = (
                 "已复用现有报告（未调用模型）"
                 if result.get("reused_existing")
-                else "新报告已完成并通过验收，旧版已保留用于对比"
-                if result.get("regenerated")
                 else "报告已完成并通过验收"
             )
             self.registry.record_event(job.job_id, "completed", completed_message)
@@ -1436,10 +1416,6 @@ class ReportRequestHandler(BaseHTTPRequestHandler):
                 text_field(fields, "codex_service_tier")
                 or self.application.config.default_codex_service_tier
             )
-            regenerate_value = text_field(fields, "regenerate") or "false"
-            if regenerate_value not in {"true", "false"}:
-                raise ValueError("重新生成参数无效")
-            regenerate = regenerate_value == "true"
             package_path = text_field(fields, "package_path")
             upload_id = uuid.uuid4().hex
             upload_directory = self.application.upload_root / upload_id
@@ -1489,7 +1465,6 @@ class ReportRequestHandler(BaseHTTPRequestHandler):
                 model=model,
                 reasoning_effort=reasoning_effort,
                 codex_service_tier=codex_service_tier,
-                regenerate=regenerate,
             )
             self._send_json(
                 HTTPStatus.ACCEPTED,

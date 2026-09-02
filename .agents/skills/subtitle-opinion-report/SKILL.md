@@ -1,9 +1,9 @@
 ---
 name: subtitle-opinion-report
-description: Generate, resume, review, or validate a three-layer opinion report from a validated timestamped transcript package. Use when Codex is asked to import corrected subtitles, extract creator meaning and subjective opinions, research those opinions, form source-backed Agent judgments, or publish the final Markdown and HTML report.
+description: Generate, resume, review, or validate a source-only visual report from a validated timestamped video transcript package. Use when Codex is asked to import corrected subtitles, preserve creator meaning and attributed opinions, or publish the final Markdown and HTML report.
 ---
 
-# Subtitle Opinion Report
+# Subtitle Meaning Report
 
 This project begins with a transcript package. It never downloads media, runs ASR, or edits the transcript.
 
@@ -11,45 +11,59 @@ This project begins with a transcript package. It never downloads media, runs AS
 
 1. Read the project-root `WORKFLOW.md` and `AGENTS.md`.
 2. Inspect `state/processed-reports.json` and `work/*/manifest.json`.
-3. Resume an incomplete report run for the same video ID instead of importing it twice. A completed report is reused by default. Only an explicit regenerate request may archive immutable `work`, `reports`, and `output` revisions before resetting stages after ingest; never treat an incomplete run as a new revision.
+3. New video runs use `workflow_profile = video_meaning_v1`. A completed report is reused without overwriting its verified artifacts. A legacy `video_full_v1` report may be opened or reused after completion, but this branch does not resume an unfinished legacy workflow and provides no completed-report regeneration path.
 4. If no run exists, require a package exported by the transcript project and run:
 
 ```text
 video-opinion-report import-transcript --package /absolute/path/to/transcript-package
 ```
 
-Stop if schema, checksum, transcript structure, or upstream-audit integrity fails. Treat upstream coverage, gap, and video-end alignment metrics as non-blocking audit metadata: this project consumes the transcript as text and does not reconstruct the media timeline. Preserve every imported segment unchanged; advertising, transitions, outros, and obvious ASR noise are handled later by content selection. Do not launch a separate transcript-correction stage or model call and do not create a second corrected transcript. Obvious ASR wording may be normalized naturally while performing the required content analysis and report writing; preserve uncertainty whenever context is insufficient.
+Stop if schema, checksum, transcript structure, or upstream-audit integrity fails. Treat upstream coverage, gap, and video-end alignment metrics as non-blocking audit metadata: this project consumes the transcript as text and does not reconstruct the media timeline. Preserve every imported segment unchanged. Do not launch a separate correction stage or create a second corrected transcript. Obvious ASR wording may be normalized naturally while understanding and writing; preserve uncertainty whenever context is insufficient.
 
-## 1. Extract meaning and opinions
+## 1. Analyze meaning and write the report
 
-Run this as the isolated `analyze` model stage with web search disabled. Read [content-boundaries.md](references/content-boundaries.md) and [opinion-schema.md](references/opinion-schema.md). Read the deterministic `transcript.corrected.model.txt` completely; it losslessly carries every segment ID, timestamp, and text value from the immutable `transcript.corrected.jsonl` while omitting repeated JSON keys. The JSONL remains authoritative and must never be overwritten. From `corrections.json`, extract only the correction summary and unresolved terms; do not load usage or historical model-response metadata. Do not launch a correction pass, risk-word scan, or extra model call; understand obvious wording from context and keep the upstream file unchanged. Advertising, promotion, subscription prompts, sales passages, unrelated passages, and boilerplate outros follow the existing content-selection schema and never become opinions or report prose. Produce schema-v2 `video-analysis.json` and `opinions.jsonl`; every reportable section needs a summary and key points, and every opinion must bind its section, actual speaker, stance owner, and attribution mode. Register them with `record-analysis`, which creates `transcript.report.jsonl` and its lossless compact model view. ASR risk lists stay internal and are not a required reader-facing section.
+Run all model work serially inside `analyze`, displayed as “原意分析与成稿”. Never use multiple Agents. The normal path has three bounded passes:
 
-## 2. Research subjective opinions
+1. `understand`: read [content-boundaries.md](references/content-boundaries.md), [opinion-schema.md](references/opinion-schema.md), and the complete `transcript.corrected.model.txt`. Use optional web access and relevant stock, macro, finance, technology, accounting, or earnings knowledge to disambiguate the source. Write internal-only `understanding-notes.json`, `video-analysis.json`, and `opinions.jsonl`.
+2. `plan`: read [report-template.md](references/report-template.md) plus the compact outputs above; do not reread the transcript or search the web. Write `presentation-plan.json` with 2—3 summary cards and at most one semantic visual per reportable section.
+3. `draft`: write `report.md` from the analysis, opinions, and presentation plan. Only inspect a targeted transcript range when a recorded ambiguity requires it; do not reread the whole transcript. Register all artifacts atomically.
 
-Run this as a new isolated `research` model stage. Read [research-guidelines.md](references/research-guidelines.md), the recorded opinions, and analysis. Deduplicate opinions and cluster them by topic. Do not reread the full report transcript; only open the relevant segment range in `transcript.report.model.txt` when an opinion needs contextual disambiguation. The current Agent researches every topic sequentially; do not start subagents or parallel Agent work. Reuse shared sources across opinions, normally keep 3–5 decisive direct sources per topic, and stay within the automation search/source budget unless a critical claim cannot otherwise be verified. Require evidence, counterevidence, conditions, dates, and direct URLs. Register complete topic files with `record-research`.
+The execution layer may run one targeted repair pass after a deterministic validation failure. The repair pass is not a new research or judgment stage.
 
-## 3. Synthesize Agent judgments
+Web search is available but optional. Use it when the particular video benefits from term disambiguation, data-scope checking, detail clarification, or a faithful visual treatment. Search is not an external-research stage: it must not add a new thesis, investment recommendation, causal claim, or Agent conclusion to the report, and it must not change the ownership, strength, conditions, or conclusion of a video claim. If outside material conflicts with the transcript, preserve the video's meaning and state uncertainty only when material to understanding.
 
-Run this as a new isolated `judgment` model stage with web search disabled. Read [agent-judgment.md](references/agent-judgment.md). Use the registered analysis and research rather than adding a second research pass. Produce `agent-judgment.json` with conclusion, confidence, time horizon, priced-in read, what must be true, measurable disconfirmers, downside mechanism, action posture, missing evidence, source URLs, and `source_as_of`. Register it with `record-judgment`.
+Produce these model-authored artifacts in the same displayed stage:
 
-## 4. Draft and review
+- internal-only `understanding-notes.json`, which may contain direct URLs used for disambiguation but never becomes report evidence;
+- schema-v2 `video-analysis.json` with `workflow_profile = video_meaning_v1`;
+- `opinions.jsonl`, with `research_status = not_applicable` on every item;
+- internal `presentation-plan.json`, binding every section to its editorial lead and optional visual type;
+- the final source-only `report.md`.
 
-Read [report-template.md](references/report-template.md). Preserve this ordered structure:
+Every reportable section needs a summary, key points, a transcript segment range, and one matching `video-section` page anchor. Every opinion must bind its section, timestamps, exact quote, actual speaker, stance owner, and attribution mode. Advertising, promotion, subscription prompts, sales passages, unrelated passages, and boilerplate outros follow [content-boundaries.md](references/content-boundaries.md) and never become opinions or report prose.
 
-1. `第一部分｜视频 / 作者内容`
-2. `第二部分｜外部证据研判`
-3. `第三部分｜Agent 综合判断`
+Register all three artifacts together:
 
-Before part one, add exactly one investor dashboard labeled `报告综合 · 非视频原内容`; it is report front matter, not creator content. Part one must be grounded only in the corrected transcript, semantically cover every reportable section, and be written in direct content voice. Keep external evidence and Agent inference out of it. Distinguish the creator's own take from views the creator reports from another person or institution. Label report-authored disclaimers, transcript uncertainty, omissions, and chart explanations as non-creator content. Omit advertising, promotion, subscription prompts, and sales language from the report regardless of location; middle source text remains preserved in transcript evidence even though it does not become report prose or an opinion. Use the fixed heading `科技五大新闻` for five closing technology items and hide their video timestamps on the page.
+```text
+video-opinion-report record-meaning-report --video-id VIDEO_ID --understanding-notes /absolute/path/understanding-notes.json --presentation-plan /absolute/path/presentation-plan.json --video-analysis /absolute/path/video-analysis.json --opinions /absolute/path/opinions.jsonl --markdown /absolute/path/report.md
+```
 
-Run drafting as a new isolated model stage with web search disabled. Within this one drafting call and context, make a lightweight editorial plan before writing; do not start another model call or create another planning artifact. Write an editorial title and deck, 3–5 cover hooks, and a natural topic sequence. Use the supported magazine components—investor dashboard, asset map, summary dashboard, market/KPI cards, creator and reported-view cards, mechanism visuals, evidence-status grid, scenario grid, catalyst calendar, plain-language notes, news cards, evidence deltas, and decision briefs—only where they improve comprehension. Treat the six investor questions as an internal completeness checklist, not six mandatory visible headings. Claim IDs, timestamp trails, ASR notices, provenance badges, and per-topic audit disclosures are optional internal details, not presentation requirements.
+The command deterministically validates analysis, opinion attribution, transcript ranges, content selection, section-to-page mapping, source-only structure, links, and promotion exclusion. Any failure fails the whole analyze stage and blocks rendering.
 
-Run the first fidelity review in a fresh isolated model context with web search disabled. Expose only package identity, the complete lossless `transcript.report.model.txt`, analysis, opinions, and draft; do not read research files, Agent judgment, citations, external evidence, duplicate transcript encodings, or historical correction-model metadata. Check every reportable section and opinion, including speaker, stance owner, attribution mode, qualifiers, and reasoning chain; any omitted section needs an explicit reason. Because this project has no source audio, never claim that an uncertain word was confirmed by listening. Bind the review to the authoritative report JSONL SHA-256 recorded in the model-view header. Register the draft and passing review with `record-draft` and `record-fidelity-review`.
+Model invocation count is operational telemetry, not a completion rule. The execution layer may retry or perform a serial revision when needed. Never use multi Agent, subagents, task delegation, or parallel Agent work.
 
-For Codex video automation, the UI-selected reasoning effort is a ceiling rather than a mandatory level for every stage: analyze, research, and draft cap at `high`; judgment caps at `xhigh`; fidelity review caps at `medium`. Lower user-selected levels remain lower. This preserves the strongest reasoning for synthesis while avoiding routine `xhigh` context replay.
+## 2. Report structure
 
-## 5. Build and validate
+The report has one content layer: `视频 / 作者内容`. Use a compact editorial cover, a 2—3 card “视频内容速览”, and a coherent research-brief body labeled `报告整理 · 仅据字幕`. Keep the reading column narrow, paragraphs short, desktop card grids to at most three columns, and mobile layouts to one column. Every section has one lead sentence and at most one meaningful visualization.
 
-Create `report.md`, `report-data.json`, `citations.json`, and HTML under the single directory `reports/<published-date>-<video_id>/`. Use only `assets/report-template.html`. The fidelity review must record the SHA-256 of the reviewed draft and report transcript. After the model stages finish, the outer deterministic program registers structured artifacts with `build-structured`, renders that same recorded draft with `render-html`, visually inspects the page, and binds `html-validation.json` to the SHA-256 values of all four final artifacts. Run `complete-run` only after every gate passes.
+Use chapter summaries, key-data cards, creator-view cards, reported-view cards, mechanisms explicitly expressed in the video, and “科技五大新闻” when that segment exists. Preserve the distinction between the speaker and the true stance owner. Omit advertising and sales language regardless of location.
 
-Return video identity, input package, stage results, opinion/research/judgment counts, review result, report paths, and remaining limitations.
+Do not add an investor dashboard, external-evidence assessment, Agent judgment, scenario grid, catalyst calendar, extension reading, personalized trade instruction, or any claim that the transcript does not express. Network use during generation does not authorize extra report content.
+
+## 3. Build and validate
+
+Create `report.md`, `report-data.json`, `citations.json`, and HTML under `reports/<published-date>-<video_id>/`. Use only `assets/report-template.html`.
+
+After analyze completes, the outer deterministic program builds schema-v3 `report-data.json`, writes a compatibility `citations.json` containing video/transcript provenance and an empty `external_sources` list, renders the recorded Markdown, visually inspects desktop and mobile viewports, and binds `html-validation.json` to all final-artifact hashes. Run `complete-run` only after every gate passes.
+
+Return video identity, workflow profile, model/token telemetry, stage results, report paths, and remaining source uncertainties. Do not report research or Agent-judgment counts because those artifacts do not exist in this workflow.

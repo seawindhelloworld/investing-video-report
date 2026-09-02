@@ -1,5 +1,7 @@
 # 观点数据契约
 
+本契约用于 `video_meaning_v1`。`video-analysis.json` 使用 `schema_version = 2`，并显式写入 `workflow_profile = video_meaning_v1`。
+
 `video-analysis.json` 的新任务使用 `schema_version = 2`。每个可报告 section 至少包含：
 
 ```json
@@ -38,7 +40,7 @@
   "qualifiers": ["总体上", "我认为"],
   "context_before": "",
   "context_after": "",
-  "research_status": "pending"
+  "research_status": "not_applicable"
 }
 ```
 
@@ -52,4 +54,4 @@
 - `self` 只用于 speaker 与 stance_owner 相同的观点。无法可靠判断归属时使用 `uncertain`，不得默认归到作者；
 - `stated_basis` 只记录视频明确提出的依据；
 - `time_horizon`、`target` 未明确时写“视频中未明确”，不得自行推断；
-- Agent 识别出的隐含条件另存为外部分析字段，不归因给视频作者。
+- `video_meaning_v1` 不生成外部研究；`research_status` 固定为 `not_applicable`。模型为理解原意进行的可选联网查询不得产生新的观点记录。

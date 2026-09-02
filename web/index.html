@@ -33,7 +33,7 @@
           <label class="report-type-field" for="report-type">
             <span>
               <b>报告类型</b>
-              <small id="report-type-description">忠实整理单个视频的作者内容，并进行外部研判与 Agent 综合判断。</small>
+              <small id="report-type-description">忠实整理单个视频的原意，并生成可视化单层报告；不做外部研判或 Agent 综合判断。</small>
             </span>
             <select id="report-type" class="text-field" name="report_type">
               <option value="video" selected>视频报告</option>
@@ -117,7 +117,7 @@
                 <option value="xhigh">xhigh</option>
                 <option value="max">max</option>
               </select>
-              <small id="effort-note" class="inline-note">视频报告会按阶段自动降档，综合判断保留最高强度。</small>
+              <small id="effort-note" class="inline-note">视频报告的原意分析与成稿最高使用 high。</small>
             </label>
           </div>
 
@@ -128,15 +128,6 @@
               <small>同一个 Sol 模型走低延迟服务层；通常更快，但可能消耗更多额度。</small>
             </span>
             <i>加速</i>
-          </label>
-
-          <label id="regenerate-row" class="regenerate-row">
-            <input id="regenerate-report" type="checkbox">
-            <span>
-              <b>重新生成并保留旧版</b>
-              <small>仅用于已经完成的同一视频；旧报告会生成独立快照，新报告从原意分析阶段重新运行。</small>
-            </span>
-            <i>对比</i>
           </label>
 
           <div id="engine-warning" class="engine-warning" hidden>OpenCode 将以无人值守模式复用本机权限配置。当前列出的 DeepSeek V4 Flash / Pro 均为文字模型；含图片素材时请改用支持图片的 Codex 模型。</div>
@@ -218,7 +209,6 @@
 
             <div id="result-actions" class="result-actions" hidden>
               <a id="open-report" class="primary-button" target="_blank" rel="noopener">打开完整报告 <b>↗</b></a>
-              <a id="open-previous-report" class="secondary-button" target="_blank" rel="noopener" hidden>打开旧版对比</a>
               <a id="download-markdown" class="secondary-button" download>下载 Markdown</a>
             </div>
             <div id="job-error" class="message error" role="alert" hidden></div>

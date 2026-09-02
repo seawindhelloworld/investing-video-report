@@ -10,18 +10,22 @@ from pathlib import Path
 
 from video_opinion_report.automation import (
     AutomationConfig,
+    VIDEO_ANALYZE_PASSES,
+    VIDEO_ANALYZE_PASS_WEB_SEARCH,
     VIDEO_MODEL_STAGES,
     VIDEO_STAGE_REASONING_CAPS,
     VIDEO_STAGE_WEB_SEARCH,
     _invoke_video_model_stage,
-    archive_and_reset_completed_video,
     build_codex_command,
     build_codex_prompt,
     build_material_prompt,
     build_opencode_command,
     build_video_stage_prompt,
+    build_video_analyze_pass_prompt,
     load_material_metadata,
     load_package_metadata,
+    parser as automation_parser,
+    prepare_manifest,
     run_automation,
     video_stage_reasoning_effort,
 )
@@ -32,7 +36,7 @@ from video_opinion_report.materials import (
     validate_material_package,
 )
 from video_opinion_report.models import Stage, StageStatus
-from video_opinion_report.store import ManifestStore, ProcessedReportStore
+from video_opinion_report.store import ManifestStore
 
 
 MINIMAL_REPORT = """---
@@ -61,6 +65,9 @@ video_id: "video-1"
 
 
 class AutomationTests(unittest.TestCase):
+    def test_cli_has_no_completed_report_regeneration_option(self) -> None:
+        self.assertNotIn("--regenerate", automation_parser().format_help())
+
     def test_project_codex_config_avoids_obsolete_boolean_agents_table(self) -> None:
         project_config = (
             Path(__file__).resolve().parents[1] / ".codex" / "config.toml"
@@ -127,6 +134,9 @@ class AutomationTests(unittest.TestCase):
 
         store = ManifestStore(project)
         manifest = store.create("video-1", "https://example.com/video-1")
+        # Completed artifacts from the base branch have no workflow_profile and
+        # remain readable, but are not resumed by the simplified pipeline.
+        manifest.metadata.pop("workflow_profile", None)
         imported_package = store.run_dir("video-1") / "transcript" / "package.json"
         imported_package.parent.mkdir(parents=True, exist_ok=True)
         imported_package.write_bytes((package / "package.json").read_bytes())
@@ -170,7 +180,7 @@ class AutomationTests(unittest.TestCase):
             self.assertIn("multi_agent_v2", command)
             self.assertEqual(command[-1], "-")
 
-    def test_analysis_prompt_is_transcript_only_and_stage_scoped(self) -> None:
+    def test_analysis_prompts_are_bounded_serial_passes(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             project, package = self.make_project(Path(directory))
             config = self.make_config(project, package)
@@ -178,50 +188,44 @@ class AutomationTests(unittest.TestCase):
             prompt = build_codex_prompt(config, metadata)
             self.assertIn("不使用多 Agent", prompt)
             self.assertIn("外层程序", prompt)
-            self.assertIn("当前唯一阶段：analyze", prompt)
-            self.assertIn("本阶段不使用网络或外部研究", prompt)
+            self.assertIn("页面阶段：analyze", prompt)
+            self.assertIn("当前串行步骤：understand", prompt)
+            self.assertIn("唯一允许联网", prompt)
             self.assertIn("transcript.corrected.model.txt", prompt)
             self.assertIn("跳过 usage", prompt)
-            self.assertIn("record-analysis", prompt)
+            self.assertIn("understanding-notes.json", prompt)
             self.assertIn("不执行 git add、git commit、git push", prompt)
-            self.assertIn("不要启动独立字幕勘误、风险词扫描或派生字幕", prompt)
-            self.assertIn("广告、推广、订阅与销售话术不得成为观点", prompt)
+            self.assertIn("不要启动独立字幕勘误阶段", prompt)
+            self.assertIn("广告、推广、订阅与销售话术不得进入观点或后续报告", prompt)
             self.assertIn("schema_version=2", prompt)
+            self.assertIn("workflow_profile=video_meaning_v1", prompt)
+            self.assertIn("research_status 固定为 not_applicable", prompt)
             self.assertIn("stance_owner", prompt)
-            self.assertIn(
-                str(project / ".venv" / "bin" / "video-opinion-report"),
-                prompt,
-            )
+            self.assertIn("不要执行 record-meaning-report", prompt)
+            plan = build_video_analyze_pass_prompt(config, metadata, "plan")
+            self.assertIn("presentation-plan.json", plan)
+            self.assertIn("不重新通读字幕", plan)
+            draft = build_video_analyze_pass_prompt(config, metadata, "draft")
+            self.assertIn("record-meaning-report", draft)
+            self.assertIn("section-visual", draft)
+            self.assertIn(str(project / ".venv" / "bin" / "video-opinion-report"), draft)
             self.assertNotIn("targeted_corrections", prompt)
 
-    def test_video_prompts_isolate_research_drafting_and_fidelity_review(self) -> None:
+    def test_video_prompt_removes_legacy_model_stages(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             project, package = self.make_project(Path(directory))
             config = self.make_config(project, package)
             metadata = load_package_metadata(package)
-            research = build_video_stage_prompt(config, metadata, Stage.RESEARCH)
-            draft = build_video_stage_prompt(config, metadata, Stage.DRAFT)
-            fidelity = build_video_stage_prompt(
-                config, metadata, Stage.FIDELITY_REVIEW
-            )
-            self.assertIn("当前唯一阶段：research", research)
-            self.assertIn("实时外部研究", research)
-            self.assertIn("只完成 research", research)
-            self.assertIn("最多 24 个来源、最多 24 次搜索", research)
-            self.assertIn("不得全量重读", research)
-            self.assertIn("本阶段不再进行网络研究", draft)
-            self.assertIn("本次起草会话内先做轻量编辑规划", draft)
-            self.assertIn("investor-dashboard", draft)
-            self.assertIn("报告综合 · 非视频原内容", draft)
-            self.assertIn("reported-view-card", draft)
-            self.assertIn("不要执行 fidelity review", draft)
-            self.assertIn("全新隔离上下文", fidelity)
-            self.assertIn("禁止打开", fidelity)
-            self.assertIn("agent-judgment.json", fidelity)
-            self.assertIn("external_research_visible_to_reviewer=false", fidelity)
-            self.assertIn("逐条覆盖全部 section_id 和 opinion_id", fidelity)
-            self.assertIn("只审查报告第一部分", fidelity)
-            self.assertNotIn("corrections.json", fidelity)
+            self.assertEqual(VIDEO_MODEL_STAGES, (Stage.ANALYZE,))
+            self.assertTrue(VIDEO_STAGE_WEB_SEARCH[Stage.ANALYZE])
+            for stage in (
+                Stage.RESEARCH,
+                Stage.JUDGMENT,
+                Stage.DRAFT,
+                Stage.FIDELITY_REVIEW,
+            ):
+                with self.assertRaisesRegex(ValueError, "does not require"):
+                    build_video_stage_prompt(config, metadata, stage)
 
     def test_video_stage_reasoning_uses_selected_effort_as_a_ceiling(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -257,7 +261,7 @@ class AutomationTests(unittest.TestCase):
                 {"low"},
             )
 
-    def test_each_video_model_stage_has_its_own_call_and_live_status(self) -> None:
+    def test_video_analyze_uses_three_serial_passes_and_one_search_pass(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             project, package = self.make_project(Path(directory))
             config = self.make_config(project, package)
@@ -280,59 +284,61 @@ class AutomationTests(unittest.TestCase):
             manifest.start(Stage.INGEST)
             manifest.complete(Stage.INGEST)
             store.save(manifest)
-            observed: list[tuple[Stage, str, bool]] = []
+            observed: list[tuple[str, str, bool]] = []
 
-            for expected_stage in VIDEO_MODEL_STAGES:
-
-                def fake_runner(
-                    command: list[str],
-                    *,
-                    input: str | None,
-                    text: bool,
-                    cwd: Path,
-                    check: bool,
-                    stage: Stage = expected_stage,
-                ) -> subprocess.CompletedProcess[str]:
-                    del input, text, cwd, check
-                    live = store.load("video-1")
-                    record = live.stages[stage.value]
-                    self.assertEqual(record.status, StageStatus.RUNNING)
-                    self.assertIsNotNone(record.started_at)
-                    observed.append(
-                        (stage, str(record.started_at), "--search" in command)
+            def fake_runner(
+                command: list[str],
+                *,
+                input: str | None,
+                text: bool,
+                cwd: Path,
+                check: bool,
+            ) -> subprocess.CompletedProcess[str]:
+                del text, cwd, check
+                assert input is not None
+                live = store.load("video-1")
+                record = live.stages[Stage.ANALYZE.value]
+                self.assertEqual(record.status, StageStatus.RUNNING)
+                self.assertIsNotNone(record.started_at)
+                pass_name = next(
+                    name for name in VIDEO_ANALYZE_PASSES if f"当前串行步骤：{name}" in input
+                )
+                observed.append((pass_name, str(record.started_at), "--search" in command))
+                run_dir = store.run_dir("video-1")
+                if pass_name == "understand":
+                    (run_dir / "understanding-notes.json").write_text(
+                        '{"video_id":"video-1"}', encoding="utf-8"
                     )
-                    live.complete(stage)
+                    (run_dir / "video-analysis.json").write_text(
+                        '{"video_id":"video-1"}', encoding="utf-8"
+                    )
+                    (run_dir / "opinions.jsonl").write_text(
+                        '{"opinion_id":"o1"}\n', encoding="utf-8"
+                    )
+                elif pass_name == "plan":
+                    (run_dir / "presentation-plan.json").write_text(
+                        '{"video_id":"video-1"}', encoding="utf-8"
+                    )
+                else:
+                    live.complete(Stage.ANALYZE)
                     store.save(live)
-                    return subprocess.CompletedProcess(
-                        command, 0, stdout="", stderr=""
-                    )
+                return subprocess.CompletedProcess(command, 0, stdout="", stderr="")
 
-                invocation = _invoke_video_model_stage(
-                    config,
-                    metadata,
-                    expected_stage,
-                    run_command=fake_runner,
-                )
-                self.assertIsNotNone(invocation)
-                assert invocation is not None
-                self.assertEqual(invocation["stage"], expected_stage.value)
-                self.assertTrue(
-                    str(invocation["final_message"]).endswith(
-                        f"{expected_stage.value}-final-message.txt"
-                    )
-                )
-
-            self.assertEqual([item[0] for item in observed], list(VIDEO_MODEL_STAGES))
+            invocations = _invoke_video_model_stage(
+                config,
+                metadata,
+                Stage.ANALYZE,
+                run_command=fake_runner,
+            )
+            self.assertEqual([item["pass"] for item in invocations], list(VIDEO_ANALYZE_PASSES))
+            self.assertEqual([item[0] for item in observed], list(VIDEO_ANALYZE_PASSES))
             self.assertEqual(
                 [item[2] for item in observed],
-                [VIDEO_STAGE_WEB_SEARCH[stage] for stage in VIDEO_MODEL_STAGES],
+                [VIDEO_ANALYZE_PASS_WEB_SEARCH[name] for name in VIDEO_ANALYZE_PASSES],
             )
             self.assertEqual(
-                {
-                    store.load("video-1").stages[stage.value].status
-                    for stage in VIDEO_MODEL_STAGES
-                },
-                {StageStatus.COMPLETED},
+                store.load("video-1").stages[Stage.ANALYZE.value].status,
+                StageStatus.COMPLETED,
             )
 
     def test_failed_video_stage_is_persisted_and_retryable(self) -> None:
@@ -364,7 +370,7 @@ class AutomationTests(unittest.TestCase):
                     command, 7, stdout="", stderr="stage failed"
                 )
 
-            with self.assertRaisesRegex(RuntimeError, "analyze stage exited with status 7"):
+            with self.assertRaisesRegex(RuntimeError, "analyze/understand pass exited with status 7"):
                 _invoke_video_model_stage(
                     config,
                     metadata,
@@ -672,63 +678,6 @@ class AutomationTests(unittest.TestCase):
             )
             self.assertTrue(metadata["reused_existing"])
 
-    def test_archives_completed_report_before_resetting_generated_stages(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            project, package = self.make_project(Path(directory))
-            self.make_completed_manifest(project, package)
-            config = AutomationConfig(
-                project_root=project,
-                package=package,
-                model="gpt-5.6-sol",
-                reasoning_effort="high",
-                output_root=project / "output",
-                regenerate=True,
-            ).validated()
-            output = project / "output" / "2026-08-23-video-1"
-            output.mkdir(parents=True)
-            (output / "index.html").write_text("old output", encoding="utf-8")
-            (output / "report.md").write_text("old markdown", encoding="utf-8")
-            processed = ProcessedReportStore(project)
-            processed.add({"video_id": "video-1", "completed_at": "2026-08-23"})
-
-            manifest, revision = archive_and_reset_completed_video(
-                config,
-                load_package_metadata(package),
-                ManifestStore(project).load("video-1"),
-            )
-
-            revision_output = project / str(revision["output_directory"])
-            revision_report = project / str(revision["report_directory"])
-            revision_work = project / str(revision["work_directory"])
-            self.assertEqual(
-                (revision_output / "index.html").read_text(encoding="utf-8"),
-                "old output",
-            )
-            self.assertTrue((revision_report / "report.md").is_file())
-            self.assertTrue((revision_work / "manifest.json").is_file())
-            self.assertFalse((project / "reports" / "2026-08-23-video-1").exists())
-            self.assertTrue(output.is_dir(), "old public output stays available until replacement")
-            self.assertTrue(manifest.is_complete(Stage.INGEST))
-            self.assertTrue(
-                all(
-                    manifest.stages[stage.value].status == StageStatus.PENDING
-                    for stage in Stage
-                    if stage is not Stage.INGEST
-                )
-            )
-            self.assertIn("transcript_package", manifest.artifacts)
-            self.assertNotIn("report_html", manifest.artifacts)
-            self.assertEqual(
-                manifest.metadata["previous_revision_id"], revision["revision_id"]
-            )
-            self.assertFalse(processed.contains("video-1"))
-            registry = json.loads(
-                (project / "state" / "report-revisions.json").read_text(
-                    encoding="utf-8"
-                )
-            )
-            self.assertEqual(registry["revisions"][0]["revision_id"], revision["revision_id"])
-
     def test_rejects_same_video_id_from_a_different_package(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             project, package = self.make_project(Path(directory))
@@ -739,6 +688,25 @@ class AutomationTests(unittest.TestCase):
             package_manifest.write_text(json.dumps(payload), encoding="utf-8")
             with self.assertRaisesRegex(RuntimeError, "字幕包与本次输入不一致"):
                 run_automation(self.make_config(project, package))
+
+    def test_does_not_resume_an_incomplete_legacy_full_run(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            project, package = self.make_project(Path(directory))
+            store = ManifestStore(project)
+            manifest = store.create("video-1", "https://example.com/video-1")
+            manifest.metadata.pop("workflow_profile")
+            imported_package = store.run_dir("video-1") / "transcript" / "package.json"
+            imported_package.parent.mkdir(parents=True)
+            imported_package.write_bytes((package / "package.json").read_bytes())
+            store.set_artifact(manifest, "transcript_package", imported_package)
+            manifest.start(Stage.INGEST)
+            manifest.complete(Stage.INGEST)
+            store.save(manifest)
+            with self.assertRaisesRegex(RuntimeError, "不提供旧流程续跑"):
+                prepare_manifest(
+                    self.make_config(project, package),
+                    load_package_metadata(package),
+                )
 
     def test_rejects_tampered_completed_report_artifact(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -127,12 +127,6 @@ class ProcessedReportStore:
         reports[video_id] = dict(entry)
         self._save(reports)
 
-    def remove(self, video_id: str) -> None:
-        reports = self.load()
-        if reports.pop(validate_video_id(video_id), None) is None:
-            return
-        self._save(reports)
-
     def _save(self, reports: dict[str, dict[str, object]]) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         temporary = self.path.with_suffix(".json.tmp")

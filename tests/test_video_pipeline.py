@@ -1,61 +1,63 @@
 from __future__ import annotations
 
-import argparse
 import json
 import tempfile
 import unittest
 from pathlib import Path
 
 from video_opinion_report.cli import (
-    build_structured,
+    build_meaning_structured,
     complete_run,
-    record_agent_judgment,
-    record_analysis,
-    record_draft,
-    record_fidelity_review,
-    record_research,
+    record_meaning_report,
     render_html,
     validate_html,
 )
 from video_opinion_report.ingestion import FILE_DESTINATIONS, import_transcript_package
 from video_opinion_report.integrity import sha256_file
-from video_opinion_report.models import Stage
+from video_opinion_report.models import VIDEO_MEANING_PROFILE, Stage, StageStatus
 from video_opinion_report.store import ManifestStore, ProcessedReportStore
 
 
 REPORT_MARKDOWN = """---
 title: "Synthetic report"
 video_id: "video-1"
+source_url: "https://example.com/video-1"
 creator: "Creator"
 published_at: "2026-08-20"
 report_date: "2026-08-24"
-description: ""
 ---
 
-# Synthetic report
+# 市场改善仍是带条件的判断
 
-<section id="investor-dashboard" class="investor-dashboard" markdown="1">
-<header class="investor-dashboard-header"><strong>投资决策总览</strong><small>报告综合 · 非视频原内容</small></header>
-<article class="investor-topic" data-status="mixed">市场改善仍需等待下一期数据验证。</article>
+> 视频围绕市场是否改善展开，并始终保留“可能”这一限定。
+
+<section class="hero-card">
+<strong>视频内容导读</strong>
+<p>核心信息是市场存在改善可能，但这不是确定性结论。</p>
 </section>
 
-## 第一部分｜视频 / 作者内容
+<section class="summary-dashboard">
+<article><span>报告整理 · 仅据字幕</span><strong>市场可能改善</strong><p>不是确定性结论。</p></article>
+<article><span>关键限定</span><strong>保留可能性</strong><p>视频没有给出确定承诺。</p></article>
+</section>
 
-<div class="layer-intro creator"><strong>报告说明（非原内容）：</strong>以下为忠实整理。</div>
+## 视频 / 作者内容
 
-市场可能改善，但结论仍取决于后续数据。这一限定与原句保持一致，并保留对应的不确定性。
+<div class="layer-intro creator">市场改善是可能性判断，不能改写为已经发生。</div>
 
-## 第二部分｜外部证据研判
+<section id="section-1" class="video-section" data-section-id="section-1">
 
-本注为基于外部信源形成的独立研判，不代表视频作者观点。
+### 市场判断
 
-公开资料支持方向，但样本仍有限，结论只在给定条件内成立。
+<div class="section-lead">市场改善仍是一项带条件的判断。</div>
 
-## 第三部分｜Agent 综合判断
+市场可能改善，但表达的重点是方向判断及其不确定性，而不是一项已经得到外部证据确认的事实。
 
-本节为 Agent 基于视频内容、既有外部研判和注明日期的公开资料形成的综合判断，不代表视频作者观点，也不构成投资建议。
+<div class="speaker-opinion-marker creator-view-card" data-speaker="Creator" data-stance-owner="Creator" data-attribution-mode="self"><span class="speaker-opinion-kicker">CREATOR TAKE</span><strong>Creator</strong></div>
 
-当前姿态是等待下一次数据验证，不输出买卖指令。
+<div class="view-summary"><p>讲者认为市场可能改善，同时保留判断空间。</p></div>
+
+</section>
 """
 
 
@@ -113,7 +115,7 @@ class VideoPipelineTests(unittest.TestCase):
         )
         return package
 
-    def test_runs_the_hash_bound_video_report_flow(self) -> None:
+    def test_runs_the_hash_bound_video_meaning_report_flow(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             assets = root / "assets"
@@ -121,19 +123,23 @@ class VideoPipelineTests(unittest.TestCase):
             template = assets / "report-template.html"
             template.write_text(
                 "<!doctype html><html><head><title>{{TITLE}}</title>"
-                "<style>body{font-family:sans-serif}</style></head><body><main>"
-                "<header><p>{{REPORT_META}}</p><p>{{SUMMARY}}</p></header>"
-                "{{REPORT_BODY}}</main></body></html>",
+                "<style>body{font-family:sans-serif;line-height:1.5}</style></head>"
+                "<body><header><p>{{REPORT_META}}</p><p>{{SUMMARY}}</p></header>"
+                "<main>{{REPORT_BODY}}</main></body></html>",
                 encoding="utf-8",
             )
             video_id = import_transcript_package(root, self._make_package(root))
-            run_dir = ManifestStore(root).run_dir(video_id)
+            store = ManifestStore(root)
+            run_dir = store.run_dir(video_id)
+            report_dir = root / "reports" / "2026-08-20-video-1"
+            report_dir.mkdir(parents=True)
 
             analysis = run_dir / "video-analysis.json"
             analysis.write_text(
                 json.dumps(
                     {
                         "schema_version": 2,
+                        "workflow_profile": VIDEO_MEANING_PROFILE,
                         "video_id": video_id,
                         "title": "Synthetic report",
                         "creator": "Creator",
@@ -182,175 +188,106 @@ class VideoPipelineTests(unittest.TestCase):
                         "qualifiers": ["我认为", "可能"],
                         "context_before": "",
                         "context_after": "",
-                        "research_status": "pending",
+                        "research_status": "not_applicable",
                     },
                     ensure_ascii=False,
                 )
                 + "\n",
                 encoding="utf-8",
             )
-            record_analysis(root, video_id, analysis, opinions)
-
-            research_dir = run_dir / "research"
-            research_dir.mkdir()
-            source_url = "https://example.com/official-evidence"
-            (research_dir / "market.json").write_text(
+            understanding = run_dir / "understanding-notes.json"
+            understanding.write_text(
                 json.dumps(
                     {
                         "schema_version": 1,
                         "video_id": video_id,
-                        "topic_id": "market",
-                        "theme": "市场改善",
-                        "researched_at": "2026-08-24",
-                        "disclaimer": "独立研判，不代表视频作者观点。",
-                        "topic_summary": "方向可能成立，但依赖后续数据。",
-                        "assessments": [
-                            {
-                                "opinion_id": "opinion-001",
-                                "status": "conditional",
-                                "conclusion": "结论有条件成立。",
-                                "supporting_evidence": ["官方数据出现改善。"],
-                                "counterevidence": ["样本期仍然较短。"],
-                                "applicable_conditions": ["后续数据继续改善。"],
-                                "time_horizon": "未来一个季度",
-                                "priced_in": "无法判断是否已充分计价。",
-                                "uncertainties": ["下一期数据尚未发布。"],
-                            }
+                        "workflow_profile": VIDEO_MEANING_PROFILE,
+                        "display_policy": "internal_only",
+                        "transcript_sha256": store.load(video_id).artifact_hashes[
+                            "transcript_corrected_jsonl"
                         ],
-                        "sources": [
-                            {
-                                "source_id": "source-001",
-                                "title": "Official evidence",
-                                "publisher": "Official publisher",
-                                "author": "Official author",
-                                "published_at": "2026-08-23",
-                                "accessed_at": "2026-08-24",
-                                "url": source_url,
-                                "evidence_summary": "提供带日期的市场数据。",
-                                "scope": "最近一个季度",
-                            }
-                        ],
+                        "term_checks": [],
+                        "data_checks": [],
+                        "domain_context": [],
+                        "uncertainties": [],
+                        "web_sources": [],
                     },
                     ensure_ascii=False,
                 ),
                 encoding="utf-8",
             )
-            record_research(root, video_id, research_dir)
-
-            judgment = run_dir / "agent-judgment.json"
-            judgment.write_text(
+            presentation_plan = run_dir / "presentation-plan.json"
+            presentation_plan.write_text(
                 json.dumps(
                     {
                         "schema_version": 1,
                         "video_id": video_id,
-                        "source_as_of": "2026-08-24",
-                        "disclaimer": (
-                            "本节不代表视频作者观点，也不构成投资建议。"
-                        ),
-                        "cross_topic_summary": "等待数据确认。",
-                        "topics": [
+                        "workflow_profile": VIDEO_MEANING_PROFILE,
+                        "report_title": "市场改善仍是带条件的判断",
+                        "cover_deck": "视频围绕市场是否改善展开。",
+                        "summary_cards": [
                             {
-                                "topic_id": "market",
-                                "theme": "市场改善",
-                                "conclusion": "改善尚需验证。",
-                                "evidence_layers": {
-                                    "facts": ["官方数据已出现初步改善。"],
-                                    "management_claims": [],
-                                    "inference": "若改善持续，方向判断更可信。",
-                                    "agent_judgment": "当前只适合等待验证。",
-                                },
-                                "confidence": "中等",
-                                "time_horizon": "未来一个季度",
-                                "priced_in": "无法判断是否已充分计价。",
-                                "what_must_be_true": ["下一期数据继续改善。"],
-                                "disconfirmers": ["30日内指标回落超过10%。"],
-                                "downside_mechanism": {
-                                    "shock": "数据恶化",
-                                    "transmission": "预期下修",
-                                    "constraint": "证据期较短",
-                                    "outcome": "判断不成立",
-                                },
-                                "action_posture": "wait_for_proof",
-                                "missing_evidence": "下一期官方数据",
-                                "next_verification": "2026-09-24复核",
-                                "source_urls": [source_url],
-                            }
+                                "label": "报告整理 · 仅据字幕",
+                                "headline": "市场可能改善",
+                                "detail": "不是确定性结论。",
+                            },
+                            {
+                                "label": "关键限定",
+                                "headline": "保留可能性",
+                                "detail": "视频没有给出确定承诺。",
+                            },
                         ],
-                    },
-                    ensure_ascii=False,
-                ),
-                encoding="utf-8",
-            )
-            record_agent_judgment(root, video_id, judgment)
-
-            report_dir = root / "reports" / "2026-08-20-video-1"
-            report_dir.mkdir(parents=True)
-            draft = report_dir / "report.md"
-            draft.write_text(REPORT_MARKDOWN, encoding="utf-8")
-            record_draft(root, video_id, draft)
-
-            report_transcript = ManifestStore(root).artifact_path(
-                ManifestStore(root).load(video_id), "transcript_report_jsonl"
-            )
-            review = run_dir / "fidelity-review.json"
-            review.write_text(
-                json.dumps(
-                    {
-                        "schema_version": 2,
-                        "video_id": video_id,
-                        "external_research_visible_to_reviewer": False,
-                        "overall_verdict": "passed",
-                        "post_revision_verdict": "passed",
-                        "draft_sha256": sha256_file(draft),
-                        "transcript_sha256": sha256_file(report_transcript),
-                        "section_checks": [
+                        "sections": [
                             {
                                 "section_id": "section-1",
-                                "status": "passed",
-                                "coverage_status": "included",
-                                "report_locations": ["第一部分 / 市场判断"],
-                                "omission_reason": "",
+                                "lead": "市场改善仍是一项带条件的判断。",
+                                "visual_type": "none",
+                                "visual_reason": "没有足够的可比较数据。",
+                                "source_segment_ids": ["seg-000001"],
                             }
                         ],
-                        "opinion_checks": [
-                            {
-                                "opinion_id": "opinion-001",
-                                "status": "passed",
-                                "speaker": "Creator",
-                                "stance_owner": "Creator",
-                                "attribution_mode": "self",
-                                "report_locations": ["第一部分 / 市场判断"],
-                            }
-                        ],
-                        "exclusion_checks": [],
-                        "unresolved_transcript_checks": [],
                     },
                     ensure_ascii=False,
                 ),
                 encoding="utf-8",
             )
-            record_fidelity_review(root, video_id, review)
-
-            build_structured(
-                root,
-                argparse.Namespace(
-                    video_id=video_id,
-                    video_analysis=analysis,
-                    opinions=opinions,
-                    research_dir=research_dir,
-                    agent_judgment=judgment,
-                    fidelity_review=review,
-                    report_data=report_dir / "report-data.json",
-                    citations=report_dir / "citations.json",
-                ),
+            draft = report_dir / "report.md"
+            draft.write_text(
+                REPORT_MARKDOWN + "\n## 外部证据研判\n不应进入原意报告。\n",
+                encoding="utf-8",
             )
-            render_html(
+            with self.assertRaisesRegex(ValueError, "external-research"):
+                record_meaning_report(
+                    root,
+                    video_id,
+                    understanding,
+                    presentation_plan,
+                    analysis,
+                    opinions,
+                    draft,
+                )
+            failed = store.load(video_id)
+            self.assertEqual(failed.stages[Stage.ANALYZE.value].status, StageStatus.FAILED)
+            self.assertNotIn("video_analysis", failed.artifacts)
+            self.assertNotIn("draft_markdown", failed.artifacts)
+
+            draft.write_text(REPORT_MARKDOWN, encoding="utf-8")
+            record_meaning_report(
                 root,
                 video_id,
+                understanding,
+                presentation_plan,
+                analysis,
+                opinions,
                 draft,
-                template,
-                report_dir / "index.html",
             )
+            build_meaning_structured(
+                root,
+                video_id,
+                report_dir / "report-data.json",
+                report_dir / "citations.json",
+            )
+            render_html(root, video_id, draft, template, report_dir / "index.html")
 
             validation = run_dir / "html-validation.json"
             validation.write_text(
@@ -362,12 +299,8 @@ class VideoPipelineTests(unittest.TestCase):
                         "visual_review_completed": True,
                         "report_html_sha256": sha256_file(report_dir / "index.html"),
                         "report_markdown_sha256": sha256_file(draft),
-                        "report_data_sha256": sha256_file(
-                            report_dir / "report-data.json"
-                        ),
-                        "citations_sha256": sha256_file(
-                            report_dir / "citations.json"
-                        ),
+                        "report_data_sha256": sha256_file(report_dir / "report-data.json"),
+                        "citations_sha256": sha256_file(report_dir / "citations.json"),
                         "checks": {"desktop": "passed", "mobile": "passed"},
                     },
                     ensure_ascii=False,
@@ -377,19 +310,40 @@ class VideoPipelineTests(unittest.TestCase):
             validate_html(root, video_id, validation)
             complete_run(root, video_id)
 
-            manifest = ManifestStore(root).load(video_id)
+            manifest = store.load(video_id)
+            self.assertEqual(manifest.workflow_profile, VIDEO_MEANING_PROFILE)
             self.assertTrue(manifest.is_complete(Stage.COMPLETE))
-            self.assertTrue(ProcessedReportStore(root).contains(video_id))
-            self.assertIn("report_html", manifest.artifact_hashes)
-            self.assertIn("default_visible_main_cjk_count", manifest.metadata)
-            self.assertIn("creator_visible_compression_ratio", manifest.metadata)
-            self.assertIn(
-                'class="reading-paths video"',
-                (report_dir / "index.html").read_text(encoding="utf-8"),
+            self.assertIn("understanding_notes", manifest.artifacts)
+            self.assertIn("presentation_plan", manifest.artifacts)
+            self.assertEqual(
+                {
+                    stage: manifest.stages[stage.value].status
+                    for stage in (Stage.RESEARCH, Stage.JUDGMENT, Stage.DRAFT, Stage.FIDELITY_REVIEW)
+                },
+                {
+                    Stage.RESEARCH: StageStatus.PENDING,
+                    Stage.JUDGMENT: StageStatus.PENDING,
+                    Stage.DRAFT: StageStatus.PENDING,
+                    Stage.FIDELITY_REVIEW: StageStatus.PENDING,
+                },
             )
-            self.assertIn("source_artifact_hashes", json.loads(
+            self.assertTrue(ProcessedReportStore(root).contains(video_id))
+            report_data = json.loads(
                 (report_dir / "report-data.json").read_text(encoding="utf-8")
-            ))
+            )
+            self.assertEqual(report_data["schema_version"], 3)
+            self.assertEqual(report_data["workflow_profile"], VIDEO_MEANING_PROFILE)
+            self.assertEqual(report_data["source_coverage"][0]["report_anchor"], "#section-1")
+            self.assertNotIn("research_topics", report_data)
+            self.assertNotIn("agent_judgment", report_data)
+            self.assertNotIn("understanding_notes", report_data)
+            self.assertNotIn("presentation_plan", report_data)
+            citations = json.loads(
+                (report_dir / "citations.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(citations["external_sources"], [])
+            html = (report_dir / "index.html").read_text(encoding="utf-8")
+            self.assertIn('class="reading-paths video meaning"', html)
 
 
 if __name__ == "__main__":

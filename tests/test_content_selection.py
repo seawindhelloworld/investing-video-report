@@ -148,6 +148,7 @@ class ContentSelectionTests(unittest.TestCase):
                 json.dumps(
                     {
                         "schema_version": 1,
+                        "workflow_profile": "video_meaning_v1",
                         "video_id": "v1",
                         "title": "Test",
                         "creator": "Creator",
@@ -189,7 +190,7 @@ class ContentSelectionTests(unittest.TestCase):
                 '"opinion_type":"commercial","target":"会员",'
                 '"time_horizon":"视频中未明确","stated_basis":[],"qualifiers":[],'
                 '"context_before":"","context_after":"",'
-                '"research_status":"pending"}\n',
+                '"research_status":"not_applicable"}\n',
                 encoding="utf-8",
             )
 

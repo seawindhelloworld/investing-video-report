@@ -6,6 +6,7 @@ from video_opinion_report.reporting import (
     build_structured_artifacts,
     parse_front_matter,
     render_markdown_report,
+    validate_meaning_report,
     validate_rendered_report,
     validate_report_layers,
     validate_report_readability,
@@ -13,6 +14,76 @@ from video_opinion_report.reporting import (
 
 
 class ReportingTests(unittest.TestCase):
+    def _meaning_report(self) -> tuple[str, dict[str, object]]:
+        analysis: dict[str, object] = {
+            "video_id": "v1",
+            "source_url": "https://example.com/video",
+            "sections": [{"section_id": "section-1"}],
+        }
+        report = """---
+title: "Meaning"
+video_id: "v1"
+source_url: "https://example.com/video"
+---
+
+# Meaning
+
+<section class="summary-dashboard"><span>报告整理 · 仅据字幕</span><h2>视频内容速览</h2><p>内容摘要。</p></section>
+
+## 视频 / 作者内容
+
+<section id="section-1" class="video-section" data-section-id="section-1">
+
+### 主题
+
+视频明确表达的正文内容。
+
+<div class="speaker-opinion-marker creator-view-card" data-speaker="Creator" data-stance-owner="Creator" data-attribution-mode="self"><span class="speaker-opinion-kicker">CREATOR TAKE</span><strong>Creator</strong></div>
+
+> 视频中的观点。
+
+<a href="https://example.com/video">原视频</a>
+
+</section>
+"""
+        return report, analysis
+
+    def test_meaning_report_accepts_single_source_only_layer(self) -> None:
+        report, analysis = self._meaning_report()
+        counts = validate_meaning_report(report, analysis)
+        self.assertEqual(counts["layer_heading_count"], 1)
+        self.assertEqual(counts["video_section_count"], 1)
+        self.assertEqual(counts["external_reference_count"], 0)
+
+    def test_meaning_report_rejects_external_agent_and_decision_content(self) -> None:
+        report, analysis = self._meaning_report()
+        for injected, message in (
+            ("\n## 外部证据研判\n", "external-research"),
+            ("\n## Agent 综合判断\n", "external-research"),
+            (
+                '\n<section id="investor-dashboard" class="investor-dashboard">投资决策总览</section>\n',
+                "external or Agent-only",
+            ),
+            ('\n<a href="https://outside.example/data">外部数据</a>\n', "non-video external links"),
+            ("\n美投 Pro 产品推广\n", "promotional content"),
+        ):
+            with self.subTest(injected=injected):
+                with self.assertRaisesRegex(ValueError, message):
+                    validate_meaning_report(report + injected, analysis)
+
+    def test_meaning_report_rejects_bad_section_or_view_attribution(self) -> None:
+        report, analysis = self._meaning_report()
+        with self.assertRaisesRegex(ValueError, "section anchors"):
+            validate_meaning_report(
+                report.replace('id="section-1"', 'id="wrong-section"'),
+                analysis,
+            )
+        with self.assertRaisesRegex(ValueError, "creator card"):
+            validate_meaning_report(
+                report.replace('data-stance-owner="Creator"', 'data-stance-owner="CNBC"'),
+                analysis,
+            )
+
     def _progressive_report(self) -> str:
         creator = []
         evidence = []
@@ -164,9 +235,44 @@ class ReportingTests(unittest.TestCase):
 
             document = output.read_text(encoding="utf-8")
             self.assertIn('class="report-cover"', document)
-            self.assertIn("Market Intelligence", document)
+            self.assertIn("Editorial Research Brief", document)
+            self.assertIn("Deep Research Report", document)
             self.assertIn('class="cover-deck">长期资本正在变贵。</p>', document)
-            self.assertIn("color-scheme: dark", document)
+            self.assertIn("color-scheme: light", document)
+
+    def test_meaning_editorial_plan_enforces_density_and_visual_mapping(self) -> None:
+        report, analysis = self._meaning_report()
+        report = report.replace(
+            '<section class="summary-dashboard"><span>报告整理 · 仅据字幕</span><h2>视频内容速览</h2><p>内容摘要。</p></section>',
+            '<section class="summary-dashboard">'
+            '<article><span>报告整理 · 仅据字幕</span><strong>中心命题</strong><p>限定</p></article>'
+            '<article><span>关键变量</span><strong>变量</strong><p>范围</p></article>'
+            '</section>',
+        ).replace(
+            "### 主题\n\n视频明确表达的正文内容。",
+            '### 主题\n\n<div class="section-lead">一句话结论。</div>\n\n'
+            '视频明确表达的正文内容。\n\n'
+            '<div class="metric-grid section-visual" data-visual-for="section-1">'
+            '<article class="metric-card"><span>指标</span><strong>1</strong></article></div>',
+        )
+        plan = {
+            "sections": [{"section_id": "section-1", "visual_type": "kpi"}],
+        }
+        counts = validate_meaning_report(report, analysis, plan)
+        self.assertEqual(counts["summary_card_count"], 2)
+        self.assertEqual(counts["section_lead_count"], 1)
+        self.assertEqual(counts["section_visual_count"], 1)
+        with self.assertRaisesRegex(ValueError, "at most one mapped visual"):
+            validate_meaning_report(
+                report.replace(
+                    "</section>\n",
+                    '<div class="comparison-grid section-visual" '
+                    'data-visual-for="section-1"></div>\n</section>\n',
+                    1,
+                ),
+                analysis,
+                plan,
+            )
 
     def test_render_report_injects_script_free_reading_paths(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

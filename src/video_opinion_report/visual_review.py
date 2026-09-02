@@ -25,7 +25,7 @@ DEFAULT_BROWSER_CANDIDATES = (
 )
 VIEWPORTS = (
     ("desktop", 1440, 1000),
-    ("compact", 500, 844),
+    ("mobile", 390, 844),
 )
 
 
@@ -304,7 +304,7 @@ def run_headless_visual_review(
 
     return {
         "visual_review_completed": True,
-        "visual_review_method": "headless_chrome_desktop_and_compact_smoke",
+        "visual_review_method": "headless_chrome_desktop_and_mobile_smoke",
         "browser_binary": browser,
         "checks": checks,
     }

@@ -10,8 +10,6 @@ const modelInput = document.querySelector("#model");
 const effortInput = document.querySelector("#reasoning-effort");
 const fastModeInput = document.querySelector("#codex-fast-mode");
 const fastModeRow = document.querySelector("#fast-mode-row");
-const regenerateInput = document.querySelector("#regenerate-report");
-const regenerateRow = document.querySelector("#regenerate-row");
 const submitButton = document.querySelector("#generate-button");
 const formError = document.querySelector("#form-error");
 const emptyState = document.querySelector("#empty-state");
@@ -29,11 +27,7 @@ const refreshJobsButton = document.querySelector("#refresh-jobs");
 
 const VIDEO_STAGES = [
   ["ingest", "导入校验", "字幕契约与质量门"],
-  ["analyze", "原意分析", "章节、观点与限定"],
-  ["research", "外部研判", "证据、反方与条件"],
-  ["judgment", "综合判断", "定价、反证与风险"],
-  ["draft", "报告起草", "三层内容结构"],
-  ["fidelity_review", "原意审查", "逐段忠实性核对"],
+  ["analyze", "原意分析与成稿", "理解增强、编辑规划与可视化成稿"],
   ["render", "页面渲染", "Markdown 与 HTML"],
   ["html_validate", "网页验收", "链接、布局与映射"],
   ["complete", "完成交付", "产物一致性确认"],
@@ -120,7 +114,7 @@ function selectReportType(nextType, { resetFile = false } = {}) {
     : "标准字幕包";
   document.querySelector("#report-type-description").textContent = material
     ? "汇总 ZIP 内全部文字与图片素材，生成一份带来源追踪的综合报告。"
-    : "忠实整理单个视频的作者内容，并进行外部研判与 Agent 综合判断。";
+    : "忠实整理单个视频的原意，并生成可视化单层报告；不做外部研判或 Agent 综合判断。";
   document.querySelector("#archive-title").textContent = material
     ? "选择素材 ZIP"
     : "选择字幕包 ZIP";
@@ -128,8 +122,6 @@ function selectReportType(nextType, { resetFile = false } = {}) {
     ? "支持 TXT、Markdown、HTML、DOC/DOCX、RTF、PNG、JPG 和 WebP"
     : "压缩包内需包含唯一的 package.json 及其引用文件";
   document.querySelector("#content-id-label").textContent = material ? "素材 ID" : "视频 ID";
-  regenerateRow.hidden = material;
-  regenerateInput.disabled = material;
   selectMode(material ? "zip" : importMode);
   renderStages(material ? MATERIAL_STAGES : VIDEO_STAGES);
   updateEffortDescription();
@@ -184,7 +176,7 @@ function updateEffortDescription() {
   document.querySelector("#effort-label").textContent = reportType === "video" ? "推理强度上限" : "推理强度";
   document.querySelector("#effort-note").textContent = engine === "codex"
     ? (reportType === "video"
-      ? "选项会随模型变化；分析、研究和起草最高 high，原意审查最高 medium。"
+      ? "选项会随模型变化；原意分析与成稿最高使用 high。"
       : "选项会随当前 Codex 模型自动变化。")
     : "选项来自该 OpenCode 模型的本机元数据，并作为 --variant 传入。";
 }
@@ -413,9 +405,7 @@ function renderSubmittingState() {
   document.querySelector("#detail-started-at").textContent = "—";
   document.querySelector("#detail-finished-at").textContent = "—";
   document.querySelector("#detail-package").textContent = "正在上传并校验输入";
-  document.querySelector("#detail-run-mode").textContent = (
-    reportType === "video" && regenerateInput.checked ? "重新生成（保留旧版）" : "复用或续跑"
-  );
+  document.querySelector("#detail-run-mode").textContent = "复用或续跑";
   document.querySelector("#job-activity").textContent = "正在上传输入并创建新任务…";
   document.querySelector("#job-progress-value").textContent = "0%";
   document.querySelector("#job-progress-bar").style.width = "0%";
@@ -535,9 +525,7 @@ function renderJobDetails(job) {
   document.querySelector("#detail-started-at").textContent = formatTime(job.started_at);
   document.querySelector("#detail-finished-at").textContent = formatTime(job.finished_at);
   document.querySelector("#detail-package").textContent = job.package_manifest || "—";
-  document.querySelector("#detail-run-mode").textContent = job.regenerate
-    ? "重新生成（保留旧版）"
-    : "复用或续跑";
+  document.querySelector("#detail-run-mode").textContent = "复用或续跑";
   const normalized = displayStatus(job.status);
   const progress = Number.isFinite(job.progress_percent) ? job.progress_percent : 0;
   const activityText = job.retrying
@@ -575,17 +563,11 @@ function renderJobDetails(job) {
 
   const reportUrl = job.result?.report_url;
   const markdownUrl = job.result?.markdown_url;
-  const previousReportUrl = job.result?.previous_report_url;
-  const previousReportLink = document.querySelector("#open-previous-report");
   if (normalized === "completed" && reportUrl?.startsWith("/outputs/") && markdownUrl?.startsWith("/outputs/")) {
     document.querySelector("#open-report").href = reportUrl;
     document.querySelector("#download-markdown").href = markdownUrl;
-    previousReportLink.hidden = !previousReportUrl?.startsWith("/outputs/");
-    if (!previousReportLink.hidden) previousReportLink.href = previousReportUrl;
     resultActions.hidden = false;
   } else {
-    previousReportLink.hidden = true;
-    previousReportLink.removeAttribute("href");
     resultActions.hidden = true;
   }
   showError(jobError, normalized === "failed" ? (job.error || "报告未能完成，请查看日志。") : "");
@@ -656,10 +638,6 @@ form.addEventListener("submit", async (event) => {
   data.append(
     "codex_service_tier",
     engine === "codex" && fastModeInput.checked && !fastModeInput.disabled ? "fast" : "default",
-  );
-  data.append(
-    "regenerate",
-    reportType === "video" && regenerateInput.checked && !regenerateInput.disabled ? "true" : "false",
   );
 
   if (!modelInput.value.trim()) {

@@ -14,10 +14,12 @@ from .content_selection import (
     materialize_model_transcript_view,
 )
 from .ingestion import import_transcript_package
-from .models import Stage, StageStatus
+from .models import VIDEO_MEANING_PROFILE, Stage, StageStatus
 from .reporting import (
+    build_meaning_structured_artifacts,
     build_structured_artifacts,
     render_markdown_report,
+    validate_meaning_report,
     validate_rendered_report,
     validate_report_layers,
     validate_report_readability,
@@ -52,49 +54,19 @@ def parser() -> argparse.ArgumentParser:
     render.add_argument("--output", required=True, type=Path)
     render.add_argument("--force", action="store_true", help="Re-render and invalidate HTML validation")
 
-    structured = commands.add_parser(
-        "build-structured",
-        help="Join creator analysis, external research, Agent judgment, and review artifacts",
+    meaning = commands.add_parser(
+        "record-meaning-report",
+        help=(
+            "Atomically validate and record internal understanding, presentation plan, "
+            "source-only analysis, opinions, and report Markdown"
+        ),
     )
-    structured.add_argument("--video-id", required=True)
-    structured.add_argument("--video-analysis", required=True, type=Path)
-    structured.add_argument("--opinions", required=True, type=Path)
-    structured.add_argument("--research-dir", required=True, type=Path)
-    structured.add_argument("--agent-judgment", required=True, type=Path)
-    structured.add_argument("--fidelity-review", required=True, type=Path)
-    structured.add_argument("--report-data", required=True, type=Path)
-    structured.add_argument("--citations", required=True, type=Path)
-
-    analysis = commands.add_parser("record-analysis", help="Validate and record semantic analysis artifacts")
-    analysis.add_argument("--video-id", required=True)
-    analysis.add_argument("--video-analysis", required=True, type=Path)
-    analysis.add_argument("--opinions", required=True, type=Path)
-
-    research = commands.add_parser("record-research", help="Validate and record research artifacts")
-    research.add_argument("--video-id", required=True)
-    research.add_argument("--research-dir", required=True, type=Path)
-
-    judgment = commands.add_parser(
-        "record-judgment",
-        help="Validate and record the source-backed Agent judgment artifact",
-    )
-    judgment.add_argument("--video-id", required=True)
-    judgment.add_argument("--judgment", required=True, type=Path)
-    judgment.add_argument(
-        "--force",
-        action="store_true",
-        help="Replace a completed judgment and reopen render/HTML validation",
-    )
-
-    draft = commands.add_parser("record-draft", help="Record the transcript-grounded report draft")
-    draft.add_argument("--video-id", required=True)
-    draft.add_argument("--markdown", required=True, type=Path)
-    draft.add_argument("--force", action="store_true", help="Replace a completed draft and reopen downstream gates")
-
-    fidelity = commands.add_parser("record-fidelity-review", help="Validate and record fidelity review")
-    fidelity.add_argument("--video-id", required=True)
-    fidelity.add_argument("--review", required=True, type=Path)
-    fidelity.add_argument("--force", action="store_true", help="Replace a completed review and reopen downstream gates")
+    meaning.add_argument("--video-id", required=True)
+    meaning.add_argument("--understanding-notes", required=True, type=Path)
+    meaning.add_argument("--presentation-plan", required=True, type=Path)
+    meaning.add_argument("--video-analysis", required=True, type=Path)
+    meaning.add_argument("--opinions", required=True, type=Path)
+    meaning.add_argument("--markdown", required=True, type=Path)
 
     html_validation = commands.add_parser("validate-html", help="Record a passed HTML validation result")
     html_validation.add_argument("--video-id", required=True)
@@ -255,6 +227,10 @@ def record_analysis(root: Path, video_id: str, analysis_path: Path, opinions_pat
         analysis_schema = analysis.get("schema_version")
         if analysis_schema not in {1, 2}:
             raise ValueError("video-analysis must use schema_version 1 or 2")
+        if manifest.is_meaning_report and analysis.get("workflow_profile") != VIDEO_MEANING_PROFILE:
+            raise ValueError(
+                "Meaning analysis must declare workflow_profile=video_meaning_v1"
+            )
         if str(analysis.get("video_id")) != video_id:
             raise ValueError("video-analysis video_id does not match the run")
         if "targeted_corrections" in analysis:
@@ -419,8 +395,14 @@ def record_analysis(root: Path, video_id: str, analysis_path: Path, opinions_pat
             for field in ("context_before", "context_after"):
                 if not isinstance(item.get(field), str):
                     raise ValueError(f"Opinion {opinion_id} {field} must be a string")
-            if item.get("research_status") != "pending":
-                raise ValueError(f"Opinion {opinion_id} research_status must be pending")
+            expected_research_status = (
+                "not_applicable" if manifest.is_meaning_report else "pending"
+            )
+            if item.get("research_status") != expected_research_status:
+                raise ValueError(
+                    f"Opinion {opinion_id} research_status must be "
+                    f"{expected_research_status}"
+                )
             if any(
                 start < float(exclusion["timestamp_end"])
                 and end > float(exclusion["timestamp_start"])
@@ -519,9 +501,254 @@ def record_analysis(root: Path, video_id: str, analysis_path: Path, opinions_pat
         raise
 
 
+def _validate_understanding_notes(
+    payload: dict[str, object],
+    *,
+    video_id: str,
+    transcript_sha256: str,
+) -> dict[str, int]:
+    if payload.get("schema_version") != 1:
+        raise ValueError("understanding-notes.json must use schema_version 1")
+    if str(payload.get("video_id") or "") != video_id:
+        raise ValueError("understanding-notes.json video_id does not match the run")
+    if payload.get("workflow_profile") != VIDEO_MEANING_PROFILE:
+        raise ValueError("understanding-notes.json workflow_profile is invalid")
+    if payload.get("display_policy") != "internal_only":
+        raise ValueError("understanding notes must be marked internal_only")
+    if str(payload.get("transcript_sha256") or "") != transcript_sha256:
+        raise ValueError("understanding notes do not bind the corrected transcript")
+    for field in (
+        "term_checks",
+        "data_checks",
+        "domain_context",
+        "uncertainties",
+        "web_sources",
+    ):
+        if not isinstance(payload.get(field), list):
+            raise ValueError(f"understanding-notes.json {field} must be a list")
+    web_sources = payload["web_sources"]
+    for source in web_sources:  # type: ignore[union-attr]
+        if not isinstance(source, dict):
+            raise ValueError("understanding-notes web_sources must contain objects")
+        url = str(source.get("url") or "")
+        if urlsplit(url).scheme not in {"http", "https"}:
+            raise ValueError("understanding-notes web source needs a direct HTTP URL")
+    return {
+        "understanding_term_check_count": len(payload["term_checks"]),  # type: ignore[arg-type]
+        "understanding_data_check_count": len(payload["data_checks"]),  # type: ignore[arg-type]
+        "understanding_web_source_count": len(web_sources),  # type: ignore[arg-type]
+    }
+
+
+def _validate_presentation_plan(
+    payload: dict[str, object],
+    *,
+    video_id: str,
+    analysis: dict[str, object],
+    transcript_positions: dict[str, int],
+) -> dict[str, int]:
+    if payload.get("schema_version") != 1:
+        raise ValueError("presentation-plan.json must use schema_version 1")
+    if str(payload.get("video_id") or "") != video_id:
+        raise ValueError("presentation-plan.json video_id does not match the run")
+    if payload.get("workflow_profile") != VIDEO_MEANING_PROFILE:
+        raise ValueError("presentation-plan.json workflow_profile is invalid")
+    _text(payload.get("report_title"), "presentation-plan report_title")
+    _text(payload.get("cover_deck"), "presentation-plan cover_deck")
+    cards = payload.get("summary_cards")
+    if not isinstance(cards, list) or not 2 <= len(cards) <= 3:
+        raise ValueError("presentation plan needs 2 to 3 summary cards")
+    for card in cards:
+        if not isinstance(card, dict):
+            raise ValueError("presentation plan summary cards must be objects")
+        for field in ("label", "headline", "detail"):
+            _text(card.get(field), f"presentation-plan summary card {field}")
+    if "报告整理 · 仅据字幕" not in str(cards[0].get("label") or ""):
+        raise ValueError("first presentation-plan summary card needs source-only label")
+
+    analysis_sections = analysis.get("sections")
+    plan_sections = payload.get("sections")
+    if not isinstance(analysis_sections, list) or not isinstance(plan_sections, list):
+        raise ValueError("presentation plan and analysis need sections")
+    analysis_by_id = {
+        str(section.get("section_id") or ""): section
+        for section in analysis_sections
+        if isinstance(section, dict)
+    }
+    expected = list(analysis_by_id)
+    actual: list[str] = []
+    visual_count = 0
+    allowed_visuals = {
+        "none",
+        "kpi",
+        "comparison",
+        "timeline",
+        "mechanism",
+        "relationship",
+        "news_list",
+    }
+    for section in plan_sections:
+        if not isinstance(section, dict):
+            raise ValueError("presentation plan sections must contain objects")
+        section_id = _text(section.get("section_id"), "presentation-plan section_id")
+        actual.append(section_id)
+        _text(section.get("lead"), f"presentation-plan {section_id} lead")
+        visual_type = _text(
+            section.get("visual_type"), f"presentation-plan {section_id} visual_type"
+        )
+        if visual_type not in allowed_visuals:
+            raise ValueError(f"Unsupported visual_type in {section_id}: {visual_type}")
+        _text(
+            section.get("visual_reason"),
+            f"presentation-plan {section_id} visual_reason",
+        )
+        segment_ids = _text_list(
+            section.get("source_segment_ids"),
+            f"presentation-plan {section_id} source_segment_ids",
+        )
+        if len(segment_ids) != len(set(segment_ids)):
+            raise ValueError(f"Duplicate source segment IDs in {section_id}")
+        analysis_section = analysis_by_id.get(section_id)
+        if analysis_section is not None:
+            start_id = str(analysis_section.get("segment_start") or "")
+            end_id = str(analysis_section.get("segment_end") or "")
+            if start_id not in transcript_positions or end_id not in transcript_positions:
+                raise ValueError(f"Analysis has an invalid segment range: {section_id}")
+            start = transcript_positions[start_id]
+            end = transcript_positions[end_id]
+            if any(
+                segment_id not in transcript_positions
+                or not start <= transcript_positions[segment_id] <= end
+                for segment_id in segment_ids
+            ):
+                raise ValueError(
+                    f"Presentation visual sources lie outside section {section_id}"
+                )
+        visual_count += visual_type != "none"
+    if actual != expected:
+        raise ValueError("presentation plan sections must match analysis order exactly")
+    return {
+        "presentation_summary_card_count": len(cards),
+        "presentation_section_count": len(plan_sections),
+        "presentation_visual_count": visual_count,
+    }
+
+
+def record_meaning_report(
+    root: Path,
+    video_id: str,
+    understanding_path: Path,
+    presentation_plan_path: Path,
+    analysis_path: Path,
+    opinions_path: Path,
+    markdown_path: Path,
+) -> None:
+    """Register all model-authored meaning artifacts as one analyze stage."""
+
+    store = ManifestStore(root)
+    manifest = store.load(video_id)
+    if not manifest.is_meaning_report:
+        raise RuntimeError("record-meaning-report only supports video_meaning_v1 runs")
+    original_artifacts = dict(manifest.artifacts)
+    original_hashes = dict(manifest.artifact_hashes)
+    original_metadata = dict(manifest.metadata)
+    understanding_file = understanding_path.expanduser().resolve()
+    presentation_plan_file = presentation_plan_path.expanduser().resolve()
+    analysis_file = analysis_path.expanduser().resolve()
+    opinions_file = opinions_path.expanduser().resolve()
+    expected_run_dir = store.run_dir(video_id).resolve()
+    if understanding_file != expected_run_dir / "understanding-notes.json":
+        raise ValueError(f"understanding-notes.json must be written to {expected_run_dir}")
+    if presentation_plan_file != expected_run_dir / "presentation-plan.json":
+        raise ValueError(f"presentation-plan.json must be written to {expected_run_dir}")
+    if analysis_file != expected_run_dir / "video-analysis.json":
+        raise ValueError(
+            f"video-analysis.json must be written to {expected_run_dir}"
+        )
+    if opinions_file != expected_run_dir / "opinions.jsonl":
+        raise ValueError(f"opinions.jsonl must be written to {expected_run_dir}")
+    markdown_file = _require_expected_report_file(
+        root, manifest, markdown_path, "report.md"
+    )
+    if (
+        manifest.is_complete(Stage.ANALYZE)
+        and "draft_markdown" in manifest.artifacts
+    ):
+        recorded = _artifact_path(root, manifest, "draft_markdown")
+        if recorded != markdown_file:
+            raise ValueError("Meaning report Markdown is already recorded elsewhere")
+        analysis = _load_object(_artifact_path(root, manifest, "video_analysis"))
+        presentation_plan = _load_object(
+            _artifact_path(root, manifest, "presentation_plan")
+        )
+        validate_meaning_report(
+            markdown_file.read_text(encoding="utf-8"), analysis, presentation_plan
+        )
+        return
+
+    try:
+        text = markdown_file.read_text(encoding="utf-8")
+        if len(text.strip()) < 100:
+            raise ValueError("Meaning report Markdown is unexpectedly short")
+        analysis = _load_object(analysis_file)
+        understanding = _load_object(understanding_file)
+        presentation_plan = _load_object(presentation_plan_file)
+        transcript_positions = {
+            segment.segment_id: index
+            for index, segment in enumerate(
+                read_jsonl(_artifact_path(root, manifest, "transcript_corrected_jsonl"))
+            )
+        }
+        internal_counts = _validate_understanding_notes(
+            understanding,
+            video_id=video_id,
+            transcript_sha256=manifest.artifact_hashes[
+                "transcript_corrected_jsonl"
+            ],
+        )
+        presentation_counts = _validate_presentation_plan(
+            presentation_plan,
+            video_id=video_id,
+            analysis=analysis,
+            transcript_positions=transcript_positions,
+        )
+        counts = validate_meaning_report(text, analysis, presentation_plan)
+        record_analysis(root, video_id, analysis_path, opinions_path)
+        manifest = store.load(video_id)
+        transcript_text = "".join(
+            segment.text
+            for segment in read_jsonl(
+                _artifact_path(root, manifest, "transcript_report_jsonl")
+            )
+        )
+        readability = validate_report_readability(
+            text,
+            transcript_text=transcript_text,
+            topic_count=len(analysis.get("sections") or []),
+        )
+        store.set_artifact(manifest, "understanding_notes", understanding_file)
+        store.set_artifact(manifest, "presentation_plan", presentation_plan_file)
+        store.set_artifact(manifest, "draft_markdown", markdown_file)
+        manifest.metadata.update(internal_counts)
+        manifest.metadata.update(presentation_counts)
+        manifest.metadata.update(counts)
+        manifest.metadata.update(readability)
+        store.save(manifest)
+    except Exception as exc:
+        manifest = store.load(video_id)
+        manifest.artifacts = original_artifacts
+        manifest.artifact_hashes = original_hashes
+        manifest.metadata = original_metadata
+        manifest.fail(Stage.ANALYZE, str(exc), retryable=False)
+        store.save(manifest)
+        raise
+
+
 def record_research(root: Path, video_id: str, research_dir: Path) -> None:
     store = ManifestStore(root)
     manifest = store.load(video_id)
+    if manifest.is_meaning_report:
+        raise RuntimeError("Research is not part of video_meaning_v1")
     stage = Stage.RESEARCH
     _artifact_path(root, manifest, "content_selection")
     _artifact_path(root, manifest, "transcript_report_jsonl")
@@ -662,6 +889,8 @@ def record_agent_judgment(
 ) -> None:
     store = ManifestStore(root)
     manifest = store.load(video_id)
+    if manifest.is_meaning_report:
+        raise RuntimeError("Agent judgment is not part of video_meaning_v1")
     stage = Stage.JUDGMENT
     judgment_file = judgment_path.expanduser().resolve()
     already_complete = manifest.is_complete(stage)
@@ -839,6 +1068,8 @@ def record_agent_judgment(
 def record_draft(root: Path, video_id: str, markdown_path: Path, *, force: bool = False) -> None:
     store = ManifestStore(root)
     manifest = store.load(video_id)
+    if manifest.is_meaning_report:
+        raise RuntimeError("A meaning report draft must use record-meaning-report")
     stage = Stage.DRAFT
     _artifact_path(root, manifest, "agent_judgment")
     markdown_file = _require_expected_report_file(
@@ -893,6 +1124,8 @@ def record_draft(root: Path, video_id: str, markdown_path: Path, *, force: bool 
 def record_fidelity_review(root: Path, video_id: str, review_path: Path, *, force: bool = False) -> None:
     store = ManifestStore(root)
     manifest = store.load(video_id)
+    if manifest.is_meaning_report:
+        raise RuntimeError("Fidelity review is not part of video_meaning_v1")
     _artifact_path(root, manifest, "transcript_report_jsonl")
     stage = Stage.FIDELITY_REVIEW
     review_file = review_path.expanduser().resolve()
@@ -1066,7 +1299,18 @@ def render_html(
         if report_data.parent != output_file.parent or citations.parent != output_file.parent:
             raise ValueError("Structured artifacts and HTML must share the report directory")
         markdown_text = markdown_file.read_text(encoding="utf-8")
-        layer_counts = validate_report_layers(markdown_text)
+        if manifest.is_meaning_report:
+            layer_counts = validate_meaning_report(
+                markdown_text,
+                _load_object(_artifact_path(root, manifest, "video_analysis")),
+                (
+                    _load_object(_artifact_path(root, manifest, "presentation_plan"))
+                    if "presentation_plan" in manifest.artifacts
+                    else None
+                ),
+            )
+        else:
+            layer_counts = validate_report_layers(markdown_text)
         transcript_text = "".join(
             segment.text
             for segment in read_jsonl(
@@ -1096,9 +1340,68 @@ def render_html(
         raise
 
 
+def build_meaning_structured(
+    root: Path,
+    video_id: str,
+    report_data_path: Path,
+    citations_path: Path,
+) -> None:
+    store = ManifestStore(root)
+    manifest = store.load(video_id)
+    if not manifest.is_meaning_report:
+        raise RuntimeError("Meaning structured build requires video_meaning_v1")
+    manifest.require_completed(Stage.ANALYZE)
+    if manifest.is_complete(Stage.RENDER):
+        raise RuntimeError("Structured artifacts cannot be rebuilt after rendering")
+    registered_inputs = {
+        key: _artifact_path(root, manifest, key)
+        for key in (
+            "transcript_package",
+            "transcript_corrected_jsonl",
+            "content_selection",
+            "transcript_report_jsonl",
+            "video_analysis",
+            "opinions",
+            "draft_markdown",
+        )
+    }
+    report_data = _require_expected_report_file(
+        root, manifest, report_data_path, "report-data.json"
+    )
+    citations = _require_expected_report_file(
+        root, manifest, citations_path, "citations.json"
+    )
+    source_hashes = {
+        key: manifest.artifact_hashes[key] for key in registered_inputs
+    }
+    if {"report_data", "citations"} <= set(manifest.artifacts):
+        if (
+            _artifact_path(root, manifest, "report_data") == report_data
+            and _artifact_path(root, manifest, "citations") == citations
+        ):
+            existing = _load_object(report_data)
+            if existing.get("source_artifact_hashes") == source_hashes:
+                return
+        else:
+            raise RuntimeError("Structured artifacts are already recorded at other paths")
+    counts = build_meaning_structured_artifacts(
+        registered_inputs["video_analysis"],
+        registered_inputs["opinions"],
+        report_data,
+        citations,
+        source_artifact_hashes=source_hashes,
+    )
+    store.set_artifact(manifest, "report_data", report_data)
+    store.set_artifact(manifest, "citations", citations)
+    manifest.metadata.update(counts)
+    store.save(manifest)
+
+
 def build_structured(root: Path, arguments: argparse.Namespace) -> None:
     store = ManifestStore(root)
     manifest = store.load(arguments.video_id)
+    if manifest.is_meaning_report:
+        raise RuntimeError("build-structured is only available for legacy full reports")
     manifest.require_completed(Stage.RESEARCH, Stage.JUDGMENT, Stage.FIDELITY_REVIEW)
     if manifest.is_complete(Stage.RENDER):
         raise RuntimeError("Structured artifacts cannot be rebuilt after rendering")
@@ -1227,13 +1530,13 @@ def complete_run(root: Path, video_id: str) -> None:
     store = ManifestStore(root)
     processed = ProcessedReportStore(root)
     manifest = store.load(video_id)
+    if not manifest.is_meaning_report:
+        raise RuntimeError(
+            "This branch does not complete or resume legacy video_full_v1 runs"
+        )
     manifest.require_completed(
         Stage.INGEST,
         Stage.ANALYZE,
-        Stage.RESEARCH,
-        Stage.JUDGMENT,
-        Stage.DRAFT,
-        Stage.FIDELITY_REVIEW,
         Stage.RENDER,
         Stage.HTML_VALIDATE,
     )
@@ -1241,8 +1544,16 @@ def complete_run(root: Path, video_id: str) -> None:
     _artifact_path(root, manifest, "transcript_corrections")
     _artifact_path(root, manifest, "content_selection")
     _artifact_path(root, manifest, "transcript_report_jsonl")
-    agent_judgment_path = _artifact_path(root, manifest, "agent_judgment")
-    agent_judgment = _load_object(agent_judgment_path)
+    forbidden_artifacts = {
+        "research_dir",
+        "agent_judgment",
+        "fidelity_review",
+    } & set(manifest.artifacts)
+    if forbidden_artifacts:
+        raise RuntimeError(
+            "Meaning run contains legacy artifacts: "
+            + ", ".join(sorted(forbidden_artifacts))
+        )
     report_data_path = _artifact_path(root, manifest, "report_data")
     report_data = _load_object(report_data_path)
     required_hashes = {
@@ -1253,10 +1564,7 @@ def complete_run(root: Path, video_id: str) -> None:
         "transcript_report_jsonl",
         "video_analysis",
         "opinions",
-        "research_dir",
-        "agent_judgment",
         "draft_markdown",
-        "fidelity_review",
         "report_data",
         "citations",
         "report_markdown",
@@ -1272,25 +1580,53 @@ def complete_run(root: Path, video_id: str) -> None:
         schema_version = int(report_data.get("schema_version", 0))
     except (TypeError, ValueError) as exc:
         raise ValueError("report-data.json has an invalid schema_version") from exc
-    if schema_version < 2:
-        raise ValueError("report-data.json must use schema version 2 or newer")
-    if report_data.get("agent_judgment") != agent_judgment:
-        raise ValueError("report-data.json contains a stale or mismatched Agent judgment")
+    if schema_version != 3:
+        raise ValueError("Meaning report-data.json must use schema_version 3")
+    if report_data.get("workflow_profile") != VIDEO_MEANING_PROFILE:
+        raise ValueError("Meaning report-data.json has the wrong workflow profile")
+    forbidden_fields = {
+        "research_topics",
+        "research_status_counts",
+        "agent_judgment",
+        "fidelity_review",
+    } & set(report_data)
+    if forbidden_fields:
+        raise ValueError(
+            "Meaning report-data.json contains legacy fields: "
+            + ", ".join(sorted(forbidden_fields))
+        )
     expected_source_hashes = {
         key: manifest.artifact_hashes[key]
         for key in (
+            "transcript_package",
+            "transcript_corrected_jsonl",
+            "content_selection",
+            "transcript_report_jsonl",
             "video_analysis",
             "opinions",
-            "research_dir",
-            "agent_judgment",
-            "fidelity_review",
+            "draft_markdown",
         )
     }
     if report_data.get("source_artifact_hashes") != expected_source_hashes:
         raise ValueError("report-data.json is not bound to the recorded source artifacts")
     report_markdown_path = _artifact_path(root, manifest, "report_markdown")
     report_markdown_text = report_markdown_path.read_text(encoding="utf-8")
-    validate_report_layers(report_markdown_text)
+    analysis = _load_object(_artifact_path(root, manifest, "video_analysis"))
+    presentation_plan = (
+        _load_object(_artifact_path(root, manifest, "presentation_plan"))
+        if "presentation_plan" in manifest.artifacts
+        else None
+    )
+    validate_meaning_report(report_markdown_text, analysis, presentation_plan)
+    if report_data.get("analysis") != analysis:
+        raise ValueError("report-data.json contains stale analysis")
+    citations = _load_object(_artifact_path(root, manifest, "citations"))
+    if citations.get("schema_version") != 2:
+        raise ValueError("Meaning citations.json must use schema_version 2")
+    if citations.get("workflow_profile") != VIDEO_MEANING_PROFILE:
+        raise ValueError("Meaning citations.json has the wrong workflow profile")
+    if citations.get("external_sources") != []:
+        raise ValueError("Meaning citations.json external_sources must be empty")
     transcript_text = "".join(
         segment.text
         for segment in read_jsonl(
@@ -1300,7 +1636,7 @@ def complete_run(root: Path, video_id: str) -> None:
     validate_report_readability(
         report_markdown_text,
         transcript_text=transcript_text,
-        topic_count=int(manifest.metadata.get("topic_count") or 0),
+        topic_count=len(analysis.get("sections") or []),
     )
     for key in ("report_markdown", "report_html", "report_data", "citations", "html_validation"):
         _artifact_path(root, manifest, key)
@@ -1319,6 +1655,7 @@ def complete_run(root: Path, video_id: str) -> None:
             "title": manifest.metadata.get("title"),
             "published_at": manifest.metadata.get("published_at"),
             "completed_at": completed_at,
+            "workflow_profile": manifest.workflow_profile,
             "report_markdown": manifest.artifacts["report_markdown"],
             "report_html": manifest.artifacts["report_html"],
         }
@@ -1342,28 +1679,16 @@ def main(argv: list[str] | None = None) -> int:
                 arguments.output,
                 force=arguments.force,
             )
-        elif arguments.command == "build-structured":
-            build_structured(root, arguments)
-        elif arguments.command == "record-analysis":
-            record_analysis(
+        elif arguments.command == "record-meaning-report":
+            record_meaning_report(
                 root,
                 arguments.video_id,
+                arguments.understanding_notes,
+                arguments.presentation_plan,
                 arguments.video_analysis,
                 arguments.opinions,
+                arguments.markdown,
             )
-        elif arguments.command == "record-research":
-            record_research(root, arguments.video_id, arguments.research_dir)
-        elif arguments.command == "record-judgment":
-            record_agent_judgment(
-                root,
-                arguments.video_id,
-                arguments.judgment,
-                force=arguments.force,
-            )
-        elif arguments.command == "record-draft":
-            record_draft(root, arguments.video_id, arguments.markdown, force=arguments.force)
-        elif arguments.command == "record-fidelity-review":
-            record_fidelity_review(root, arguments.video_id, arguments.review, force=arguments.force)
         elif arguments.command == "validate-html":
             validate_html(root, arguments.video_id, arguments.validation)
         elif arguments.command == "complete-run":

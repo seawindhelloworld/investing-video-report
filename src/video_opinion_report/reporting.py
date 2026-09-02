@@ -583,6 +583,221 @@ def validate_report_layers(text: str) -> dict[str, int]:
     }
 
 
+def validate_meaning_report(
+    text: str,
+    analysis: dict[str, object],
+    presentation_plan: dict[str, object] | None = None,
+) -> dict[str, int]:
+    """Require a single-layer report that contains only transcript-derived meaning."""
+
+    metadata, _ = parse_front_matter(text)
+    video_id = str(analysis.get("video_id") or "")
+    source_url = str(analysis.get("source_url") or "")
+    if metadata.get("video_id") != video_id:
+        raise ValueError("Meaning report front matter video_id does not match analysis")
+    if metadata.get("source_url") != source_url:
+        raise ValueError("Meaning report front matter source_url does not match analysis")
+
+    lines = text.splitlines()
+    h2_headings = [line.strip() for line in lines if line.startswith("## ")]
+    forbidden_heading = re.compile(
+        r"^#{2,6}\s+.*(?:投资决策总览|外部(?:证据|信源)?研判|"
+        r"Agent\s*综合判断|情景(?:分析|推演)|催化剂日历|延伸阅读)",
+        flags=re.MULTILINE | re.IGNORECASE,
+    )
+    if forbidden_heading.search(text):
+        raise ValueError("Meaning report contains an external-research or Agent section")
+    if h2_headings != ["## 视频 / 作者内容"]:
+        raise ValueError(
+            "Meaning report must contain exactly one `## 视频 / 作者内容` section"
+        )
+    if not re.search(r"报告整理\s*[·｜|/]\s*仅据字幕", text):
+        raise ValueError("Meaning report needs the `报告整理 · 仅据字幕` boundary label")
+
+    components = _report_components(text)
+    summary_dashboards = components.with_class("summary-dashboard")
+    if len(summary_dashboards) != 1:
+        raise ValueError("Meaning report needs exactly one summary-dashboard")
+    summary_card_count = 0
+    if presentation_plan is not None:
+        summary_match = re.search(
+            r'<section\s+class="[^"]*summary-dashboard[^"]*"[^>]*>(.*?)</section>',
+            text,
+            flags=re.DOTALL,
+        )
+        summary_card_count = (
+            len(re.findall(r"<article(?:\s|>)", summary_match.group(1)))
+            if summary_match
+            else 0
+        )
+        if not 2 <= summary_card_count <= 3:
+            raise ValueError("Meaning report summary-dashboard needs 2 to 3 cards")
+    forbidden_components = {
+        "investor-dashboard",
+        "investor-topic",
+        "evidence-status-grid",
+        "evidence-delta",
+        "decision-brief",
+        "scenario-grid",
+        "catalyst-calendar",
+        "assessment",
+        "judgment-card",
+        "source-grid",
+        "source-card",
+        "citation-list",
+        "external-source",
+    }
+    present_forbidden = sorted(
+        class_name
+        for class_name in forbidden_components
+        if components.with_class(class_name)
+    )
+    if present_forbidden:
+        raise ValueError(
+            "Meaning report contains external or Agent-only components: "
+            + ", ".join(present_forbidden)
+        )
+
+    sections = analysis.get("sections")
+    if not isinstance(sections, list) or not sections:
+        raise ValueError("Meaning report analysis has no reportable sections")
+    expected_sections = {
+        str(item.get("section_id") or "")
+        for item in sections
+        if isinstance(item, dict)
+    }
+    if "" in expected_sections or len(expected_sections) != len(sections):
+        raise ValueError("Meaning report analysis has invalid section IDs")
+    section_components = components.with_class("video-section")
+    recorded_sections = [
+        attributes.get("data-section-id", "")
+        for _, _, attributes in section_components
+    ]
+    section_anchors = [attributes.get("id", "") for _, _, attributes in section_components]
+    if (
+        set(recorded_sections) != expected_sections
+        or len(recorded_sections) != len(expected_sections)
+        or section_anchors != recorded_sections
+    ):
+        raise ValueError(
+            "Meaning report section anchors do not match every reportable section"
+        )
+    section_lead_count = len(components.with_class("section-lead"))
+    if presentation_plan is not None and section_lead_count != len(expected_sections):
+        raise ValueError("Meaning report needs one section-lead per video section")
+
+    section_visuals = components.with_class("section-visual")
+    visual_for = [attributes.get("data-visual-for", "") for _, _, attributes in section_visuals]
+    if (
+        any(not section_id or section_id not in expected_sections for section_id in visual_for)
+        or len(visual_for) != len(set(visual_for))
+    ):
+        raise ValueError("Meaning report allows at most one mapped visual per section")
+    if presentation_plan is not None:
+        planned_sections = presentation_plan.get("sections")
+        if not isinstance(planned_sections, list):
+            raise ValueError("Meaning report presentation plan has no sections")
+        planned_visuals = {
+            str(item.get("section_id") or "")
+            for item in planned_sections
+            if isinstance(item, dict) and item.get("visual_type") != "none"
+        }
+        if set(visual_for) != planned_visuals:
+            raise ValueError("Meaning report visuals do not match the presentation plan")
+
+    speaker_markers = components.with_class("speaker-opinion-marker")
+    creator_view_count = 0
+    reported_view_count = 0
+    for _, classes, attributes in speaker_markers:
+        speaker = attributes.get("data-speaker", "").strip()
+        stance_owner = attributes.get("data-stance-owner", "").strip()
+        attribution_mode = attributes.get("data-attribution-mode", "").strip()
+        is_creator = "creator-view-card" in classes
+        is_reported = "reported-view-card" in classes
+        if (
+            not speaker
+            or not stance_owner
+            or is_creator == is_reported
+            or attribution_mode
+            not in {"self", "reported", "direct_quote", "uncertain"}
+        ):
+            raise ValueError("Meaning report has a malformed speaker-opinion marker")
+        if is_creator:
+            creator_view_count += 1
+            if attribution_mode != "self" or speaker.casefold() != stance_owner.casefold():
+                raise ValueError("Meaning report creator card has incorrect attribution")
+        else:
+            reported_view_count += 1
+            if attribution_mode == "self":
+                raise ValueError("Meaning report reported-view card cannot use self attribution")
+    if len(components.with_class("speaker-opinion-kicker")) != len(speaker_markers):
+        raise ValueError("Meaning report speaker cards need one kicker each")
+
+    promotional_content_pattern = re.compile(
+        r"美投\s*Pro|属于产品推广"
+        r"|节目(?:先|后段先)[^。\n]{0,40}(?:介绍|推广)[^。\n]{0,24}(?:产品|订阅|研究内容)"
+    )
+    if promotional_content_pattern.search(text):
+        raise ValueError("Meaning report contains promotional content")
+
+    quick_news_blocks = re.findall(
+        r'<section\s+class="quick-news-grid"[^>]*>.*?</section>',
+        text,
+        flags=re.DOTALL,
+    )
+    tech_heading_count = len(
+        re.findall(
+            r"^###\s+(?:[一二三四五六七八九十]+[、.]\s*)?"
+            r"科技五大新闻(?:\s+\{[^}]+\})?\s*$",
+            text,
+            flags=re.MULTILINE,
+        )
+    )
+    if quick_news_blocks and tech_heading_count != 1:
+        raise ValueError("Meaning report must use the fixed 科技五大新闻 heading")
+
+    fragment = _markdown_fragment(text)
+    reference_parser = _ReportFragmentParser()
+    reference_parser.feed(fragment)
+    allowed_source = urlsplit(source_url)._replace(fragment="").geturl()
+    external_references = []
+    for _, reference in reference_parser.references:
+        parsed = urlsplit(reference)
+        if parsed.scheme not in {"http", "https"}:
+            continue
+        normalized = parsed._replace(fragment="").geturl()
+        if normalized != allowed_source:
+            external_references.append(reference)
+    if external_references:
+        raise ValueError(
+            "Meaning report contains non-video external links: "
+            + ", ".join(sorted(set(external_references)))
+        )
+
+    if presentation_plan is not None:
+        visible = _visible_metrics(text)
+        block_sizes = [
+            int(size) for size in visible["block_cjk_counts"]  # type: ignore[index]
+        ]
+        if block_sizes and max(block_sizes) > 280:
+            raise ValueError("Meaning report contains a paragraph over 280 CJK characters")
+
+    return {
+        "layer_heading_count": 1,
+        "video_section_count": len(recorded_sections),
+        "speaker_opinion_marker_count": len(speaker_markers),
+        "creator_view_card_count": creator_view_count,
+        "reported_view_card_count": reported_view_count,
+        "investor_dashboard_count": 0,
+        "tech_five_news_heading_count": tech_heading_count,
+        "promotional_content_count": 0,
+        "external_reference_count": 0,
+        "summary_card_count": summary_card_count,
+        "section_lead_count": section_lead_count,
+        "section_visual_count": len(section_visuals),
+    }
+
+
 def _drop_first_heading(text: str) -> str:
     lines = text.lstrip().splitlines()
     if lines and lines[0].startswith("# "):
@@ -617,7 +832,9 @@ def _report_layer_markdown(text: str) -> dict[str, str]:
         stripped = line.strip()
         if stripped.startswith("## "):
             all_h2_starts.append(offset)
-            if "第一部分" in stripped and ("视频" in stripped or "作者" in stripped):
+            if (
+                "第一部分" in stripped and ("视频" in stripped or "作者" in stripped)
+            ) or stripped == "## 视频 / 作者内容":
                 layer_starts.setdefault("creator", offset)
             elif "第二部分" in stripped and "外部" in stripped:
                 layer_starts.setdefault("external", offset)
@@ -817,6 +1034,10 @@ def _add_reading_paths(body_html: str) -> str:
         return body_html
     report_modes = (
         (
+            (("视频 / 作者内容", "creator-content", "视频内容"),),
+            "video meaning",
+        ),
+        (
             (
                 ("第一部分｜视频 / 作者内容", "creator-content", "视频内容"),
                 ("第二部分｜外部证据研判", "external-evidence", "外部证据"),
@@ -853,11 +1074,16 @@ def _add_reading_paths(body_html: str) -> str:
         else:
             if mode == "video" and 'id="investor-dashboard"' in updated:
                 links.insert(0, '<a href="#investor-dashboard">投资总览</a>')
+            description = (
+                "仅据字幕整理视频内容"
+                if mode == "video meaning"
+                else "核心内容、证据与判断一页贯通"
+            )
             nav = (
                 f'<nav class="reading-paths {mode}" aria-label="阅读路径">'
                 '<strong>阅读路径</strong>'
                 + "".join(links)
-                + '<span>核心内容、证据与判断一页贯通</span></nav>\n'
+                + f'<span>{description}</span></nav>\n'
             )
             return nav + updated
     return body_html
@@ -865,6 +1091,28 @@ def _add_reading_paths(body_html: str) -> str:
 
 def render_markdown_report(markdown_path: Path, template_path: Path, output_path: Path) -> None:
     metadata, body = parse_front_matter(markdown_path.read_text(encoding="utf-8"))
+    meaning_report = bool(
+        re.search(r"^##\s+视频 / 作者内容\s*$", body, flags=re.MULTILINE)
+    )
+    material_report = "## 第一部分｜素材内容整理" in body
+    if meaning_report:
+        report_edition = "Video Meaning Report"
+        report_scope = "".join(
+            f"<span>{label}</span>"
+            for label in ("Content", "Attribution", "Context")
+        )
+    elif material_report:
+        report_edition = "Material Synthesis Report"
+        report_scope = "".join(
+            f"<span>{label}</span>"
+            for label in ("Sources", "Synthesis", "Assessment")
+        )
+    else:
+        report_edition = "Deep Research Report"
+        report_scope = "".join(
+            f"<span>{label}</span>"
+            for label in ("Content", "Evidence", "Decision")
+        )
     title = metadata.get("title")
     if not title:
         first = next((line[2:].strip() for line in body.splitlines() if line.startswith("# ")), "")
@@ -918,6 +1166,8 @@ def render_markdown_report(markdown_path: Path, template_path: Path, output_path
         template.replace("{{TITLE}}", html.escape(title))
         .replace("{{REPORT_META}}", html.escape(report_meta))
         .replace("{{REPORT_BODY}}", body_html)
+        .replace("{{REPORT_EDITION}}", report_edition)
+        .replace("{{REPORT_SCOPE}}", report_scope)
     )
     extra_style = """
     img { display: block; max-width: 100%; height: auto; border-radius: 14px; }
@@ -1348,4 +1598,99 @@ def build_structured_artifacts(
         "topic_count": len(research),
         "citation_count": len(citations),
         "agent_judgment_topic_count": len(judgment_topics),
+    }
+
+
+def build_meaning_structured_artifacts(
+    video_analysis_path: Path,
+    opinions_path: Path,
+    report_data_path: Path,
+    citations_path: Path,
+    *,
+    source_artifact_hashes: dict[str, str],
+) -> dict[str, int]:
+    """Build source-only report data without research or Agent judgment fields."""
+
+    analysis = json.loads(video_analysis_path.read_text(encoding="utf-8"))
+    if not isinstance(analysis, dict):
+        raise ValueError("video-analysis.json must contain an object")
+    if analysis.get("workflow_profile") != "video_meaning_v1":
+        raise ValueError("Meaning analysis must declare workflow_profile=video_meaning_v1")
+    opinions = [
+        json.loads(line)
+        for line in opinions_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    if any(
+        not isinstance(opinion, dict)
+        or opinion.get("research_status") != "not_applicable"
+        for opinion in opinions
+    ):
+        raise ValueError("Meaning report opinions must use research_status=not_applicable")
+    sections = analysis.get("sections")
+    if not isinstance(sections, list) or not sections:
+        raise ValueError("Meaning analysis has no reportable sections")
+
+    generated_at = datetime.now(timezone.utc).isoformat()
+    report_data = {
+        "schema_version": 3,
+        "workflow_profile": "video_meaning_v1",
+        "generated_at": generated_at,
+        "video": {
+            "video_id": analysis["video_id"],
+            "title": analysis["title"],
+            "source_url": analysis["source_url"],
+            "creator": analysis["creator"],
+            "published_at": analysis["published_at"],
+            "duration_seconds": analysis["duration_seconds"],
+        },
+        "analysis": analysis,
+        "opinions": opinions,
+        "source_coverage": [
+            {
+                "section_id": section["section_id"],
+                "segment_start": section["segment_start"],
+                "segment_end": section["segment_end"],
+                "report_anchor": f"#{section['section_id']}",
+            }
+            for section in sections
+            if isinstance(section, dict)
+        ],
+        "source_artifact_hashes": dict(sorted(source_artifact_hashes.items())),
+    }
+    citations = {
+        "schema_version": 2,
+        "workflow_profile": "video_meaning_v1",
+        "video_id": analysis["video_id"],
+        "generated_at": generated_at,
+        "source": {
+            "title": analysis["title"],
+            "creator": analysis["creator"],
+            "published_at": analysis["published_at"],
+            "url": analysis["source_url"],
+            "transcript_package_sha256": source_artifact_hashes.get(
+                "transcript_package"
+            ),
+            "transcript_sha256": source_artifact_hashes.get(
+                "transcript_corrected_jsonl"
+            ),
+        },
+        "external_sources": [],
+    }
+
+    def write_json_atomic(path: Path, value: object) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = path.with_suffix(path.suffix + ".tmp")
+        temporary.write_text(
+            json.dumps(value, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        os.replace(temporary, path)
+
+    write_json_atomic(report_data_path, report_data)
+    write_json_atomic(citations_path, citations)
+    return {
+        "opinion_count": len(opinions),
+        "video_section_count": len(sections),
+        "citation_count": 0,
     }

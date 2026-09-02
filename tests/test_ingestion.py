@@ -218,6 +218,7 @@ class TranscriptPackageTests(unittest.TestCase):
                 json.dumps(
                     {
                         "schema_version": 1,
+                        "workflow_profile": "video_meaning_v1",
                         "video_id": "v1",
                         "title": "Example",
                         "creator": "Creator",
@@ -249,7 +250,7 @@ class TranscriptPackageTests(unittest.TestCase):
                 '"opinion_type":"judgment","target":"对象",'
                 '"time_horizon":"视频中未明确","stated_basis":[],"qualifiers":[],'
                 '"context_before":"","context_after":"",'
-                '"research_status":"pending"}\n',
+                '"research_status":"not_applicable"}\n',
                 encoding="utf-8",
             )
             record_analysis(root, "v1", analysis, opinions)
@@ -463,6 +464,16 @@ class TranscriptPackageTests(unittest.TestCase):
     def test_cli_exposes_only_report_workflow_entrypoint(self) -> None:
         command_names = parser()._subparsers._group_actions[0].choices
         self.assertIn("import-transcript", command_names)
+        self.assertIn("record-meaning-report", command_names)
+        for legacy in (
+            "record-analysis",
+            "record-research",
+            "record-judgment",
+            "record-draft",
+            "record-fidelity-review",
+            "build-structured",
+        ):
+            self.assertNotIn(legacy, command_names)
         self.assertNotIn("acquire", command_names)
         self.assertNotIn("transcribe", command_names)
 
