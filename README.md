@@ -94,7 +94,7 @@ python scripts/generate_report.py \
 
 视频报告只读取 `package_type = video_transcript` 的标准包。导入会验证 schema、SHA-256、字幕结构和上游校订审计，然后复制到 `work/VIDEO_ID/transcript/`；覆盖率、静音间隙和字幕首尾相对视频时长的偏差只写入审计，不阻止把字幕作为文字素材导入。导入的 `transcript.corrected.jsonl` 永不覆盖。项目不运行独立字幕勘误、风险词扫描或额外校订模型；报告模型只在正常理解中按语境处理明显错词，最终页面不展示 ASR 风险清单。广告、推广、订阅和销售话术不会成为正文或报告观点。项目不会下载视频、转码、执行 ASR 或清理上游目录。
 
-视频 HTML 默认采用深色财经杂志风：顶部是编辑标题和封面副标题，正文使用主题导读、行情/KPI 卡、人物观点卡、机制图、科技新闻卡、证据校准与 Agent 决策卡。时间戳、claim ID、原始/推导数据标签和审计详情不再是前台要求；草稿阶段在同一次起草会话中完成轻量编辑规划，重点检查三层顺序、长段重复、正文密度与浏览器布局，不为规划再启动模型调用。
+视频 HTML 默认采用低疲劳的浅色财经杂志风：暖白页面、白色卡片与深灰蓝正文保证长文阅读，对比明确的蓝、琥珀、绿、红状态色用于区分观点与证据。顶部是编辑标题和封面副标题，正文使用主题导读、行情/KPI 卡、人物观点卡、机制图、科技新闻卡、证据校准与 Agent 决策卡。时间戳、claim ID、原始/推导数据标签和审计详情不再是前台要求；草稿阶段在同一次起草会话中完成轻量编辑规划，重点检查三层顺序、长段重复、正文密度与浏览器布局，不为规划再启动模型调用。
 
 需要手动推进视频报告的各语义阶段时，继续使用 `video-opinion-report` 的 `import-transcript`、`record-analysis`、`record-research`、`record-judgment`、`record-draft`、`record-fidelity-review`、`build-structured`、`render-html`、`validate-html` 和 `complete-run` 子命令。
 

@@ -166,7 +166,9 @@ class ReportingTests(unittest.TestCase):
             self.assertIn('class="report-cover"', document)
             self.assertIn("Market Intelligence", document)
             self.assertIn('class="cover-deck">长期资本正在变贵。</p>', document)
-            self.assertIn("color-scheme: dark", document)
+            self.assertIn("color-scheme: light", document)
+            self.assertIn("--canvas: #f4f1ea", document)
+            self.assertIn("--ink: #182230", document)
 
     def test_render_report_injects_script_free_reading_paths(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
