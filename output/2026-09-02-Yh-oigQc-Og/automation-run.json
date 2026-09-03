@@ -1,0 +1,91 @@
+{
+  "schema_version": 2,
+  "report_type": "video",
+  "workflow_profile": "video_meaning_v1",
+  "video_id": "Yh-oigQc-Og",
+  "source_package": "work/Yh-oigQc-Og/transcript/package.json",
+  "source_package_sha256": "85618062efd745c6f1befb3bf8e8276cf11bce1702202aa94373e8eaf18d27db",
+  "engine": "codex",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "stage_reasoning_efforts": {
+    "analyze": "high"
+  },
+  "codex_service_tier": "default",
+  "sandbox": "workspace-write",
+  "engine_invoked": true,
+  "reused_existing": false,
+  "engine_invocation_count": 1,
+  "engine_invocation_count_is_limit": false,
+  "web_search_available": true,
+  "engine_stages": [
+    "analyze"
+  ],
+  "engine_commands": [
+    [
+      "/Users/harpergao/.nvm/versions/node/v22.22.2/bin/codex",
+      "--search",
+      "--disable",
+      "multi_agent",
+      "--disable",
+      "multi_agent_v2",
+      "--model",
+      "gpt-5.6-sol",
+      "--config",
+      "model_reasoning_effort=\"high\"",
+      "--config",
+      "service_tier=\"default\"",
+      "--sandbox",
+      "workspace-write",
+      "--ask-for-approval",
+      "never",
+      "--cd",
+      "/Users/harpergao/Codex/workspace/investing-video-report",
+      "exec",
+      "--ephemeral",
+      "--json",
+      "--output-last-message",
+      "/Users/harpergao/Codex/workspace/investing-video-report/work/Yh-oigQc-Og/automation/analyze-final-message.txt",
+      "-"
+    ]
+  ],
+  "engine_final_messages": {
+    "analyze": "work/Yh-oigQc-Og/automation/analyze-final-message.txt"
+  },
+  "engine_command": [
+    "/Users/harpergao/.nvm/versions/node/v22.22.2/bin/codex",
+    "--search",
+    "--disable",
+    "multi_agent",
+    "--disable",
+    "multi_agent_v2",
+    "--model",
+    "gpt-5.6-sol",
+    "--config",
+    "model_reasoning_effort=\"high\"",
+    "--config",
+    "service_tier=\"default\"",
+    "--sandbox",
+    "workspace-write",
+    "--ask-for-approval",
+    "never",
+    "--cd",
+    "/Users/harpergao/Codex/workspace/investing-video-report",
+    "exec",
+    "--ephemeral",
+    "--json",
+    "--output-last-message",
+    "/Users/harpergao/Codex/workspace/investing-video-report/work/Yh-oigQc-Og/automation/analyze-final-message.txt",
+    "-"
+  ],
+  "engine_final_message": "work/Yh-oigQc-Og/automation/analyze-final-message.txt",
+  "started_at": "2026-09-02T12:27:23.711759+00:00",
+  "finished_at": "2026-09-02T12:35:22.275968+00:00",
+  "stage_statuses": {
+    "ingest": "completed",
+    "analyze": "completed",
+    "render": "completed",
+    "html_validate": "completed",
+    "complete": "completed"
+  }
+}

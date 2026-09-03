@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "video_id": "3ImnFXkYp_A",
+  "generated_at": "2026-09-02T10:48:26.623815+00:00",
+  "citations": [
+    {
+      "source_id": "source-001",
+      "title": "In Our Time",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "author": "Kevin Warsh",
+      "published_at": "2026-08-28",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm",
+      "evidence_summary": "联储主席称劳动力市场接近充分就业、通胀仍偏高，政策应等待新信息；同时给出强劲资本开支和 S&P 500 利润数据。",
+      "scope": "截至 2026-08-28 的美国宏观与货币政策判断；属于政策制定者观点，不是 FOMC 承诺。",
+      "source_ids": [
+        "source-001"
+      ],
+      "research_topics": [
+        "topic-001"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-001"
+    },
+    {
+      "source_id": "source-002",
+      "title": "Schedule of Selected Releases for September 2026",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "author": "U.S. Bureau of Labor Statistics",
+      "published_at": "2026-02-18",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.bls.gov/schedule/2026/09_sched.htm",
+      "evidence_summary": "确认八月就业报告在 9 月 4 日发布、八月 CPI 在 9 月 11 日发布。",
+      "scope": "仅确认发布日期，不提供尚未发布的数据结果。",
+      "source_ids": [
+        "source-002"
+      ],
+      "research_topics": [
+        "topic-001"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-002"
+    },
+    {
+      "source_id": "source-003",
+      "title": "Short-Term Energy Outlook: August 2026",
+      "publisher": "U.S. Energy Information Administration",
+      "author": "U.S. Energy Information Administration",
+      "published_at": "2026-08-11",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.eia.gov/outlooks/steo/pdf/steo_full.pdf",
+      "evidence_summary": "记录美伊谅解与后续油轮袭击对应的油价反转，预计霍尔木兹运输 9 月缓慢改善、三季度布油均价约 85 美元。",
+      "scope": "模型分析完成于 2026-08-06，属于条件预测；后续冲突变化可能使预测失效。",
+      "source_ids": [
+        "source-003"
+      ],
+      "research_topics": [
+        "topic-001"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-003"
+    },
+    {
+      "source_id": "source-004",
+      "title": "President Trump Was Right: America Controls the Strait of Hormuz",
+      "publisher": "The White House",
+      "author": "The White House",
+      "published_at": "2026-08-28",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.whitehouse.gov/releases/2026/08/president-trump-was-right-america-controls-the-strait-of-hormuz/",
+      "evidence_summary": "白宫称海湾出口恢复至行动前约三分之二，但同时确认封锁和军事控制仍在。",
+      "scope": "美国政府单方陈述；可说明政策立场与所报运输恢复，不能独立证明停火稳定性。",
+      "source_ids": [
+        "source-004"
+      ],
+      "research_topics": [
+        "topic-001"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-004"
+    },
+    {
+      "source_id": "source-005",
+      "title": "S&P 500",
+      "publisher": "S&P Dow Jones Indices",
+      "author": "S&P Dow Jones Indices",
+      "published_at": "2026-09-01",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.spglobal.com/spdji/en/indices/equity/sp-500/",
+      "evidence_summary": "指数页显示 9 月 1 日下跌 0.71%、截至当日年内上涨 11.48%，用于区分短期压力与中期趋势。",
+      "scope": "当前指数表现快照，不证明因果关系，也不提供完整九月季节性统计。",
+      "source_ids": [
+        "source-005"
+      ],
+      "research_topics": [
+        "topic-001"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-005"
+    },
+    {
+      "source_id": "source-006",
+      "title": "Bank of America: The Flow Show – Investing with Pleasure",
+      "publisher": "Finvaulta",
+      "author": "Michael Hartnett, Anya Shelekhin, Myung-jee Jung, Jessica Guo; summary by Finvaulta",
+      "published_at": "2026-08-28",
+      "accessed_at": "2026-09-02",
+      "url": "https://finvaulta.com/research/bank-of-america/the-flow-show-investing-with-pleasure-2026-08-28",
+      "evidence_summary": "摘要记录美银牛熊指标 9.7、债券与黄金流入、美国股票流出及黄金商品对冲建议。",
+      "scope": "对美银专有研报的页面摘要；可核对研报主张和日期，不作为独立市场数据验证。",
+      "source_ids": [
+        "source-006"
+      ],
+      "research_topics": [
+        "topic-002"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-006"
+    },
+    {
+      "source_id": "source-007",
+      "title": "Daily Treasury Par Yield Curve Rates: August 2026",
+      "publisher": "U.S. Department of the Treasury",
+      "author": "U.S. Department of the Treasury",
+      "published_at": "2026-08-31",
+      "accessed_at": "2026-09-02",
+      "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value_month=202608&type=daily_treasury_yield_curve",
+      "evidence_summary": "8 月 31 日 20 年和 30 年美债收益率分别为 5.24% 与 5.25%。",
+      "scope": "官方日度收益率快照；不直接证明任何股票相对表现阈值。",
+      "source_ids": [
+        "source-007"
+      ],
+      "research_topics": [
+        "topic-002"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-007"
+    },
+    {
+      "source_id": "source-008",
+      "title": "Microsoft Fiscal Year 2026 Fourth Quarter Earnings Conference Call",
+      "publisher": "Microsoft Investor Relations",
+      "author": "Microsoft Corporation",
+      "published_at": "2026-07-29",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
+      "evidence_summary": "微软披露季度资本开支 410 亿美元、约三分之二用于 CPU/GPU，AI 基建压低云毛利率，但云收入和经营利润仍增长。",
+      "scope": "单一大型 AI 建设者的公司披露，不能代表全部 AI 建设者或采用者。",
+      "source_ids": [
+        "source-008"
+      ],
+      "research_topics": [
+        "topic-002"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-008"
+    },
+    {
+      "source_id": "source-009",
+      "title": "Combined Estimated Long-Term Flows and ETF Net Issuance",
+      "publisher": "Investment Company Institute",
+      "author": "Investment Company Institute",
+      "published_at": "2026-08-26",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.ici.org/research/stats/combined_flows",
+      "evidence_summary": "截至 8 月 19 日一周，股票、债券与商品基金均录得估计净流入，支持风险参与和对冲并存。",
+      "scope": "覆盖共同基金和 ETF 的周度估计，可能修订，不能识别单个投资者意图。",
+      "source_ids": [
+        "source-009"
+      ],
+      "research_topics": [
+        "topic-002"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-009"
+    },
+    {
+      "source_id": "source-010",
+      "title": "Gold Demand Trends: Q2 2026",
+      "publisher": "World Gold Council",
+      "author": "Louise Street and Krishan Gopaul",
+      "published_at": "2026-07-30",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q2-2026",
+      "evidence_summary": "央行二季度购金 289 吨，但黄金 ETF 净流出 45 吨，展示避险需求与高利率压力并存。",
+      "scope": "黄金行业组织的季度供需研究；不保证黄金在任一短期风险事件中上涨。",
+      "source_ids": [
+        "source-010"
+      ],
+      "research_topics": [
+        "topic-002"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-010"
+    },
+    {
+      "source_id": "source-011",
+      "title": "Renaissance Capital’s August IPO Market Update",
+      "publisher": "Renaissance Capital",
+      "author": "Renaissance Capital",
+      "published_at": "2026-09-01",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.renaissancecapital.com/IPO-Center/News/121426/renaissance-capital%E2%80%99s-august-ipo-market-update",
+      "evidence_summary": "八月十宗 IPO 募资 18 亿美元、平均回报强，但新申报低于预期；Anthropic 可能在劳工节后公开申报。",
+      "scope": "美国 IPO 月度市场统计与专业机构展望；后续申报可能改变流水线。",
+      "source_ids": [
+        "source-011"
+      ],
+      "research_topics": [
+        "topic-003"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-011"
+    },
+    {
+      "source_id": "source-012",
+      "title": "Anthropic IPO avoiding SpaceX slump key for US bank earnings",
+      "publisher": "Bloomberg Professional Services",
+      "author": "Bloomberg Professional Services",
+      "published_at": "2026-08-25",
+      "accessed_at": "2026-09-02",
+      "url": "https://professional.content.cirrus.bloomberg.com/professional2023/insights/artificial-intelligence/anthropic-ipo-avoiding-spacex-slump-key-for-us-bank-earnings/",
+      "evidence_summary": "报道 Anthropic 潜在十月上市、主要承销行及 SpaceX 跌破发行价对 IPO 流水线和大型科技情绪的影响。",
+      "scope": "Bloomberg Professional 市场分析，不是 Anthropic 正式申报文件。",
+      "source_ids": [
+        "source-012"
+      ],
+      "research_topics": [
+        "topic-003"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-012"
+    },
+    {
+      "source_id": "source-013",
+      "title": "Anthropic and Amazon expand collaboration for up to 5 gigawatts of new compute",
+      "publisher": "Anthropic",
+      "author": "Anthropic",
+      "published_at": "2026-04-20",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.anthropic.com/news/anthropic-amazon-compute",
+      "evidence_summary": "Anthropic 宣布未来十年向 AWS 技术承诺超过 1000 亿美元、获取最高 5GW 新算力。",
+      "scope": "公司自述的商业与算力承诺，尚非经审计招股书披露。",
+      "source_ids": [
+        "source-013"
+      ],
+      "research_topics": [
+        "topic-003"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-013"
+    },
+    {
+      "source_id": "source-014",
+      "title": "Anthropic raises $65B in Series H funding at $965B post-money valuation",
+      "publisher": "Anthropic",
+      "author": "Anthropic",
+      "published_at": "2026-05-28",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.anthropic.com/news/series-h",
+      "evidence_summary": "公司披露 650 亿美元融资、9650 亿美元投后估值和超过 470 亿美元收入运行率。",
+      "scope": "公司融资公告；估值和运行率未经公开招股书的完整审计口径验证。",
+      "source_ids": [
+        "source-014"
+      ],
+      "research_topics": [
+        "topic-003"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-014"
+    },
+    {
+      "source_id": "source-015",
+      "title": "Take-Two Interactive Software, Inc. Reports Results for Fiscal Second Quarter 2026",
+      "publisher": "Take-Two Interactive Software",
+      "author": "Take-Two Interactive Software",
+      "published_at": "2025-11-06",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.take2games.com/ir/news/take-two-interactive-software-inc-reports-results-fiscal-3",
+      "evidence_summary": "公司当时宣布 GTA6 改至 2026 年 11 月 19 日发售，提供了延期历史。",
+      "scope": "公司历史公告，用于确认排期变化，不代表当前开发完成度。",
+      "source_ids": [
+        "source-015"
+      ],
+      "research_topics": [
+        "topic-004"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-015"
+    },
+    {
+      "source_id": "source-016",
+      "title": "Take-Two Interactive Software, Inc. Reports Results for Fourth Quarter and Fiscal Year 2026",
+      "publisher": "Take-Two Interactive Software",
+      "author": "Take-Two Interactive Software",
+      "published_at": "2026-05-21",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.take2games.com/ir/news/take-two-interactive-software-inc-reports-results-fourth-2",
+      "evidence_summary": "公司以 2026 年 11 月 19 日 GTA6 发售作为 FY2027 创纪录预订额预期的重要驱动。",
+      "scope": "公司前瞻指引，受及时交付和市场接受度等假设约束。",
+      "source_ids": [
+        "source-016"
+      ],
+      "research_topics": [
+        "topic-004"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-016"
+    },
+    {
+      "source_id": "source-017",
+      "title": "Rockstar Games Announces Pre-Orders for Grand Theft Auto VI",
+      "publisher": "Take-Two Interactive Software",
+      "author": "Rockstar Games",
+      "published_at": "2026-06-24",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.take2games.com/ir/news/rockstar-games-announces-pre-orders-grand-theft-auto-vi",
+      "evidence_summary": "官方启动预售，明确 11 月 12 日预载和 11 月 19 日发售。",
+      "scope": "正式商业排期能降低但不能消除延期风险。",
+      "source_ids": [
+        "source-017"
+      ],
+      "research_topics": [
+        "topic-004"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-017"
+    },
+    {
+      "source_id": "source-018",
+      "title": "Take-Two Interactive Software, Inc. Reports Results for Fiscal First Quarter 2027",
+      "publisher": "Take-Two Interactive Software",
+      "author": "Take-Two Interactive Software",
+      "published_at": "2026-08-07",
+      "accessed_at": "2026-09-02",
+      "url": "https://www.take2games.com/ir/news/take-two-interactive-software-inc-reports-results-fiscal-first-6",
+      "evidence_summary": "最新季度业绩再次列示 11 月 19 日发售，同时把及时交付列为指引关键假设并披露前瞻风险。",
+      "scope": "截至 2026-08-07 的最新公司公开排期；仍不是独立开发进度审计。",
+      "source_ids": [
+        "source-018"
+      ],
+      "research_topics": [
+        "topic-004"
+      ],
+      "source_layers": [
+        "external_research"
+      ],
+      "citation_id": "citation-018"
+    }
+  ]
+}

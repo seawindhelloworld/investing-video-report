@@ -1,0 +1,539 @@
+{
+  "schema_version": 3,
+  "workflow_profile": "video_meaning_v1",
+  "generated_at": "2026-09-02T12:35:15.848277+00:00",
+  "video": {
+    "video_id": "Yh-oigQc-Og",
+    "title": "美债5%才开始？最优选择：七巨头！苹果重回创新！",
+    "source_url": "https://www.youtube.com/watch?v=Yh-oigQc-Og",
+    "creator": "美投侃新闻",
+    "published_at": "20260902",
+    "duration_seconds": 1294.181
+  },
+  "analysis": {
+    "schema_version": 2,
+    "workflow_profile": "video_meaning_v1",
+    "video_id": "Yh-oigQc-Og",
+    "source_url": "https://www.youtube.com/watch?v=Yh-oigQc-Og",
+    "title": "美债5%才开始？最优选择：七巨头！苹果重回创新！",
+    "creator": "美投侃新闻",
+    "published_at": "20260902",
+    "duration_seconds": 1294.181,
+    "video": {
+      "video_id": "Yh-oigQc-Og",
+      "source_url": "https://www.youtube.com/watch?v=Yh-oigQc-Og",
+      "title": "美债5%才开始？最优选择：七巨头！苹果重回创新！",
+      "creator": "美投侃新闻",
+      "published_at": "20260902",
+      "duration_seconds": 1294.181
+    },
+    "summary": "全球债券收益率在通胀、油价、央行政策与债券供给的共同作用下快速上行，视频由此讨论美股估值与资金分流压力，并梳理摩根大通从战术谨慎到偏好七巨头、软件及对冲工具的配置路径。后半段转向苹果换帅，围绕特纳斯的技术背景、创新任务、存储与代工风险展开，最后以科技五大新闻收束。",
+    "sections": [
+      {
+        "section_id": "section-001",
+        "title": "4.8%关口：全球债券重定价如何压向美股",
+        "segment_start": "seg-000002",
+        "segment_end": "seg-000151",
+        "summary": "十年期美债收益率逼近4.8%，全球主要债市同步承压。视频把本轮上行归因于通胀约束、油价冲击、加息预期和债券供给，并把4.75%—5%视为股市警觉度明显上升的区间；作者判断9月启动加息及收益率高位震荡仍是基准方向，但不据此推断美股即将全面下跌。",
+        "key_points": [
+          "油价上行强化通胀预期，央行强硬表态又抬升加息定价，两股力量共同压低债券价格。",
+          "美国国债与大科技长期公司债同时增加供给，资金竞争要求更高收益率补偿。",
+          "4.8%附近既是历史统计门槛，也是高估值、现金流承压和利率敏感型股票风险上升的位置。",
+          "作者保持对9月启动加息和收益率高位震荡的判断，同时强调单一历史数据不能直接推出全面下跌。"
+        ]
+      },
+      {
+        "section_id": "section-002",
+        "title": "摩根大通转向战术谨慎：指数横盘，个股分化",
+        "segment_start": "seg-000152",
+        "segment_end": "seg-000388",
+        "summary": "摩根大通交易台因政策路径、市场定位、信用利差、季节性和动量回撤等因素下调美股至战术谨慎中性，认为短期更可能横盘震荡而非指数大跌，但子指数和个股分化会加剧。其相对交易偏好纳斯达克100胜过罗素2000，科技内部首选七巨头并保留软件吸引力；作者赞同9月加息概率较高和高质量股相对占优，但对加息拖垮美股及9月必然悲观持反向看法。",
+        "key_points": [
+          "未来两到三周的核心判断是指数未必深跌，但拥挤度、信用与动量变化会放大内部波动。",
+          "摩根大通建议做多纳斯达克100、做空罗素2000，以表达大盘高质量资产相对小盘股的韧性。",
+          "科技板块内部，七巨头是近期首选，软件在半导体持续下跌时仍具相对吸引力。",
+          "作者认为加息不会带崩美股，也不认为9月必然呈现典型的季节性悲观。"
+        ]
+      },
+      {
+        "section_id": "section-003",
+        "title": "苹果进入特纳斯时代：技术掌舵与创新重启",
+        "segment_start": "seg-000389",
+        "segment_end": "seg-000535",
+        "summary": "视频以特纳斯接任苹果CEO为起点，讨论技术型掌舵者如何同时面对高预期发布会、存储短缺、设备涨价、AI竞争和新计算终端挑战。外部被转述观点一边担心涨价驱动的增长不可持续，另一边看重其产品与工程人才背景；作者认为特纳斯带来更强创新力的概率高于库克，并判断一年维度的存储风险和台积电代工稳定性总体可控。",
+        "key_points": [
+          "特纳斯需要从硬件负责人转向全公司掌舵者，并讲清苹果与AI之间的关系。",
+          "存储短缺可能通过涨价影响设备需求与竞争格局，增长质量取决于销量还是价格。",
+          "产品出身与工程人才招募经验，被视为苹果进入新设备时代的一项潜在优势。",
+          "作者更关注文化、创新、产品设计与AI平衡，认为存储和代工风险没有市场预期的严重。"
+        ]
+      },
+      {
+        "section_id": "section-004",
+        "title": "科技五大新闻",
+        "segment_start": "seg-000536",
+        "segment_end": "seg-000543",
+        "summary": "片尾依次梳理戴森AI牙刷、苹果与OpenAI诉讼、新模型Astra、Anthropic新模型Fable 5.1，以及戴尔上调财年营收展望五条科技新闻。",
+        "key_points": [
+          "戴森推出带摄像头识别能力的AI牙刷，并把口腔护理视为下一重点品类。",
+          "苹果与OpenAI诉讼围绕窃密和证据销毁指控升级。",
+          "Astra与Fable 5.1两款新模型分别强调网络安全、编程科研、成本与安全分类能力。",
+          "戴尔以强劲AI服务器需求为由上调财年营收展望，并披露大额订单积压。"
+        ]
+      }
+    ],
+    "topic_clusters": [
+      {
+        "topic_id": "topic-001",
+        "title": "高利率与资产重定价",
+        "summary": "从全球债券抛售、通胀与供给压力，延伸到美股估值、资金分流和质量偏好。",
+        "section_ids": [
+          "section-001",
+          "section-002"
+        ]
+      },
+      {
+        "topic_id": "topic-002",
+        "title": "高质量科技资产的相对韧性",
+        "summary": "摩根大通与作者都把高质量大型科技股置于小盘和低质量资产之前，但保留板块内部差异。",
+        "section_ids": [
+          "section-002",
+          "section-003"
+        ]
+      },
+      {
+        "topic_id": "topic-003",
+        "title": "苹果的产品、供应与AI命题",
+        "summary": "苹果新任CEO既要恢复创新叙事，也要处理存储、代工、涨价和新终端竞争。",
+        "section_ids": [
+          "section-003"
+        ]
+      },
+      {
+        "topic_id": "topic-004",
+        "title": "科技产业动态",
+        "summary": "五条片尾新闻覆盖消费硬件、诉讼、模型发布与AI服务器需求。",
+        "section_ids": [
+          "section-004"
+        ]
+      }
+    ],
+    "excluded_ranges": [
+      {
+        "range_id": "excluded-001",
+        "segment_start": "seg-000001",
+        "segment_end": "seg-000001",
+        "timestamp_start": 0.0,
+        "timestamp_end": 4.24,
+        "category": "advertising",
+        "reason": "片头品牌宣传口播，不属于视频分析内容。",
+        "certainty": "high"
+      },
+      {
+        "range_id": "excluded-002",
+        "segment_start": "seg-000008",
+        "segment_end": "seg-000008",
+        "timestamp_start": 30.88,
+        "timestamp_end": 33.92,
+        "category": "subscription_prompt",
+        "reason": "点赞观看引导，不属于可报告内容。",
+        "certainty": "high"
+      },
+      {
+        "range_id": "excluded-003",
+        "segment_start": "seg-000544",
+        "segment_end": "seg-000544",
+        "timestamp_start": 1286.6,
+        "timestamp_end": 1292.86,
+        "category": "boilerplate_outro",
+        "reason": "片尾身份与明日再见套话，不包含实质分析。",
+        "certainty": "high"
+      }
+    ],
+    "non_reportable_ranges": [],
+    "transcript_risks": []
+  },
+  "opinions": [
+    {
+      "opinion_id": "opinion-001",
+      "section_id": "section-001",
+      "timestamp_start": 135.04,
+      "timestamp_end": 139.8,
+      "segment_start": "seg-000038",
+      "segment_end": "seg-000038",
+      "exact_quote": "5%的美债收益率可能不是终点 而是新常态的起点",
+      "faithful_paraphrase": "5%的美债收益率可能是新常态的起点，而非本轮上行的终点。",
+      "speaker": "Jason",
+      "stance_owner": "彭博",
+      "attribution_mode": "reported",
+      "opinion_type": "market_judgment",
+      "target": "美国国债收益率",
+      "time_horizon": "视频中未明确",
+      "stated_basis": [
+        "全球主要经济体债券同步遭到抛售",
+        "廉价资金时代可能已经终结"
+      ],
+      "qualifiers": [
+        "可能"
+      ],
+      "context_before": "Jason转述彭博对全球债市系统性重新定价的分析。",
+      "context_after": "随后列出央行表态与油价冲击两项导火索。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-002",
+      "section_id": "section-001",
+      "timestamp_start": 323.46,
+      "timestamp_end": 331.38,
+      "segment_start": "seg-000119",
+      "segment_end": "seg-000121",
+      "exact_quote": "根据目前的经济数据及美联储官员的表态 我保持对9月启动加息 保持对美债收益率持续高位震荡的判断",
+      "faithful_paraphrase": "Jason依据经济数据和美联储官员表态，维持9月启动加息以及美债收益率高位震荡的判断。",
+      "speaker": "Jason",
+      "stance_owner": "Jason",
+      "attribution_mode": "self",
+      "opinion_type": "macro_outlook",
+      "target": "美联储政策与美国国债收益率",
+      "time_horizon": "9月及此后视频未明确的阶段",
+      "stated_basis": [
+        "目前的经济数据",
+        "美联储官员表态"
+      ],
+      "qualifiers": [
+        "保持判断"
+      ],
+      "context_before": "多位市场人士讨论收益率上行对股市和消费的影响。",
+      "context_after": "话题转向收益率何时会明显压缩股市估值。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-003",
+      "section_id": "section-001",
+      "timestamp_start": 360.82,
+      "timestamp_end": 367.0,
+      "segment_start": "seg-000134",
+      "segment_end": "seg-000136",
+      "exact_quote": "这样的数据只是我们用来参考的数据之一 我也不认为这就能预示着 美股即将开始全面下跌",
+      "faithful_paraphrase": "4.8%的历史门槛只是参考之一，不能据此判断美股即将全面下跌。",
+      "speaker": "Jason",
+      "stance_owner": "Jason",
+      "attribution_mode": "self",
+      "opinion_type": "risk_assessment",
+      "target": "美国股票市场",
+      "time_horizon": "视频中未明确",
+      "stated_basis": [
+        "4.8%附近对应收益率高于三年均值两个标准差的历史门槛"
+      ],
+      "qualifiers": [
+        "只是参考数据之一",
+        "不认为"
+      ],
+      "context_before": "贝莱德分析师的历史统计显示该门槛下标普500月均回报偏弱。",
+      "context_after": "Jason仍承认高利率会带来估值压力和债券资金吸引力。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-004",
+      "section_id": "section-002",
+      "timestamp_start": 415.62,
+      "timestamp_end": 423.14,
+      "segment_start": "seg-000161",
+      "segment_end": "seg-000164",
+      "exact_quote": "股市基本面仍然稳健 但未来两到三周内 多个短期变量叠加在一起 市场大概率会进入横盘震荡的格局",
+      "faithful_paraphrase": "摩根大通交易台认为，基本面仍稳健，但短期变量叠加可能令未来两到三周进入横盘震荡。",
+      "speaker": "Jason",
+      "stance_owner": "摩根大通交易台",
+      "attribution_mode": "reported",
+      "opinion_type": "market_outlook",
+      "target": "美国股票市场",
+      "time_horizon": "未来两到三周",
+      "stated_basis": [
+        "美联储政策路径不确定性上升",
+        "市场定位拥挤",
+        "季节性压力",
+        "动量因子大幅回撤"
+      ],
+      "qualifiers": [
+        "大概率",
+        "指数未必大幅回调"
+      ],
+      "context_before": "Jason介绍摩根大通把美股下调至战术谨慎中性。",
+      "context_after": "报告预期子指数和个股层面可能进一步动荡。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-005",
+      "section_id": "section-002",
+      "timestamp_start": 680.88,
+      "timestamp_end": 691.96,
+      "segment_start": "seg-000290",
+      "segment_end": "seg-000293",
+      "exact_quote": "由于AI、存储和半导体难以维持买盘 所以七巨头就是团队近期的首选 软件板块也仍然具备吸引力 在半导体持续下跌的情景下尤其如此",
+      "faithful_paraphrase": "摩根大通团队在AI、存储和半导体买盘难以维持时，把七巨头列为近期首选，并认为软件在半导体下跌情景下仍具吸引力。",
+      "speaker": "Jason",
+      "stance_owner": "摩根大通交易台",
+      "attribution_mode": "reported",
+      "opinion_type": "sector_preference",
+      "target": "七巨头与美国软件板块",
+      "time_horizon": "近期",
+      "stated_basis": [
+        "AI、存储和半导体难以维持买盘",
+        "半导体持续下跌"
+      ],
+      "qualifiers": [
+        "近期",
+        "尤其如此"
+      ],
+      "context_before": "报告提出做多纳斯达克100并做空罗素2000的相对交易。",
+      "context_after": "报告继续讨论中小盘、周期、防御与对冲工具。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-006",
+      "section_id": "section-002",
+      "timestamp_start": 765.0,
+      "timestamp_end": 770.38,
+      "segment_start": "seg-000331",
+      "segment_end": "seg-000333",
+      "exact_quote": "所以我觉得小摩观点跟我一样 就是美联储在9月启动加息 是大概率事件",
+      "faithful_paraphrase": "Jason认为，美联储9月启动加息是大概率事件，并判断摩根大通的交易路径隐含了相同假设。",
+      "speaker": "Jason",
+      "stance_owner": "Jason",
+      "attribution_mode": "self",
+      "opinion_type": "macro_outlook",
+      "target": "美联储9月政策",
+      "time_horizon": "9月",
+      "stated_basis": [
+        "摩根大通后续观点与交易路径按加息假设设定"
+      ],
+      "qualifiers": [
+        "我觉得",
+        "大概率"
+      ],
+      "context_before": "Jason总结摩根大通报告虽未明说，但配置逻辑基于加息假设。",
+      "context_after": "他进一步讨论可能的加息次数及非农和CPI的影响。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-007",
+      "section_id": "section-002",
+      "timestamp_start": 810.1,
+      "timestamp_end": 811.76,
+      "segment_start": "seg-000356",
+      "segment_end": "seg-000356",
+      "exact_quote": "我认为加息不会带崩美股",
+      "faithful_paraphrase": "Jason不认为加息会令美股崩盘。",
+      "speaker": "Jason",
+      "stance_owner": "Jason",
+      "attribution_mode": "self",
+      "opinion_type": "market_judgment",
+      "target": "美国股票市场",
+      "time_horizon": "本轮加息情景",
+      "stated_basis": [
+        "加息可降低通胀不确定性",
+        "盈利增速不减是其讨论回调机会时的前提"
+      ],
+      "qualifiers": [
+        "我认为",
+        "不会"
+      ],
+      "context_before": "Jason把CPI明显降温视为改变通胀趋势的较高门槛。",
+      "context_after": "他把潜在回调放在盈利与通胀条件下讨论，并认为未必会出现。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-008",
+      "section_id": "section-002",
+      "timestamp_start": 856.06,
+      "timestamp_end": 858.7,
+      "segment_start": "seg-000376",
+      "segment_end": "seg-000376",
+      "exact_quote": "七巨头等高质量股显著优于其他",
+      "faithful_paraphrase": "Jason认为七巨头等高质量股票相对其他股票更占优。",
+      "speaker": "Jason",
+      "stance_owner": "Jason",
+      "attribution_mode": "self",
+      "opinion_type": "sector_preference",
+      "target": "七巨头等高质量股票",
+      "time_horizon": "当前环境",
+      "stated_basis": [
+        "高利率环境下高估值、现金流承压和利率敏感资产风险更高",
+        "摩根大通的相对配置路径"
+      ],
+      "qualifiers": [
+        "显著",
+        "板块内部仍有明显分化"
+      ],
+      "context_before": "Jason讨论板块甄选与加息环境。",
+      "context_after": "他说明软件、半导体、存储内部仍存在分化。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-009",
+      "section_id": "section-003",
+      "timestamp_start": 1006.12,
+      "timestamp_end": 1014.18,
+      "segment_start": "seg-000451",
+      "segment_end": "seg-000453",
+      "exact_quote": "CNBC认为这不是一个短期问题 内存和零部件供应短缺 看不到多少缓解迹象",
+      "faithful_paraphrase": "CNBC认为内存和零部件短缺并非短期问题，缓解迹象仍不明显。",
+      "speaker": "Jason",
+      "stance_owner": "CNBC",
+      "attribution_mode": "reported",
+      "opinion_type": "industry_outlook",
+      "target": "消费电子内存与零部件供应",
+      "time_horizon": "视频中未明确",
+      "stated_basis": [
+        "内存和零部件供应短缺看不到多少缓解迹象"
+      ],
+      "qualifiers": [
+        "不是一个短期问题",
+        "看不到多少"
+      ],
+      "context_before": "苹果已因内存紧张上调MacBook和iPad价格。",
+      "context_after": "该判断被延伸到电子产品价格、需求和竞争格局。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-010",
+      "section_id": "section-003",
+      "timestamp_start": 1075.9,
+      "timestamp_end": 1081.14,
+      "segment_start": "seg-000481",
+      "segment_end": "seg-000482",
+      "exact_quote": "因为投资者不会为涨价带来的增长付溢价 因为这种增长不可持续",
+      "faithful_paraphrase": "KeyBanc分析师布兰登·尼斯佩尔认为，投资者不会为涨价驱动且不可持续的增长支付溢价。",
+      "speaker": "Jason",
+      "stance_owner": "布兰登·尼斯佩尔",
+      "attribution_mode": "reported",
+      "opinion_type": "company_assessment",
+      "target": "苹果增长质量与估值",
+      "time_horizon": "视频中未明确",
+      "stated_basis": [
+        "增长若来自涨价而非销量，持续性较弱"
+      ],
+      "qualifiers": [
+        "如果增长来自涨价"
+      ],
+      "context_before": "Jason介绍尼斯佩尔是少数建议卖出苹果股票的分析师之一。",
+      "context_after": "随后转述吉恩·蒙斯特对特纳斯产品与人才背景的正面看法。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-011",
+      "section_id": "section-003",
+      "timestamp_start": 1095.16,
+      "timestamp_end": 1099.36,
+      "segment_start": "seg-000487",
+      "segment_end": "seg-000488",
+      "exact_quote": "他说苹果选了一个做产品的人 我认为这很重要",
+      "faithful_paraphrase": "吉恩·蒙斯特认为，苹果选择产品型领导者这一点很重要。",
+      "speaker": "Jason",
+      "stance_owner": "吉恩·蒙斯特",
+      "attribution_mode": "reported",
+      "opinion_type": "management_assessment",
+      "target": "苹果新任CEO特纳斯",
+      "time_horizon": "接下来两年",
+      "stated_basis": [
+        "特纳斯具备硬件功底",
+        "拥有长期招募工程人才的经验"
+      ],
+      "qualifiers": [
+        "我认为"
+      ],
+      "context_before": "蒙斯特认为新设备时代会放大特纳斯的硬件与人才优势。",
+      "context_after": "他认为特纳斯需要大力招募人才以帮助苹果重新发明自己。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-012",
+      "section_id": "section-003",
+      "timestamp_start": 1131.54,
+      "timestamp_end": 1139.22,
+      "segment_start": "seg-000503",
+      "segment_end": "seg-000506",
+      "exact_quote": "但要说能为苹果带来更有创新力 更有气氛的产品角度上 我认为特纳斯做到的概率 要明显比库克更高",
+      "faithful_paraphrase": "Jason认为，特纳斯为苹果带来更具创新力产品的概率明显高于库克。",
+      "speaker": "Jason",
+      "stance_owner": "Jason",
+      "attribution_mode": "self",
+      "opinion_type": "management_assessment",
+      "target": "苹果创新与产品方向",
+      "time_horizon": "特纳斯担任CEO后",
+      "stated_basis": [
+        "特纳斯出身硬件设计",
+        "技术人才往往具有执念和不妥协精神"
+      ],
+      "qualifiers": [
+        "概率",
+        "明显更高"
+      ],
+      "context_before": "Jason肯定库克的供应链管理与经营成绩，但批评其应对AI格局与创新停滞的表现。",
+      "context_after": "话题转向苹果供应风险。",
+      "research_status": "not_applicable"
+    },
+    {
+      "opinion_id": "opinion-013",
+      "section_id": "section-003",
+      "timestamp_start": 1188.74,
+      "timestamp_end": 1195.76,
+      "segment_start": "seg-000529",
+      "segment_end": "seg-000531",
+      "exact_quote": "因此 存储短缺与代工紧张这两个风险点 我判断没有市场预期的那么严重",
+      "faithful_paraphrase": "Jason判断，苹果的存储短缺与代工紧张风险没有市场预期得严重。",
+      "speaker": "Jason",
+      "stance_owner": "Jason",
+      "attribution_mode": "self",
+      "opinion_type": "risk_assessment",
+      "target": "苹果存储供应与芯片代工稳定性",
+      "time_horizon": "存储风险以一年维度为主；更远期仍有风险",
+      "stated_basis": [
+        "存储风险在一年维度可控",
+        "台积电新产能表现不错",
+        "台积电平衡客户关系的能力较好"
+      ],
+      "qualifiers": [
+        "没有市场预期的那么严重",
+        "更远期确实是风险"
+      ],
+      "context_before": "Jason分别评估存储扩产和台积电代工稳定性。",
+      "context_after": "他把苹果更重要的任务归结为文化、创新、产品设计与AI平衡。",
+      "research_status": "not_applicable"
+    }
+  ],
+  "source_coverage": [
+    {
+      "section_id": "section-001",
+      "segment_start": "seg-000002",
+      "segment_end": "seg-000151",
+      "report_anchor": "#section-001"
+    },
+    {
+      "section_id": "section-002",
+      "segment_start": "seg-000152",
+      "segment_end": "seg-000388",
+      "report_anchor": "#section-002"
+    },
+    {
+      "section_id": "section-003",
+      "segment_start": "seg-000389",
+      "segment_end": "seg-000535",
+      "report_anchor": "#section-003"
+    },
+    {
+      "section_id": "section-004",
+      "segment_start": "seg-000536",
+      "segment_end": "seg-000543",
+      "report_anchor": "#section-004"
+    }
+  ],
+  "source_artifact_hashes": {
+    "content_selection": "cc75d3f54257575b04613bf9bad57b67d4cb555f4f4273adb444c512f0bbf1c6",
+    "draft_markdown": "bec7bf0fa6258acce890ebda9d1a201407db902d1a0a94f6930dc5de7776fddf",
+    "opinions": "10d71e568d813f3f88538718eb31c8a5ce4c8cfc2cae2d960753fac34df12228",
+    "transcript_corrected_jsonl": "08b010df3b771f60e73b97c412f3f13a799d46a1fdca62e3f71a7e953a8d5799",
+    "transcript_package": "85618062efd745c6f1befb3bf8e8276cf11bce1702202aa94373e8eaf18d27db",
+    "transcript_report_jsonl": "1a952b803cdabe4f2ad2f5b5681a65b60b974a493c0bdea8a7ba3f42e2470734",
+    "video_analysis": "5c17d98e8b7ab04a25e1c29688fe0827ffb91e1f299b2cd288f98bee292f3555"
+  }
+}

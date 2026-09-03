@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "workflow_profile": "video_meaning_v1",
+  "video_id": "Yh-oigQc-Og",
+  "generated_at": "2026-09-02T12:35:15.848277+00:00",
+  "source": {
+    "title": "美债5%才开始？最优选择：七巨头！苹果重回创新！",
+    "creator": "美投侃新闻",
+    "published_at": "20260902",
+    "url": "https://www.youtube.com/watch?v=Yh-oigQc-Og",
+    "transcript_package_sha256": "85618062efd745c6f1befb3bf8e8276cf11bce1702202aa94373e8eaf18d27db",
+    "transcript_sha256": "08b010df3b771f60e73b97c412f3f13a799d46a1fdca62e3f71a7e953a8d5799"
+  },
+  "external_sources": []
+}
